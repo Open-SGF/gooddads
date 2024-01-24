@@ -112,10 +112,12 @@ CREATE TYPE roleType AS ENUM ('caseWorker', 'probationOfficer');
 create table dads if not exists dads (
 	id UUID PRIMARY KEY,
 	user_id UUID NOT NULL,
+	region_id UUID,
 	street_address VARCHAR(100),
 	city VARCHAR(50),
 	zip_code VARCHAR(5),
 	employer VARCHAR(100),
+	email text,
 	cell_phone_number VARCHAR(11),
 	home_phone_number VARCHAR(11),
 	work_phone_number VARCHAR(11),
@@ -125,16 +127,20 @@ create table dads if not exists dads (
 	monthly_child_support FLOAT
 );
 
-create table users_on_tenants if not exists users_on_tenants (
+create table class_assignments if not exists class_assignments (
 	id UUID PRIMARY KEY,
-	user_id UUID NOT NULL,
-	tenant_id UUID NOT NULL
+	dad_id UUID NOT NULL,
+	class_id UUID NOT NULL
 );
 
-create table tenants if not exists tenants (
+create table classes if not exists classes (
 	id UUID PRIMARY KEY,
-	description VARCHAR(1000) NOT NULL,
-	--tenant_id UUID NOT NULL
+	region_id UUID NOT NULL
+);
+
+create table regions if not exists regions (
+	id UUID PRIMARY KEY,
+	description text
 );
 
 create table programs if not exists programs (
@@ -184,7 +190,7 @@ create table quiz_question_options if not exists quiz_question_options (
 	is_correct BOOLEAN NOT NULL
 );
 
-create table quiz_question_responses if not exists quiz_question_responses (
+create table quiz_assignments if not exists quiz_assignments (
 	id UUID PRIMARY KEY,
 	user_id UUID NOT NULL,
 	quiz_question_id UUID NOT NULL,

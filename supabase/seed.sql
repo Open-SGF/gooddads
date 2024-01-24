@@ -67,15 +67,20 @@ insert into dads
 values
 ('6b16fb9b-246d-44a2-b253-b7896c74e852','d55f3b79-9004-4bc4-af5c-7fcc1478345a');
 
-insert into users_on_tenants
-(id, user_id)
+insert into class_assignments
+(id, dad_id, class_id)
 values
 ('8d22171c-cbf7-430f-a0be-6e3581092ad0', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a', 'e2aca9c0-1901-4b56-88d8-3dbf15d91491');
 
-insert into tenants
+insert into classes
+(id, resion_id)
+values
+('e2aca9c0-1901-4b56-88d8-3dbf15d91491', '34b3e6bc-ed47-4733-b80b-54ab31c48648');
+
+insert into regions
 (id, description)
 values
-('e2aca9c0-1901-4b56-88d8-3dbf15d91491', 'Springfield Tenant');
+('34b3e6bc-ed47-4733-b80b-54ab31c48648', 'Springfield Region');
 
 insert into programs
 (id, description, length)
@@ -165,7 +170,7 @@ values
 ('e861d2b7-5f7f-4179-bb7b-796db4c1da07','aa25492d-ca8a-45c5-b730-9dbc893e831f','Check Answer 3', false),
 ('5dd3d96a-fd87-41f3-a255-05b413a91754','aa25492d-ca8a-45c5-b730-9dbc893e831f','Check Answer 4', true);
 
-insert into quiz_question_responses
+insert into quiz_assignments
 (id, user_id, quiz_question_id, quiz_question_option_id, answer, is_correct)
 values
 ('965fbdef-fc39-4607-9277-be5be06096a1','d55f3b79-9004-4bc4-af5c-7fcc1478345a','51de12be-e769-4efc-bc47-b1f067a1e24f',null,'Example short response answer',false),
