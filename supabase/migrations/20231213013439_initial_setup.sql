@@ -51,9 +51,9 @@ select dbdev.install('pointsource-supabase_rbac');
 create extension "pointsource-supabase_rbac"
     version '0.0.2';
 
-create table if not exists users
+create table if not exists public.users
 (
-    id         uuid references auth.users not null primary key,
+    id         uuid references auth.users (id) primary key,
     updated_at timestamp with time zone,
     username   text unique,
     full_name  text,
@@ -62,11 +62,11 @@ create table if not exists users
     constraint username_length check (char_length(username) >= 3)
 );
 
-alter table users
+alter table public.users
     enable row level security;
 
-DROP POLICY IF EXISTS "Users can insert their own profile." ON users;
-create policy "Users can insert their own profile." on users
+DROP POLICY IF EXISTS "Users can insert their own profile." ON public.users;
+create policy "Users can insert their own profile." on public.users
     for insert with check (auth.uid() = id);
 
 DROP POLICY IF EXISTS "Users can update own profile." ON users;
@@ -109,7 +109,7 @@ CREATE TYPE ethnicityEnum AS ENUM ('white','africanAmerican','nativeAmerican', '
 CREATE TYPE quizType AS ENUM ('open', 'multipleChoice', 'check');
 CREATE TYPE roleType AS ENUM ('caseWorker', 'probationOfficer');
 
-create table dads if not exists dads (
+create table if not exists dads (
 	id UUID PRIMARY KEY,
 	user_id UUID NOT NULL,
 	street_address VARCHAR(100),
@@ -125,25 +125,24 @@ create table dads if not exists dads (
 	monthly_child_support FLOAT
 );
 
-create table users_on_tenants if not exists users_on_tenants (
+create table if not exists users_on_tenants (
 	id UUID PRIMARY KEY,
 	user_id UUID NOT NULL,
 	tenant_id UUID NOT NULL
 );
 
-create table tenants if not exists tenants (
+create table if not exists tenants (
 	id UUID PRIMARY KEY,
-	description VARCHAR(1000) NOT NULL,
-	--tenant_id UUID NOT NULL
+	description VARCHAR(1000) NOT NULL
 );
 
-create table programs if not exists programs (
+create table if not exists programs (
 	id UUID PRIMARY KEY,
 	description VARCHAR(1000) NOT NULL,
 	length INTEGER NOT NULL
 );
 
-create table program_assignments if not exists program_assignments (
+create table if not exists program_assignments (
 	id UUID PRIMARY KEY,
 	program_id UUID NOT NULL,
 	tenant_id UUID NOT NULL,
@@ -151,40 +150,40 @@ create table program_assignments if not exists program_assignments (
 	completed BOOLEAN NOT NULL
 );
 
-create table module_assignments if not exists module_assignments (
+create table if not exists module_assignments (
 	id UUID PRIMARY KEY,
 	module_id UUID NOT NULL,
 	event_date DATE NOT NULL,
 	description VARCHAR(1000) NOT NULL
 );
 
-create table modules if not exists modules (
+create table if not exists modules (
 	id UUID PRIMARY KEY,
 	program_id UUID NOT NULL,
 	description VARCHAR(1000) NOT NULL
 );
 
-create table quizzes if not exists quizzes (
+create table if not exists quizzes (
 	id UUID PRIMARY KEY,
 	module_id UUID NOT NULL,
 	description VARCHAR(1000) NOT NULL
 );
 
-create table quiz_questions if not exists quiz_questions (
+create table if not exists quiz_questions (
 	id UUID PRIMARY KEY,
 	quiz_id UUID NOT NULL,
 	question VARCHAR(1000) NOT NULL,
 	type quizType NOT NULL
 );
 
-create table quiz_question_options if not exists quiz_question_options (
+create table if not exists quiz_question_options (
 	id UUID PRIMARY KEY,
 	quiz_question_id UUID NOT NULL,
 	answer VARCHAR(1000) NOT NULL,
 	is_correct BOOLEAN NOT NULL
 );
 
-create table quiz_question_responses if not exists quiz_question_responses (
+create table if not exists quiz_question_responses (
 	id UUID PRIMARY KEY,
 	user_id UUID NOT NULL,
 	quiz_question_id UUID NOT NULL,
@@ -193,7 +192,7 @@ create table quiz_question_responses if not exists quiz_question_responses (
 	is_correct BOOLEAN NOT NULL
 );
 
-create table children if not exists children (
+create table if not exists children (
 	id UUID PRIMARY KEY,
 	dad_id UUID NOT NULL,
 	name TEXT NOT NULL,
@@ -203,13 +202,13 @@ create table children if not exists children (
 	child_support FLOAT NOT NULL
 );
 
-create table responsible_party_assignments if not exists responsible_party_assignments (
+create table if not exists responsible_party_assignments (
 	id UUID PRIMARY KEY,
 	responsible_party_id UUID NOT NULL,
 	dad_id UUID NOT NULL
 );
 
-create table responsible_parties if not exists responsible_parties (
+create table if not exists responsible_parties (
 	id UUID PRIMARY KEY,
 	user_id UUID NOT NULL,
 	phone_number VARCHAR(11) NOT NULL,
