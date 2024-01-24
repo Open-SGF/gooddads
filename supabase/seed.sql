@@ -76,21 +76,27 @@ insert into dads
     (id, user_id)
 values ('6b16fb9b-246d-44a2-b253-b7896c74e852', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a') ON CONFLICT DO NOTHING;
 
-insert into users_on_tenants
-    (id, user_id, tenant_id)
-values ('8d22171c-cbf7-430f-a0be-6e3581092ad0', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
-        'e2aca9c0-1901-4b56-88d8-3dbf15d91491') ON CONFLICT DO NOTHING;
+insert into class_assignments
+(id, dad_id, class_id)
+values
+('8d22171c-cbf7-430f-a0be-6e3581092ad0', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a', 'e2aca9c0-1901-4b56-88d8-3dbf15d91491') ON CONFLICT DO NOTHING;
 
-insert into tenants
-    (id, description)
-values ('e2aca9c0-1901-4b56-88d8-3dbf15d91491', 'Springfield Tenant') ON CONFLICT DO NOTHING;
+insert into classes
+(id, region_id)
+values
+('e2aca9c0-1901-4b56-88d8-3dbf15d91491', '34b3e6bc-ed47-4733-b80b-54ab31c48648') ON CONFLICT DO NOTHING;
+
+insert into regions
+(id, description)
+values
+('34b3e6bc-ed47-4733-b80b-54ab31c48648', 'Springfield Region') ON CONFLICT DO NOTHING;
 
 insert into programs
     (id, description, length)
 values ('4ba51388-c3fb-4d34-a81c-f1545618b6e6', '8 Week Program', 8) ON CONFLICT DO NOTHING;
 
 insert into program_assignments
-    (id, program_id, tenant_id, start_date, completed)
+    (id, program_id, class_id, start_date, completed)
 values ('9b95ed5b-11fc-4852-99e9-0a918941c56c', '4ba51388-c3fb-4d34-a81c-f1545618b6e6',
         'e2aca9c0-1901-4b56-88d8-3dbf15d91491', '2023-08-01', true),
        ('ac88d8fb-1947-4838-8f4a-404bd54e9d00', '4ba51388-c3fb-4d34-a81c-f1545618b6e6',
@@ -177,7 +183,7 @@ values ('4a91fe3b-8a54-4806-9e9f-b34e57d8a747', '39fb16e5-3831-4de4-b9d3-0a1db5c
        ('e861d2b7-5f7f-4179-bb7b-796db4c1da07', 'aa25492d-ca8a-45c5-b730-9dbc893e831f', 'Check Answer 3', false),
        ('5dd3d96a-fd87-41f3-a255-05b413a91754', 'aa25492d-ca8a-45c5-b730-9dbc893e831f', 'Check Answer 4', true) ON CONFLICT DO NOTHING;
 
-insert into quiz_question_responses
+insert into quiz_assignments
 (id, user_id, quiz_question_id, quiz_question_option_id, answer, is_correct)
 values ('965fbdef-fc39-4607-9277-be5be06096a1', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
         '51de12be-e769-4efc-bc47-b1f067a1e24f', null, 'Example short response answer', false),
