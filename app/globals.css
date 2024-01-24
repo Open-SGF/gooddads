@@ -40,3 +40,5 @@
     transform: translateY(0);
   }
 }
+
+@import '@radix-ui/themes/styles.css';
