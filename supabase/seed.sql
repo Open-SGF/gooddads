@@ -19,8 +19,8 @@ VALUES ('00000000-0000-0000-0000-000000000000',
         'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
         'authenticated',
         'authenticated',
-        'devuser@email.local',
-        '$2a$10$I5DJXjQ7LfIGuvR2riGVXOzcJP7uk.pFB7ZvloA/TApxBv1TRrxNO',
+        'intake@email.local',
+        '$2a$10$qL.GCoX1QNlYl9S80a4fAeku1f.IwcDtdkcBbqpWDnaf3xxAVL2Cm',
         '2023-04-03 16:40:17.367996-07',
         '',
         '',
@@ -31,13 +31,10 @@ VALUES ('00000000-0000-0000-0000-000000000000',
           "provider": "email",
           "providers": [
             "email"
-          ]
+          ],
+          "userrole": "INTAKE"
         }',
-        '{
-          "lastName": "User",
-          "firstName": "Dev",
-          "phoneNumber": ""
-        }',
+        '{}',
         NULL,
         '2023-04-03 16:39:30.424482-07',
         '2023-04-03 16:40:17.36902-07'),
@@ -45,8 +42,8 @@ VALUES ('00000000-0000-0000-0000-000000000000',
         'f3a51eed-f45a-413f-89f2-d3de7659fba2',
         'authenticated',
         'authenticated',
-        'invited@email.local',
-        '$2a$10$I5DJXjQ7LfIGuvR2riGVXOzcJP7uk.pFB7ZvloA/TApxBv1TRrxNO',
+        'dad@email.local',
+        '$2a$10$qL.GCoX1QNlYl9S80a4fAeku1f.IwcDtdkcBbqpWDnaf3xxAVL2Cm',
         '2023-04-03 16:40:17.367996-07',
         '',
         '',
@@ -57,20 +54,43 @@ VALUES ('00000000-0000-0000-0000-000000000000',
           "provider": "email",
           "providers": [
             "email"
-          ]
+          ],
+          "userrole": "DAD"
         }',
-        '{
-          "lastName": "User",
-          "firstName": "Invited",
-          "phoneNumber": ""
-        }',
+        '{}',
         NULL,
         '2023-04-03 16:39:30.424482-07',
-        '2023-04-03 16:40:17.36902-07') ON CONFLICT DO NOTHING;
+        '2023-04-03 16:40:17.36902-07'),
+       ('00000000-0000-0000-0000-000000000000',
+        '6b16fb9b-246d-44a2-b253-b7896c74e852',
+        'authenticated',
+        'authenticated',
+        'admin@email.local',
+        '$2a$10$qL.GCoX1QNlYl9S80a4fAeku1f.IwcDtdkcBbqpWDnaf3xxAVL2Cm',
+        '2023-04-03 16:40:17.367996-07',
+        '',
+        '',
+        '',
+        '',
+        '2023-04-03 16:40:17.367996-07',
+        '{
+          "provider": "email",
+          "providers": [
+            "email"
+          ],
+          "userrole": "ADMIN",
+          "claims_admin": true
+        }',
+        '{}',
+        NULL,
+        '2023-04-03 16:39:30.424482-07',
+        '2023-04-03 16:40:17.36902-07'
+       ) ON CONFLICT DO NOTHING;
 
 INSERT INTO public.users
-VALUES ('d55f3b79-9004-4bc4-af5c-7fcc1478345a', CURRENT_TIMESTAMP, 'TestUser1', 'John Brown', '/TestAvatar1'),
-       ('f3a51eed-f45a-413f-89f2-d3de7659fba2', CURRENT_TIMESTAMP, 'TestResponsibleUser1', 'Tim Robin', '/TestAvatar1') ON CONFLICT DO NOTHING;
+VALUES ('d55f3b79-9004-4bc4-af5c-7fcc1478345a', CURRENT_TIMESTAMP, 'DevUser', 'John Brown', '/TestAvatar1'),
+       ('f3a51eed-f45a-413f-89f2-d3de7659fba2', CURRENT_TIMESTAMP, 'InvitedUser', 'Tim Robin', '/TestAvatar1'),
+       ('6b16fb9b-246d-44a2-b253-b7896c74e852', CURRENT_TIMESTAMP, 'AdminUser', 'Ron Burgundy', '/TestAvatar1') ON CONFLICT DO NOTHING;
 
 insert into dads
     (id, user_id)

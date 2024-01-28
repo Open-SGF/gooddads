@@ -30,19 +30,15 @@ cp .env.example .env
 ```
 
 ### Setup Local DB
+Make sure orbstack or docker is running before running this command.
 ```zsh
 npm db:start
 ```
 
 After starting the database, update your .env file with the values for `NEXT_PUBLIC_SUPABASE_ANON_KEY` and
-`SUPABASE_SERVICE_ADMIN_KEY` from the output of the `npm db:start` command.
+`SUPABASE_SERVICE_ADMIN_KEY` with the output of the `npm db:start` command.
 
-### Generate Seed Data
-```zsh
-snaplet setup
-```
-Follow the prompts from the command line. A snaplet cloud account is not needed. This command only needs to be run once.
 ```zsh
 npm db:seed
-npm db:reset
+npm dbreset
 ```
