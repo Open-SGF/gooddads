@@ -17,5 +17,5 @@ CREATE POLICY "Admin users can view all profiles." ON users FOR SELECT USING (ge
 DROP POLICY IF EXISTS "Admin users can update any profile." ON users;
 CREATE POLICY "Admin users can update any profile." ON users FOR UPDATE USING (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
 
-DROP POLICY IF EXISTS "Intake users can create new profiles." ON users;
-CREATE POLICY "Intake users can create new profiles." ON users FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"INTAKE"'::jsonb);
+DROP POLICY IF EXISTS "Intake users can create new profiles." ON auth.users;
+CREATE POLICY "Intake users can create new profiles." ON auth.users FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"INTAKE"'::jsonb);

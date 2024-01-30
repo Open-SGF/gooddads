@@ -26,6 +26,14 @@ test.describe('All users', () => {
       .match({ id: 'f3a51eed-f45a-413f-89f2-d3de7659fba2' });
     expect(error).toBeNull();
   });
+
+  test('cannot create new profiles.', async () => {
+    const { error } = await supabase.auth.signUp({
+      email: 'newUser@email.local',
+      password: 'NotAGoodPassword123',
+    });
+    expect(error).not.toBeNull();
+  });
 });
 
 test.describe('Admin users', () => {
@@ -74,5 +82,6 @@ test.describe('Intake users', () => {
       email: 'newUser@email.local',
       password: 'NotAGoodPassword123',
     });
+    expect(error).toBeNull();
   });
 });
