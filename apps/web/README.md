@@ -1,28 +1,44 @@
-## Getting Started
+# Local Development Setup
 
-First, run the development server:
+## Setup Dependencies
 
-```bash
-yarn dev
+### Docker Desktop for Windows
+https://docs.docker.com/desktop/install/windows-install/
+
+### Orbstack for Mac and Linux
+```zsh
+brew install --cask orbstack
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Verify docker is working with the following commands
+```zsh
+docker -v
+docker-compose -v
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Setup Node Version Manager and install Node packages
+```zsh
+brew install nvm
+nvm install
+nvm use
+npm install
+```
 
-To create [API routes](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) add an `api/` directory to the `app/` directory with a `route.ts` file. For individual endpoints, create a subfolder in the `api` directory, like `api/hello/route.ts` would map to [http://localhost:3000/api/hello](http://localhost:3000/api/hello).
+### Populate .env
+```zsh
+cp .env.example .env
+```
 
-## Learn More
+### Setup Local DB
+Make sure orbstack or docker is running before running this command.
+```zsh
+npm db:start
+```
 
-To learn more about Next.js, take a look at the following resources:
+After starting the database, update your .env file with the values for `NEXT_PUBLIC_SUPABASE_ANON_KEY` and
+`SUPABASE_SERVICE_ADMIN_KEY` with the output of the `npm db:start` command.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```zsh
+npm db:seed
+npm dbreset
+```
