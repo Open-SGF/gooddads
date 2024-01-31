@@ -1,3 +1,5 @@
+import "@gooddads/ui/style"
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {

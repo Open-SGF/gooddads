@@ -1,8 +1,8 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  "extends": "@gooddads/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src", "turbo"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

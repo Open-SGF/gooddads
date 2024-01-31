@@ -17,10 +17,16 @@ node_modules
 /build
 
 # misc
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 *.pem
-.idea/
-.vscode/
 
 # debug
 npm-debug.log*

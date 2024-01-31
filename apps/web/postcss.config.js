@@ -1,1 +1,1 @@
-module.exports = require("@repo/ui/postcss")
+module.exports = require("@gooddads/ui/postcss")

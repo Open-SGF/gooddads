@@ -9,9 +9,9 @@
     "workshop": "pnpm --filter workshop --"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "@repo/ui": "workspace:*",
+    "@gooddads/eslint-config": "workspace:*",
+    "@gooddads/typescript-config": "workspace:*",
+    "@gooddads/ui": "workspace:*",
     "prettier": "^3.1.1",
     "turbo": "latest"
   },
