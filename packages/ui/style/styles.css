@@ -76,3 +76,35 @@
     @apply bg-background text-foreground;
   }
 } */
+
+h1 {
+  @apply text-5xl font-extrabold dark:text-white
+}
+
+h2 {
+  @apply text-4xl font-bold dark:text-white
+}
+
+h3 {
+  @apply text-3xl font-bold dark:text-white
+}
+
+h4 {
+  @apply text-2xl font-bold dark:text-white
+}
+
+h5 {
+  @apply text-xl font-bold dark:text-white
+}
+
+h6 {
+  @apply text-lg font-bold dark:text-white
+}
+
+p {
+  @apply mb-3 text-gray-500 dark:text-gray-400
+}
+
+a {
+  @apply font-medium text-blue-600 dark:text-blue-500 hover:underline
+}
