@@ -1,5 +1,5 @@
 import { GeistSans } from 'geist/font/sans';
-import './globals.css';
+import '@gooddads/ui/style';
 import { Theme } from '@radix-ui/themes';
 
 const defaultUrl = process.env.VERCEL_URL
