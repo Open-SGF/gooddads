@@ -65,7 +65,7 @@ We are using [shadcn](https://ui.shadcn.com/) and [Storybook](https://storybook.
 
 ### Step 1 - Add the component:
 - `cd` into `packages/ui`
-- Run `pnpm run add:ui`
+- Run `pnpm run ui:add`
 - Use the interactive terminal to add the component you need.  Press `space` to select the component and `enter` to submit your selection
 
 ### Step 2 - Create the component's stories file:
