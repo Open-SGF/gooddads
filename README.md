@@ -1,81 +1,56 @@
-# Turborepo starter
+# Local Development Setup
+[based on Turborepo](https://turbo.build/repo)
 
-This is an official starter Turborepo.
+## Setup Dependencies
 
-## Using this example
+### Docker Desktop for Windows
+https://docs.docker.com/desktop/install/windows-install/
 
-Run the following command:
-
-```sh
-npx create-turbo@latest
+### Verify docker is working with the following commands
+```zsh
+docker -v
+docker-compose -v
 ```
 
-## What's inside?
+### Orbstack for Mac
+```zsh
+brew install --cask orbstack
+=======
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@gooddads/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@gooddads/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@gooddads/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+### Setup Node Version Manager and install Node packages
+```zsh
+brew install nvm
+nvm install
+nvm use
+pnpm install
 ```
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
+### Populate .env
+```zsh
+cp .env.example .env
 ```
 
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+### Setup Local DB
+Make sure orbstack or docker is running before running this command.
+```zsh
+pnpm db:start
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+After starting the database, update your .env file with the values for `NEXT_PUBLIC_SUPABASE_ANON_KEY` and
+`SUPABASE_SERVICE_ADMIN_KEY` with the output of the `npm db:start` command.
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
+```zsh
+pnpm db:seed
+pnpm dbreset
 ```
-npx turbo link
+
+### Running the project
+```
+pnpm run dev
 ```
 
-## Useful Links
+### Building the project
+```
+pnpm run build
+```
 
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
