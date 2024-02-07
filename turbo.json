@@ -9,9 +9,33 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
+    "start": {
+      "outputs": []
+    },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": ["@repo/supabase#start"]
+    },
+    "@repo/supabase#start": {
+      "outputs": [],
+      "cache": false
+    },
+    "@repo/supabase#stop": {
+      "outputs": [],
+      "cache": false
+    },
+    "@repo/supabase#reset": {
+      "outputs": [],
+      "cache": false
+    },
+    "@repo/supabase#status": {
+      "outputs": [],
+      "cache": false
+    },
+    "@repo/supabase#generate": {
+      "outputs": [],
+      "cache": false
     }
   }
 }

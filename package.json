@@ -6,7 +6,13 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "web": "pnpm --filter web --",
-    "workshop": "pnpm --filter workshop --"
+    "workshop": "pnpm --filter workshop --",
+    "types": "turbo run types",
+    "db:start": "turbo run @repo/supabase#start",
+    "db:stop": "turbo run @repo/supabase#stop",
+    "db:reset": "turbo run @repo/supabase#reset",
+    "db:status": "turbo run @repo/supabase#status",
+    "db:types": "turbo run @repo/supabase#generate"
   },
   "devDependencies": {
     "@gooddads/eslint-config": "workspace:*",

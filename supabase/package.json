@@ -1,0 +1,10 @@
+{
+    "name": "@repo/supabase",
+    "scripts": {
+        "start": "supabase status || supabase start",
+        "reset": "supabase db reset || supabase start",
+        "stop": "supabase stop",
+        "generate": "supabase gen types typescript --local > ./types/supabase.d.ts",
+        "status": "supabase status"
+    }
+}
