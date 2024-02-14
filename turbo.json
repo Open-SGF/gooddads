@@ -35,7 +35,6 @@
         "^build"
       ]
     },
-    // TODO refactor this following this guide: https://github.com/vercel/turbo/issues/1497#issuecomment-1424852247
     "@gooddads/web#dev": {
       "dependsOn": [
         "@gooddads/supabase#start"
