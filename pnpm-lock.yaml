@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      clsx:
+        specifier: ^2.0.0
+        version: 2.1.0
       dotenv-cli:
         specifier: ^7.3.0
         version: 7.3.0
@@ -115,6 +118,9 @@ importers:
       '@gooddads/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@hookform/resolvers':
+        specifier: ^3.3.4
+        version: 3.3.4(react-hook-form@7.50.1)
       '@radix-ui/colors':
         specifier: ^3.0.0
         version: 3.0.0
@@ -148,9 +154,15 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      react-hook-form:
+        specifier: ^7.50.1
+        version: 7.50.1(react@18.2.0)
       supabase:
         specifier: ^1.113.2
         version: 1.136.3
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
     devDependencies:
       '@gooddads/tailwind-config':
         specifier: workspace:*
@@ -280,9 +292,6 @@ importers:
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
-      clsx:
-        specifier: ^2.0.0
-        version: 2.1.0
       lucide-react:
         specifier: ^0.330.0
         version: 0.330.0(react@17.0.2)
@@ -2325,7 +2334,7 @@ packages:
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.50.1(react@17.0.2)
+      react-hook-form: 7.50.1(react@18.2.0)
     dev: false
 
   /@humanwhocodes/config-array@0.11.13:
@@ -11079,6 +11088,15 @@ packages:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
       react: 17.0.2
+    dev: false
+
+  /react-hook-form@7.50.1(react@18.2.0):
+    resolution: {integrity: sha512-3PCY82oE0WgeOgUtIr3nYNNtNvqtJ7BZjsbxh6TnYNbXButaD5WpjOmTjdxZfheuHKR68qfeFnEDVYoSSFPMTQ==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is@16.13.1:
