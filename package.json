@@ -4,7 +4,7 @@
   "scripts": {
     "web:dev": "dotenv -- turbo run dev --filter web --filter ui",
     "ui:dev": "dotenv -- turbo run dev --filter ui",
-    "docs:dev": "dotenv -- turbo run dev --filter docs",
+    "docs:dev": "dotenv -- turbo run dev --filter docs --filter ui",
     "build": "dotenv -- turbo build",
     "dev": "dotenv -- turbo dev",
     "lint": "dotenv -- turbo lint",

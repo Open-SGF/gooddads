@@ -34,6 +34,11 @@
     --ring: 215 20.2% 65.1%;
 
     --radius: 0.5rem;
+
+    --gooddads-green: 109, 41%, 45%;
+    --gooddads-blue: 198, 100%, 43%;
+    --gooddads-red: 342, 71%, 51%;
+    --gooddads-gray: 0, 0%, 39%;
   }
 
   .dark {
