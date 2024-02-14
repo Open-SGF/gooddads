@@ -40,11 +40,7 @@
         "@gooddads/supabase#start"
       ]
     },
-    "@gooddads/docs#dev": {
-      "dependsOn": [
-        "@gooddads/ui#dev"
-      ]
-    },
+    "@gooddads/docs#dev": {},
     "@gooddads/supabase#start": {
       "outputs": [],
       "cache": false
