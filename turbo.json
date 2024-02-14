@@ -1,17 +1,76 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": [
+    ".env",
+    "**/.env.*local",
+    "tsconfig.json"
+  ],
+  "globalEnv": [
+    "NODE_ENV",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "SUPABASE_SERVICE_ADMIN_KEY"
+  ],
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**"
+      ]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": [
+        "^lint"
+      ]
     },
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "test": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    // TODO refactor this following this guide: https://github.com/vercel/turbo/issues/1497#issuecomment-1424852247
+    "@gooddads/web#dev": {
+      "dependsOn": [
+        "@gooddads/supabase#start",
+      ]
+    },
+    "@gooddads/docs#dev": {
+      "dependsOn": [
+        "@gooddads/ui#dev"
+      ]
+    },
+    "@gooddads/supabase#start": {
+      "outputs": [],
+      "cache": false
+    },
+    "@gooddads/supabase#test": {
+      "dependsOn": [
+        "@gooddads/supabase#start",
+        "^build"
+      ],
+      "outputs": []
+    },
+    "@gooddads/supabase#lint": {
+      "dependsOn": [
+        "@gooddads/supabase#start",
+        "format:check"
+      ],
+      "outputs": []
+    },
+    "generate": {
+      "dependsOn": ["^generate"],
+      "outputs": []
+    },
+    "@gooddads/types#generate": {
+      "dependsOn": ["@gooddads/supabase#start", "^generate"],
+      "outputs": []
     }
   }
 }

@@ -68,15 +68,6 @@
   }
 }
 
-/* @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-} */
-
 h1 {
   @apply text-5xl font-extrabold dark:text-white
 }

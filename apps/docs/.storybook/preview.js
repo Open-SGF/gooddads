@@ -1,4 +1,4 @@
-import "@gooddads/ui/style"
+import "@gooddads/ui/styles.css";
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {

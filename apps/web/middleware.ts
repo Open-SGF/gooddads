@@ -11,8 +11,10 @@ export async function middleware(request: NextRequest) {
     // https://supabase.com/docs/guides/auth/auth-helpers/nextjs#managing-session-with-middleware
     const { data, error } = await supabase.auth.getSession();
 
-    if (!data.session) {
+    if (!data.session && !request.url.includes("/login")) {
       return NextResponse.redirect(new URL("/login", request.url));
+    } else if (data.session && request.url.includes("/login")) {
+      return NextResponse.redirect(new URL("/", request.url));
     }
 
     return response;
@@ -26,4 +28,22 @@ export async function middleware(request: NextRequest) {
       },
     });
   }
+}
+
+export const config = {
+  // Runs middleware on everything that isn't an api or static file
+  matcher: [
+    /* Match all paths except for:
+       1. /api routes
+       2. /_next (Next.js internals)
+       3. /fonts (inside /public)
+       4. /images (inside /public)
+       5. /styles (inside /public)
+       6. /templates (inside /public)
+       7. /static (inside /public)
+       8. /404 (error page)
+       9. all root files inside /public (e.g. /favicon.ico) */
+    // eslint-disable-next-line no-secrets/no-secrets -- this is not a secret
+    '/((?!auth-redirect|api|_next|fonts|images|styles|templates|static|404|[\\w-]+\\.\\w+).*)',
+  ],
 }
