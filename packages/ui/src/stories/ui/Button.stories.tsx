@@ -1,12 +1,12 @@
-import React from "react";
-import { Button } from "./components/ui/button";
+import { Button } from "@ui/components/ui/button";
 import { Meta, StoryFn } from "@storybook/react";
+import * as React from "react"
 
 /**
  * Displays a button or a component that looks like a button.
  */
 const meta: Meta<typeof Button> = {
-  title: "ui/Button",
+  title: "Button",
   component: Button,
   tags: ["autodocs"],
   argTypes: {},

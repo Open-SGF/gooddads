@@ -6,8 +6,6 @@
     "**/*.css"
   ],
   "exports": {
-    "./lib/*": "./src/lib/*",
-    "./components/*": "./src/components/*",
     "./styles.css": "./dist/index.css"
   },
   "scripts": {

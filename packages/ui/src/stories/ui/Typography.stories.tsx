@@ -1,12 +1,11 @@
 import type { StoryObj } from "@storybook/react"
-
-import React from "react"
+import * as React from "react"
 
 /**
  * Base typography customized from Tailwind CSS
  */
 const meta = {
-  title: "ui/BaseTypography",
+  title: "Typography",
   tags: ["autodocs"],
   argTypes: {},
   render: () => (

@@ -1,22 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
-import { Button } from "./components/ui/button"
-import { Input } from "./components/ui/input"
-import { Label } from "./components/ui/label"
+import { Button } from "@ui/components/ui/button"
+import { Input } from "@ui/components/ui/input"
+import { Label } from "@ui/components/ui/label"
 import {
     Tabs,
     TabsContent,
     TabsList,
     TabsTrigger,
-} from "./components/ui/tabs"
-import React from "react"
+} from "@ui/components/ui/tabs"
+import * as React from "react"
 
 /**
  * A set of layered sections of content—known as tab panels—that are displayed
  * one at a time.
  */
 const meta = {
-    title: "ui/Tabs",
+    title: "Tabs",
     component: Tabs,
     tags: ["autodocs"],
     argTypes: {},

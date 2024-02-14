@@ -1,17 +1,19 @@
-import React from 'react';
 import { StoryObj } from '@storybook/react';
+import * as React from "react"
 
 const meta = {
-    title: 'ui/ColorPalette',
+    title: 'Colors',
     tags: ['autodocs'],
     argTypes: {},
+    args: {},
+    render: () => <Colors />,
 };
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const ColorPalette = () => {
+const Colors = () => {
     const colors = [
         {
             name: 'Good Dads Colors',
@@ -51,4 +53,4 @@ const ColorPalette = () => {
     );
 };
 
-export const Default: Story = () => <ColorPalette />;
+export const Default: Story = {}

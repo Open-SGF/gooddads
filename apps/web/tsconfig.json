@@ -6,14 +6,13 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
     "allowJs": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "paths": {
+      "@/*": ["./*"],
+      "@ui/*": ["../../packages/ui/src/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

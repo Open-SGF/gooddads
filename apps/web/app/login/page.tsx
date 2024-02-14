@@ -1,7 +1,7 @@
 import { headers, cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import { Button } from '@gooddads/ui/components/ui/button.tsx';
+import { Button } from '@ui/components/ui/button';
 
 export default function Login({
   searchParams,

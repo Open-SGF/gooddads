@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import React from 'react'
 import {
   Mail,
   Plus,
@@ -7,6 +6,7 @@ import {
   Search,
   UserPlus,
 } from "lucide-react"
+import * as React from "react"
 
 import {
   DropdownMenu,
@@ -24,14 +24,14 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "../src/components/ui/dropdown-menu"
+} from "@ui/components/ui/dropdown-menu"
 
 /**
  * Displays a menu to the user — such as a set of actions or functions —
  * triggered by a button.
  */
 const meta = {
-  title: "ui/DropdownMenu",
+  title: "DropdownMenu",
   component: DropdownMenu,
   tags: ["autodocs"],
   argTypes: {},
