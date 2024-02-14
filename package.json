@@ -1,12 +1,14 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "web": "pnpm --filter web --",
-    "workshop": "pnpm --filter workshop --"
+    "web:dev": "dotenv -- turbo run dev --filter web --filter ui",
+    "ui:dev": "dotenv -- turbo run dev --filter ui",
+    "docs:dev": "dotenv -- turbo run dev --filter docs --filter ui",
+    "build": "dotenv -- turbo build",
+    "dev": "dotenv -- turbo dev",
+    "lint": "dotenv -- turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@gooddads/eslint-config": "workspace:*",
@@ -18,5 +20,8 @@
   "packageManager": "pnpm@8.9.0",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv-cli": "^7.3.0"
   }
 }
