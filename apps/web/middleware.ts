@@ -1,4 +1,4 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { createClient } from "@/utils/supabase/middleware";
 import { ProtectedRoutes } from "./utils/types";
 import { Roles } from "./utils/enums";
@@ -15,8 +15,6 @@ export async function middleware(request: NextRequest) {
       data: { session },
       error,
     } = await supabase.auth.getSession();
-
-    console.log(request.cookies);
 
     if (!session && !request.url.includes("/login")) {
       return NextResponse.redirect(new URL("/login", request.url));
