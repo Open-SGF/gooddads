@@ -1,5 +1,5 @@
 import { createClient as createClientPrimitive } from '@supabase/supabase-js';
-import { Database } from '@/types/supabase';
+import { Database } from '@gooddads/types/database.ts';
 
 const supabaseStorage = new Map();
 

@@ -1,6 +1,5 @@
-import { GeistSans } from 'geist/font/sans';
-import '@gooddads/ui/style';
-import { Theme } from '@radix-ui/themes';
+import "./globals.css";
+import "@gooddads/ui/styles.css";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -9,7 +8,7 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: 'Good Dads',
-  description: 'A place for dads to be good',
+  description: 'A place for dads to be good', // TODO: Update this to be more descriptive
 };
 
 export default function RootLayout({
@@ -18,13 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className={GeistSans.className}>
+    <html lang='en'>
       <body className='bg-background text-foreground'>
-        <Theme>
-          <main className='flex min-h-screen flex-col items-center'>
-            {children}
-          </main>
-        </Theme>
+        <main className='flex min-h-screen flex-col items-center'>
+          {children}
+        </main>
       </body>
     </html>
   );
