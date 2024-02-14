@@ -39,15 +39,22 @@ pnpm db:start
 After starting the database, update your .env file with the values for `NEXT_PUBLIC_SUPABASE_ANON_KEY` and
 `SUPABASE_SERVICE_ADMIN_KEY` with the output of the `npm db:start` command.
 
-```zsh
-pnpm db:seed
-pnpm dbreset
-```
-
 ### Running the project
 ```
-pnpm run dev
+pnpm run web:dev
 ```
+
+### Login
+The seed.sql will add several users to the database. The following users are available for login:
+- Admin
+  - Username: admin@email.local
+  - Password: NotAGoodPassword123
+- Dad
+  - Username: dad@email.local
+  - Password: NotAGoodPassword123
+- Intake
+  - Username: intake@email.local
+  - Password: NotAGoodPassword123
 
 ### Building the project
 ```
@@ -76,8 +83,7 @@ We are using [shadcn](https://ui.shadcn.com/) and [Storybook](https://storybook.
 - Update the `import` statement to correctly point to your component's file path
 
 ### Step 3 - Open Storybook:
-- `cd` into `apps/docs`
-- Run `pnpm run dev`.  Storybook should open in your browser automatically
+- From the root, run `pnpm run docs:dev`.  Storybook should open in your browser automatically
 - Check to see that your component appears in Storybook
 
 Congrats!  You can now view and style the component to match the Figma designs.  Happy coding!

@@ -8,7 +8,8 @@
     "build": "dotenv -- turbo build",
     "dev": "dotenv -- turbo dev",
     "lint": "dotenv -- turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "test": "dotenv -- playwright test"
   },
   "devDependencies": {
     "@gooddads/eslint-config": "workspace:*",
