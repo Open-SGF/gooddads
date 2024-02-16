@@ -26,7 +26,7 @@ CREATE POLICY "Intake users can create new profiles." ON auth.users FOR INSERT W
 ALTER TABLE class_assignments ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "Users can view their class assignments." ON class_assignments;
-CREATE POLICY "Users can view their class assignments." ON class_assignments FOR SELECT TO authenticated USING (auth.uid() = user_id );
+CREATE POLICY "Users can view their class assignments." ON class_assignments FOR SELECT TO authenticated USING (auth.uid() = id );
 
 DROP POLICY IF EXISTS "Admin users can query all class assignments." ON class_assignments;
 CREATE POLICY "Admin users can query all class assignments." ON class_assignments FOR SELECT USING (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
