@@ -22,7 +22,7 @@ const formSchema = z.object({
     password: z.string().min(1, "Password is required")
 })
 
-export default function Login({ searchParams }: {
+export default function Signin({ searchParams }: {
     searchParams: { message: string };
 }) {
     async function onSubmit (values: z.infer<typeof formSchema>) {
@@ -34,7 +34,7 @@ export default function Login({ searchParams }: {
         });
 
         if (error) {
-            window.location.href = '/login?message=Could not authenticate user';
+            window.location.href = '/signin?message=Could not authenticate user';
             return;
         }
 
@@ -78,7 +78,7 @@ export default function Login({ searchParams }: {
         <div className='flex w-full flex-1 flex-col justify-center gap-2 px-8 sm:max-w-md'>
             <Form {...form}>
                 <form
-                    className='animate-in flex w-full flex-1 flex-col justify-center gap-2 text-foreground'
+                    className='animate-in flex w-full flex-1 flex-col justify-center gap-4 text-foreground'
                     onSubmit={form.handleSubmit(async ( values ) => await onSubmit(values))}
                 >
                     <FormField
@@ -86,9 +86,8 @@ export default function Login({ searchParams }: {
                         name="email"
                         render={({field}) => (
                             <FormItem>
-                                <FormLabel>Email</FormLabel>
                                 <FormControl>
-                                    <Input {...field} />
+                                    <Input {...field} placeholder="Email" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -99,9 +98,8 @@ export default function Login({ searchParams }: {
                         name="password"
                         render={({field}) => (
                             <FormItem>
-                                <FormLabel>Password</FormLabel>
                                 <FormControl>
-                                    <Input {...field} type='password' />
+                                    <Input {...field} type='password' placeholder={"Password"} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

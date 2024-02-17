@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/utils/supabase/middleware";
 import { ProtectedRoutes } from "./utils/types";
 import { Roles } from "./utils/enums";
