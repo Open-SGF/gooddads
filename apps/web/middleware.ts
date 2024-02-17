@@ -16,17 +16,17 @@ export async function middleware(request: NextRequest) {
       error,
     } = await supabase.auth.getSession();
 
-    if (!session && !request.url.includes("/login")) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    } else if (session && request.url.includes("/login")) {
+    if (!session && !request.url.includes("/signin")) {
+      return NextResponse.redirect(new URL("/signin", request.url));
+    } else if (session && request.url.includes("/signin")) {
       return NextResponse.redirect(new URL("/", request.url));
     }
 
     if (session) {
       const routes: ProtectedRoutes = {
         DAD: ["/", "/dashboard/dad"],
-        ADMIN: ["/", "/dashbaord/admin"],
-        INTAKE: ["/", "/dashboard/intake"],
+        ADMIN: ["/", "/register", "/dashbaord/admin"],
+        INTAKE: ["/", "/register", "/dashboard/intake"],
       };
 
       const { pathname } = request.nextUrl;
