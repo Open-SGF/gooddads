@@ -22,10 +22,10 @@ const formSchema = z.object({
     password: z.string().min(1, "Password is required")
 })
 
-export default function Signin({ searchParams }: {
+export default function Signin({searchParams}: {
     searchParams: { message: string };
 }) {
-    async function onSubmit (values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         const {email, password} = values
 
         const {error} = await supabase.auth.signUp({
@@ -34,10 +34,12 @@ export default function Signin({ searchParams }: {
         });
 
         if (error) {
-            return redirect('/signin?message=Could not authenticate user');
+            window.location.href = '/signin?message=Could not authenticate user';
+            return;
         }
 
-        return redirect('/signin?message=Check email to continue sign in process');
+        window.location.href = '/signin?message=Check email to continue sign in process';
+        return;
     };
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -53,7 +55,7 @@ export default function Signin({ searchParams }: {
             <Form {...form}>
                 <form
                     className='animate-in flex w-full flex-1 flex-col justify-center gap-4 text-foreground'
-                    onSubmit={form.handleSubmit(async ( values ) => await onSubmit(values))}
+                    onSubmit={form.handleSubmit(async (values) => await onSubmit(values))}
                 >
                     <FormField
                         control={form.control}
@@ -61,9 +63,9 @@ export default function Signin({ searchParams }: {
                         render={({field}) => (
                             <FormItem>
                                 <FormControl>
-                                    <Input {...field} placeholder="Email" />
+                                    <Input {...field} placeholder="Email"/>
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
@@ -73,9 +75,9 @@ export default function Signin({ searchParams }: {
                         render={({field}) => (
                             <FormItem>
                                 <FormControl>
-                                    <Input {...field} type='password' placeholder={"Password"} />
+                                    <Input {...field} type='password' placeholder={"Password"}/>
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
