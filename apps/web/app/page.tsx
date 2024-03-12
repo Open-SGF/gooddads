@@ -27,13 +27,16 @@ export default async function Index() {
   };
 
   return (
-    <div className="flex w-full flex-1 flex-col items-center gap-20">
-      <nav className="flex h-16 w-full justify-center border-b border-b-foreground/10">
-        <div className="flex w-full max-w-4xl items-center justify-end p-3 text-sm">
-          {isSupabaseConnected && <AuthButton />}
-        </div>
-      </nav>
-      {isSupabaseConnected && <ProtectedComponent components={components} />}
+    <div className="flex flex-row w-full items-center gap-20">
+      <div className="flex flex-row w-32 border-s-[2px]"></div>
+      <div className="flex flex-1 flex-col">
+        <nav className="flex h-16 w-full justify-center border-b border-b-foreground/10">
+          <div className="flex w-full max-w-4xl items-center justify-end p-3 text-sm">
+            {isSupabaseConnected && <AuthButton />}
+          </div>
+        </nav>
+        {isSupabaseConnected && <ProtectedComponent components={components} />}
+      </div>
     </div>
   );
 }

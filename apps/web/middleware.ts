@@ -24,8 +24,8 @@ export async function middleware(request: NextRequest) {
 
     if (session) {
       const routes: ProtectedRoutes = {
-        DAD: ["/", "/dashboard/dad"],
-        ADMIN: ["/", "/register", "/dashbaord/admin"],
+        DAD: ["/", "/dashboard"],
+        ADMIN: ["/", "/register", "/dashboard"],
         INTAKE: ["/", "/register", "/dashboard/intake"],
       };
 
