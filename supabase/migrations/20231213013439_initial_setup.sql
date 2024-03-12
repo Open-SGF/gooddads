@@ -38,6 +38,48 @@ create trigger on_auth_user_created
     after insert on auth.users
     for each row execute procedure public.handle_new_user();
 
+
+CREATE OR REPLACE FUNCTION create_user(
+    first_name TEXT,
+    last_name TEXT,
+    street_address TEXT,
+    city TEXT,
+    zip_code TEXT,
+    employer TEXT,
+    cell_phone_number TEXT,
+    home_phone_number TEXT,
+    work_phone_number TEXT,
+    alt_contact_number TEXT,
+    merital_status TEXT,
+    ethnicity TEXT,
+    monthly_child_support float,
+    children_names INTEGER[],
+    children_dob DATE[],
+    children_contact INTEGER[],
+    children_support INTEGER[]
+) RETURNS VOID AS $$
+DECLARE user_id UUID;
+DECLARE dad_id UUID;
+BEGIN
+	INSERT INTO users (name) VALUES (first_name) RETURNING id INTO user_id;
+
+	INSERT INTO dads (user_id, region_id, street_address, city, zip_code, employer,
+		email, cell_phone_number, home_phone_number, work_phone_number, alt_contact_number,
+		marital_status,	ethnicity, monthly_child_support)
+		VALUES
+		(user_id, region_id, street_address, city, zip_code, employer,
+		email, cell_phone_number, home_phone_number, work_phone_number, alt_contact_number,
+		marital_status,	ethnicity, monthly_child_support) RETURNING id INTO dad_id;
+
+	FOR i IN 1..ARRAY_LENGTH(children_names) LOOP
+		INSERT INTO children (dad_id, name, date_of_birth, contact, child_support)
+		VALUES
+		(dad_id, children_names[i], children_dob[i], children_contact[i],child_support[i]);
+	END LOOP;
+	
+END;
+$$ LANGUAGE plpgsql;
+
 -- Set up Storage!
 insert into storage.buckets (id, name)
     values ('avatars', 'avatars')
