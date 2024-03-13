@@ -22,10 +22,12 @@ const formSchema = z.object({
     password: z.string().min(1, "Password is required")
 })
 
+export type RegisterInputs = z.infer<typeof formSchema>
+
 export default function Signin({searchParams}: {
     searchParams: { message: string };
 }) {
-    async function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: RegisterInputs) {
         const {email, password} = values
 
         const {error} = await supabase.auth.signUp({
