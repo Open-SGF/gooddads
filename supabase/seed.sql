@@ -94,12 +94,12 @@ VALUES ('d55f3b79-9004-4bc4-af5c-7fcc1478345a', CURRENT_TIMESTAMP, 'DevUser', 'J
 
 insert into dads
     (id, user_id)
-values ('6b16fb9b-246d-44a2-b253-b7896c74e852', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a') ON CONFLICT DO NOTHING;
+values ('6b16fb9b-246d-44a2-b253-b7896c74e852', 'f3a51eed-f45a-413f-89f2-d3de7659fba2') ON CONFLICT DO NOTHING;
 
 insert into class_assignments
 (id, dad_id, class_id)
 values
-('8d22171c-cbf7-430f-a0be-6e3581092ad0', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a', 'e2aca9c0-1901-4b56-88d8-3dbf15d91491') ON CONFLICT DO NOTHING;
+('8d22171c-cbf7-430f-a0be-6e3581092ad0', '6b16fb9b-246d-44a2-b253-b7896c74e852', 'e2aca9c0-1901-4b56-88d8-3dbf15d91491') ON CONFLICT DO NOTHING;
 
 insert into classes
 (id, region_id)
@@ -205,21 +205,21 @@ values ('4a91fe3b-8a54-4806-9e9f-b34e57d8a747', '39fb16e5-3831-4de4-b9d3-0a1db5c
 
 insert into quiz_assignments
 (id, user_id, quiz_question_id, quiz_question_option_id, answer, is_correct)
-values ('965fbdef-fc39-4607-9277-be5be06096a1', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
+values ('965fbdef-fc39-4607-9277-be5be06096a1', 'f3a51eed-f45a-413f-89f2-d3de7659fba2',
         '51de12be-e769-4efc-bc47-b1f067a1e24f', null, 'Example short response answer', false),
-       ('458cf003-9fcd-47d5-8ad1-85f0843c0634', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
+       ('458cf003-9fcd-47d5-8ad1-85f0843c0634', 'f3a51eed-f45a-413f-89f2-d3de7659fba2',
         '39fb16e5-3831-4de4-b9d3-0a1db5c57428', '4a91fe3b-8a54-4806-9e9f-b34e57d8a747', '', false),
-       ('4808c5e5-c48d-42ce-8c7f-402c2817c9c4', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
+       ('4808c5e5-c48d-42ce-8c7f-402c2817c9c4', 'f3a51eed-f45a-413f-89f2-d3de7659fba2',
         '51caf783-4ec9-412b-95dd-6f96bca13539', '37a2b69e-a931-413c-a840-5df73a894c93', '', true),
-       ('66482580-c6f5-4dbb-b5a2-0c51358c25f7', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
+       ('66482580-c6f5-4dbb-b5a2-0c51358c25f7', 'f3a51eed-f45a-413f-89f2-d3de7659fba2',
         '51caf783-4ec9-412b-95dd-6f96bca13539', 'b802ff46-1fec-4e2e-82d7-b0284b4cadda', '', false),
-       ('7aa42a6a-ae53-4777-974d-8bbad9e223a5', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
+       ('7aa42a6a-ae53-4777-974d-8bbad9e223a5', 'f3a51eed-f45a-413f-89f2-d3de7659fba2',
         'b60e4639-66e3-47a7-97c8-9625b39628a2', null, 'Example short response answer 2', false),
-       ('05d7fc05-1dfe-4806-8e2d-8f0f4d73e9d6', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
+       ('05d7fc05-1dfe-4806-8e2d-8f0f4d73e9d6', 'f3a51eed-f45a-413f-89f2-d3de7659fba2',
         '00572a47-a90e-44ad-9e55-726cac5bb192', '116a9b2e-6ef3-42eb-8ec0-25a811aec39d', '', true),
-       ('fd9e729b-d049-4955-b2cb-44cca99091ad', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
+       ('fd9e729b-d049-4955-b2cb-44cca99091ad', 'f3a51eed-f45a-413f-89f2-d3de7659fba2',
         '2ff8be22-df7c-4d3c-af9a-6c80ccc6ee16', '628711b3-aee3-47c4-8f5a-6dfe5ceede53', '', true),
-       ('7e6a3995-a567-429e-afb1-fa4d08b1bb18', 'd55f3b79-9004-4bc4-af5c-7fcc1478345a',
+       ('7e6a3995-a567-429e-afb1-fa4d08b1bb18', 'f3a51eed-f45a-413f-89f2-d3de7659fba2',
         '2ff8be22-df7c-4d3c-af9a-6c80ccc6ee16', 'f878f4a3-fc9f-4283-85f5-db7cd2d27eaf', '', true) ON CONFLICT DO NOTHING;
 
 insert into children
