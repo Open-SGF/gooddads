@@ -1,5 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/utils/supabase/middleware";
+import { ProtectedRoutes } from "./utils/types";
+import { Roles } from "./utils/enums";
 
 export async function middleware(request: NextRequest) {
   try {
@@ -9,12 +11,34 @@ export async function middleware(request: NextRequest) {
 
     // Refresh session if expired - required for Server Components
     // https://supabase.com/docs/guides/auth/auth-helpers/nextjs#managing-session-with-middleware
-    const { data, error } = await supabase.auth.getSession();
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
 
-    if (!data.session && !request.url.includes("/login")) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    } else if (data.session && request.url.includes("/login")) {
+    if (!session && !request.url.includes("/signin")) {
+      return NextResponse.redirect(new URL("/signin", request.url));
+    } else if (session && request.url.includes("/signin")) {
       return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    if (session) {
+      const routes: ProtectedRoutes = {
+        DAD: ["/", "/dashboard"],
+        ADMIN: ["/", "/register", "/dashboard"],
+        INTAKE: ["/", "/register", "/dashboard/intake"],
+      };
+
+      const { pathname } = request.nextUrl;
+
+      if (pathname === "/403") return;
+
+      const userRole = session?.user.app_metadata?.userrole as Roles;
+
+      if (!userRole) return NextResponse.redirect(new URL("/", request.url));
+
+      if (!routes[userRole].includes(pathname))
+        return NextResponse.redirect(new URL("/403", request.url));
     }
 
     return response;
@@ -44,6 +68,6 @@ export const config = {
        8. /404 (error page)
        9. all root files inside /public (e.g. /favicon.ico) */
     // eslint-disable-next-line no-secrets/no-secrets -- this is not a secret
-    '/((?!auth-redirect|api|_next|fonts|images|styles|templates|static|404|[\\w-]+\\.\\w+).*)',
+    "/((?!auth-redirect|api|_next|fonts|images|styles|templates|static|404|[\\w-]+\\.\\w+).*)",
   ],
-}
+};

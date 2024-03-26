@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,8 +9,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "./components/ui/alert-dialog"
-
+} from "@ui/components/ui/alert-dialog"
 import React from "react"
 
 /**
@@ -19,7 +17,7 @@ import React from "react"
  * a response.
  */
 const meta = {
-  title: "ui/AlertDialog",
+  title: "AlertDialog",
   component: AlertDialog,
   tags: ["autodocs"],
   argTypes: {},

@@ -68,6 +68,18 @@ const config: Omit<Config, "content"> = {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
                 },
+                gooddadsGreen: {
+                    DEFAULT: "hsl(var(--gooddads-green))"
+                },
+                gooddadsBlue: {
+                    DEFAULT: "hsl(var(--gooddads-blue))"
+                },
+                gooddadsRed: {
+                    DEFAULT: "hsl(var(--gooddads-red))"
+                },
+                gooddadsGray: {
+                    DEFAULT: "hsl(var(--gooddads-gray))"
+                }
             },
             borderRadius: {
                 lg: "var(--radius)",

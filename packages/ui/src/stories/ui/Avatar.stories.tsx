@@ -1,17 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "./components/ui/avatar"
+} from "@ui/components/ui/avatar"
 import React from "react"
 
 /**
  * An image element with a fallback for representing the user.
  */
 const meta = {
-  title: "ui/Avatar",
+  title: "Avatar",
   component: Avatar,
   tags: ["autodocs"],
   argTypes: {},

@@ -1,7 +1,7 @@
 import "@gooddads/ui/styles.css";
+import { Preview } from "@storybook/react";
 
-/** @type { import('@storybook/react').Preview } */
-const preview = {
+const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {

@@ -3,8 +3,7 @@ import { action } from "@storybook/addon-actions"
 import type { Meta, StoryObj } from "@storybook/react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import React from "react"
-
+import * as React from "react"
 import {
   Form,
   FormControl,
@@ -13,12 +12,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../src/components/ui/form"
+} from "@ui/components/ui/form"
+
 /**
  * Building forms with React Hook Form and Zod.
  */
 const meta: Meta<typeof Form> = {
-  title: "ui/Form",
+  title: "Form",
   component: Form,
   tags: ["autodocs"],
   argTypes: {},

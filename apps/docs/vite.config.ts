@@ -7,7 +7,11 @@ export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "./src"),
+            "@": path.resolve(__dirname, "src"),
+            '@ui': path.resolve(__dirname, '../../packages/ui/src'),
         },
+    },
+    optimizeDeps: {
+        include: ['clsx'],
     }
 })

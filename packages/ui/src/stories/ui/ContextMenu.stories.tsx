@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import {
   ContextMenu,
   ContextMenuCheckboxItem,
@@ -14,15 +13,15 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from "./components/ui/context-menu"
-import React from "react"
+} from "@ui/components/ui/context-menu"
+import * as React from "react"
 
 /**
  * Displays a menu to the user — such as a set of actions or functions —
  * triggered by a button.
  */
 const meta = {
-  title: "ui/ContextMenu",
+  title: "ContextMenu",
   component: ContextMenu,
   tags: ["autodocs"],
   argTypes: {},

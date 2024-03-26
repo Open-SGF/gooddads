@@ -4,12 +4,13 @@
   "scripts": {
     "web:dev": "dotenv -- turbo run dev --filter web --filter ui",
     "ui:dev": "dotenv -- turbo run dev --filter ui",
-    "docs:dev": "dotenv -- turbo run dev --filter docs",
+    "docs:dev": "dotenv -- turbo run dev --filter docs --filter ui",
+    "db:start": "dotenv -- turbo run start --filter supabase",
     "build": "dotenv -- turbo build",
     "dev": "dotenv -- turbo dev",
     "lint": "dotenv -- turbo lint",
-    "test": "dotenv -- playwright test",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "test": "dotenv -- playwright test"
   },
   "devDependencies": {
     "@gooddads/eslint-config": "workspace:*",
@@ -23,6 +24,7 @@
     "node": ">=18"
   },
   "dependencies": {
+    "clsx": "^2.0.0",
     "dotenv-cli": "^7.3.0"
   }
 }

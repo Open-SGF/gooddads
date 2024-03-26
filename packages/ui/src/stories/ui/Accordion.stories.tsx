@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../src/components/ui/accordion"
-
+} from "@ui/components/ui/accordion"
 import React from "react"
 
 /**
@@ -14,7 +12,7 @@ import React from "react"
  * of content.
  */
 const meta = {
-  title: "ui/Accordion",
+  title: "Accordion",
   component: Accordion,
   tags: ["autodocs"],
   argTypes: {},

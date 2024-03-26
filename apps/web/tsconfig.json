@@ -6,8 +6,12 @@
         "name": "next"
       }
     ],
+    "allowJs": true,
+    "noEmit": true,
+    "jsx": "preserve",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@ui/*": ["../../packages/ui/src/*"]
     }
   },
   "include": [

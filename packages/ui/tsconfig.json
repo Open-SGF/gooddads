@@ -10,13 +10,10 @@
   ],
   "compilerOptions": {
     "jsx": "react",
-    "rootDir": "src",
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@ui/*": ["src/*"]
     }
   }
 }
