@@ -24,9 +24,9 @@ export async function middleware(request: NextRequest) {
 
     if (session) {
       const routes: ProtectedRoutes = {
-        DAD: ["/", "/dashboard"],
-        ADMIN: ["/", "/register", "/dashboard"],
-        INTAKE: ["/", "/register", "/dashboard/intake"],
+        DAD: ["/"],
+        ADMIN: ["/", "/register"],
+        INTAKE: ["/", "/register"],
       };
 
       const { pathname } = request.nextUrl;
@@ -35,7 +35,7 @@ export async function middleware(request: NextRequest) {
 
       const userRole = session?.user.app_metadata?.userrole as Roles;
 
-      if (!userRole) return NextResponse.redirect(new URL("/", request.url));
+      if (!userRole && !request.url.includes('/')) return NextResponse.redirect(new URL("/", request.url));
 
       if (!routes[userRole].includes(pathname))
         return NextResponse.redirect(new URL("/403", request.url));

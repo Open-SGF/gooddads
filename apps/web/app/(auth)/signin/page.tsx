@@ -1,7 +1,6 @@
 "use client";
 
 import supabase from '@/utils/supabase/client';
-import {redirect} from 'next/navigation';
 import {useForm} from 'react-hook-form';
 import * as z from 'zod';
 import {zodResolver} from "@hookform/resolvers/zod"
