@@ -17,16 +17,13 @@ CREATE POLICY "Admin users can view all profiles." ON users FOR SELECT USING (ge
 DROP POLICY IF EXISTS "Admin users can update any profile." ON users;
 CREATE POLICY "Admin users can update any profile." ON users FOR UPDATE USING (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
 
-DROP POLICY IF EXISTS "Intake users can create new profiles." ON auth.users;
-CREATE POLICY "Intake users can create new profiles." ON auth.users FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"INTAKE"'::jsonb);
+DROP POLICY IF EXISTS "Intake users can create new profiles." ON users;
+CREATE POLICY "Intake users can create new profiles." ON users FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"INTAKE"'::jsonb);
 
 -----------------------------
 -- class_assignments
 -----------------------------
 ALTER TABLE class_assignments ENABLE ROW LEVEL SECURITY;
-
-DROP POLICY IF EXISTS "Users can view their class assignments." ON class_assignments;
-CREATE POLICY "Users can view their class assignments." ON class_assignments FOR SELECT TO authenticated USING (auth.uid() = user_id );
 
 DROP POLICY IF EXISTS "Admin users can query all class assignments." ON class_assignments;
 CREATE POLICY "Admin users can query all class assignments." ON class_assignments FOR SELECT USING (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
@@ -36,6 +33,13 @@ CREATE POLICY "Admin users can update class assignments." ON class_assignments F
 
 DROP POLICY IF EXISTS "Admin users can create class assignments." ON class_assignments;
 CREATE POLICY "Admin users can create class assignments." ON class_assignments FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
+
+DROP POLICY IF EXISTS "Users can view their class assignment." ON class_assignments;
+CREATE POLICY "Users can view their class assignment." ON class_assignments FOR SELECT TO authenticated USING 
+(EXISTS
+    (select dads.id
+    from dads
+    where dads.id = class_assignments.dad_id));
 
 -----------------------------
 -- dads
@@ -80,6 +84,34 @@ CREATE POLICY "Admin users can update all quiz assignments." ON quiz_assignments
 DROP POLICY IF EXISTS "Admin users can create quiz assignments." ON quiz_assignments;
 CREATE POLICY "Admin users can create quiz assignments." ON quiz_assignments FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
 
+DROP POLICY IF EXISTS "Users can view their quiz assignments." ON quiz_assignments;
+CREATE POLICY "Users can view their quiz assignments." ON quiz_assignments FOR SELECT TO authenticated USING 
+(EXISTS
+    (select public.users.id
+    from public.users
+    where public.users.id = quiz_assignments.user_id));
+
+
+-----------------------------
+-- classes
+-----------------------------
+ALTER TABLE classes ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Admin users can query all classes." ON classes;
+CREATE POLICY "Admin users can query all classes." ON classes FOR SELECT USING (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
+
+DROP POLICY IF EXISTS "Admin users can update all classes." ON classes;
+CREATE POLICY "Admin users can update all classes." ON classes FOR UPDATE USING (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
+
+DROP POLICY IF EXISTS "Admin users can create classes." ON classes;
+CREATE POLICY "Admin users can create classes." ON classes FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
+
+DROP POLICY IF EXISTS "Users can view their classes." ON classes;
+CREATE POLICY "Users can view their classes." ON classes FOR SELECT TO authenticated USING 
+(EXISTS
+    (select class_assignments.id
+    from class_assignments
+    where class_assignments.class_id = classes.id));
 
 -----------------------------
 -- regions
@@ -95,6 +127,13 @@ CREATE POLICY "Admin users can update all regions." ON regions FOR UPDATE USING 
 DROP POLICY IF EXISTS "Admin users can create regions." ON regions;
 CREATE POLICY "Admin users can create regions." ON regions FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
 
+DROP POLICY IF EXISTS "Users can view their region." ON regions;
+CREATE POLICY "Users can view their region." ON regions FOR SELECT TO authenticated USING 
+(EXISTS
+    (select classes.id
+    from classes
+    where regions.id = classes.region_id));
+
 -----------------------------
 -- programs
 -----------------------------
@@ -108,6 +147,13 @@ CREATE POLICY "Admin users can update all programs." ON programs FOR UPDATE USIN
 
 DROP POLICY IF EXISTS "Admin users can create programs." ON programs;
 CREATE POLICY "Admin users can create programs." ON programs FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
+
+DROP POLICY IF EXISTS "Users can view their associated programs." ON programs;
+CREATE POLICY "Users can view their associated programs." ON programs FOR SELECT TO authenticated USING 
+(EXISTS
+    (select program_assignments.id
+    from program_assignments
+    where program_assignments.program_id = programs.id));
 
 -----------------------------
 -- program_assignments
@@ -123,6 +169,13 @@ CREATE POLICY "Admin users can update all program assignments." ON program_assig
 DROP POLICY IF EXISTS "Admin users can create program assignments." ON program_assignments;
 CREATE POLICY "Admin users can create program assignments." ON program_assignments FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
 
+DROP POLICY IF EXISTS "Users can view their program assignments." ON program_assignments;
+CREATE POLICY "Users can view their program assignments." ON program_assignments FOR SELECT TO authenticated USING 
+(EXISTS
+    (select classes.id
+    from classes
+    where classes.id = program_assignments.class_id));
+
 -----------------------------
 -- module_assignments
 -----------------------------
@@ -136,6 +189,13 @@ CREATE POLICY "Admin users can update all module assignments." ON module_assignm
 
 DROP POLICY IF EXISTS "Admin users can create module assignments." ON module_assignments;
 CREATE POLICY "Admin users can create module assignments." ON module_assignments FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
+
+DROP POLICY IF EXISTS "Users can view their module assignments." ON module_assignments;
+CREATE POLICY "Users can view their module assignments." ON module_assignments FOR SELECT TO authenticated USING 
+(EXISTS
+    (select modules.id
+    from modules
+    where modules.id = module_assignments.module_id));
 
 -----------------------------
 -- modules
@@ -151,6 +211,13 @@ CREATE POLICY "Admin users can update all modules." ON modules FOR UPDATE USING 
 DROP POLICY IF EXISTS "Admin users can create modules." ON modules;
 CREATE POLICY "Admin users can create modules." ON modules FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
 
+DROP POLICY IF EXISTS "Users can view their associated modules." ON modules;
+CREATE POLICY "Users can view their associated modules." ON modules FOR SELECT TO authenticated USING 
+(EXISTS
+    (select programs.id
+    from programs
+    where programs.id = modules.program_id));
+
 -----------------------------
 -- quizzes
 -----------------------------
@@ -164,6 +231,13 @@ CREATE POLICY "Admin users can update all quizzes." ON quizzes FOR UPDATE USING 
 
 DROP POLICY IF EXISTS "Admin users can create quizzes." ON quizzes;
 CREATE POLICY "Admin users can create quizzes." ON quizzes FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
+
+DROP POLICY IF EXISTS "Users can view their associated quizzes." ON quizzes;
+CREATE POLICY "Users can view their associated quizzes." ON quizzes FOR SELECT TO authenticated USING 
+(EXISTS
+    (select modules.id
+    from modules
+    where modules.id = quizzes.module_id));
 
 -----------------------------
 -- quiz_questions
@@ -179,6 +253,13 @@ CREATE POLICY "Admin users can update all quiz questions." ON quiz_questions FOR
 DROP POLICY IF EXISTS "Admin users can create quiz questions." ON quiz_questions;
 CREATE POLICY "Admin users can create quiz questions." ON quiz_questions FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
 
+DROP POLICY IF EXISTS "Users can view their associated quiz questions." ON quiz_questions;
+CREATE POLICY "Users can view their associated quiz questions." ON quiz_questions FOR SELECT TO authenticated USING 
+(EXISTS
+    (select quiz_assignments.id
+    from quiz_assignments
+    where quiz_assignments.quiz_question_id = quiz_questions.id));
+
 -----------------------------
 -- quiz_question_options
 -----------------------------
@@ -192,6 +273,13 @@ CREATE POLICY "Admin users can update all quiz question options." ON quiz_questi
 
 DROP POLICY IF EXISTS "Admin users can create quiz question options." ON quiz_question_options;
 CREATE POLICY "Admin users can create quiz question options." ON quiz_question_options FOR INSERT WITH CHECK (get_my_claim('userrole'::text) = '"ADMIN"'::jsonb);
+
+DROP POLICY IF EXISTS "Users can view their associated quiz question options." ON quiz_question_options;
+CREATE POLICY "Users can view their associated quiz question options." ON quiz_question_options FOR SELECT TO authenticated USING 
+(EXISTS
+    (select quiz_questions.id
+    from quiz_questions
+    where quiz_questions.id = quiz_question_options.quiz_question_id));
 
 -----------------------------
 -- children
