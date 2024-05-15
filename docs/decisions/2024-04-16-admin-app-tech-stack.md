@@ -80,34 +80,53 @@ Of course, the mobile app decisions shouldn't entirely ignored as the backend de
 
 ## Decision Outcome
 
-For the most part, the following represents the most picked options for each category with one exception.
-
 - Frontend
   - Language: Typescript
   - Framework: React
-  - Meta Framework: Next.js
-  - Styling: Vanilla CSS/SASS
-- Data Fetching: REST
+  - Meta Framework: None
+  - Styling: Tailwind
+- Data Fetching: Inertia
 - Backend
  - Framework: Lavel (PHP)
  - Database: MySQL
 
-There was a tie in the backend portion of the survey for Framework.
-Laravel was picked due to it's ease of getting started and wide array of tutorials.
-The database was changed to MySQL as that is a much more common option when using Laravel.
+This represents a lot of what was preferred in the survey with a few exceptions.
+Specifically using Tailwind over Vanilla CSS, MySQL over Postgres, and Inertia over REST.
+Below is an explanation for each of these changes.
+
+### Tailwind
+Having a bit more structure in place over Vanilla CSS felt like it could help the team be more productive in writing styles.
+There's also already some amount of styling done in the existing application that we don't need to throwaway
+
+### MySQL
+This feels like a more natural option when using Laravel than Postgers.
+Many packages in the Laravel ecosystem tend to prefer MySQL over Postgres or at least are more battle tested in MySQL
+
+### Inertia
+This is an item we went back and forth on and could have gone either way.
+Ultimately it felt like the cohesiveness of inertia outweighed the potential drawbacks and there were things that we could do to mitigate some of those drawbacks.
+
+Specifically:
+- Using a package to generate Typescript types for Request/Response classes in Laravel so that we have some level of type safety in our frontend code
+- Ensuring that we minimize the logic in controllers so that it's easy for someone new to Laravel to trace a route to a component.
+  - This likely looks like most logic being encapsulated into service classes that are injected into the controller
+  - Ideally this results in most controller actions being 2-3 lines of code each
+
 
 ### Positive Consequences
 
 - This represents what most of the current volunteers are familiar with
 - All of these tools have large communities behind them including a large amount of learning resources
-- Sticking with React and Next.js means that we don't have to throw all existing code away.
-- Selecting REST as the data fetching format lends itself well to a future mobile app
+- Tight integration of frontend and backend into a single monolith
 
 ### Negative Consequences
 
-- Using Vanilla CSS/SASS without a component library could slow us down
 - We wouldn't be using any of the existing seeding/migration scripts for the database
   - Not entirely a bad thing as Laravel provides systems for managing these that we'd want to port things to regardless of the database we use
+- We may end up duplicating some backend work when building out an API to support the mobile app
+- A new developer will need to be able to spin up a Laravel environment when working on the project
+  - This includes pure frontend changes
+  - However, this is mitigated somewhat by [Laravel Sail](https://laravel.com/docs/11.x/sail)
 
 ## Pros and Cons of the Options
 
