@@ -96,11 +96,11 @@ Below is an explanation for each of these changes.
 
 ### Tailwind
 Having a bit more structure in place over Vanilla CSS felt like it could help the team be more productive in writing styles.
-There's also already some amount of styling done in the existing application that we don't need to throwaway
+There's also already some amount of styling done in the existing application that we don't need to throwaway.
 
 ### MySQL
 This feels like a more natural option when using Laravel than Postgers.
-Many packages in the Laravel ecosystem tend to prefer MySQL over Postgres or at least are more battle tested in MySQL
+Many packages in the Laravel ecosystem tend to prefer MySQL over Postgres or at least are more battle tested in MySQL.
 
 ### Inertia
 This is an item we went back and forth on and could have gone either way.
