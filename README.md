@@ -10,5 +10,7 @@
 * For running sail commands, by default, you are required to enter the full path to the executable in `vendor/bin/sail`. Most devs prefer to create an alias in their shell so they only have to type `sail`. Read the sail docs about [configuring a sail alias](https://laravel.com/docs/11.x/sail#configuring-a-shell-alias). Further documentation will assume an alias exists in your shell.
 * Start the project: `sail up -d`
 * Run DB migration scripts only on initial setup and after creating new migrations `sail migrate`
-* To stop the containers run `sail down`
 * View the project in your browser at http://localhost:80
+
+## Shutting down the project
+- To stop the containers run `sail down`
