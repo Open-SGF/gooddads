@@ -1,0 +1,30 @@
+# Copy entire file to "phpstan.neon" if you need to make local changes
+includes:
+    - phpstan-baseline.neon
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+
+    # Increase this value to shorten the time it takes to run PHPStan
+    parallel:
+        maximumNumberOfProcesses: 1
+
+    paths:
+        - app
+        - config
+        - database
+        - public
+        - resources
+        - routes
+        - tests
+
+    # The level 9 is the highest level
+    level: 7
+
+    #ignoreErrors:
+    #    - '#PHPDoc tag @var#'
+
+    #excludePaths:
+    #    - ./*/*/FileToBeExcluded.php
+
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'

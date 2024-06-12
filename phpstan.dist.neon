@@ -1,0 +1,26 @@
+# Copy entire file to "phpstan.neon" if you need to make local changes
+includes:
+    - phpstan-baseline.neon
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app
+        - config
+        - database
+        - public
+        - resources
+        - routes
+        - tests
+
+    # The level 9 is the highest level
+    level: 5
+
+    #ignoreErrors:
+    #    - '#PHPDoc tag @var#'
+
+    #excludePaths:
+    #    - ./*/*/FileToBeExcluded.php
+
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
