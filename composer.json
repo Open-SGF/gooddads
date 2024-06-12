@@ -54,7 +54,14 @@
         ],
         "lint": [
             "./vendor/bin/php-cs-fixer fix -vvv --show-progress=dots"
+        ],
+        "lint-sniff": [
+            "./vendor/bin/php-cs-fixer fix -vvv --dry-run --show-progress=dots"
         ]
+    },
+    "scripts-descriptions": {
+        "lint": "Perform code style fixes using php-cs-fixer",
+        "lint-sniff": "Recommend code style fixes using php-cs-fixer"
     },
     "extra": {
         "laravel": {
