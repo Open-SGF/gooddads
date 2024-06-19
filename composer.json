@@ -16,6 +16,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "friendsofphp/php-cs-fixer": "^3.58",
         "larastan/larastan": "^2.0",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.29",
@@ -60,12 +61,20 @@
         ],
         "analyse-cache-clear": [
             "./vendor/bin/phpstan clear-result-cache"
+        ],
+        "lint": [
+            "./vendor/bin/php-cs-fixer fix -vvv --show-progress=dots"
+        ],
+        "lint-sniff": [
+            "./vendor/bin/php-cs-fixer fix -vvv --dry-run --show-progress=dots"
         ]
     },
     "scripts-descriptions": {
         "analyse": "Perform static analysis using phpstan",
         "analyse-baseline": "Generate new static analysis baseline using phpstan",
-        "analyse-cache-clear": "Clear static analysis cache using phpstan"
+        "analyse-cache-clear": "Clear static analysis cache using phpstan",
+        "lint": "Perform code style fixes using php-cs-fixer",
+        "lint-sniff": "Recommend code style fixes using php-cs-fixer"
     },
     "extra": {
         "laravel": {
