@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Parameter \\#1 \\$token of class PhpCsFixer\\\\Tokenizer\\\\Token constructor expects array\\{int, string\\}\\|string, array\\{388, string\\|null\\} given\\.$#"
+			count: 1
+			path: app/Fixers/LaravelPhpdocAlignmentFixer.php
+
+		-
 			message: "#^Undefined variable\\: \\$this$#"
 			count: 1
 			path: routes/console.php
