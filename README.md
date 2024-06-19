@@ -12,5 +12,8 @@
 * Run DB migration scripts only on initial setup and after creating new migrations `sail migrate`
 * View the project in your browser at http://localhost:80
 
+## Project Linting
+* Navigate to the project directory and run `composer lint`
+
 ## Shutting down the project
 - To stop the containers run `sail down`
