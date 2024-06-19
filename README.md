@@ -15,5 +15,8 @@
 ## Project Linting
 * Navigate to the project directory and run `composer lint`
 
+## Project Static Analysis
+* Navigate to the project directory and run `composer analyse`
+
 ## Shutting down the project
 - To stop the containers run `sail down`
