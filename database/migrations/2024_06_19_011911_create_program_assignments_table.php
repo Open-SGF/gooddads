@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('program_assignments', static function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('program_id')->constrained('programs');
-            $table->foreignUuid('class_id')->constrained('classes');
+            $table->foreignUuid('course_id')->constrained('courses');
             $table->date('start_date');
             $table->boolean('completed');
             $table->timestamps();
