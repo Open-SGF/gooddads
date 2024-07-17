@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
  */
 
 class Region extends Model {
-    use HasFactory, HasUuids;
+    use HasFactory;
+    use HasUuids;
     
     protected $fillable = [
         'description',

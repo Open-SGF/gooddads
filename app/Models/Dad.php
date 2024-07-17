@@ -29,7 +29,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 
 class Dad extends Model {
-    use HasFactory, HasUuids;
+    use HasFactory;
+    use HasUuids;
 
     protected $fillable = [
         'user_id',
