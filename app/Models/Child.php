@@ -32,6 +32,11 @@ class Child extends Model {
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $casts = [
+        'date_of_birth' => 'immutable_date',
+        'child_support' => 'decimal:2',
+    ];
+
     /**
      * Define the relationship to the Dad model.
      *

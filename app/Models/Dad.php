@@ -51,6 +51,10 @@ class Dad extends Model {
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $casts = [
+        'monthly_child_support' => 'decimal:2',
+    ];
+
     /**
      * Define the relationship to the User model.
      *
