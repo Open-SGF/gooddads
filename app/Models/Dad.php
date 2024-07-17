@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\Ethnicity;
+use App\Enums\MaritalStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -52,6 +54,8 @@ class Dad extends Model {
     public $incrementing = false;
 
     protected $casts = [
+        'marital_status' => MaritalStatus::class,
+        'ethnicity' => Ethnicity::class,
         'monthly_child_support' => 'decimal:2',
     ];
 
