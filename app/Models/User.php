@@ -14,7 +14,6 @@ use Illuminate\Notifications\Notifiable;
  * @property string $email
  * @property string $password
  */
-
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory;
@@ -42,7 +41,8 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return array<string, string>
      */
-    protected function casts(): array {
+    protected function casts(): array
+    {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',

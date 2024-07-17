@@ -1,7 +1,7 @@
 <?php
- 
+
 namespace App\Enums;
- 
+
 enum MaritalStatus: string
 {
     case Single = 'single';

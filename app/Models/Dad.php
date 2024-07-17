@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -29,8 +29,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \App\Models\Region $region
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Child[] $children
  */
-
-class Dad extends Model {
+class Dad extends Model
+{
     use HasFactory;
     use HasUuids;
 
@@ -51,6 +51,7 @@ class Dad extends Model {
     ];
 
     protected $keyType = 'string';
+
     public $incrementing = false;
 
     protected $casts = [
@@ -64,7 +65,8 @@ class Dad extends Model {
      *
      * @return BelongsTo<User, self>
      */
-    public function user(): BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -73,7 +75,8 @@ class Dad extends Model {
      *
      * @return BelongsTo<Region, self>
      */
-    public function region(): BelongsTo {
+    public function region(): BelongsTo
+    {
         return $this->belongsTo(Region::class);
     }
 
@@ -82,7 +85,8 @@ class Dad extends Model {
      *
      * @return HasMany<Child>
      */
-    public function children(): HasMany {
+    public function children(): HasMany
+    {
         return $this->hasMany(Child::class);
     }
 }

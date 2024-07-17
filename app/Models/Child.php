@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $child_support
  * @property \App\Models\Dad $dad
  */
-
-class Child extends Model {
+class Child extends Model
+{
     use HasFactory;
     use HasUuids;
 
@@ -30,6 +30,7 @@ class Child extends Model {
     ];
 
     protected $keyType = 'string';
+
     public $incrementing = false;
 
     protected $casts = [
@@ -42,7 +43,8 @@ class Child extends Model {
      *
      * @return BelongsTo<Dad, self>
      */
-    public function dad(): BelongsTo {
+    public function dad(): BelongsTo
+    {
         return $this->belongsTo(Dad::class);
     }
 }

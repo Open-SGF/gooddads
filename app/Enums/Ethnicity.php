@@ -1,7 +1,7 @@
 <?php
- 
+
 namespace App\Enums;
- 
+
 enum Ethnicity: string
 {
     case White = 'white';
