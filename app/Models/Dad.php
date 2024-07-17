@@ -57,7 +57,7 @@ class Dad extends Model {
      * @return BelongsTo<User, self>
      */
     public function user(): BelongsTo {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -66,7 +66,7 @@ class Dad extends Model {
      * @return BelongsTo<Region, self>
      */
     public function region(): BelongsTo {
-        return $this->belongsTo(Region::class, 'region_id', 'id');
+        return $this->belongsTo(Region::class);
     }
 
     /**
@@ -75,6 +75,6 @@ class Dad extends Model {
      * @return HasMany<Child>
      */
     public function children(): HasMany {
-        return $this->hasMany(Child::class, 'dad_id', 'id');
+        return $this->hasMany(Child::class);
     }
 }

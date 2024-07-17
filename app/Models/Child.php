@@ -38,6 +38,6 @@ class Child extends Model {
      * @return BelongsTo<Dad, self>
      */
     public function dad(): BelongsTo {
-        return $this->belongsTo(Dad::class, 'dad_id', 'id');
+        return $this->belongsTo(Dad::class);
     }
 }
