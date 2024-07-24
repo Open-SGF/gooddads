@@ -54,7 +54,7 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "analyse": [
-            "./vendor/bin/phpstan analyse -c phpstan.neon"
+            "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 1G"
         ],
         "analyse-baseline": [
             "./vendor/bin/phpstan analyse -c phpstan.neon --generate-baseline"
