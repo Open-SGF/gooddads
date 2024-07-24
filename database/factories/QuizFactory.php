@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Module;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Quiz>
@@ -17,7 +19,9 @@ class QuizFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id' => Str::uuid(),
+            'module_id' => Module::factory(),
+            'description' => fake()->paragraph(),
         ];
     }
 }
