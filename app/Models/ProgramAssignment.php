@@ -26,6 +26,9 @@ class ProgramAssignment extends Model
         'completed' => 'boolean',
     ];
 
+    /**
+     * @return BelongsTo<DadClass, ProgramAssignment>
+     */
     public function dadClass(): BelongsTo
     {
         return $this->belongsTo(DadClass::class);

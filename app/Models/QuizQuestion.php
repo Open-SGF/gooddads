@@ -26,11 +26,17 @@ class QuizQuestion extends Model
 
     public $incrementing = false;
 
+    /**
+     * @return BelongsTo<Quiz, QuizQuestion>
+     */
     public function quiz(): BelongsTo
     {
         return $this->belongsTo(Quiz::class);
     }
 
+    /**
+     * @return HasMany<QuizQuestionOption>
+     */
     public function quizQuestionOptions(): HasMany
     {
         return $this->hasMany(QuizQuestionOption::class);

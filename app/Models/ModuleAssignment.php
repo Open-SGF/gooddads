@@ -24,6 +24,9 @@ class ModuleAssignment extends Model
         'event_date' => 'datetime',
     ];
 
+    /**
+     * @return BelongsTo<Module, ModuleAssignment>
+     */
     public function module(): BelongsTo
     {
         return $this->belongsTo(Module::class);

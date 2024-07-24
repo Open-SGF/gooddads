@@ -22,16 +22,25 @@ class Module extends Model
 
     public $incrementing = false;
 
+    /**
+     * @return BelongsTo<Program, Module>
+     */
     public function program(): BelongsTo
     {
         return $this->belongsTo(Program::class);
     }
 
+    /**
+     * @return HasMany<ModuleAssignment>
+     */
     public function moduleAssignments(): HasMany
     {
         return $this->hasMany(ModuleAssignment::class);
     }
 
+    /**
+     * @return HasMany<Quiz>
+     */
     public function quizzes(): HasMany
     {
         return $this->hasMany(Quiz::class);
