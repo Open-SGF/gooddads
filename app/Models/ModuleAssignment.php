@@ -21,7 +21,7 @@ class ModuleAssignment extends Model
     public $incrementing = false;
 
     protected $casts = [
-        'event_date' => 'datetime',
+        'event_date' => 'immutable_datetime',
     ];
 
     /**
