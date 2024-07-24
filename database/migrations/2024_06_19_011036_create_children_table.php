@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('name');
             $table->date('date_of_birth');
             $table->text('contact');
-            $table->float('child_support');
+            $table->decimal('child_support', 6, 2);
             $table->timestamps();
         });
     }
