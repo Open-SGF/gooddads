@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
 
 class QuizAssignment extends Model
 {
@@ -14,7 +13,7 @@ class QuizAssignment extends Model
     use HasUuids;
 
     protected $fillable = [
-       'response',
+        'response',
     ];
 
     protected $casts = [
@@ -22,6 +21,7 @@ class QuizAssignment extends Model
     ];
 
     protected $keyType = 'string';
+
     public $incrementing = false;
 
     public function quizQuestion(): BelongsTo

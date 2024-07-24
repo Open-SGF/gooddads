@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProgramAssignment extends Model
@@ -18,8 +18,8 @@ class ProgramAssignment extends Model
     ];
 
     protected $keyType = 'string';
-    public $incrementing = false;
 
+    public $incrementing = false;
 
     protected $casts = [
         'start_date' => 'immutable_datetime',

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Program extends Model
 {
@@ -12,11 +12,11 @@ class Program extends Model
     use HasUuids;
 
     protected $fillable = [
-        'description', 
+        'description',
         'length',
     ];
 
     protected $keyType = 'string';
+
     public $incrementing = false;
 }
-
