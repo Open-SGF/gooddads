@@ -29,7 +29,7 @@ class ModuleAssignmentFactory extends Factory
     /**
      * Set a specific start date for the module assignment.
      */
-    public function startingOn(string $date): static
+    public function eventDate(string $date): static
     {
         return $this->state(fn (array $attributes) => [
             'event_date' => $date,
