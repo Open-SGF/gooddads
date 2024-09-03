@@ -17,7 +17,9 @@ class ResponsiblePartyFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id' => $this->faker->uuid(),
+            'phone_number' => $this->faker->phoneNumber(),
+            'role' => $this->faker->randomElement(['admin', 'caseManager',  'other']), // Example roles
         ];
     }
 }
