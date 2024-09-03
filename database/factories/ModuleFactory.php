@@ -22,7 +22,6 @@ class ModuleFactory extends Factory
         return [
             'id' => Str::uuid(),
             'program_id' => Program::factory(),
-            'quiz_id' => Quiz::factory(),
             'description' => fake()->sentence(),
         ];
     }
