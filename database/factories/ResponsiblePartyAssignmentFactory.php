@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Dad;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class ResponsiblePartyAssignmentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id' => $this->faker->uuid(),
+            'user_id' => User::factory(),
+            'dad_id' => Dad::factory(),
         ];
     }
 }
