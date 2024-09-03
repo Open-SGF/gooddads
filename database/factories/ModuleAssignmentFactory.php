@@ -21,7 +21,7 @@ class ModuleAssignmentFactory extends Factory
         return [
             'id' => Str::uuid(),
             'module_id' => Module::factory(),
-            'event_date' => fake()->dateTimeBetween('-1 year', 'now'),
+            'event_date' => fake()->dateTimeBetween('-1 year', '+1 year'),
             'description' => fake()->sentence(),
         ];
     }
