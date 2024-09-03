@@ -23,7 +23,7 @@ class ProgramAssignmentFactory extends Factory
             'id' => Str::uuid(),
             'program_id' => Program::factory(),
             'dad_class_id' => DadClass::factory(),
-            'start_date' => fake()->dateTimeBetween('-1 year', 'now'),
+            'start_date' => fake()->dateTimeBetween('-1 year', '+1 year'),
             'completed' => fake()->boolean(),
         ];
     }
