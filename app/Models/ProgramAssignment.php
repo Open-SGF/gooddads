@@ -33,4 +33,12 @@ class ProgramAssignment extends Model
     {
         return $this->belongsTo(DadClass::class);
     }
+
+    /**
+     * @return BelongsTo<Program, ProgramAssignment>
+     */
+    public function program(): BelongsTo
+    {
+        return $this->belongsTo(Program::class);
+    }
 }
