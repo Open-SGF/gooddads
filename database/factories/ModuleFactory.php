@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Program;
-use App\Models\Quiz;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

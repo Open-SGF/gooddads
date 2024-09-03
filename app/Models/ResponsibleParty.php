@@ -18,7 +18,7 @@ class ResponsibleParty extends Model
 
     protected $fillable = [
         'phone_number',
-        'role'
+        'role',
     ];
 
     protected $keyType = 'string';

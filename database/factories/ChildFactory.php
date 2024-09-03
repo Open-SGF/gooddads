@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Child;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -30,11 +29,9 @@ class ChildFactory extends Factory
     /**
      * Change Date of Birth.
      */
-
     public function date_of_birth(string $date): static
     {
-        return $this->state(fn(array $attributes) =>
-        [
+        return $this->state(fn (array $attributes) => [
             'date_of_birth' => $date,
         ]);
     }

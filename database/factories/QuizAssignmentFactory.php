@@ -51,5 +51,4 @@ class QuizAssignmentFactory extends Factory
     }
 }
 
-
 //QuizQuestionOptions why is it here

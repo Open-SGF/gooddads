@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\QuizQuestion;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\QuizQuestionOption>
@@ -20,13 +20,13 @@ class QuizQuestionOptionFactory extends Factory
     {
         return [
             'id' => Str::uuid(),
-        'quiz_question_id' => QuizQuestion::factory(),
+            'quiz_question_id' => QuizQuestion::factory(),
             'answer' => fake()->sentence(),
             'is_correct' => fake()->boolean(),
         ];
     }
 
-     /**
+    /**
      * Indicate that the answer is Correct
      */
     public function correctResponse(): static

@@ -12,13 +12,11 @@ class ResponsiblePartyAssignment extends Model
     use HasFactory;
     use HasUuids;
 
-
     protected $keyType = 'string';
 
     public $incrementing = false;
 
-
-     /**
+    /**
      * Define the relationship to the User model.
      *
      * @return BelongsTo<User, self>
@@ -28,7 +26,7 @@ class ResponsiblePartyAssignment extends Model
         return $this->belongsTo(User::class);
     }
 
-     /**
+    /**
      * Define the relationship to the Dad model.
      *
      * @return BelongsTo<Dad, self>
