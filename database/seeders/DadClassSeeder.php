@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\DadClass;
+use App\Models\Region;
 use Illuminate\Database\Seeder;
 
 class DadClassSeeder extends Seeder
@@ -11,6 +13,20 @@ class DadClassSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // Fetch existing Regions
+        $regions = Region::all();
+
+        // Ensure we have regions before creating DadClasses
+        if ($regions->isEmpty()) {
+            $this->command->info('No regions found. Skipping DadClass creation.');
+
+            return;
+        }
+
+        // Create DadClasses using the recycle method
+        DadClass::factory()
+            ->count(50)  // Adjust the count as needed
+            ->recycle($regions)
+            ->create();
     }
 }
