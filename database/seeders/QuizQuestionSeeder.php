@@ -20,6 +20,7 @@ class QuizQuestionSeeder extends Seeder
         // Ensure we have quizzes before creating questions
         if ($quizzes->isEmpty()) {
             $this->command->info('No quizzes found. Skipping QuizQuestion creation.');
+
             return;
         }
 

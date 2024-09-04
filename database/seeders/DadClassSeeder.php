@@ -25,7 +25,7 @@ class DadClassSeeder extends Seeder
 
         // Create DadClasses using the recycle method
         DadClass::factory()
-            ->count(50)  
+            ->count(20)
             ->recycle($regions)
             ->create();
     }
