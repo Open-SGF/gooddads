@@ -27,7 +27,7 @@ class DadSeeder extends Seeder
 
         // Create Dads using the recycle method
         Dad::factory()
-            ->count(50)  // Adjust the count as needed
+            ->count(50)  
             ->recycle($users)
             ->recycle($regions)
             ->create();
