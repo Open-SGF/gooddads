@@ -14,7 +14,7 @@ class ResponsiblePartySeeder extends Seeder
     {
         // Create a specified number of ResponsibleParty instances
         ResponsibleParty::factory()
-            ->count(50)  // Adjust the count as needed
+            ->count(55) 
             ->create();
 
         // Ensure we have at least one of each role
