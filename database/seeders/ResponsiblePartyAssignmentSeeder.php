@@ -27,7 +27,7 @@ class ResponsiblePartyAssignmentSeeder extends Seeder
 
         // Create ResponsiblePartyAssignments using the recycle method
         ResponsiblePartyAssignment::factory()
-            ->count(50)  // Adjust the count as needed
+            ->count(5) 
             ->recycle($users)
             ->recycle($dads)
             ->create();
