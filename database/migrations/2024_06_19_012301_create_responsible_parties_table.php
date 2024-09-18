@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('responsible_parties', static function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained('users');
-            $table->string('phone_number', 11);
+            $table->string('phone_number', 12);
             $table->enum('role', ['caseWorker', 'probationOfficer']);
             $table->timestamps();
         });

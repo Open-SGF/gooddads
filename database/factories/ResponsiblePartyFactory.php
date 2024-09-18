@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Services\Formatter\PhoneFormatter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,9 +17,11 @@ class ResponsiblePartyFactory extends Factory
      */
     public function definition(): array
     {
+        $phoneNumber = PhoneFormatter::format($this->faker->phoneNumber());
+
         return [
             'id' => $this->faker->uuid(),
-            'phone_number' => $this->faker->phoneNumber(),
+            'phone_number' => $phoneNumber,
             'role' => $this->faker->randomElement(['admin', 'director',  'region director', 'program director', 'auditor', 'intake']),
         ];
     }
