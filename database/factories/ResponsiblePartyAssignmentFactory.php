@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Dad;
-use App\Models\User;
+use App\Models\ResponsibleParty;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +20,7 @@ class ResponsiblePartyAssignmentFactory extends Factory
     {
         return [
             'id' => $this->faker->uuid(),
-            'user_id' => User::factory(),
+            'responsible_party_id' => ResponsibleParty::factory(),
             'dad_id' => Dad::factory(),
         ];
     }
