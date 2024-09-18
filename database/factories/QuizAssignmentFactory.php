@@ -25,7 +25,7 @@ class QuizAssignmentFactory extends Factory
             'user_id' => User::factory(),
             'quiz_question_id' => QuizQuestion::factory(),
             'quiz_question_option_id' => QuizQuestionOption::factory(),
-            'response' => fake()->sentence(),
+            'answer' => fake()->sentence(),
             'is_correct' => fake()->boolean(),
         ];
     }
