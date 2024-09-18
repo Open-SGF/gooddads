@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('zip_code', 5)->nullable();
             $table->string('employer', 100)->nullable();
             $table->text('email')->nullable();
-            $table->string('cell_phone_number', 11)->nullable();
-            $table->string('home_phone_number', 11)->nullable();
-            $table->string('work_phone_number', 11)->nullable();
-            $table->string('alt_contact_number', 11)->nullable();
+            $table->string('cell_phone_number', 12)->nullable();
+            $table->string('home_phone_number', 12)->nullable();
+            $table->string('work_phone_number', 12)->nullable();
+            $table->string('alt_contact_number', 12)->nullable();
             $table->enum('marital_status', ['single', 'married', 'divorced', 'widowed']);
             $table->enum('ethnicity', ['white', 'africanAmerican', 'nativeAmerican', 'asian', 'pacificIslander']);
             $table->decimal('monthly_child_support', 6, 2)->nullable();
