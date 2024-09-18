@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\ResponsibleParty;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ResponsiblePartySeeder extends Seeder
@@ -12,10 +13,14 @@ class ResponsiblePartySeeder extends Seeder
      */
     public function run(): void
     {
-        // Create a specified number of ResponsibleParty instances
-        ResponsibleParty::factory()
-            ->count(10)
-            ->create();
+        // Fetch existing Users 
+        $users = User::all();
+
+        // Ensure we have users before creating responsible parties
+        if ($users->isEmpty()) {
+            $this->command->info('Users are empty. Skipping ResponsibleParty creation.');
+            return;
+        }
 
         // Ensure we have at least one of each role
         $roles = [
@@ -27,9 +32,19 @@ class ResponsiblePartySeeder extends Seeder
             'regionDirector',
         ];
         foreach ($roles as $role) {
-            if (! ResponsibleParty::where('role', $role)->exists()) {
-                ResponsibleParty::factory()->create(['role' => $role]);
-            }
+            ResponsibleParty::factory()
+                ->state([
+                    'role' => $role,
+                    'user_id' => $users->random()->id
+                    ])
+                ->create();
         }
+
+         // Create a specified number of ResponsibleParty instances
+         ResponsibleParty::factory()
+         ->count(10)
+         ->recycle($users)
+         ->create();
+
     }
 }
