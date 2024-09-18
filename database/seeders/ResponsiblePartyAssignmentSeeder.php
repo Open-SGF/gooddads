@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Dad;
 use App\Models\ResponsibleParty;
 use App\Models\ResponsiblePartyAssignment;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ResponsiblePartyAssignmentSeeder extends Seeder

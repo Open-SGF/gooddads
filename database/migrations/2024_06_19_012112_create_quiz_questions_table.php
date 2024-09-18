@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignUuid('quiz_id')->constrained('quizzes');
             $table->text('question');
             $table->enum('type', [
-                'multipleChoice', 
+                'multipleChoice',
                 'shortAnswer',
-                'trueFalse', 
+                'trueFalse',
             ]);
             $table->timestamps();
         });

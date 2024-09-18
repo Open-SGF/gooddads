@@ -13,12 +13,13 @@ class ResponsiblePartySeeder extends Seeder
      */
     public function run(): void
     {
-        // Fetch existing Users 
+        // Fetch existing Users
         $users = User::all();
 
         // Ensure we have users before creating responsible parties
         if ($users->isEmpty()) {
             $this->command->info('Users are empty. Skipping ResponsibleParty creation.');
+
             return;
         }
 
@@ -35,16 +36,16 @@ class ResponsiblePartySeeder extends Seeder
             ResponsibleParty::factory()
                 ->state([
                     'role' => $role,
-                    'user_id' => $users->random()->id
-                    ])
+                    'user_id' => $users->random()->id,
+                ])
                 ->create();
         }
 
-         // Create a specified number of ResponsibleParty instances
-         ResponsibleParty::factory()
-         ->count(10)
-         ->recycle($users)
-         ->create();
+        // Create a specified number of ResponsibleParty instances
+        ResponsibleParty::factory()
+            ->count(10)
+            ->recycle($users)
+            ->create();
 
     }
 }
