@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Dad;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -18,7 +19,7 @@ class ChildFactory extends Factory
     public function definition(): array
     {
         return [
-            'dad_id' => (string) Str::uuid(),
+            'dad_id' => Dad::factory(),
             'name' => $this->faker->name(),
             'date_of_birth' => $this->faker->dateTimeBetween('-18 years', '-1 year')->format('Y-m-d'),
             'contact' => $this->faker->phoneNumber(),
