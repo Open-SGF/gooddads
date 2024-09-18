@@ -18,7 +18,14 @@ class ResponsiblePartySeeder extends Seeder
             ->create();
 
         // Ensure we have at least one of each role
-        $roles = ['admin', 'caseManager', 'other'];
+        $roles = [
+            'admin',
+            'auditor',
+            'director',
+            'intake',
+            'programDirector',
+            'regionDirector',
+        ];
         foreach ($roles as $role) {
             if (! ResponsibleParty::where('role', $role)->exists()) {
                 ResponsibleParty::factory()->create(['role' => $role]);
