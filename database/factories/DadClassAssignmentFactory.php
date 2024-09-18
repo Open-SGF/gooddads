@@ -22,7 +22,7 @@ class DadClassAssignmentFactory extends Factory
         return [
             'id' => Str::uuid(),
             'user_id' => User::factory(),
-            'dadClass_id' => DadClass::factory(),
+            'dad_class_id' => DadClass::factory(),
         ];
     }
 }
