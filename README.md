@@ -25,5 +25,12 @@
 ## Project Static Analysis
 * Navigate to the project directory and run `composer analyse`
 
+## Viewing and Generating Database Diagrams
+
+The file [`./database/schema.dbml`](./database/schema.dbml) can be opened with a tool such as [dbdiagram.io](https://dbdiagram.io/).
+There are also e VS Code extensions such as [DBML Live Preview](https://marketplace.visualstudio.com/items?itemName=nicolas-liger.dbml-viewer) that can view these.
+
+To regenerate the file use the artisan command `sail artisan dbml:generate`
+
 ## Shutting Down the Project
 - To stop the containers run `sail down`
