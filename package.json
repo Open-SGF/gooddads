@@ -3,9 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "tsc && vite build && vite build --ssr",
-        "dbml": "db2dbml",
-        "generate:dbml": "db2dbml mysql 'mysql://laravel:password@localhost:3306/laravel' -o database/schema.dbml"
+        "build": "tsc && vite build && vite build --ssr"
     },
     "devDependencies": {
         "@dbml/cli": "^3.8.0",
