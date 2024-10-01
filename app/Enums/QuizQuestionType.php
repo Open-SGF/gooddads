@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum QuizQuestionType: string
 {
-    case SingleChoice = 'singleChoice';
+    case True_False = 'trueFalse';
     case MultipleChoice = 'multipleChoice';
     case ShortAnswer = 'shortAnswer';
 }
