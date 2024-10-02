@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\QuizQuestionType;
+use Database\Factories\QuizQuestionFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class QuizQuestion extends Model
 {
+    /** @use HasFactory<QuizQuestionFactory> */
     use HasFactory;
     use HasUuids;
 

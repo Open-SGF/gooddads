@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
+use Database\Factories\DadFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +32,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Dad extends Model
 {
+    /** @use HasFactory<DadFactory> */
     use HasFactory;
     use HasUuids;
 

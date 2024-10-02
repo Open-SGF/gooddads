@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ResponsiblePartyFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ResponsibleParty extends Model
 {
+    /** @use HasFactory<ResponsiblePartyFactory> */
     use HasFactory;
     use HasUuids;
 

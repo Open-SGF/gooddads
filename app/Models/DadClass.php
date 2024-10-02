@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\DadClassFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DadClass extends Model
 {
+    /** @use HasFactory<DadClassFactory> */
     use HasFactory;
     use HasUuids;
 
