@@ -13,6 +13,7 @@ class Module extends Model
 {
     /** @use HasFactory<ModuleFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $fillable =

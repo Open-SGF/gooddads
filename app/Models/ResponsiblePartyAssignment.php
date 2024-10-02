@@ -12,6 +12,7 @@ class ResponsiblePartyAssignment extends Model
 {
     /** @use HasFactory<ResponsiblePartyAssignmentFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $keyType = 'string';

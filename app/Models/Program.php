@@ -11,6 +11,7 @@ class Program extends Model
 {
     /** @use HasFactory<ProgramFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $fillable = [

@@ -21,6 +21,7 @@ class Child extends Model
 {
     /** @use HasFactory<ChildFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $fillable = [

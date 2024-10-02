@@ -12,6 +12,7 @@ class QuizQuestionOption extends Model
 {
     /** @use HasFactory<QuizQuestionOptionFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $fillable = [

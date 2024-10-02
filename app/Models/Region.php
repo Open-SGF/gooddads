@@ -15,6 +15,7 @@ class Region extends Model
 {
     /** @use HasFactory<RegionFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $fillable = [

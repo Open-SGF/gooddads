@@ -12,6 +12,7 @@ class DadClassAssignment extends Model
 {
     /** @use HasFactory<DadClassAssignmentFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $keyType = 'string';

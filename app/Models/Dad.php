@@ -34,6 +34,7 @@ class Dad extends Model
 {
     /** @use HasFactory<DadFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $fillable = [

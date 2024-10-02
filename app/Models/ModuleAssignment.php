@@ -12,6 +12,7 @@ class ModuleAssignment extends Model
 {
     /** @use HasFactory<ModuleAssignmentFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $fillable = [

@@ -16,6 +16,7 @@ class ResponsibleParty extends Model
 {
     /** @use HasFactory<ResponsiblePartyFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $fillable = [
