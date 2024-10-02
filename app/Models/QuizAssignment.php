@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\QuizAssignmentFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class QuizAssignment extends Model
 {
+    /** @use HasFactory<QuizAssignmentFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $fillable = [

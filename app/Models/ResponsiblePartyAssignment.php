@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ResponsiblePartyAssignmentFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ResponsiblePartyAssignment extends Model
 {
+    /** @use HasFactory<ResponsiblePartyAssignmentFactory> */
     use HasFactory;
+
     use HasUuids;
 
     protected $keyType = 'string';
