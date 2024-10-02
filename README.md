@@ -22,7 +22,7 @@
 
 ## Starting the Project
 * Start the project: `sail up -d`
-* Run DB migration scripts only on initial setup and after creating new migrations `sail artisan migrate`
+* Run DB migration scripts only on initial setup and after creating new migrations `sail artisan migrate --seed`
 * View the project in your browser at http://localhost:80
   - The URL port number is configured in the `.env` file as APP_PORT
 
@@ -41,3 +41,6 @@ To regenerate the file use the artisan command `sail artisan dbml:generate`
 
 ## Shutting Down the Project
 - To stop the containers run `sail down`
+
+## Resetting the Database
+* To purge your MySQL database, run `sail down -v`, then `sail up -d`, then `sail artisan migrate:fresh --seed`. (⚠️ WARNING: This will purge EVERYTHING from your database! ⚠️)
