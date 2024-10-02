@@ -16,9 +16,19 @@
 * Duplicate the .env.example: `cp .env.example .env`
 * For running sail commands, by default, you are required to enter the full path to the executable in `vendor/bin/sail`. Most devs prefer to create an alias in their shell so they only have to type `sail`. Read the sail docs about [configuring a sail alias](https://laravel.com/docs/11.x/sail#configuring-a-shell-alias). Further documentation will assume an alias exists in your shell.
 
-## Updating the Project
-* If you get an error with the `composer.lock` file, you may need to update your project
-* To update, navigate to the project directory and run `composer update`
+## Installing Current Project Dependencies
+* All project contributors should run these commands every week to ensure your local project is using the current project dependencies.
+  * `composer install`
+  * `npm install`
+  * `npm run build`
+
+## Updating the Project Dependencies
+* The project maintainer should run these commands every week to ensure the project is using the latest dependencies, then merge `composer.lock` and `package-lock.json` along with any files that needed to be fixed.
+  * `composer update`
+  * `npm update`
+  * `npm run build`
+  * `composer lint`
+  * `composer analyse`
 
 ## Starting the Project
 * Start the project: `sail up -d`
