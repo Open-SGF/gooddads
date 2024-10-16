@@ -14,14 +14,18 @@ Enum "dads_ethnicity_enum" {
 }
 
 Enum "quiz_questions_type_enum" {
-  "open"
   "multipleChoice"
-  "check"
+  "shortAnswer"
+  "trueFalse"
 }
 
 Enum "responsible_parties_role_enum" {
-  "caseWorker"
-  "probationOfficer"
+  "admin"
+  "auditor"
+  "director"
+  "intake"
+  "programDirector"
+  "regionDirector"
 }
 
 Table "cache" {
@@ -71,12 +75,13 @@ Table "dads" {
   "zip_code" varchar(5)
   "employer" varchar(100)
   "email" text
-  "cell_phone_number" varchar(11)
-  "home_phone_number" varchar(11)
-  "work_phone_number" varchar(11)
-  "alt_contact_number" varchar(11)
+  "cell_phone_number" varchar(12)
+  "home_phone_number" varchar(12)
+  "work_phone_number" varchar(12)
+  "alt_contact_number" varchar(12)
   "marital_status" dads_marital_status_enum [not null]
   "ethnicity" dads_ethnicity_enum [not null]
+  "monthly_child_support" decimal(6,2)
   "created_at" timestamp
   "updated_at" timestamp
 }
@@ -212,7 +217,7 @@ Table "regions" {
 Table "responsible_parties" {
   "id" char(36) [pk, not null]
   "user_id" char(36) [not null]
-  "phone_number" varchar(11) [not null]
+  "phone_number" varchar(12) [not null]
   "role" responsible_parties_role_enum [not null]
   "created_at" timestamp
   "updated_at" timestamp
@@ -282,7 +287,7 @@ Ref "quiz_question_options_quiz_question_id_foreign":"quiz_questions"."id" < "qu
 
 Ref "quiz_questions_quiz_id_foreign":"quizzes"."id" < "quiz_questions"."quiz_id"
 
-Ref "quizzes_module_id_foreign":"quizzes"."id" < "quizzes"."module_id"
+Ref "quizzes_module_id_foreign":"modules"."id" < "quizzes"."module_id"
 
 Ref "responsible_parties_user_id_foreign":"users"."id" < "responsible_parties"."user_id"
 
