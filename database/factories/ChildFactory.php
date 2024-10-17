@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Dad;
+use App\Models\Participant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,8 +18,9 @@ class ChildFactory extends Factory
     public function definition(): array
     {
         return [
-            'dad_id' => Dad::factory(),
-            'name' => $this->faker->name(),
+            'participant_id' => Participant::factory(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
             'date_of_birth' => $this->faker->dateTimeBetween('-18 years', '-1 year')->format('Y-m-d'),
             'contact' => $this->faker->phoneNumber(),
             'child_support' => $this->faker->randomFloat(2, 50, 500),

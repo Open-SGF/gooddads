@@ -30,11 +30,11 @@ class ProgramAssignment extends Model
     ];
 
     /**
-     * @return BelongsTo<DadClass, ProgramAssignment>
+     * @return BelongsTo<ParticipantClass, ProgramAssignment>
      */
-    public function dadClass(): BelongsTo
+    public function participantClass(): BelongsTo
     {
-        return $this->belongsTo(DadClass::class);
+        return $this->belongsTo(ParticipantClass::class);
     }
 
     /**

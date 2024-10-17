@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\DadClass;
+use App\Models\ParticipantClass;
 use App\Models\Program;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -22,7 +22,7 @@ class ProgramAssignmentFactory extends Factory
         return [
             'id' => Str::uuid(),
             'program_id' => Program::factory(),
-            'dad_class_id' => DadClass::factory(),
+            'participant_class_id' => ParticipantClass::factory(),
             'start_date' => fake()->dateTimeBetween('-1 year', '+1 year'),
             'completed' => fake()->boolean(),
         ];

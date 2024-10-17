@@ -20,13 +20,13 @@ class DatabaseSeeder extends Seeder
             ProgramSeeder::class,
             ResponsiblePartySeeder::class,
 
-            DadSeeder::class,
-            DadClassSeeder::class,
+            ParticipantSeeder::class,
+            ParticipantClassSeeder::class,
             ModuleSeeder::class,
             ChildSeeder::class,
             QuizSeeder::class,
             ProgramAssignmentSeeder::class,
-            DadClassAssignmentSeeder::class,
+            ParticipantClassAssignmentSeeder::class,
             ResponsiblePartyAssignmentSeeder::class,
 
             QuizQuestionSeeder::class,

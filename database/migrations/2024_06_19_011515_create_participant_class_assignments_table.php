@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dad_classes', static function (Blueprint $table) {
+        Schema::create('participant_class_assignments', static function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('region_id')->constrained('regions');
+            $table->foreignUuid('participant_class_id')->constrained('participant_classes');
+            $table->foreignUuid('user_id')->constrained('users');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dad_classes');
+        Schema::dropIfExists('participant_class_assignments');
     }
 };

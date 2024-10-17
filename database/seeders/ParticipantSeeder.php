@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Dad;
+use App\Models\Participant;
 use App\Models\Region;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class DadSeeder extends Seeder
+class ParticipantSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,15 +18,15 @@ class DadSeeder extends Seeder
         $users = User::all();
         $regions = Region::all();
 
-        // Ensure we have users and regions before creating dads
+        // Ensure we have users and regions before creating participants
         if ($users->isEmpty() || $regions->isEmpty()) {
-            $this->command->info('Users or Regions are empty. Skipping Dad creation.');
+            $this->command->info('Users or Regions are empty. Skipping Participant creation.');
 
             return;
         }
 
-        // Create Dads using the recycle method
-        Dad::factory()
+        // Create Participants using the recycle method
+        Participant::factory()
             ->count(20)
             ->recycle($users)
             ->recycle($regions)

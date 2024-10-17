@@ -2,14 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Region;
+use App\Models\ParticipantClass;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DadClass>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ParticipantClassAssignment>
  */
-class DadClassFactory extends Factory
+class ParticipantClassAssignmentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,7 +21,8 @@ class DadClassFactory extends Factory
     {
         return [
             'id' => Str::uuid(),
-            'region_id' => Region::factory(),
+            'user_id' => User::factory(),
+            'participant_class_id' => ParticipantClass::factory(),
         ];
     }
 }
