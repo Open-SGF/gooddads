@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('children', static function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('participant_id')->constrained('participants');
-            $table->text('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->date('date_of_birth');
             $table->text('contact');
             $table->decimal('child_support', 6, 2);

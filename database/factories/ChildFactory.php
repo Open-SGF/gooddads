@@ -19,7 +19,8 @@ class ChildFactory extends Factory
     {
         return [
             'participant_id' => Participant::factory(),
-            'name' => $this->faker->name(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
             'date_of_birth' => $this->faker->dateTimeBetween('-18 years', '-1 year')->format('Y-m-d'),
             'contact' => $this->faker->phoneNumber(),
             'child_support' => $this->faker->randomFloat(2, 50, 500),

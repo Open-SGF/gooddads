@@ -11,7 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property string $id
  * @property string $participant_id
- * @property string $name
+ * @property string $first_name
+ * @property string $last_name
  * @property \DateTime $date_of_birth
  * @property string $contact
  * @property float $child_support
@@ -26,7 +27,8 @@ class Child extends Model
 
     protected $fillable = [
         'participant_id',
-        'name',
+        'first_name',
+        'last_name',
         'date_of_birth',
         'contact',
         'child_support',

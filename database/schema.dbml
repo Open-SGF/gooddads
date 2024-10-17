@@ -43,7 +43,8 @@ Table "cache_locks" {
 Table "children" {
   "id" char(36) [pk, not null]
   "participant_id" char(36) [not null]
-  "name" text [not null]
+  "first_name" varchar(255) [not null]
+  "last_name" varchar(255) [not null]
   "date_of_birth" date [not null]
   "contact" text [not null]
   "child_support" decimal(6,2) [not null]
