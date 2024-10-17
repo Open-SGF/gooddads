@@ -26,7 +26,7 @@ class QuizSeeder extends Seeder
         // Create quizzes for each module
         foreach ($modules as $module) {
             Quiz::factory()
-                ->count(rand(1, 3))  // Create 1 to 3 quizzes per module
+                ->count(random_int(1, 3))  // Create 1 to 3 quizzes per module
                 ->for($module)
                 ->create();
         }
