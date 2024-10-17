@@ -15,11 +15,11 @@ class ResponsiblePartyAssignmentSeeder extends Seeder
     public function run(): void
     {
         // Fetch existing Users and Participants
-        $reponsibleParty = ResponsibleParty::all();
+        $responsibleParty = ResponsibleParty::all();
         $participants = Participant::all();
 
         // Ensure we have responsible users and participants before creating assignments
-        if ($reponsibleParty->isEmpty() || $participants->isEmpty()) {
+        if ($responsibleParty->isEmpty() || $participants->isEmpty()) {
             $this->command->info('User or Participant is empty. Skipping ResponsiblePartyAssignment creation.');
 
             return;
@@ -28,7 +28,7 @@ class ResponsiblePartyAssignmentSeeder extends Seeder
         // Create ResponsiblePartyAssignments using the recycle method
         ResponsiblePartyAssignment::factory()
             ->count(5)
-            ->recycle($reponsibleParty)
+            ->recycle($responsibleParty)
             ->recycle($participants)
             ->create();
 
