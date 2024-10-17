@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\DadClass;
+use App\Models\ParticipantClass;
 use App\Models\Region;
 use Illuminate\Database\Seeder;
 
-class DadClassSeeder extends Seeder
+class ParticipantClassSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,15 +16,15 @@ class DadClassSeeder extends Seeder
         // Fetch existing Regions
         $regions = Region::all();
 
-        // Ensure we have regions before creating DadClasses
+        // Ensure we have regions before creating ParticipantClasses
         if ($regions->isEmpty()) {
-            $this->command->info('No regions found. Skipping DadClass creation.');
+            $this->command->info('No regions found. Skipping ParticipantClass creation.');
 
             return;
         }
 
-        // Create DadClasses using the recycle method
-        DadClass::factory()
+        // Create ParticipantClasses using the recycle method
+        ParticipantClass::factory()
             ->count(20)
             ->recycle($regions)
             ->create();

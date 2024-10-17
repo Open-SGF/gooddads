@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('responsible_party_assignments', static function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('responsible_party_id')->constrained('responsible_parties');
-            $table->foreignUuid('dad_id')->constrained('dads');
+            $table->foreignUuid('participant_id')->constrained('participants');
             $table->timestamps();
         });
     }

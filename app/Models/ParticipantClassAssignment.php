@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Database\Factories\DadClassAssignmentFactory;
+use Database\Factories\ParticipantClassAssignmentFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class DadClassAssignment extends Model
+class ParticipantClassAssignment extends Model
 {
-    /** @use HasFactory<DadClassAssignmentFactory> */
+    /** @use HasFactory<ParticipantClassAssignmentFactory> */
     use HasFactory;
 
     use HasUuids;
@@ -30,12 +30,12 @@ class DadClassAssignment extends Model
     }
 
     /**
-     * Define the relationship to the DadClass model.
+     * Define the relationship to the ParticipantClass model.
      *
-     * @return BelongsTo<DadClass, self>
+     * @return BelongsTo<ParticipantClass, self>
      */
-    public function dadClass(): BelongsTo
+    public function participantClass(): BelongsTo
     {
-        return $this->belongsTo(DadClass::class);
+        return $this->belongsTo(ParticipantClass::class);
     }
 }

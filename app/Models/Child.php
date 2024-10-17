@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property string $id
- * @property string $dad_id
+ * @property string $participant_id
  * @property string $name
  * @property \DateTime $date_of_birth
  * @property string $contact
  * @property float $child_support
- * @property \App\Models\Dad $dad
+ * @property \App\Models\Participant $participant
  */
 class Child extends Model
 {
@@ -25,7 +25,7 @@ class Child extends Model
     use HasUuids;
 
     protected $fillable = [
-        'dad_id',
+        'participant_id',
         'name',
         'date_of_birth',
         'contact',
@@ -42,12 +42,12 @@ class Child extends Model
     ];
 
     /**
-     * Define the relationship to the Dad model.
+     * Define the relationship to the Participant model.
      *
-     * @return BelongsTo<Dad, self>
+     * @return BelongsTo<Participant, self>
      */
-    public function dad(): BelongsTo
+    public function participant(): BelongsTo
     {
-        return $this->belongsTo(Dad::class);
+        return $this->belongsTo(Participant::class);
     }
 }

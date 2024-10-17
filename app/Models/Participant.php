@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
-use Database\Factories\DadFactory;
+use Database\Factories\ParticipantFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,9 +30,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \App\Models\Region $region
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Child[] $children
  */
-class Dad extends Model
+class Participant extends Model
 {
-    /** @use HasFactory<DadFactory> */
+    /** @use HasFactory<ParticipantFactory> */
     use HasFactory;
 
     use HasUuids;

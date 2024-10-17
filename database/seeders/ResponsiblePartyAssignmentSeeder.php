@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Dad;
+use App\Models\Participant;
 use App\Models\ResponsibleParty;
 use App\Models\ResponsiblePartyAssignment;
 use Illuminate\Database\Seeder;
@@ -14,13 +14,13 @@ class ResponsiblePartyAssignmentSeeder extends Seeder
      */
     public function run(): void
     {
-        // Fetch existing Users and Dads
+        // Fetch existing Users and Participants
         $reponsibleParty = ResponsibleParty::all();
-        $dads = Dad::all();
+        $participants = Participant::all();
 
-        // Ensure we have responsible users and dads before creating assignments
-        if ($reponsibleParty->isEmpty() || $dads->isEmpty()) {
-            $this->command->info('Users or Dads are empty. Skipping ResponsiblePartyAssignment creation.');
+        // Ensure we have responsible users and participants before creating assignments
+        if ($reponsibleParty->isEmpty() || $participants->isEmpty()) {
+            $this->command->info('User or Participant is empty. Skipping ResponsiblePartyAssignment creation.');
 
             return;
         }
@@ -29,7 +29,7 @@ class ResponsiblePartyAssignmentSeeder extends Seeder
         ResponsiblePartyAssignment::factory()
             ->count(5)
             ->recycle($reponsibleParty)
-            ->recycle($dads)
+            ->recycle($participants)
             ->create();
 
     }

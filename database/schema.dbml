@@ -1,11 +1,11 @@
-Enum "dads_marital_status_enum" {
+Enum "participants_marital_status_enum" {
   "single"
   "married"
   "divorced"
   "widowed"
 }
 
-Enum "dads_ethnicity_enum" {
+Enum "participants_ethnicity_enum" {
   "white"
   "africanAmerican"
   "nativeAmerican"
@@ -42,46 +42,11 @@ Table "cache_locks" {
 
 Table "children" {
   "id" char(36) [pk, not null]
-  "dad_id" char(36) [not null]
+  "participant_id" char(36) [not null]
   "name" text [not null]
   "date_of_birth" date [not null]
   "contact" text [not null]
   "child_support" decimal(6,2) [not null]
-  "created_at" timestamp
-  "updated_at" timestamp
-}
-
-Table "dad_class_assignments" {
-  "id" char(36) [pk, not null]
-  "dad_class_id" char(36) [not null]
-  "user_id" char(36) [not null]
-  "created_at" timestamp
-  "updated_at" timestamp
-}
-
-Table "dad_classes" {
-  "id" char(36) [pk, not null]
-  "region_id" char(36) [not null]
-  "created_at" timestamp
-  "updated_at" timestamp
-}
-
-Table "dads" {
-  "id" char(36) [pk, not null]
-  "user_id" char(36) [not null]
-  "region_id" char(36)
-  "street_address" varchar(100)
-  "city" varchar(50)
-  "zip_code" varchar(5)
-  "employer" varchar(100)
-  "email" text
-  "cell_phone_number" varchar(12)
-  "home_phone_number" varchar(12)
-  "work_phone_number" varchar(12)
-  "alt_contact_number" varchar(12)
-  "marital_status" dads_marital_status_enum [not null]
-  "ethnicity" dads_ethnicity_enum [not null]
-  "monthly_child_support" decimal(6,2)
   "created_at" timestamp
   "updated_at" timestamp
 }
@@ -146,6 +111,41 @@ Table "modules" {
   "updated_at" timestamp
 }
 
+Table "participant_class_assignments" {
+  "id" char(36) [pk, not null]
+  "participant_class_id" char(36) [not null]
+  "user_id" char(36) [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "participant_classes" {
+  "id" char(36) [pk, not null]
+  "region_id" char(36) [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "participants" {
+  "id" char(36) [pk, not null]
+  "user_id" char(36) [not null]
+  "region_id" char(36)
+  "street_address" varchar(100)
+  "city" varchar(50)
+  "zip_code" varchar(5)
+  "employer" varchar(100)
+  "email" text
+  "cell_phone_number" varchar(12)
+  "home_phone_number" varchar(12)
+  "work_phone_number" varchar(12)
+  "alt_contact_number" varchar(12)
+  "marital_status" participants_marital_status_enum [not null]
+  "ethnicity" participants_ethnicity_enum [not null]
+  "monthly_child_support" decimal(6,2)
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
 Table "password_reset_tokens" {
   "email" varchar(255) [pk, not null]
   "token" varchar(255) [not null]
@@ -155,7 +155,7 @@ Table "password_reset_tokens" {
 Table "program_assignments" {
   "id" char(36) [pk, not null]
   "program_id" char(36) [not null]
-  "dad_class_id" char(36) [not null]
+  "participant_class_id" char(36) [not null]
   "start_date" date [not null]
   "completed" tinyint(1) [not null]
   "created_at" timestamp
@@ -226,7 +226,7 @@ Table "responsible_parties" {
 Table "responsible_party_assignments" {
   "id" char(36) [pk, not null]
   "responsible_party_id" char(36) [not null]
-  "dad_id" char(36) [not null]
+  "participant_id" char(36) [not null]
   "created_at" timestamp
   "updated_at" timestamp
 }
@@ -257,25 +257,25 @@ Table "users" {
   "updated_at" timestamp
 }
 
-Ref "children_dad_id_foreign":"dads"."id" < "children"."dad_id"
-
-Ref "dad_class_assignments_dad_class_id_foreign":"dad_classes"."id" < "dad_class_assignments"."dad_class_id"
-
-Ref "dad_class_assignments_user_id_foreign":"users"."id" < "dad_class_assignments"."user_id"
-
-Ref "dad_classes_region_id_foreign":"regions"."id" < "dad_classes"."region_id"
-
-Ref "dads_region_id_foreign":"regions"."id" < "dads"."region_id"
-
-Ref "dads_user_id_foreign":"users"."id" < "dads"."user_id"
+Ref "children_participant_id_foreign":"participants"."id" < "children"."participant_id"
 
 Ref "module_assignments_module_id_foreign":"modules"."id" < "module_assignments"."module_id"
 
 Ref "modules_program_id_foreign":"programs"."id" < "modules"."program_id"
 
+Ref "participant_class_assignments_participant_class_id_foreign":"participant_classes"."id" < "participant_class_assignments"."participant_class_id"
+
+Ref "participant_class_assignments_user_id_foreign":"users"."id" < "participant_class_assignments"."user_id"
+
+Ref "participant_classes_region_id_foreign":"regions"."id" < "participant_classes"."region_id"
+
+Ref "participants_region_id_foreign":"regions"."id" < "participants"."region_id"
+
+Ref "participants_user_id_foreign":"users"."id" < "participants"."user_id"
+
 Ref "program_assignments_program_id_foreign":"programs"."id" < "program_assignments"."program_id"
 
-Ref "program_assignments_dad_class_id_foreign":"dad_classes"."id" < "program_assignments"."dad_class_id"
+Ref "program_assignments_participant_class_id_foreign":"participant_classes"."id" < "program_assignments"."participant_class_id"
 
 Ref "quiz_assignments_quiz_question_id_foreign":"quiz_questions"."id" < "quiz_assignments"."quiz_question_id"
 
@@ -291,6 +291,6 @@ Ref "quizzes_module_id_foreign":"modules"."id" < "quizzes"."module_id"
 
 Ref "responsible_parties_user_id_foreign":"users"."id" < "responsible_parties"."user_id"
 
-Ref "responsible_party_assignments_dad_id_foreign":"dads"."id" < "responsible_party_assignments"."dad_id"
+Ref "responsible_party_assignments_participant_id_foreign":"participants"."id" < "responsible_party_assignments"."participant_id"
 
 Ref "responsible_party_assignments_responsible_party_id_foreign":"responsible_parties"."id" < "responsible_party_assignments"."responsible_party_id"

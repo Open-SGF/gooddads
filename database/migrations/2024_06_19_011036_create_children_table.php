@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('children', static function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('dad_id')->constrained('dads');
+            $table->foreignUuid('participant_id')->constrained('participants');
             $table->text('name');
             $table->date('date_of_birth');
             $table->text('contact');

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\DadClass;
+use App\Models\ParticipantClass;
 use App\Models\Program;
 use App\Models\ProgramAssignment;
 use Illuminate\Database\Seeder;
@@ -14,13 +14,13 @@ class ProgramAssignmentSeeder extends Seeder
      */
     public function run(): void
     {
-        // Fetch existing Programs and DadClasses
+        // Fetch existing Programs and ParticipantClass
         $programs = Program::all();
-        $dadClasses = DadClass::all();
+        $participantClasses = ParticipantClass::all();
 
-        // Ensure we have programs and dad classes before creating assignments
-        if ($programs->isEmpty() || $dadClasses->isEmpty()) {
-            $this->command->info('No programs or dad classes found. Skipping ProgramAssignment creation.');
+        // Ensure we have programs and participant classes before creating assignments
+        if ($programs->isEmpty() || $participantClasses->isEmpty()) {
+            $this->command->info('No programs or participant classes found. Skipping ProgramAssignment creation.');
 
             return;
         }
@@ -29,14 +29,14 @@ class ProgramAssignmentSeeder extends Seeder
         ProgramAssignment::factory()
             ->count(50)  // Adjust the count as needed
             ->recycle($programs)
-            ->recycle($dadClasses)
+            ->recycle($participantClasses)
             ->create();
 
         // Create some completed program assignments
         ProgramAssignment::factory()
             ->count(5)
             ->recycle($programs)
-            ->recycle($dadClasses)
+            ->recycle($participantClasses)
             ->completed()
             ->create();
 
@@ -44,7 +44,7 @@ class ProgramAssignmentSeeder extends Seeder
         ProgramAssignment::factory()
             ->count(5)
             ->recycle($programs)
-            ->recycle($dadClasses)
+            ->recycle($participantClasses)
             ->inProgress()
             ->create();
     }

@@ -10,9 +10,9 @@ use App\Services\Formatter\PhoneFormatter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Dad>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Participant>
  */
-class DadFactory extends Factory
+class ParticipantFactory extends Factory
 {
     /**
      * Define the model's default state.
