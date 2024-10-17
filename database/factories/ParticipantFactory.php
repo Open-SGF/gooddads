@@ -24,8 +24,9 @@ class ParticipantFactory extends Factory
         return [
             'user_id' => User::factory(),
             'region_id' => Region::factory(),
-            'street_address' => $this->faker->streetAddress(),
+            'street' => $this->faker->streetAddress(),
             'city' => $this->faker->city(),
+            'state' => 'MO',
             'zip_code' => substr($this->faker->postcode(), 0, 5),
             'employer' => $this->faker->company(),
             'cell_phone_number' => PhoneFormatter::format($this->faker->phoneNumber()),
@@ -35,6 +36,7 @@ class ParticipantFactory extends Factory
             'marital_status' => $this->faker->randomElement(MaritalStatus::cases()),
             'ethnicity' => $this->faker->randomElement(Ethnicity::cases()),
             'monthly_child_support' => $this->faker->randomFloat(2, 100, 1000),
+            'intake_date' => $this->faker->date(),
         ];
     }
 }

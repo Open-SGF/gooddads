@@ -131,8 +131,9 @@ Table "participants" {
   "id" char(36) [pk, not null]
   "user_id" char(36) [not null]
   "region_id" char(36)
-  "street_address" varchar(100)
+  "street" varchar(100)
   "city" varchar(50)
+  "state" varchar(50)
   "zip_code" varchar(5)
   "employer" varchar(100)
   "email" text
@@ -143,6 +144,7 @@ Table "participants" {
   "marital_status" participants_marital_status_enum [not null]
   "ethnicity" participants_ethnicity_enum [not null]
   "monthly_child_support" decimal(6,2)
+  "intake_date" date
   "created_at" timestamp
   "updated_at" timestamp
 }
