@@ -247,7 +247,8 @@ Table "sessions" {
 
 Table "users" {
   "id" char(36) [pk, not null]
-  "name" varchar(255) [not null]
+  "first_name" varchar(255) [not null]
+  "last_name" varchar(255) [not null]
   "email" varchar(255) [unique, not null]
   "email_verified_at" timestamp
   "password" varchar(255) [not null]
