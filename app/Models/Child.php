@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
 use Database\Factories\ChildFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $participant_id
  * @property string $first_name
  * @property string $last_name
- * @property \DateTime $date_of_birth
+ * @property CarbonImmutable $date_of_birth
  * @property string $contact
  * @property float $child_support
  * @property \App\Models\Participant $participant
