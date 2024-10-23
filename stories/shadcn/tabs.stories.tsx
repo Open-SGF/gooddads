@@ -5,7 +5,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/registry/default/ui/tabs"
+} from "../../resources/js/Components/ui"
 
 /**
  * A set of layered sections of content—known as tab panels—that are displayed

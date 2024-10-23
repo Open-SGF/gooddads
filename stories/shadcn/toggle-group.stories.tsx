@@ -4,7 +4,7 @@ import { Bold, Italic, Underline } from "lucide-react"
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@/registry/default/ui/toggle-group"
+} from "../../resources/js/Components/ui"
 
 /**
  * A set of two-state buttons that can be toggled on or off.
