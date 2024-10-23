@@ -22,3 +22,5 @@ yarn-error.log
 /.editorconfig
 /.php-cs-fixer.cache
 dbml-error.log
+
+*storybook.log
