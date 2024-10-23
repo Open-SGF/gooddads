@@ -54,3 +54,7 @@ To regenerate the file use the artisan command `sail artisan dbml:generate`
 
 ## Resetting the Database
 * To purge your MySQL database, run `sail down -v`, then `sail up -d`, then `sail artisan migrate:fresh --seed`. (⚠️ WARNING: This will purge EVERYTHING from your database! ⚠️)
+
+## Frontend Development
+* Use [shadcn components](https://ui.shadcn.com/) within `resources/js/Components/ui` when building pages
+* Any new custom reusable components should be accompanied by a storybook story in the `stories` directory
