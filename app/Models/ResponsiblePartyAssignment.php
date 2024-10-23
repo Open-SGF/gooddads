@@ -30,12 +30,12 @@ class ResponsiblePartyAssignment extends Model
     }
 
     /**
-     * Define the relationship to the Dad model.
+     * Define the relationship to the Participant model.
      *
-     * @return BelongsTo<Dad, self>
+     * @return BelongsTo<Participant, self>
      */
-    public function dad(): BelongsTo
+    public function participant(): BelongsTo
     {
-        return $this->belongsTo(Dad::class);
+        return $this->belongsTo(Participant::class);
     }
 }

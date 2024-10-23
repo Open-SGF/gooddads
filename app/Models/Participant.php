@@ -4,7 +4,8 @@ namespace App\Models;
 
 use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
-use Database\Factories\DadFactory;
+use Carbon\CarbonImmutable;
+use Database\Factories\ParticipantFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,8 +16,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $id
  * @property string $user_id
  * @property string $region_id
- * @property string $street_address
+ * @property string $street
  * @property string $city
+ * @property string $state
  * @property string $zip_code
  * @property string $employer
  * @property string $cell_phone_number
@@ -26,13 +28,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $marital_status
  * @property string $ethnicity
  * @property float $monthly_child_support
+ * @property CarbonImmutable $intake_date
  * @property \App\Models\User $user
  * @property \App\Models\Region $region
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Child[] $children
  */
-class Dad extends Model
+class Participant extends Model
 {
-    /** @use HasFactory<DadFactory> */
+    /** @use HasFactory<ParticipantFactory> */
     use HasFactory;
 
     use HasUuids;
@@ -40,8 +43,9 @@ class Dad extends Model
     protected $fillable = [
         'user_id',
         'region_id',
-        'street_address',
+        'street',
         'city',
+        'state',
         'zip_code',
         'employer',
         'cell_phone_number',
@@ -51,6 +55,7 @@ class Dad extends Model
         'marital_status',
         'ethnicity',
         'monthly_child_support',
+        'intake_date',
     ];
 
     protected $keyType = 'string';
@@ -61,6 +66,7 @@ class Dad extends Model
         'marital_status' => MaritalStatus::class,
         'ethnicity' => Ethnicity::class,
         'monthly_child_support' => 'decimal:2',
+        'intake_date' => 'immutable_date',
     ];
 
     /**
