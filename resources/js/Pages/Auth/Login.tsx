@@ -1,7 +1,7 @@
 import { useEffect, FormEventHandler } from 'react';
 import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
+import InputError from '@/Components/ui/InputError';
 import { Label } from '@/Components/ui/label';
 import { Input } from '@/Components/ui/input';
 import { Button } from '@/Components/ui/button';
@@ -82,7 +82,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                 <div className="flex items-center justify-end mt-4">
                     {canResetPassword && (
                         <Button
-                            ref={route('password.request')}
+                            href={route('password.request')}
                             size="default"
                             variant="link"
                             >
