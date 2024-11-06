@@ -3,9 +3,9 @@ import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/ui/InputError';
 import { Label } from '@/Components/ui/Label';
-import { Input } from '@/Components/ui/input';
+import { Input } from '@/Components/ui/Input';
 import { Button } from '@/Components/ui/Button';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -81,13 +81,12 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
                 <div className="flex items-center justify-end mt-4">
                     {canResetPassword && (
-                        <Button
-                            href={route('password.request')}
-                            size="default"
-                            variant="link"
-                            >
-                            Forgot your password?
-                        </Button>
+                        <Link
+                        href={route('password.request')}
+                        className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    >
+                        Forgot your password?
+                    </Link>
                     )}
 
                     <Button
