@@ -2,9 +2,9 @@ import { useEffect, FormEventHandler } from 'react';
 import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/ui/InputError';
-import { Label } from '@/Components/ui/label';
+import { Label } from '@/Components/ui/Label';
 import { Input } from '@/Components/ui/input';
-import { Button } from '@/Components/ui/button';
+import { Button } from '@/Components/ui/Button';
 import { Head, useForm } from '@inertiajs/react';
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
