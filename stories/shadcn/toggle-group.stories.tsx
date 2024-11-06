@@ -1,45 +1,42 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Bold, Italic, Underline } from "lucide-react"
+import type { Meta, StoryObj } from '@storybook/react'
+import { Bold, Italic, Underline } from 'lucide-react'
 
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "../../resources/js/Components/ui"
+import { ToggleGroup, ToggleGroupItem } from '../../resources/js/Components/ui'
 
 /**
  * A set of two-state buttons that can be toggled on or off.
  */
 const meta = {
-  title: "shadcn/ToggleGroup",
+  title: 'shadcn/ToggleGroup',
   component: ToggleGroup,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     type: {
-      options: ["multiple", "single"],
-      control: { type: "radio" },
+      options: ['multiple', 'single'],
+      control: { type: 'radio' },
     },
   },
   args: {
-    variant: "default",
-    size: "default",
-    type: "multiple",
+    variant: 'default',
+    size: 'default',
+    type: 'multiple',
     disabled: false,
   },
   render: (args) => (
     <ToggleGroup {...args}>
-      <ToggleGroupItem value="bold" aria-label="Toggle bold">
-        <Bold className="h-4 w-4" />
+      <ToggleGroupItem value='bold' aria-label='Toggle bold'>
+        <Bold className='h-4 w-4' />
       </ToggleGroupItem>
-      <ToggleGroupItem value="italic" aria-label="Toggle italic">
-        <Italic className="h-4 w-4" />
+      <ToggleGroupItem value='italic' aria-label='Toggle italic'>
+        <Italic className='h-4 w-4' />
       </ToggleGroupItem>
-      <ToggleGroupItem value="underline" aria-label="Toggle underline">
-        <Underline className="h-4 w-4" />
+      <ToggleGroupItem value='underline' aria-label='Toggle underline'>
+        <Underline className='h-4 w-4' />
       </ToggleGroupItem>
     </ToggleGroup>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof ToggleGroup>
 
@@ -58,7 +55,7 @@ export const Default: Story = {}
  */
 export const Outline: Story = {
   args: {
-    variant: "outline",
+    variant: 'outline',
   },
 }
 
@@ -68,7 +65,7 @@ export const Outline: Story = {
  */
 export const Single: Story = {
   args: {
-    type: "single",
+    type: 'single',
   },
 }
 
@@ -78,7 +75,7 @@ export const Single: Story = {
  */
 export const Small: Story = {
   args: {
-    size: "sm",
+    size: 'sm',
   },
 }
 
@@ -88,7 +85,7 @@ export const Small: Story = {
  */
 export const Large: Story = {
   args: {
-    size: "lg",
+    size: 'lg',
   },
 }
 

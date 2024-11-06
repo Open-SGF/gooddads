@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { CommandSeparator } from "cmdk"
+import type { Meta, StoryObj } from '@storybook/react'
+import { CommandSeparator } from 'cmdk'
 
 import {
   Command,
@@ -8,31 +8,31 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 /**
  * Fast, composable, unstyled command menu for React.
  */
 const meta = {
-  title: "shadcn/Command",
+  title: 'shadcn/Command',
   component: Command,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    className: "rounded-lg w-96 border shadow-md",
+    className: 'rounded-lg w-96 border shadow-md',
   },
   render: (args) => (
     <Command {...args}>
-      <CommandInput placeholder="Type a command or search..." />
+      <CommandInput placeholder='Type a command or search...' />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Suggestions">
+        <CommandGroup heading='Suggestions'>
           <CommandItem>Calendar</CommandItem>
           <CommandItem>Search Emoji</CommandItem>
           <CommandItem>Calculator</CommandItem>
         </CommandGroup>
         <CommandSeparator />
-        <CommandGroup heading="Settings">
+        <CommandGroup heading='Settings'>
           <CommandItem>Profile</CommandItem>
           <CommandItem>Billing</CommandItem>
           <CommandItem>Settings</CommandItem>
@@ -41,7 +41,7 @@ const meta = {
     </Command>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Command>
 

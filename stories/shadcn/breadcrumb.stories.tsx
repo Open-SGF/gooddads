@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { ArrowRightSquare } from "lucide-react"
+import type { Meta, StoryObj } from '@storybook/react'
+import { ArrowRightSquare } from 'lucide-react'
 
 import {
   Breadcrumb,
@@ -8,15 +8,15 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 /**
  * Displays the path to the current resource using a hierarchy of links.
  */
 const meta = {
-  title: "shadcn/Breadcrumb",
+  title: 'shadcn/Breadcrumb',
   component: Breadcrumb,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {},
   render: (args) => (
@@ -37,7 +37,7 @@ const meta = {
     </Breadcrumb>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Breadcrumb>
 

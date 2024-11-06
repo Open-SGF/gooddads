@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
 import {
   Drawer,
@@ -9,15 +9,15 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 /**
  * A drawer component for React.
  */
 const meta: Meta<typeof Drawer> = {
-  title: "shadcn/Drawer",
+  title: 'shadcn/Drawer',
   component: Drawer,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   render: (args) => (
     <Drawer {...args}>
@@ -28,18 +28,18 @@ const meta: Meta<typeof Drawer> = {
           <DrawerDescription>This action cannot be undone.</DrawerDescription>
         </DrawerHeader>
         <DrawerFooter>
-          <button className="rounded bg-primary px-4 py-2 text-primary-foreground">
+          <button className='rounded bg-primary px-4 py-2 text-primary-foreground'>
             Submit
           </button>
           <DrawerClose>
-            <button className="hover:underline">Cancel</button>
+            <button className='hover:underline'>Cancel</button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Drawer>
 

@@ -6,16 +6,16 @@ export const hslToHex = (h: number, s: number, l: number) => {
     const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1)
     return Math.round(255 * color)
       .toString(16)
-      .padStart(2, "0") // convert to Hex and prefix "0" if needed
+      .padStart(2, '0') // convert to Hex and prefix "0" if needed
   }
   return `#${f(0)}${f(8)}${f(4)}`
 }
 export const hexToHSL = (hex: string) => {
-  if (hex === "#fff" || hex === "#ffffff") {
-    return "hsl(0, 0%, 100%)"
+  if (hex === '#fff' || hex === '#ffffff') {
+    return 'hsl(0, 0%, 100%)'
   }
-  if (hex === "#000" || hex === "#000000") {
-    return "hsl(0, 0%, 0%)"
+  if (hex === '#000' || hex === '#000000') {
+    return 'hsl(0, 0%, 0%)'
   }
   const r = parseInt(hex.substring(1, 3), 16) / 255
   const g = parseInt(hex.substring(3, 5), 16) / 255

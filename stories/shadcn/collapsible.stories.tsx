@@ -1,29 +1,29 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Info } from "lucide-react"
+import type { Meta, StoryObj } from '@storybook/react'
+import { Info } from 'lucide-react'
 
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 /**
  * An interactive component which expands/collapses a panel.
  */
 const meta = {
-  title: "shadcn/Collapsible",
+  title: 'shadcn/Collapsible',
   component: Collapsible,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    className: "w-96",
+    className: 'w-96',
     disabled: false,
   },
   render: (args) => (
     <Collapsible {...args}>
-      <CollapsibleTrigger className="flex gap-2">
-        <h3 className="font-semibold">Can I use this in my project?</h3>
-        <Info className="size-6" />
+      <CollapsibleTrigger className='flex gap-2'>
+        <h3 className='font-semibold'>Can I use this in my project?</h3>
+        <Info className='size-6' />
       </CollapsibleTrigger>
       <CollapsibleContent>
         Yes. Free to use for personal and commercial projects. No attribution
@@ -32,7 +32,7 @@ const meta = {
     </Collapsible>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Collapsible>
 

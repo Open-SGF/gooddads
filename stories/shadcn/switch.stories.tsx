@@ -1,22 +1,22 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Switch } from "../../resources/js/Components/ui"
+import { Switch } from '../../resources/js/Components/ui'
 
 /**
  * A control that allows the user to toggle between checked and not checked.
  */
 const meta = {
-  title: "shadcn/Switch",
+  title: 'shadcn/Switch',
   component: Switch,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
   render: (args) => (
-    <div className="flex items-center space-x-2">
+    <div className='flex items-center space-x-2'>
       <Switch {...args} />
-      <label htmlFor={args.id} className="peer-disabled:text-foreground/50">
+      <label htmlFor={args.id} className='peer-disabled:text-foreground/50'>
         Airplane Mode
       </label>
     </div>
@@ -32,7 +32,7 @@ type Story = StoryObj<typeof meta>
  */
 export const Default: Story = {
   args: {
-    id: "default-switch",
+    id: 'default-switch',
   },
 }
 
@@ -41,7 +41,7 @@ export const Default: Story = {
  */
 export const Disabled: Story = {
   args: {
-    id: "disabled-switch",
+    id: 'disabled-switch',
     disabled: true,
   },
 }

@@ -1,5 +1,5 @@
-import type { Preview } from "@storybook/react";
-import '../resources/css/app.css'; // replace with the name of your tailwind css file
+import type { Preview } from '@storybook/react'
+import '../resources/css/app.css' // replace with the name of your tailwind css file
 
 const preview: Preview = {
   parameters: {
@@ -10,6 +10,6 @@ const preview: Preview = {
       },
     },
   },
-};
+}
 
-export default preview;
+export default preview

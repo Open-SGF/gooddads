@@ -1,27 +1,27 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { AlertCircle } from "lucide-react"
+import type { Meta, StoryObj } from '@storybook/react'
+import { AlertCircle } from 'lucide-react'
 
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 /**
  * Displays a callout for user attention.
  */
 const meta = {
-  title: "shadcn/Alert",
+  title: 'shadcn/Alert',
   component: Alert,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     variant: {
-      options: ["default", "destructive"],
-      control: { type: "radio" },
+      options: ['default', 'destructive'],
+      control: { type: 'radio' },
     },
   },
   args: {
-    variant: "default",
+    variant: 'default',
   },
   render: (args) => (
     <Alert {...args}>
@@ -47,7 +47,7 @@ export const Default: Story = {}
 export const Destructive: Story = {
   render: (args) => (
     <Alert {...args}>
-      <AlertCircle className="h-4 w-4" />
+      <AlertCircle className='h-4 w-4' />
       <AlertTitle>Error</AlertTitle>
       <AlertDescription>
         Your session has expired. Please log in again.
@@ -55,6 +55,6 @@ export const Destructive: Story = {
     </Alert>
   ),
   args: {
-    variant: "destructive",
+    variant: 'destructive',
   },
 }

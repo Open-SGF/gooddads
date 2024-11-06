@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
 import {
   Menubar,
@@ -16,16 +16,16 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 /**
  * A visually persistent menu common in desktop applications that provides
  * quick access to a consistent set of commands.
  */
 const meta = {
-  title: "shadcn/Menubar",
+  title: 'shadcn/Menubar',
   component: Menubar,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
 
   render: (args) => (
@@ -46,7 +46,7 @@ const meta = {
     </Menubar>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Menubar>
 
@@ -93,10 +93,10 @@ export const WithRadioItems: Story = {
         <MenubarTrigger>View</MenubarTrigger>
         <MenubarContent>
           <MenubarLabel inset>Device Size</MenubarLabel>
-          <MenubarRadioGroup value="md">
-            <MenubarRadioItem value="sm">Small</MenubarRadioItem>
-            <MenubarRadioItem value="md">Medium</MenubarRadioItem>
-            <MenubarRadioItem value="lg">Large</MenubarRadioItem>
+          <MenubarRadioGroup value='md'>
+            <MenubarRadioItem value='sm'>Small</MenubarRadioItem>
+            <MenubarRadioItem value='md'>Medium</MenubarRadioItem>
+            <MenubarRadioItem value='lg'>Large</MenubarRadioItem>
           </MenubarRadioGroup>
         </MenubarContent>
       </MenubarMenu>

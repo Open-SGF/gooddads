@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Input } from "../../resources/js/Components/ui"
+import { Input } from '../../resources/js/Components/ui'
 
 /**
  * Displays a form input field or a component that looks like an input field.
  */
 const meta = {
-  title: "shadcn/Input",
+  title: 'shadcn/Input',
   component: Input,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    className: "w-96",
-    type: "email",
-    placeholder: "Email",
+    className: 'w-96',
+    type: 'email',
+    placeholder: 'Email',
     disabled: false,
   },
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Input>
 
@@ -44,9 +44,9 @@ export const Disabled: Story = {
  */
 export const WithLabel: Story = {
   render: (args) => (
-    <div className="grid items-center gap-1.5">
-      <label htmlFor="email">{args.placeholder}</label>
-      <Input {...args} id="email" />
+    <div className='grid items-center gap-1.5'>
+      <label htmlFor='email'>{args.placeholder}</label>
+      <Input {...args} id='email' />
     </div>
   ),
 }
@@ -57,10 +57,10 @@ export const WithLabel: Story = {
  */
 export const WithHelperText: Story = {
   render: (args) => (
-    <div className="grid items-center gap-1.5">
-      <label htmlFor="email-2">{args.placeholder}</label>
-      <Input {...args} id="email-2" />
-      <p className="text-sm text-foreground/50">Enter your email address.</p>
+    <div className='grid items-center gap-1.5'>
+      <label htmlFor='email-2'>{args.placeholder}</label>
+      <Input {...args} id='email-2' />
+      <p className='text-sm text-foreground/50'>Enter your email address.</p>
     </div>
   ),
 }
@@ -71,11 +71,11 @@ export const WithHelperText: Story = {
  */
 export const WithButton: Story = {
   render: (args) => (
-    <div className="flex items-center space-x-2">
+    <div className='flex items-center space-x-2'>
       <Input {...args} />
       <button
-        className="rounded bg-primary px-4 py-2 text-primary-foreground"
-        type="submit"
+        className='rounded bg-primary px-4 py-2 text-primary-foreground'
+        type='submit'
       >
         Subscribe
       </button>

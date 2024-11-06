@@ -1,26 +1,26 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { Bold, Italic } from "lucide-react"
+import type { Meta, StoryObj } from '@storybook/react'
+import { Bold, Italic } from 'lucide-react'
 
-import { Toggle } from "../../resources/js/Components/ui"
+import { Toggle } from '../../resources/js/Components/ui'
 
 /**
  * A two-state button that can be either on or off.
  */
 const meta: Meta<typeof Toggle> = {
-  title: "shadcn/Toggle",
+  title: 'shadcn/Toggle',
   component: Toggle,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     children: {
       control: { disable: true },
     },
   },
   args: {
-    children: <Bold className="h-4 w-4" />,
-    "aria-label": "Toggle bold",
+    children: <Bold className='h-4 w-4' />,
+    'aria-label': 'Toggle bold',
   },
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 }
 export default meta
@@ -38,9 +38,9 @@ export const Default: Story = {}
  */
 export const Outline: Story = {
   args: {
-    variant: "outline",
-    children: <Italic className="h-4 w-4" />,
-    "aria-label": "Toggle italic",
+    variant: 'outline',
+    children: <Italic className='h-4 w-4' />,
+    'aria-label': 'Toggle italic',
   },
 }
 
@@ -50,7 +50,7 @@ export const Outline: Story = {
 export const WithText: Story = {
   render: (args) => (
     <Toggle {...args}>
-      <Italic className="mr-2 h-4 w-4" />
+      <Italic className='mr-2 h-4 w-4' />
       Italic
     </Toggle>
   ),
@@ -63,7 +63,7 @@ export const WithText: Story = {
  */
 export const Small: Story = {
   args: {
-    size: "sm",
+    size: 'sm',
   },
 }
 
@@ -73,7 +73,7 @@ export const Small: Story = {
  */
 export const Large: Story = {
   args: {
-    size: "lg",
+    size: 'lg',
   },
 }
 

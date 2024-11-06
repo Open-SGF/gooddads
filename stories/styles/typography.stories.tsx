@@ -1,8 +1,8 @@
-import React, { CSSProperties } from "react"
-import type { Meta, StoryObj } from "@storybook/react"
-import resolveConfig from "tailwindcss/resolveConfig"
+import React, { CSSProperties } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import resolveConfig from 'tailwindcss/resolveConfig'
 
-import tailwindConfig from "../../tailwind.config"
+import tailwindConfig from '../../tailwind.config'
 
 const fullConfig = resolveConfig(tailwindConfig)
 
@@ -14,43 +14,42 @@ const meta: Meta<{
     value: string
   }[]
 }> = {
-  title: "design/Typography",
+  title: 'design/Typography',
   argTypes: {},
   args: {
-    children: "Typeface",
+    children: 'Typeface',
   },
   render: (args) => (
-    <table className="w-full table-auto text-left text-sm text-foreground rtl:text-right">
-      <thead className="text-xs bg-muted uppercase">
+    <table className='w-full table-auto text-left text-sm text-foreground rtl:text-right'>
+      <thead className='text-xs bg-muted uppercase'>
         <tr>
-          <th scope="col" className="px-6 py-3">
+          <th scope='col' className='px-6 py-3'>
             Name
           </th>
-          <th scope="col" className="hidden px-6 py-3 sm:table-cell">
+          <th scope='col' className='hidden px-6 py-3 sm:table-cell'>
             Property
           </th>
-          <th scope="col" className="px-6 py-3">
-            <span className="sr-only">Preview</span>
+          <th scope='col' className='px-6 py-3'>
+            <span className='sr-only'>Preview</span>
           </th>
         </tr>
       </thead>
       <tbody>
         {args.property.map(({ name, value }) => {
           const style = window.getComputedStyle(document.body)
-          const variable = value.match(/var\(([^)]+)\)/)?.[1] ?? ""
+          const variable = value.match(/var\(([^)]+)\)/)?.[1] ?? ''
           const resolved = style.getPropertyValue(variable)
-          const resolvedValue = resolved
-            ? value.replace(/var\(--(.*?)\)/, resolved)
-            : value
+          const resolvedValue =
+            resolved ? value.replace(/var\(--(.*?)\)/, resolved) : value
 
           return (
-            <tr key={name} className="border-b bg-card">
-              <td className="px-6 py-4">{name}</td>
-              <td className="hidden px-6 py-4 sm:table-cell">
+            <tr key={name} className='border-b bg-card'>
+              <td className='px-6 py-4'>{name}</td>
+              <td className='hidden px-6 py-4 sm:table-cell'>
                 {resolvedValue}
               </td>
-              <td className="px-6 py-4 leading-tight">
-                <p className="line-clamp-1" style={{ [args.key]: value }}>
+              <td className='px-6 py-4 leading-tight'>
+                <p className='line-clamp-1' style={{ [args.key]: value }}>
                   {args.children}
                 </p>
               </td>
@@ -68,7 +67,7 @@ type Story = StoryObj<typeof meta>
 
 export const FontFamily: Story = {
   args: {
-    key: "fontFamily",
+    key: 'fontFamily',
     property: Object.keys(fullConfig.theme.fontFamily).map((name) => {
       const value =
         fullConfig.theme.fontFamily[
@@ -76,14 +75,14 @@ export const FontFamily: Story = {
         ]
       return {
         name,
-        value: Array.isArray(value) ? value.join(", ") : value,
+        value: Array.isArray(value) ? value.join(', ') : value,
       }
     }),
   },
 }
 export const FontSize: Story = {
   args: {
-    key: "fontSize",
+    key: 'fontSize',
     property: Object.keys(fullConfig.theme.fontSize).map((name) => {
       const value =
         fullConfig.theme.fontSize[
@@ -98,7 +97,7 @@ export const FontSize: Story = {
 }
 export const FontWeight: Story = {
   args: {
-    key: "fontWeight",
+    key: 'fontWeight',
     property: Object.keys(fullConfig.theme.fontWeight).map((name) => {
       const value =
         fullConfig.theme.fontWeight[
@@ -106,7 +105,7 @@ export const FontWeight: Story = {
         ]
       return {
         name,
-        value: Array.isArray(value) ? value.join(", ") : value,
+        value: Array.isArray(value) ? value.join(', ') : value,
       }
     }),
   },

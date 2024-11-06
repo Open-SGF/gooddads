@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 /**
  * For sighted users to preview content available behind a link.
  */
 const meta = {
-  title: "shadcn/HoverCard",
+  title: 'shadcn/HoverCard',
   component: HoverCard,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {},
   render: (args) => (
@@ -24,7 +24,7 @@ const meta = {
     </HoverCard>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof HoverCard>
 

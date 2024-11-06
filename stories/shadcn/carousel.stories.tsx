@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
 import {
   Carousel,
@@ -6,26 +6,26 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 /**
  * A carousel with motion and swipe built using Embla.
  */
 const meta: Meta<typeof Carousel> = {
-  title: "shadcn/Carousel",
+  title: 'shadcn/Carousel',
   component: Carousel,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    className: "w-full max-w-xs",
+    className: 'w-full max-w-xs',
   },
   render: (args) => (
     <Carousel {...args}>
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
-            <div className="flex aspect-square items-center justify-center rounded border bg-card p-6">
-              <span className="text-4xl font-semibold">{index + 1}</span>
+            <div className='flex aspect-square items-center justify-center rounded border bg-card p-6'>
+              <span className='text-4xl font-semibold'>{index + 1}</span>
             </div>
           </CarouselItem>
         ))}
@@ -35,7 +35,7 @@ const meta: Meta<typeof Carousel> = {
     </Carousel>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Carousel>
 
@@ -53,12 +53,12 @@ export const Default: Story = {}
  */
 export const Size: Story = {
   render: (args) => (
-    <Carousel {...args} className="mx-12 w-full max-w-xs">
+    <Carousel {...args} className='mx-12 w-full max-w-xs'>
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="basis-1/3">
-            <div className="flex aspect-square items-center justify-center rounded border bg-card p-6">
-              <span className="text-4xl font-semibold">{index + 1}</span>
+          <CarouselItem key={index} className='basis-1/3'>
+            <div className='flex aspect-square items-center justify-center rounded border bg-card p-6'>
+              <span className='text-4xl font-semibold'>{index + 1}</span>
             </div>
           </CarouselItem>
         ))}
@@ -68,6 +68,6 @@ export const Size: Story = {
     </Carousel>
   ),
   args: {
-    className: "mx-12 w-full max-w-xs",
+    className: 'mx-12 w-full max-w-xs',
   },
 }

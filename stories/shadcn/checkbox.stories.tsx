@@ -1,32 +1,32 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Checkbox } from "../../resources/js/Components/ui"
+import { Checkbox } from '../../resources/js/Components/ui'
 
 /**
  * A control that allows the user to toggle between checked and not checked.
  */
 const meta: Meta<typeof Checkbox> = {
-  title: "shadcn/Checkbox",
+  title: 'shadcn/Checkbox',
   component: Checkbox,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    id: "terms",
+    id: 'terms',
     disabled: false,
   },
   render: (args) => (
-    <div className="flex space-x-2">
+    <div className='flex space-x-2'>
       <Checkbox {...args} />
       <label
         htmlFor={args.id}
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+        className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50'
       >
         Accept terms and conditions
       </label>
     </div>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof Checkbox>
 
@@ -44,7 +44,7 @@ export const Default: Story = {}
  */
 export const Disabled: Story = {
   args: {
-    id: "disabled-terms",
+    id: 'disabled-terms',
     disabled: true,
   },
 }

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
 import {
   NavigationMenu,
@@ -8,15 +8,15 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 /**
  * A collection of links for navigating websites.
  */
 const meta = {
-  title: "shadcn/NavigationMenu",
+  title: 'shadcn/NavigationMenu',
   component: NavigationMenu,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   render: (args) => (
     <NavigationMenu {...args}>
@@ -32,7 +32,7 @@ const meta = {
               Documentation
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-96 p-2">
+              <ul className='grid w-96 p-2'>
                 <li>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     API Reference
@@ -55,8 +55,8 @@ const meta = {
         <NavigationMenuItem>
           <NavigationMenuLink
             className={navigationMenuTriggerStyle()}
-            href="https:www.google.com"
-            target="_blank"
+            href='https:www.google.com'
+            target='_blank'
           >
             External
           </NavigationMenuLink>
@@ -65,7 +65,7 @@ const meta = {
     </NavigationMenu>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof NavigationMenu>
 

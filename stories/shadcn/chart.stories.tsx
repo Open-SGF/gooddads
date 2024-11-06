@@ -1,5 +1,5 @@
-import { useMemo } from "react"
-import type { Meta, StoryObj } from "@storybook/react"
+import { useMemo } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
 import {
   Area,
   AreaChart,
@@ -12,56 +12,56 @@ import {
   Pie,
   PieChart,
   XAxis,
-} from "recharts"
+} from 'recharts'
 
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 const multiSeriesData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: 'January', desktop: 186, mobile: 80 },
+  { month: 'February', desktop: 305, mobile: 200 },
+  { month: 'March', desktop: 237, mobile: 120 },
+  { month: 'April', desktop: 73, mobile: 190 },
+  { month: 'May', desktop: 209, mobile: 130 },
+  { month: 'June', desktop: 214, mobile: 140 },
 ]
 
 const multiSeriesConfig = {
   desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
+    label: 'Desktop',
+    color: 'hsl(var(--chart-1))',
   },
   mobile: {
-    label: "Mobile",
-    color: "hsl(var(--chart-2))",
+    label: 'Mobile',
+    color: 'hsl(var(--chart-2))',
   },
 } satisfies ChartConfig
 
 const singleSeriesData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "other", visitors: 190, fill: "var(--color-other)" },
+  { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },
+  { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
+  { browser: 'other', visitors: 190, fill: 'var(--color-other)' },
 ]
 
 const singleSeriesConfig = {
   visitors: {
-    label: "Visitors",
+    label: 'Visitors',
   },
   chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
+    label: 'Chrome',
+    color: 'hsl(var(--chart-1))',
   },
   safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
+    label: 'Safari',
+    color: 'hsl(var(--chart-2))',
   },
   other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
+    label: 'Other',
+    color: 'hsl(var(--chart-5))',
   },
 } satisfies ChartConfig
 
@@ -69,9 +69,9 @@ const singleSeriesConfig = {
  * Beautiful charts. Built using Recharts. Copy and paste into your apps.
  */
 const meta = {
-  title: "shadcn/Chart",
+  title: 'shadcn/Chart',
   component: ChartContainer,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
     children: <div />,
@@ -101,7 +101,7 @@ export const StackedAreaChart: Story = {
       >
         <CartesianGrid vertical={false} />
         <XAxis
-          dataKey="month"
+          dataKey='month'
           tickLine={false}
           axisLine={false}
           tickMargin={8}
@@ -109,23 +109,23 @@ export const StackedAreaChart: Story = {
         />
         <ChartTooltip
           cursor={false}
-          content={<ChartTooltipContent indicator="dot" />}
+          content={<ChartTooltipContent indicator='dot' />}
         />
         <Area
-          dataKey="mobile"
-          type="natural"
-          fill="var(--color-mobile)"
+          dataKey='mobile'
+          type='natural'
+          fill='var(--color-mobile)'
           fillOpacity={0.4}
-          stroke="var(--color-mobile)"
-          stackId="a"
+          stroke='var(--color-mobile)'
+          stackId='a'
         />
         <Area
-          dataKey="desktop"
-          type="natural"
-          fill="var(--color-desktop)"
+          dataKey='desktop'
+          type='natural'
+          fill='var(--color-desktop)'
           fillOpacity={0.4}
-          stroke="var(--color-desktop)"
-          stackId="a"
+          stroke='var(--color-desktop)'
+          stackId='a'
         />
       </AreaChart>
     </ChartContainer>
@@ -144,7 +144,7 @@ export const StackedBarChart: Story = {
       <BarChart accessibilityLayer data={multiSeriesData}>
         <CartesianGrid vertical={false} />
         <XAxis
-          dataKey="month"
+          dataKey='month'
           tickLine={false}
           tickMargin={10}
           axisLine={false}
@@ -152,10 +152,10 @@ export const StackedBarChart: Story = {
         />
         <ChartTooltip
           cursor={false}
-          content={<ChartTooltipContent indicator="dashed" />}
+          content={<ChartTooltipContent indicator='dashed' />}
         />
-        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+        <Bar dataKey='desktop' fill='var(--color-desktop)' radius={4} />
+        <Bar dataKey='mobile' fill='var(--color-mobile)' radius={4} />
       </BarChart>
     </ChartContainer>
   ),
@@ -180,7 +180,7 @@ export const MultiLineChart: Story = {
       >
         <CartesianGrid vertical={false} />
         <XAxis
-          dataKey="month"
+          dataKey='month'
           tickLine={false}
           axisLine={false}
           tickMargin={8}
@@ -191,16 +191,16 @@ export const MultiLineChart: Story = {
           content={<ChartTooltipContent hideLabel />}
         />
         <Line
-          dataKey="desktop"
-          type="natural"
-          stroke="var(--color-desktop)"
+          dataKey='desktop'
+          type='natural'
+          stroke='var(--color-desktop)'
           strokeWidth={2}
           dot={false}
         />
         <Line
-          dataKey="mobile"
-          type="natural"
-          stroke="var(--color-mobile)"
+          dataKey='mobile'
+          type='natural'
+          stroke='var(--color-mobile)'
           strokeWidth={2}
           dot={false}
         />
@@ -229,32 +229,32 @@ export const DoughnutChart: Story = {
           />
           <Pie
             data={singleSeriesData}
-            dataKey="visitors"
-            nameKey="browser"
+            dataKey='visitors'
+            nameKey='browser'
             innerRadius={48}
             strokeWidth={5}
           >
             <Label
               content={({ viewBox }) => {
-                if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
                   return (
                     <text
                       x={viewBox.cx}
                       y={viewBox.cy}
-                      textAnchor="middle"
-                      dominantBaseline="middle"
+                      textAnchor='middle'
+                      dominantBaseline='middle'
                     >
                       <tspan
                         x={viewBox.cx}
                         y={viewBox.cy}
-                        className="fill-foreground text-3xl font-bold"
+                        className='fill-foreground text-3xl font-bold'
                       >
                         {totalVisitors.toLocaleString()}
                       </tspan>
                       <tspan
                         x={viewBox.cx}
                         y={(viewBox.cy || 0) + 24}
-                        className="fill-muted-foreground"
+                        className='fill-muted-foreground'
                       >
                         Visitors
                       </tspan>

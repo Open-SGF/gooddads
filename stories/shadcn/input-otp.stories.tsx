@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
+import type { Meta, StoryObj } from '@storybook/react'
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
 
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from "../../resources/js/Components/ui"
+} from '../../resources/js/Components/ui'
 
 /**
  * Accessible one-time password component with copy paste functionality.
  */
 const meta = {
-  title: "shadcn/InputOTP",
+  title: 'shadcn/InputOTP',
   component: InputOTP,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
     maxLength: 6,
@@ -35,7 +35,7 @@ const meta = {
     </InputOTP>
   ),
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } satisfies Meta<typeof InputOTP>
 
