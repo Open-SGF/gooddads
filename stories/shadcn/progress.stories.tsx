@@ -7,14 +7,14 @@ import { Progress } from '../../resources/js/Components/ui'
  * displayed as a progress bar.
  */
 const meta = {
-  title: 'shadcn/Progress',
-  component: Progress,
-  tags: ['autodocs'],
-  argTypes: {},
-  args: {
-    value: 30,
-    max: 100,
-  },
+	title: 'shadcn/Progress',
+	component: Progress,
+	tags: ['autodocs'],
+	argTypes: {},
+	args: {
+		value: 30,
+		max: 100,
+	},
 } satisfies Meta<typeof Progress>
 
 export default meta
@@ -30,16 +30,16 @@ export const Default: Story = {}
  * When the progress is indeterminate.
  */
 export const Indeterminate: Story = {
-  args: {
-    value: undefined,
-  },
+	args: {
+		value: undefined,
+	},
 }
 
 /**
  * When the progress is completed.
  */
 export const Completed: Story = {
-  args: {
-    value: 100,
-  },
+	args: {
+		value: 100,
+	},
 }
