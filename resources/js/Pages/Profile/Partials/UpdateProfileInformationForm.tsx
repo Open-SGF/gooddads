@@ -1,4 +1,4 @@
-import InputError from '@/Components/InputError';
+import InputError from '@/Components/ui/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
