@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
-    public User $userExample;
+    public User $userParticipant;
 
     public User $userAdmin;
 
@@ -16,15 +17,21 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // create user
-        $this->userExample = User::factory()->create([
-            'name' => 'Example User',
-            'email' => 'test@example.com',
-        ]);
+        $this->userParticipant = User::factory()->create([
+            'id' => Str::uuid(),
+            'first_name' => 'Participant',
+            'last_name' => 'User',
+            'email' => 'participant@example.com',
+            'password' => bcrypt('password123'),
+        ])->assignRole('Participant');
 
         $this->userAdmin = User::factory()->create([
-            'name' => 'Admin User',
+            'id' => Str::uuid(),
+            'first_name' => 'Admin',
+            'last_name' => 'User',
             'email' => 'admin@example.com',
-        ]);
+            'password' => bcrypt('password123'),
+
+        ])->assignRole('Admin');
     }
 }

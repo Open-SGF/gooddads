@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
@@ -23,24 +23,15 @@ class PermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         $this->permissionRegistrar->forgetCachedPermissions();
 
-        // create permissions
-        // Permission::create(['name' => 'edit articles']);
-        // Permission::create(['name' => 'delete articles']);
-        // Permission::create(['name' => 'publish articles']);
-        // Permission::create(['name' => 'unpublish articles']);
-
-        $roleSuperAdmin = Role::create(['name' => 'Super Admin']);
-        // $roleDirector = Role::create(['name' => 'Director']);
-        // $roleRegionDirector = Role::create(['name' => 'Region Director']);
-        // $roleRegionDirector->givePermissionTo('publish articles');
-        // $roleAuditor = Role::create(['name' => 'Auditor']);
-        // $roleIntake = Role::create(['name' => 'Intake']);
-        $roleParticipant = Role::create(['name' => 'Participant']);
-
-        $userAdmin = User::where('name', 'Admin User')->first();
-        $userExample = User::where('name', 'Example User')->first();
-
-        $userAdmin->assignRole($roleSuperAdmin);
-        $userExample->assignRole($roleParticipant);
+        Role::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Admin',
+            'guard_name' => 'web',
+        ]);
+        Role::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Participant',
+            'guard_name' => 'web',
+        ]);
     }
 }
