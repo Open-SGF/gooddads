@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Child;
+use App\Models\Participant;
 use Illuminate\Database\Seeder;
 
 class ChildSeeder extends Seeder
@@ -12,6 +13,17 @@ class ChildSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $participants = Participant::all();
+
+        if ($participants->isEmpty()) {
+            $this->command->info('No participants found. Skipping child creation.');
+
+            return;
+        }
+
+        Child::factory()
+            ->count(20)
+            ->recycle($participants)
+            ->create();
     }
 }

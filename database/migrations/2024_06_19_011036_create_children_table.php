@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('children', static function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('dad_id')->constrained('dads');
-            $table->text('name');
+            $table->foreignUuid('participant_id')->constrained('participants');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->date('date_of_birth');
             $table->text('contact');
-            $table->float('child_support');
+            $table->decimal('child_support', 6, 2);
             $table->timestamps();
         });
     }

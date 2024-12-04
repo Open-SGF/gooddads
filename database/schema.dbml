@@ -1,0 +1,300 @@
+Enum "participants_marital_status_enum" {
+  "single"
+  "married"
+  "divorced"
+  "widowed"
+}
+
+Enum "participants_ethnicity_enum" {
+  "white"
+  "africanAmerican"
+  "nativeAmerican"
+  "asian"
+  "pacificIslander"
+}
+
+Enum "quiz_questions_type_enum" {
+  "multipleChoice"
+  "shortAnswer"
+  "trueFalse"
+}
+
+Enum "responsible_parties_role_enum" {
+  "admin"
+  "auditor"
+  "director"
+  "intake"
+  "programDirector"
+  "regionDirector"
+}
+
+Table "cache" {
+  "key" varchar(255) [pk, not null]
+  "value" mediumtext [not null]
+  "expiration" int [not null]
+}
+
+Table "cache_locks" {
+  "key" varchar(255) [pk, not null]
+  "owner" varchar(255) [not null]
+  "expiration" int [not null]
+}
+
+Table "children" {
+  "id" char(36) [pk, not null]
+  "participant_id" char(36) [not null]
+  "first_name" varchar(255) [not null]
+  "last_name" varchar(255) [not null]
+  "date_of_birth" date [not null]
+  "contact" text [not null]
+  "child_support" decimal(6,2) [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "failed_jobs" {
+  "id" "bigint unsigned" [pk, not null, increment]
+  "uuid" varchar(255) [unique, not null]
+  "connection" text [not null]
+  "queue" text [not null]
+  "payload" longtext [not null]
+  "exception" longtext [not null]
+  "failed_at" timestamp [not null, default: `CURRENT_TIMESTAMP`]
+}
+
+Table "job_batches" {
+  "id" varchar(255) [pk, not null]
+  "name" varchar(255) [not null]
+  "total_jobs" int [not null]
+  "pending_jobs" int [not null]
+  "failed_jobs" int [not null]
+  "failed_job_ids" longtext [not null]
+  "options" mediumtext
+  "cancelled_at" int
+  "created_at" int [not null]
+  "finished_at" int
+}
+
+Table "jobs" {
+  "id" "bigint unsigned" [pk, not null, increment]
+  "queue" varchar(255) [not null]
+  "payload" longtext [not null]
+  "attempts" "tinyint unsigned" [not null]
+  "reserved_at" "int unsigned"
+  "available_at" "int unsigned" [not null]
+  "created_at" "int unsigned" [not null]
+
+  Indexes {
+    queue [type: btree, name: "jobs_queue_index"]
+  }
+}
+
+Table "migrations" {
+  "id" "int unsigned" [pk, not null, increment]
+  "migration" varchar(255) [not null]
+  "batch" int [not null]
+}
+
+Table "module_assignments" {
+  "id" char(36) [pk, not null]
+  "module_id" char(36) [not null]
+  "event_date" date [not null]
+  "description" text [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "modules" {
+  "id" char(36) [pk, not null]
+  "program_id" char(36) [not null]
+  "description" text [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "participant_class_assignments" {
+  "id" char(36) [pk, not null]
+  "participant_class_id" char(36) [not null]
+  "user_id" char(36) [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "participant_classes" {
+  "id" char(36) [pk, not null]
+  "region_id" char(36) [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "participants" {
+  "id" char(36) [pk, not null]
+  "user_id" char(36) [not null]
+  "region_id" char(36)
+  "street" varchar(100)
+  "city" varchar(50)
+  "state" varchar(50)
+  "zip_code" varchar(5)
+  "employer" varchar(100)
+  "email" text
+  "cell_phone_number" varchar(12)
+  "home_phone_number" varchar(12)
+  "work_phone_number" varchar(12)
+  "alt_contact_number" varchar(12)
+  "marital_status" participants_marital_status_enum [not null]
+  "ethnicity" participants_ethnicity_enum [not null]
+  "monthly_child_support" decimal(6,2)
+  "intake_date" date
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "password_reset_tokens" {
+  "email" varchar(255) [pk, not null]
+  "token" varchar(255) [not null]
+  "created_at" timestamp
+}
+
+Table "program_assignments" {
+  "id" char(36) [pk, not null]
+  "program_id" char(36) [not null]
+  "participant_class_id" char(36) [not null]
+  "start_date" date [not null]
+  "completed" tinyint(1) [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "programs" {
+  "id" char(36) [pk, not null]
+  "description" text [not null]
+  "length" int [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "quiz_assignments" {
+  "id" char(36) [pk, not null]
+  "user_id" char(36) [not null]
+  "quiz_question_id" char(36) [not null]
+  "quiz_question_option_id" char(36)
+  "answer" text [not null]
+  "is_correct" tinyint(1) [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "quiz_question_options" {
+  "id" char(36) [pk, not null]
+  "quiz_question_id" char(36) [not null]
+  "answer" text [not null]
+  "is_correct" tinyint(1) [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "quiz_questions" {
+  "id" char(36) [pk, not null]
+  "quiz_id" char(36) [not null]
+  "question" text [not null]
+  "type" quiz_questions_type_enum [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "quizzes" {
+  "id" char(36) [pk, not null]
+  "module_id" char(36) [not null]
+  "description" text [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "regions" {
+  "id" char(36) [pk, not null]
+  "description" text [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "responsible_parties" {
+  "id" char(36) [pk, not null]
+  "user_id" char(36) [not null]
+  "phone_number" varchar(12) [not null]
+  "role" responsible_parties_role_enum [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "responsible_party_assignments" {
+  "id" char(36) [pk, not null]
+  "responsible_party_id" char(36) [not null]
+  "participant_id" char(36) [not null]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "sessions" {
+  "id" varchar(255) [pk, not null]
+  "user_id" char(36)
+  "ip_address" varchar(45)
+  "user_agent" text
+  "payload" longtext [not null]
+  "last_activity" int [not null]
+
+  Indexes {
+    last_activity [type: btree, name: "sessions_last_activity_index"]
+    user_id [type: btree, name: "sessions_user_id_index"]
+  }
+}
+
+Table "users" {
+  "id" char(36) [pk, not null]
+  "first_name" varchar(255) [not null]
+  "last_name" varchar(255) [not null]
+  "email" varchar(255) [unique, not null]
+  "email_verified_at" timestamp
+  "password" varchar(255) [not null]
+  "remember_token" varchar(100)
+  "avatar_url" text
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Ref "children_participant_id_foreign":"participants"."id" < "children"."participant_id"
+
+Ref "module_assignments_module_id_foreign":"modules"."id" < "module_assignments"."module_id"
+
+Ref "modules_program_id_foreign":"programs"."id" < "modules"."program_id"
+
+Ref "participant_class_assignments_participant_class_id_foreign":"participant_classes"."id" < "participant_class_assignments"."participant_class_id"
+
+Ref "participant_class_assignments_user_id_foreign":"users"."id" < "participant_class_assignments"."user_id"
+
+Ref "participant_classes_region_id_foreign":"regions"."id" < "participant_classes"."region_id"
+
+Ref "participants_region_id_foreign":"regions"."id" < "participants"."region_id"
+
+Ref "participants_user_id_foreign":"users"."id" < "participants"."user_id"
+
+Ref "program_assignments_program_id_foreign":"programs"."id" < "program_assignments"."program_id"
+
+Ref "program_assignments_participant_class_id_foreign":"participant_classes"."id" < "program_assignments"."participant_class_id"
+
+Ref "quiz_assignments_quiz_question_id_foreign":"quiz_questions"."id" < "quiz_assignments"."quiz_question_id"
+
+Ref "quiz_assignments_quiz_question_option_id_foreign":"quiz_question_options"."id" < "quiz_assignments"."quiz_question_option_id"
+
+Ref "quiz_assignments_user_id_foreign":"users"."id" < "quiz_assignments"."user_id"
+
+Ref "quiz_question_options_quiz_question_id_foreign":"quiz_questions"."id" < "quiz_question_options"."quiz_question_id"
+
+Ref "quiz_questions_quiz_id_foreign":"quizzes"."id" < "quiz_questions"."quiz_id"
+
+Ref "quizzes_module_id_foreign":"modules"."id" < "quizzes"."module_id"
+
+Ref "responsible_parties_user_id_foreign":"users"."id" < "responsible_parties"."user_id"
+
+Ref "responsible_party_assignments_participant_id_foreign":"participants"."id" < "responsible_party_assignments"."participant_id"
+
+Ref "responsible_party_assignments_responsible_party_id_foreign":"responsible_parties"."id" < "responsible_party_assignments"."responsible_party_id"

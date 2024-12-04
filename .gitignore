@@ -21,3 +21,6 @@ yarn-error.log
 /.vscode
 /.editorconfig
 /.php-cs-fixer.cache
+dbml-error.log
+
+*storybook.log

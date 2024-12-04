@@ -23,6 +23,7 @@
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
         "phpunit/phpunit": "^11.0.1",
+        "roave/security-advisories": "dev-latest",
         "spatie/laravel-ignition": "^2.4"
     },
     "autoload": {
@@ -54,7 +55,7 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "analyse": [
-            "./vendor/bin/phpstan analyse -c phpstan.neon"
+            "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 1G"
         ],
         "analyse-baseline": [
             "./vendor/bin/phpstan analyse -c phpstan.neon --generate-baseline"

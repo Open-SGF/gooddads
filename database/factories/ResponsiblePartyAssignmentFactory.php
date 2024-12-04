@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Participant;
+use App\Models\ResponsibleParty;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class ResponsiblePartyAssignmentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id' => $this->faker->uuid(),
+            'responsible_party_id' => ResponsibleParty::factory(),
+            'participant_id' => Participant::factory(),
         ];
     }
 }
