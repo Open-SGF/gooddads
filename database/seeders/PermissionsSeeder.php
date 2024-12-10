@@ -25,12 +25,12 @@ class PermissionsSeeder extends Seeder
 
         Role::create([
             'uuid' => Str::uuid(),
-            'name' => 'Admin',
+            'name' => 'admin',
             'guard_name' => 'web',
         ]);
         Role::create([
             'uuid' => Str::uuid(),
-            'name' => 'Participant',
+            'name' => 'participant',
             'guard_name' => 'web',
         ]);
     }
