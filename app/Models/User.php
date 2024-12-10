@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property string $id
@@ -23,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     use HasUuids;
     use Notifiable;
+    use HasRoles;
 
     protected $fillable = [
         'first_name',
