@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsersController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -25,8 +25,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/users', [UsersController::class, 'list'])->name('users.list');
+    Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
 });
 
 require __DIR__.'/auth.php';

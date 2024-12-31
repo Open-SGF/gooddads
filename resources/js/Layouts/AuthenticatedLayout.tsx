@@ -37,11 +37,10 @@ export default function Authenticated({
                          active={route().current('dashboard')}>
                   Dashboard
                 </NavLink>
-                {hasRole('admin') &&
-                  <NavLink href={route('admin.index')}
-                           active={route().current('admin.index')}>
-                    Admin
-                  </NavLink>}
+                <NavLink href={route('users.list')}
+                         active={route().current('users.list')}>
+                  Users
+                </NavLink>
               </div>
             </div>
 
@@ -147,7 +146,7 @@ export default function Authenticated({
         header && (
           <header className="bg-white dark:bg-gray-800 shadow">
             <div
-              className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
+              className="max-w-7xl min-h-9 mx-auto py-6 px-4 sm:px-6 lg:px-8 box-content flex items-center">{header}</div>
           </header>
         )
       }
