@@ -1,7 +1,7 @@
 import { useEffect, FormEventHandler } from 'react';
-import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/ui/InputError';
+import { Checkbox } from '@/Components/ui/Checkbox';
 import { Label } from '@/Components/ui/Label';
 import { Input } from '@/Components/ui/Input';
 import { Button } from '@/Components/ui/Button';
@@ -69,7 +69,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                     <Checkbox
                         id="remember"
                         checked={data.remember}
-                        onChange={(e) => setData('remember', e.target.checked)}
+                        onCheckedChange={(checked) => setData('remember', !!checked)} 
                     />
                     <label
                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
