@@ -1,10 +1,10 @@
 import React from "react";
 
-import HorizontalBlackLogo from "../public/logos/horizontal-black-logo.png";
-import HorizontalWhiteLogo from "../public/logos/horizontal-white-logo.png";
-import VerticalBlackLogo from "../public/logos/vertical-black-logo.png";
-import VerticalWhiteLogo from "../public/logos/vertical-white-logo.png";
-import SquareLogo from "../public/logos/square-logo.png";
+import HorizontalBlackLogo from "../../../../public/logos/horizontal-black-logo.png";
+import HorizontalWhiteLogo from "../../../../public/logos/horizontal-white-logo.png";
+import VerticalBlackLogo from "../../../../public/logos/vertical-black-logo.png";
+import VerticalWhiteLogo from "../../../../public/logos/vertical-white-logo.png";
+import SquareLogo from "../../../../public/logos/square-logo.png";
 
 type LogoVariant = "horizontal-black" | "horizontal-white" | "vertical-black" | "vertical-white" | "square";
 
