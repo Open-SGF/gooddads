@@ -15,4 +15,8 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
     };
     ziggy: Config & { location: string };
     users: User[];
+    page: number;
+    pageSize: number;
+    totalPages: number;
+    userCount: number;
 };
