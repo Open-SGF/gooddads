@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property string $last_name
  * @property string $email
  * @method getRoleNames()
- * @method getPermissionNames()
+ * @method getAllPermissions()
  */
 class UserResource extends JsonResource
 {
@@ -28,7 +28,8 @@ class UserResource extends JsonResource
           'last_name' => $this->last_name,
           'email' => $this->email,
           'roles' => $this->getRoleNames(),
-          'permissions' => $this->getPermissionNames(),
+          // add permission name to array
+          'permissions' => $this->getAllPermissions()->pluck('name')->toArray(),
         ];
     }
 }
