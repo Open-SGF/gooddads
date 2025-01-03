@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('work_phone')->nullable();
             $table->string('other_number')->nullable();
             $table->string('email_address')->nullable();
-            $table->string('probation_parole_case_worker')->nullable();
+            $table->string('probation_parole_case_worker_name')->nullable();
             $table->string('probation_parole_case_worker_phone')->nullable();
 
             // Children information
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->boolean('custody')->nullable();
             $table->boolean('visitation')->nullable();
             $table->boolean('phone_contact')->nullable();
-
+            $table->string('participant_photo')->nullable();
             $table->decimal('monthly_child_support_payment', 10, 2)->nullable();
 
             // Marital status

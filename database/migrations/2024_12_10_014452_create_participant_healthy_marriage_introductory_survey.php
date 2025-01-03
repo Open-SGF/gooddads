@@ -11,37 +11,41 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('participant_healthy_marriage_introductory_survey', function (Blueprint $table) {
+        Schema::create('participant_healthy_marriage_and_fatherhood_survey', function (Blueprint $table) {
             $table->id();
             $table->foreignId('participant_id')->constrained();
             $table->date('date_of_birth')->nullable();
-            $table->string('fatherhood_program');
-            $table->boolean('become_responsible_father')->default(false);
-            $table->boolean('referred')->default(false);
-            $table->boolean('court_ordered')->default(false);
-            $table->boolean('address_child_support_concerns')->default(false);
-            $table->string('other_reason_for_attendance')->nullable();
-            $table->boolean('word_of_mouth')->default(false);
-            $table->boolean('from_past_participant')->default(false);
-            $table->boolean('family_support_division')->default(false);
-            $table->boolean('prosecuting_attorney_source')->default(false);
-            $table->boolean('marketing_source')->default(false);
-            $table->boolean('organization_itself_source')->default(false);
-            $table->string('other_source_of_information')->nullable();
-            $table->boolean('employment_opportunities')->default(false);
-            $table->boolean('assistance_with_alcohol_abuse')->default(false);
-            $table->boolean('increased_emphasis_on_parenting_skills')->default(false);
-            $table->boolean('access_to_mentors_resources_outside_program')->default(false);
-            $table->boolean('resume_building_skills')->default(false);
-            $table->boolean('free_legal_services')->default(false);
-            $table->boolean('assistance_with_criminal_history')->default(false);
-            $table->boolean('assistance_with_credit_repair')->default(false);
-            $table->boolean('assistance_with_overcoming_homelessness')->default(false);
-            $table->boolean('assistance_with_visitation_custody')->default(false);
-            $table->boolean('increased_understanding_of_child_support_issues')->default(false);
-            $table->boolean('maintaining_hope_for_the_future')->default(false);
-            $table->boolean('help_obtaining_information_about_health_wellness')->default(false);
-            $table->string('other_expectations_from_program')->nullable();
+            $table->string('fatherhood_program')->default('Good Dads');
+            $table->boolean('reason_become_responsible_father')->default(false);
+            $table->boolean('reason_referred')->default(false);
+            $table->boolean('reason_court_ordered')->default(false);
+            $table->boolean('reason_address_child_support_concerns')->default(false);
+            $table->boolean('reason_other');
+            $table->string('reason_other_description')->nullable();
+            $table->boolean('referred_by_word_of_mouth')->default(false);
+            $table->boolean('referred_by_past_participant')->default(false);
+            $table->boolean('referred_by_family_support_division')->default(false);
+            $table->boolean('referred_by_prosecuting_attorney')->default(false);
+            $table->boolean('referred_by_marketing')->default(false);
+            // Verify if this organization is good dads
+            $table->boolean('referred_by_organization_itself')->default(false);
+            $table->boolean('referred_by_other')->default(false);
+            $table->string('referred_by_other_source')->nullable();
+            $table->boolean('employment_opportunities_expected')->default(false);
+            $table->boolean('assistance_with_alcohol_abuse_expected')->default(false);
+            $table->boolean('increased_emphasis_on_parenting_skills_expected')->default(false);
+            $table->boolean('access_to_mentors_resources_outside_program_expected')->default(false);
+            $table->boolean('resume_building_skills_expected')->default(false);
+            $table->boolean('free_legal_services_expected')->default(false);
+            $table->boolean('assistance_with_criminal_history_expected')->default(false);
+            $table->boolean('assistance_with_credit_repair_expected')->default(false);
+            $table->boolean('assistance_with_overcoming_homelessness_expected')->default(false);
+            $table->boolean('assistance_with_visitation_custody_expected')->default(false);
+            $table->boolean('increased_understanding_of_child_support_issues_expected')->default(false);
+            $table->boolean('maintaining_hope_for_the_future_expected')->default(false);
+            $table->boolean('help_obtaining_information_about_health_wellness_expected')->default(false);
+            $table->boolean('other_expected')->default(false);
+            $table->string('other_expectations_description')->nullable();
             $table->timestamps();
         });
     }
