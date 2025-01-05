@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('participant_media_release_form', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('participant_id')->constrained();
+
+            $table->uuid('id')->primary();
+            $table->foreignUuid('participant_id')->constrained();
+
             $table->string('printed_name');
             $table->string('signature');
             $table->date('signature_date');

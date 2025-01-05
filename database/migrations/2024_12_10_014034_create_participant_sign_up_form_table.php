@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('participants_sign_up_form', function (Blueprint $table) {
-            $table->id();
-            // Maybe to soon for this?
-            $table->foreignId('participant_id')->constrained();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('participant_id')->constrained();
 
             $table->string('client_name');
             $table->date('date');

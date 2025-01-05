@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('participant_healthy_marriage_and_fatherhood_assessment', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('participant_id')->constrained();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('participant_id')->constrained(indexName: 'healthy_marriage_fatherhood_assessment_participant_id');
             $table->string('vendor_name')->default('Good Dads');
             $table->string('participant_name');
             $table->date('date_of_birth');

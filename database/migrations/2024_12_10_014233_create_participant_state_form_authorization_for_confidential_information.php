@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('participant_state_form_authorization_for_confidential_information', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('participant_id')->constrained();
+        Schema::create('participant_state_confidential_release', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('participant_id')->constrained();
+
             $table->string('consumer_name');
             $table->boolean('dss_authorized');
             $table->boolean('fys_authorized');

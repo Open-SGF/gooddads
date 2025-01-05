@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('participant_individualized_service_plan', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('participant_id')->constrained();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('participant_id')->constrained(indexName: 'participant_id');
+
             $table->string('participant_name');
             $table->string('client_number');
             $table->date('review_date');
