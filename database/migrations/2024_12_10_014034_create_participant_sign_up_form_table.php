@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('participants_sign_up_form', function (Blueprint $table) {
+        Schema::create('participant_sign_up_form', function (Blueprint $table) {
             $table->uuid('id')->primary();
             // Currently Nullable, not sure if this is available at the time of sign up
             $table->foreignUuid('participant_id')->nullable()->constrained();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('probation_parole_case_worker_phone')->nullable();
 
             // Children information
-            $table->json('children_info')->nullable(); // This will store an array of children details
+            $table->jsonb('children_info')->nullable(); // This will store an array of children details
 
             // Contact with children
             $table->boolean('contact_with_children')->nullable();
@@ -54,6 +54,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('participants_sign_up_form');
+        Schema::dropIfExists('participant_sign_up_form');
     }
 };
