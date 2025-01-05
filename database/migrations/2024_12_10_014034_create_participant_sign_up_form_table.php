@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('participants_sign_up_form', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('participant_id')->constrained();
+            // Currently Nullable, not sure if this is available at the time of sign up
+            $table->foreignUuid('participant_id')->nullable()->constrained();
 
             $table->string('client_name');
             $table->date('date');
