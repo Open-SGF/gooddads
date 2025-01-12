@@ -6,6 +6,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -15,6 +16,8 @@ use Illuminate\Notifications\Notifiable;
  * @property string $last_name
  * @property string $email
  * @property string $password
+ * @property bool $active
+ * @property string $phone_number
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -29,6 +32,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'last_name',
         'email',
         'password',
+        'phone_number',
+        'active',
     ];
 
     /**
@@ -51,6 +56,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return [
             'email_verified_at' => 'immutable_datetime',
             'password' => 'hashed',
+            'active' => 'boolean',
         ];
+    }
+
+    public function participant(): HasOne
+    {
+
+        return $this->hasOne(Participant::class, 'user_id');
     }
 }
