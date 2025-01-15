@@ -1,7 +1,5 @@
 import GuestLayout from '@/Layouts/GuestLayout';
-import { Button } from '@/Components/ui/Button';
-import { Input } from '@/Components/ui/Input';
-import InputError from '@/Components/ui/InputError';
+import { Button, Input, InputError } from '@/Components/ui';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 

@@ -1,8 +1,5 @@
 import { useRef, useState, FormEventHandler } from 'react';
-import { Button } from '@/Components/ui/Button';
-import { Label } from '@/Components/ui/Label';
-import { Input } from '@/Components/ui/Input';
-import InputError from '@/Components/ui/InputError';
+import { Button, Label, Input, InputError } from '@/Components/ui';
 import Modal from '@/Components/Modal';
 import { useForm } from '@inertiajs/react';
 
