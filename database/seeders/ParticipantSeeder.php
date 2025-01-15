@@ -27,7 +27,7 @@ class ParticipantSeeder extends Seeder
 
         // Create Participants using the recycle method
         Participant::factory()
-            ->count(20)
+            ->count(200)
             ->recycle($users)
             ->recycle($regions)
             ->create();

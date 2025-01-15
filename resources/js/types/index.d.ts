@@ -13,10 +13,5 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
     auth: {
         user: User;
     };
-    ziggy: Config & { location: string };
-    users: User[];
-    page: number;
-    pageSize: number;
-    totalPages: number;
-    userCount: number;
+    ziggy: Config & { location: string, query: Record<string, string> };
 };

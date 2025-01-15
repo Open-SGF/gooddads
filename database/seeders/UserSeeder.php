@@ -46,6 +46,15 @@ class UserSeeder extends Seeder
 
     $this->userAdmin = User::factory()->create([
       'id' => Str::uuid(),
+      'first_name' => 'Program Director',
+      'last_name' => 'User',
+      'email' => 'program_director@example.com',
+      'password' => bcrypt('password123'),
+
+    ])->assignRole('program director');
+
+    $this->userAdmin = User::factory()->create([
+      'id' => Str::uuid(),
       'first_name' => 'Facilitator',
       'last_name' => 'User',
       'email' => 'facilitator@example.com',

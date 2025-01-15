@@ -16,7 +16,7 @@ export default function Authenticated({
   header?: ReactNode
 }>) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false)
-  const { hasRole } = usePermission(user)
+  const { hasPermission } = usePermission(user)
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -37,10 +37,12 @@ export default function Authenticated({
                          active={route().current('dashboard')}>
                   Dashboard
                 </NavLink>
-                <NavLink href={route('users.list')}
-                         active={route().current('users.list')}>
-                  Users
-                </NavLink>
+                {hasPermission('view users') && (
+                  <NavLink href={route('users.list')}
+                           active={route().current('users.list')}>
+                    Users
+                  </NavLink>
+                )}
               </div>
             </div>
 
@@ -124,7 +126,7 @@ export default function Authenticated({
             <div className="px-4">
               <div
                 className="font-medium text-base text-gray-800 dark:text-gray-200">
-                {user.name}
+                {user.first_name} {user.last_name}
               </div>
               <div
                 className="font-medium text-sm text-gray-500">{user.email}</div>
@@ -146,7 +148,7 @@ export default function Authenticated({
         header && (
           <header className="bg-white dark:bg-gray-800 shadow">
             <div
-              className="max-w-7xl min-h-9 mx-auto py-6 px-4 sm:px-6 lg:px-8 box-content flex items-center">{header}</div>
+              className="max-w-7xl min-h-9 mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center">{header}</div>
           </header>
         )
       }

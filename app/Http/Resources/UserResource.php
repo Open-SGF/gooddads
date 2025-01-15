@@ -2,16 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @property string $id
- * @property string $first_name
- * @property string $last_name
- * @property string $email
- * @method getRoleNames()
- * @method getAllPermissions()
+ * @mixin User
  */
 class UserResource extends JsonResource
 {
