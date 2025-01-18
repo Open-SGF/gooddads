@@ -1,9 +1,6 @@
 import { useEffect, FormEventHandler } from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/ui/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import { Button, Label, Input, InputError } from '@/Components/ui';
 import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Register() {
@@ -33,15 +30,14 @@ export default function Register() {
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="first_name" value="First Name"/>
+                    <Label htmlFor="first_name">First Name</Label>
 
-                    <TextInput
+                    <Input
                         id="first_name"
                         name="first_name"
                         value={data.first_name}
                         className="mt-1 block w-full"
                         autoComplete="given-name"
-                        isFocused={true}
                         onChange={(e) => setData('first_name', e.target.value)}
                         required
                     />
@@ -50,9 +46,9 @@ export default function Register() {
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="last_name" value="Last Name"/>
+                    <Label htmlFor="last_name">Last Name</Label>
 
-                    <TextInput
+                    <Input
                         id="last_name"
                         name="last_name"
                         value={data.last_name}
@@ -66,9 +62,9 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email"/>
+                    <Label htmlFor="email">Email</Label>
 
-                    <TextInput
+                    <Input
                         id="email"
                         type="email"
                         name="email"
@@ -83,9 +79,9 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password"/>
+                    <Label htmlFor="password">Password</Label>
 
-                    <TextInput
+                    <Input
                         id="password"
                         type="password"
                         name="password"
@@ -100,9 +96,9 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password"/>
+                    <Label htmlFor="password_confirmation">Confirm Password</Label>
 
-                    <TextInput
+                    <Input
                         id="password_confirmation"
                         type="password"
                         name="password_confirmation"
@@ -124,9 +120,13 @@ export default function Register() {
                         Already registered?
                     </Link>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button 
+                        className="ms-4" 
+                        disabled={processing} 
+                        size="default"
+                        variant="default">
                         Register
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </GuestLayout>

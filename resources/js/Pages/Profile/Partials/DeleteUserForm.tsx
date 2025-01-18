@@ -1,10 +1,6 @@
 import { useRef, useState, FormEventHandler } from 'react';
-import DangerButton from '@/Components/DangerButton';
-import InputError from '@/Components/ui/InputError';
-import InputLabel from '@/Components/InputLabel';
+import { Button, Label, Input, InputError } from '@/Components/ui';
 import Modal from '@/Components/Modal';
-import SecondaryButton from '@/Components/SecondaryButton';
-import TextInput from '@/Components/TextInput';
 import { useForm } from '@inertiajs/react';
 
 export default function DeleteUserForm({ className = '' }: { className?: string }) {
@@ -54,7 +50,7 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
                 </p>
             </header>
 
-            <DangerButton onClick={confirmUserDeletion}>Delete Account</DangerButton>
+            <Button variant={'destructive'} onClick={confirmUserDeletion}>Delete Account</Button>
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
@@ -68,9 +64,9 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
                     </p>
 
                     <div className="mt-6">
-                        <InputLabel htmlFor="password" value="Password" className="sr-only" />
+                        <Label htmlFor="password" className="sr-only">Password</Label>
 
-                        <TextInput
+                        <Input
                             id="password"
                             type="password"
                             name="password"
@@ -78,7 +74,6 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
                             value={data.password}
                             onChange={(e) => setData('password', e.target.value)}
                             className="mt-1 block w-3/4"
-                            isFocused
                             placeholder="Password"
                         />
 
@@ -86,11 +81,11 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
                     </div>
 
                     <div className="mt-6 flex justify-end">
-                        <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
+                        <Button variant={'secondary'} onClick={closeModal}>Cancel</Button>
 
-                        <DangerButton className="ms-3" disabled={processing}>
+                        <Button variant={'destructive'} className="ms-3" disabled={processing}>
                             Delete Account
-                        </DangerButton>
+                        </Button>
                     </div>
                 </form>
             </Modal>
