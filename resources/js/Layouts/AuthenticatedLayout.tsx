@@ -34,7 +34,7 @@ export default function Authenticated({
                          active={route().current('dashboard')}>
                   Dashboard
                 </NavLink>
-                {hasPermission('view users') && (
+                {hasPermission('list users') && (
                   <NavLink href={route('users.list')}
                            active={route().current('users.list')}>
                     Users
