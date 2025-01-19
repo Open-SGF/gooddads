@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             QuizSeeder::class,
             ProgramAssignmentSeeder::class,
             ParticipantClassAssignmentSeeder::class,
-            ParticipantAssignmentSeeder::class,
+            ParticipantStaffAssignmentSeeder::class,
 
             QuizQuestionSeeder::class,
             QuizQuestionOptionSeeder::class,

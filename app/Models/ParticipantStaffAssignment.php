@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
-class ParticipantAssignment extends Model
+class ParticipantStaffAssignment extends Model
 {
     use HasFactory;
 
