@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('participant_assignments', static function (Blueprint $table) {
+        Schema::create('participant_staff_assignments', static function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('staff_user_id')->references('id')->on('users');
             $table->foreignUuid('participant_user_id')->references('id')->on('users');
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('participant_assignments');
+        Schema::dropIfExists('participant_staff_assignments');
     }
 };
