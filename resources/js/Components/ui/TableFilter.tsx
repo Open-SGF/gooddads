@@ -8,7 +8,7 @@ import {
   CommandList, Input,
   Popover,
   PopoverContent,
-  PopoverTrigger,
+  PopoverTrigger, useDataTableContext,
 } from '@/Components/ui'
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
 import {
@@ -22,11 +22,6 @@ import { PageProps } from '@/types'
 import { debounce } from 'lodash-es'
 import { Cross2Icon } from '@radix-ui/react-icons'
 
-type TableFilterProps = {
-  onSearch?: (value: string) => void
-  fields: Filters[]
-}
-
 type FilterItemProps = {
   label: string
   value: string
@@ -37,19 +32,16 @@ type FilterItemProps = {
   handleFilter: () => void
 }
 
-type Filters = {
-  value: string
-  label: string
-}
+export const TableFilter = () => {
+  const { fields } = useDataTableContext();
 
-export const TableFilter = ({fields}: TableFilterProps) => {
   const query = usePage<PageProps>().props.ziggy.query
   const queryFilters = () => {
     if (query.filters) {
       return Object.fromEntries(
         query.filters.split(',').map((filter) => {
           const [key, value] = filter.split('=')
-          const label = fields.find((field) => field.value === key)?.label ?? ''
+          const label = fields.find((field) => field.id === key)?.label ?? ''
           return [key, { value, label: label }]
         }),
       )
@@ -86,29 +78,23 @@ export const TableFilter = ({fields}: TableFilterProps) => {
 
   const handleFilter = useCallback(() => {
     const filtersString = Object.keys(filters).length > 0 ? Object.entries(filters).map(([key, filter]) => `${key}=${filter.value}`).join(',') : undefined
-    router.visit(route('users.list'), {
-      method: 'get',
+    router.reload({
       data: {
         ...query,
         page: undefined,
         filters: filtersString,
       },
-      preserveScroll: true,
-      preserveState: true,
     })
   }, [filters])
 
   const handleSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
     const search = e.target.value
-    router.visit(route('users.list'), {
-      method: 'get',
+    router.reload({
       data: {
         ...query,
         page: undefined,
         search,
       },
-      preserveScroll: true,
-      preserveState: true,
     })
   }, 300)
 
@@ -141,24 +127,24 @@ export const TableFilter = ({fields}: TableFilterProps) => {
                 <CommandInput className={'my-2'} placeholder="Search columns" />
                 <CommandEmpty>No columns found.</CommandEmpty>
                 <CommandGroup>
-                  {fields.filter((field) => !Object.keys(filters).includes(field.value)).map((framework) => (
+                  {fields.filter((field) => !Object.keys(filters).includes(field.id)).map((field) => (
                     <CommandItem
-                      key={framework.value}
-                      value={framework.value}
+                      key={field.id}
+                      value={field.id}
                       onSelect={() => {
                         setFilters((prev) => {
                           return {
                             ...prev,
-                            [framework.value]: {
+                            [field.id]: {
                               value: '',
-                              label: framework.label,
+                              label: field.label,
                             },
                           }
                         })
                         setOpen(false)
                       }}
                     >
-                      {framework.label}
+                      {field.label}
                     </CommandItem>
                   ))}
                 </CommandGroup>
@@ -173,15 +159,12 @@ export const TableFilter = ({fields}: TableFilterProps) => {
             Search results for "{query.search}"
           </div>
           <Button variant={'outline'} size={'sm'}
-                  onClick={() => router.visit(route('users.list', {
-                    method: 'get',
+                  onClick={() => router.reload({
                     data: {
                       ...query,
                       search: undefined,
                     },
-                    preserveScroll: true,
-                    preserveState: true,
-                  }))}>
+                  })}>
             <Cross2Icon /> Clear
           </Button>
         </div>

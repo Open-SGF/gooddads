@@ -16,10 +16,10 @@ class UsersController extends Controller
     $page = intval($request->get('page', 1) ?: 1);
     $search = $request->query('search');
     $pageSize = $request->query('pageSize', 10);
-    $orderBy = $request->query('orderBy', 'first_name,ASC');
+    $sort = $request->query('sort', 'first_name,asc');
     $filters = $request->query('filters', '');
 //    dd($filters);
-    [$column, $direction] = explode(',', $orderBy);
+    [$column, $direction] = explode(',', $sort);
     $users = User::when($search, fn($query) => $query
       ->where('first_name', 'like', "%$search%")->orWhere('last_name', 'like', "%$search%")->orWhere('email', 'like', "%$search%"))
       // filter by filters query where the url looks like http://localhost/users?filters=first_name%3DAdmin%2Clast_name%3DUser. Use a like match and require that all filters match

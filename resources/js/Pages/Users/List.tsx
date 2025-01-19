@@ -3,7 +3,6 @@ import { Head } from '@inertiajs/react'
 import { PageProps, PaginationProps, User } from '@/types'
 import {
   Button,
-  TableFilter,
   DataTable,
   DataTableFields,
 } from '@/Components/ui'
@@ -12,7 +11,6 @@ import {
   PlusIcon,
 } from '@radix-ui/react-icons'
 import { usePermission } from '@/hooks/permissions'
-import { DataTablePagination } from '@/Components/ui/DataTablePagination'
 
 export type UsersListPageProps = PageProps & PaginationProps & {
   users: User[];
@@ -21,50 +19,45 @@ export type UsersListPageProps = PageProps & PaginationProps & {
 export default function List({
                                auth,
                                users,
-                               page,
-                               totalPages,
-                               count,
-                               pageSize,
                                ziggy: { query },
+                               ...pagination
                              }: UsersListPageProps) {
   const { hasPermission } = usePermission(auth.user)
 
   const fields: DataTableFields<User>[] = [
     {
-      value: 'first_name',
+      id: 'first_name',
       label: 'First Name',
-      enabled: true,
+      sorting: true
     },
     {
-      value: 'last_name',
+      id: 'last_name',
       label: 'Last Name',
-      enabled: true,
+      sorting: true
     },
     {
-      value: 'email',
+      id: 'email',
       label: 'Email',
-      enabled: true,
+      sorting: true
     },
     {
-      value: 'permissions',
+      id: 'permissions',
       label: 'Permissions',
-      enabled: true,
       content: (row) => {
         return row.permissions.map((permission) => permission.charAt(0).toUpperCase() + permission.slice(1)).join(', ')
       }
     },
     {
-      value: 'roles',
+      id: 'roles',
       label: 'Roles',
-      enabled: true,
       content: (row) => {
         return row.roles.map((role) => role.charAt(0).toUpperCase() + role.slice(1)).join(', ')
       }
     },
     {
-      value: 'actions',
+      id: 'actions',
       label: '',
-      enabled: hasPermission('edit users'),
+      disabled: !hasPermission('edit users'),
       content: () => (
         <Button variant={'outline'} size={'sm'}>
           <Pencil1Icon href={'#'} /> Edit
@@ -92,12 +85,7 @@ export default function List({
       <Head title="Users" />
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div
-            className="flex flex-col bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 gap-6">
-            <TableFilter fields={fields} />
-            <DataTable<User> fields={fields} data={users} />
-            <DataTablePagination page={page} pageSize={pageSize} totalPages={totalPages} count={count} query={query} />
-          </div>
+           <DataTable<User> fields={fields} data={users} query={query} {...pagination}/>
         </div>
       </div>
     </AuthenticatedLayout>

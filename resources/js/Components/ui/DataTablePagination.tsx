@@ -10,23 +10,18 @@ import {
   SelectValue,
 } from '@/Components/ui/Select'
 import { Label } from '@/Components/ui/Label'
-import { PaginationProps } from '@/types'
+import { useDataTableContext } from '@/Components/ui'
 
-type DataTablePaginationProps = PaginationProps & {
-  query: Record<string, string>
-}
+export const DataTablePagination = () => {
+  const { page, pageSize, totalPages, count, query } = useDataTableContext()
 
-export function DataTablePagination({ page, pageSize, totalPages, count, query }: DataTablePaginationProps ) {
   const handlePageSize = (value: string) => {
-    router.visit(route('users.list'), {
-      method: 'get',
+    router.reload({
       data: {
         ...query,
         page: undefined,
         pageSize: value,
-      },
-      preserveScroll: true,
-      preserveState: true,
+      }
     })
   }
 
@@ -42,14 +37,11 @@ export function DataTablePagination({ page, pageSize, totalPages, count, query }
           className={'justify-center [grid-area:pagination]'}>
 
           <Button variant={'outline'}
-                  onClick={() => router.visit(route('users.list'), {
-                    method: 'get',
+                  onClick={() => router.reload({
                     data: {
                       ...query,
                       page: page - 1,
                     },
-                    preserveScroll: true,
-                    preserveState: true,
                   })}
                   aria-disabled={page <= 1}
                   tabIndex={page <= 1 ? -1 : undefined}
@@ -58,18 +50,15 @@ export function DataTablePagination({ page, pageSize, totalPages, count, query }
                   )}><ChevronLeft />Prev</Button>
           <Select defaultValue={page.toString()}
                   onValueChange={(value) => {
-                    router.visit(route('users.list', {
-                      method: 'get',
+                    router.reload({
                       data: {
                         ...query,
                         page: value,
                       },
-                      preserveScroll: true,
-                      preserveState: true,
-                    }))
+                    })
                   }}>
             <SelectTrigger
-              className={'flex gap-1 font-medium z-10 rounded-l-none rounded-r-none border-l-0'}>
+              className={'flex gap-1 font-medium z-10 rounded-l-none rounded-r-none border-l-0 flex-1 justify-center'}>
               <SelectValue>Page {page} of {totalPages}</SelectValue>
             </SelectTrigger>
             <SelectContent align={'center'}>
@@ -82,14 +71,11 @@ export function DataTablePagination({ page, pageSize, totalPages, count, query }
             </SelectContent>
           </Select>
           <Button variant={'outline'}
-                  onClick={() => router.visit(route('users.list'), {
-                    method: 'get',
+                  onClick={() => router.reload({
                     data: {
                       ...query,
                       page: page + 1,
                     },
-                    preserveScroll: true,
-                    preserveState: true,
                   })}
                   aria-disabled={page === totalPages}
                   tabIndex={page === totalPages ? -1 : undefined}
