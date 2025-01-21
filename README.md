@@ -64,6 +64,9 @@ To regenerate the file use the artisan command `sail artisan dbml:generate`
 
 -   To purge your MySQL database, run `sail down -v`, then `sail up -d`, then `sail artisan migrate:fresh --seed`. (⚠️ WARNING: This will purge EVERYTHING from your database! ⚠️)
 
+## Testing emails
+* The default mail credentials in `.env` point to a mailpit docker container which captures all delivered emails. You can view these emails by visiting `http://localhost:8025` 
+
 ## Frontend Development
 
 -   Use [shadcn components](https://ui.shadcn.com/) within `resources/js/Components/ui` when building pages
