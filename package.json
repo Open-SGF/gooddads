@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && vite build --ssr",
-    "lint": "eslint --fix resources",
+    "lint:check": "eslint resources",
+    "lint:fix": "eslint --fix resources",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
