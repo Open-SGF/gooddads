@@ -144,12 +144,8 @@ export const WithRadioGroup: Story = {
 			<ContextMenuContent className='w-64'>
 				<ContextMenuRadioGroup value='light'>
 					<ContextMenuLabel inset>Theme</ContextMenuLabel>
-					<ContextMenuRadioItem value='light'>
-						Light
-					</ContextMenuRadioItem>
-					<ContextMenuRadioItem value='dark'>
-						Dark
-					</ContextMenuRadioItem>
+					<ContextMenuRadioItem value='light'>Light</ContextMenuRadioItem>
+					<ContextMenuRadioItem value='dark'>Dark</ContextMenuRadioItem>
 				</ContextMenuRadioGroup>
 			</ContextMenuContent>
 		</ContextMenu>

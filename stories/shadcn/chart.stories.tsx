@@ -218,10 +218,7 @@ export const DoughnutChart: Story = {
 	},
 	render: (args) => {
 		const totalVisitors = useMemo(() => {
-			return singleSeriesData.reduce(
-				(acc, curr) => acc + curr.visitors,
-				0,
-			)
+			return singleSeriesData.reduce((acc, curr) => acc + curr.visitors, 0)
 		}, [])
 		return (
 			<ChartContainer {...args}>
@@ -239,11 +236,7 @@ export const DoughnutChart: Story = {
 					>
 						<Label
 							content={({ viewBox }) => {
-								if (
-									viewBox &&
-									'cx' in viewBox &&
-									'cy' in viewBox
-								) {
+								if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
 									return (
 										<text
 											x={viewBox.cx}

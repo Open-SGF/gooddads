@@ -40,9 +40,7 @@ const meta: Meta<{
 					const variable = value.match(/var\(([^)]+)\)/)?.[1] ?? ''
 					const resolved = style.getPropertyValue(variable)
 					const resolvedValue =
-						resolved ?
-							value.replace(/var\(--(.*?)\)/, resolved)
-						:	value
+						resolved ? value.replace(/var\(--(.*?)\)/, resolved) : value
 
 					return (
 						<tr key={name} className='border-b bg-card'>
@@ -51,10 +49,7 @@ const meta: Meta<{
 								{resolvedValue}
 							</td>
 							<td className='px-6 py-4 leading-tight'>
-								<p
-									className='line-clamp-1'
-									style={{ [args.key]: value }}
-								>
+								<p className='line-clamp-1' style={{ [args.key]: value }}>
 									{args.children}
 								</p>
 							</td>

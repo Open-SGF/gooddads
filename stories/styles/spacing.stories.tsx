@@ -31,9 +31,7 @@ const meta: Meta<{
 				return {
 					name,
 					size: value,
-					pixels:
-						parseFloat(value) *
-						(String(value).endsWith('rem') ? 16 : 1),
+					pixels: parseFloat(value) * (String(value).endsWith('rem') ? 16 : 1),
 				}
 			})
 			.sort((a, b) => a.pixels - b.pixels),
@@ -60,18 +58,11 @@ const meta: Meta<{
 				{args.scale.map(({ name, size, pixels }) => (
 					<tr key={name} className='border-b bg-card'>
 						<td className='px-6 py-4'>{name}</td>
-						<td className='hidden px-6 py-4 sm:table-cell'>
-							{size}
-						</td>
-						<td className='hidden px-6 py-4 sm:table-cell'>
-							{pixels}px
-						</td>
+						<td className='hidden px-6 py-4 sm:table-cell'>{size}</td>
+						<td className='hidden px-6 py-4 sm:table-cell'>{pixels}px</td>
 						<td className='px-6 py-4'>
 							<div className='border bg-muted'>
-								<div
-									className='h-4 bg-primary'
-									style={{ width: size }}
-								/>
+								<div className='h-4 bg-primary' style={{ width: size }} />
 							</div>
 						</td>
 					</tr>

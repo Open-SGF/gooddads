@@ -25,9 +25,7 @@ const meta: Meta<typeof Drawer> = {
 			<DrawerContent>
 				<DrawerHeader>
 					<DrawerTitle>Are you sure absolutely sure?</DrawerTitle>
-					<DrawerDescription>
-						This action cannot be undone.
-					</DrawerDescription>
+					<DrawerDescription>This action cannot be undone.</DrawerDescription>
 				</DrawerHeader>
 				<DrawerFooter>
 					<button className='rounded bg-primary px-4 py-2 text-primary-foreground'>

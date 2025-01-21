@@ -115,12 +115,8 @@ export const WithCheckboxItems: Story = {
 				<MenubarContent>
 					<MenubarItem>Show All</MenubarItem>
 					<MenubarGroup>
-						<MenubarCheckboxItem checked>
-							Unread
-						</MenubarCheckboxItem>
-						<MenubarCheckboxItem checked>
-							Important
-						</MenubarCheckboxItem>
+						<MenubarCheckboxItem checked>Unread</MenubarCheckboxItem>
+						<MenubarCheckboxItem checked>Important</MenubarCheckboxItem>
 						<MenubarCheckboxItem>Flagged</MenubarCheckboxItem>
 					</MenubarGroup>
 				</MenubarContent>

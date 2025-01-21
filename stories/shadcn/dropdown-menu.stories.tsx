@@ -131,15 +131,9 @@ export const WithRadioItems: Story = {
 			<DropdownMenuContent className='w-44'>
 				<DropdownMenuLabel inset>Status</DropdownMenuLabel>
 				<DropdownMenuRadioGroup value='warning'>
-					<DropdownMenuRadioItem value='info'>
-						Info
-					</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value='warning'>
-						Warning
-					</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value='error'>
-						Error
-					</DropdownMenuRadioItem>
+					<DropdownMenuRadioItem value='info'>Info</DropdownMenuRadioItem>
+					<DropdownMenuRadioItem value='warning'>Warning</DropdownMenuRadioItem>
+					<DropdownMenuRadioItem value='error'>Error</DropdownMenuRadioItem>
 				</DropdownMenuRadioGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>
@@ -158,9 +152,7 @@ export const WithCheckboxes: Story = {
 					Autosave
 					<DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
 				</DropdownMenuCheckboxItem>
-				<DropdownMenuCheckboxItem>
-					Show Comments
-				</DropdownMenuCheckboxItem>
+				<DropdownMenuCheckboxItem>Show Comments</DropdownMenuCheckboxItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	),

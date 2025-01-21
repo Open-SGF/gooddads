@@ -60,9 +60,7 @@ export const WithHelperText: Story = {
 		<div className='grid items-center gap-1.5'>
 			<label htmlFor='email-2'>{args.placeholder}</label>
 			<Input {...args} id='email-2' />
-			<p className='text-sm text-foreground/50'>
-				Enter your email address.
-			</p>
+			<p className='text-sm text-foreground/50'>Enter your email address.</p>
 		</div>
 	),
 }

@@ -22,39 +22,29 @@ const meta = {
 		<NavigationMenu {...args}>
 			<NavigationMenuList>
 				<NavigationMenuItem>
-					<NavigationMenuLink
-						className={navigationMenuTriggerStyle()}
-					>
+					<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 						Overview
 					</NavigationMenuLink>
 				</NavigationMenuItem>
 				<NavigationMenuList>
 					<NavigationMenuItem>
-						<NavigationMenuTrigger
-							className={navigationMenuTriggerStyle()}
-						>
+						<NavigationMenuTrigger className={navigationMenuTriggerStyle()}>
 							Documentation
 						</NavigationMenuTrigger>
 						<NavigationMenuContent>
 							<ul className='grid w-96 p-2'>
 								<li>
-									<NavigationMenuLink
-										className={navigationMenuTriggerStyle()}
-									>
+									<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 										API Reference
 									</NavigationMenuLink>
 								</li>
 								<li>
-									<NavigationMenuLink
-										className={navigationMenuTriggerStyle()}
-									>
+									<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 										Getting Started
 									</NavigationMenuLink>
 								</li>
 								<li>
-									<NavigationMenuLink
-										className={navigationMenuTriggerStyle()}
-									>
+									<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 										Guides
 									</NavigationMenuLink>
 								</li>

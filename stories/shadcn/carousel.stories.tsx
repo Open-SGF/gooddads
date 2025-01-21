@@ -25,9 +25,7 @@ const meta: Meta<typeof Carousel> = {
 				{Array.from({ length: 5 }).map((_, index) => (
 					<CarouselItem key={index}>
 						<div className='flex aspect-square items-center justify-center rounded border bg-card p-6'>
-							<span className='text-4xl font-semibold'>
-								{index + 1}
-							</span>
+							<span className='text-4xl font-semibold'>{index + 1}</span>
 						</div>
 					</CarouselItem>
 				))}
@@ -60,9 +58,7 @@ export const Size: Story = {
 				{Array.from({ length: 5 }).map((_, index) => (
 					<CarouselItem key={index} className='basis-1/3'>
 						<div className='flex aspect-square items-center justify-center rounded border bg-card p-6'>
-							<span className='text-4xl font-semibold'>
-								{index + 1}
-							</span>
+							<span className='text-4xl font-semibold'>{index + 1}</span>
 						</div>
 					</CarouselItem>
 				))}

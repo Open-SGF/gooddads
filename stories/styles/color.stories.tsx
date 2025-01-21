@@ -31,59 +31,33 @@ const meta: Meta<{
 						<td className='px-6 py-4'>{name}</td>
 						<td className='px-6 py-4'>
 							<div className='flex overflow-x-clip rounded-md border shadow'>
-								{Object.entries(colors).map(
-									([name, value], idx) => {
-										const isHex = value.startsWith('#')
-										const style = window.getComputedStyle(
-											document.body,
-										)
-										const variable =
-											value.match(
-												/var\(([^)]+)\)/,
-											)?.[1] ?? ''
-										const [h, s, l] =
-											style
-												.getPropertyValue(variable)
-												.match(/\d+/g) ?? []
-										const colorHSL =
-											isHex ?
-												hexToHSL(value)
-											:	`hsl(${h}, ${s}%, ${l}%)`
-										const colorHex =
-											isHex ? value : (
-												hslToHex(
-													Number(h),
-													Number(s),
-													Number(l),
-												)
-											)
-										return (
+								{Object.entries(colors).map(([name, value], idx) => {
+									const isHex = value.startsWith('#')
+									const style = window.getComputedStyle(document.body)
+									const variable = value.match(/var\(([^)]+)\)/)?.[1] ?? ''
+									const [h, s, l] =
+										style.getPropertyValue(variable).match(/\d+/g) ?? []
+									const colorHSL =
+										isHex ? hexToHSL(value) : `hsl(${h}, ${s}%, ${l}%)`
+									const colorHex =
+										isHex ? value : hslToHex(Number(h), Number(s), Number(l))
+									return (
+										<div key={idx} className='flex w-full flex-col pb-2'>
 											<div
-												key={idx}
-												className='flex w-full flex-col pb-2'
-											>
-												<div
-													className='h-16 w-full'
-													style={{
-														backgroundColor: value,
-													}}
-												></div>
-												<p className='text-center font-semibold'>
-													{name}
-												</p>
-												<p className='text-xs text-center opacity-70'>
-													{variable}
-												</p>
-												<p className='text-xs text-center'>
-													{colorHex}
-												</p>
-												<p className='text-xs text-center'>
-													{colorHSL}
-												</p>
-											</div>
-										)
-									},
-								)}
+												className='h-16 w-full'
+												style={{
+													backgroundColor: value,
+												}}
+											></div>
+											<p className='text-center font-semibold'>{name}</p>
+											<p className='text-xs text-center opacity-70'>
+												{variable}
+											</p>
+											<p className='text-xs text-center'>{colorHex}</p>
+											<p className='text-xs text-center'>{colorHSL}</p>
+										</div>
+									)
+								})}
 							</div>
 						</td>
 					</tr>
@@ -127,10 +101,7 @@ export const Functional: Story = {
 			.map(([name, colors]) => {
 				return {
 					name,
-					colors:
-						typeof colors === 'string' ?
-							{ [name]: colors }
-						:	colors,
+					colors: typeof colors === 'string' ? { [name]: colors } : colors,
 				}
 			}),
 	},
@@ -140,20 +111,14 @@ export const Tailwind: Story = {
 		swatch: Object.entries(fullConfig.theme.colors)
 			.filter(
 				(d) =>
-					![
-						...functionalSwatch,
-						'inherit',
-						'current',
-						'transparent',
-					].includes(d[0] as keyof typeof fullConfig.theme.colors),
+					![...functionalSwatch, 'inherit', 'current', 'transparent'].includes(
+						d[0] as keyof typeof fullConfig.theme.colors,
+					),
 			)
 			.map(([name, colors]) => {
 				return {
 					name,
-					colors:
-						typeof colors === 'string' ?
-							{ [name]: colors }
-						:	colors,
+					colors: typeof colors === 'string' ? { [name]: colors } : colors,
 				}
 			}),
 	},
