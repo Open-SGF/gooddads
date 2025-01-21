@@ -31,7 +31,7 @@ export const DataTablePagination = () => {
     <div
       className={cn([
         "grid [grid-template-columns:1fr_1fr] [grid-template-areas:'pagination_pagination''results_pagesize'] gap-4 items-center md:[grid-template-columns:1fr_auto_1fr] md:[grid-template-rows:auto] md:[grid-template-areas:'results_pagination_pagesize']",
-        totalPages > 1 ? '[grid-template-rows:auto_auto]' : undefined,
+        totalPages > 1 ? "[grid-template-areas:'pagination_pagination''results_pagesize']" : "[grid-template-areas:'results_pagesize']",
       ])}>
       <div
         className="text-sm font-medium [grid-area:results]">
