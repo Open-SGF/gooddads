@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - main
-      - '**' # Run on all branches for pull requests
 
 jobs:
   prettier-check:
