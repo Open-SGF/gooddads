@@ -29,7 +29,7 @@ const Dropdown = ({ children }: PropsWithChildren) => {
 
 	return (
 		<DropDownContext.Provider value={{ open, setOpen, toggleOpen }}>
-			<div className='relative'>{children}</div>
+			<div className="relative">{children}</div>
 		</DropDownContext.Provider>
 	)
 }
@@ -43,7 +43,7 @@ const Trigger = ({ children }: PropsWithChildren) => {
 
 			{open && (
 				<div
-					className='fixed inset-0 z-40'
+					className="fixed inset-0 z-40"
 					onClick={() => setOpen(false)}
 				></div>
 			)}
@@ -82,12 +82,12 @@ const Content = ({
 			<Transition
 				as={Fragment}
 				show={open}
-				enter='transition ease-out duration-200'
-				enterFrom='opacity-0 scale-95'
-				enterTo='opacity-100 scale-100'
-				leave='transition ease-in duration-75'
-				leaveFrom='opacity-100 scale-100'
-				leaveTo='opacity-0 scale-95'
+				enter="transition ease-out duration-200"
+				enterFrom="opacity-0 scale-95"
+				enterTo="opacity-100 scale-100"
+				leave="transition ease-in duration-75"
+				leaveFrom="opacity-100 scale-100"
+				leaveTo="opacity-0 scale-95"
 			>
 				<div
 					className={`absolute z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}

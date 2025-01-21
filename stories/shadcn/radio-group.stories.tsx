@@ -17,12 +17,12 @@ const meta = {
 	},
 	render: (args) => (
 		<RadioGroup {...args}>
-			<RadioGroupItem value='default' id='r1' />
-			<label htmlFor='r1'>Default</label>
-			<RadioGroupItem value='comfortable' id='r2' />
-			<label htmlFor='r2'>Comfortable</label>
-			<RadioGroupItem value='compact' id='r3' />
-			<label htmlFor='r3'>Compact</label>
+			<RadioGroupItem value="default" id="r1" />
+			<label htmlFor="r1">Default</label>
+			<RadioGroupItem value="comfortable" id="r2" />
+			<label htmlFor="r2">Comfortable</label>
+			<RadioGroupItem value="compact" id="r3" />
+			<label htmlFor="r3">Compact</label>
 		</RadioGroup>
 	),
 } satisfies Meta<typeof RadioGroup>

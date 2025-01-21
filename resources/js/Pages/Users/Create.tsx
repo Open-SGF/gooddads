@@ -8,13 +8,13 @@ export default function Create({ auth }: PageProps) {
 			user={auth.user}
 			header={
 				<div className={'flex justify-between items-center flex-1'}>
-					<h2 className='font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight'>
+					<h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
 						Create User
 					</h2>
 				</div>
 			}
 		>
-			<Head title='Create User' />
+			<Head title="Create User" />
 		</AuthenticatedLayout>
 	)
 }

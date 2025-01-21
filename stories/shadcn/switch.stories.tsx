@@ -14,9 +14,9 @@ const meta = {
 		layout: 'centered',
 	},
 	render: (args) => (
-		<div className='flex items-center space-x-2'>
+		<div className="flex items-center space-x-2">
 			<Switch {...args} />
-			<label htmlFor={args.id} className='peer-disabled:text-foreground/50'>
+			<label htmlFor={args.id} className="peer-disabled:text-foreground/50">
 				Airplane Mode
 			</label>
 		</div>

@@ -14,23 +14,23 @@ const meta: Meta<{
 	title: 'design/Color',
 	argTypes: {},
 	render: (args) => (
-		<table className='w-full table-auto text-left text-sm text-foreground rtl:text-right'>
-			<thead className='text-xs bg-muted uppercase'>
+		<table className="w-full table-auto text-left text-sm text-foreground rtl:text-right">
+			<thead className="text-xs bg-muted uppercase">
 				<tr>
-					<th scope='col' className='px-6 py-3'>
+					<th scope="col" className="px-6 py-3">
 						Name
 					</th>
-					<th scope='col' className='px-6 py-3'>
-						<span className='sr-only'>Swatch</span>
+					<th scope="col" className="px-6 py-3">
+						<span className="sr-only">Swatch</span>
 					</th>
 				</tr>
 			</thead>
 			<tbody>
 				{args.swatch.map(({ name, colors }) => (
-					<tr key={name} className='border-b bg-card'>
-						<td className='px-6 py-4'>{name}</td>
-						<td className='px-6 py-4'>
-							<div className='flex overflow-x-clip rounded-md border shadow'>
+					<tr key={name} className="border-b bg-card">
+						<td className="px-6 py-4">{name}</td>
+						<td className="px-6 py-4">
+							<div className="flex overflow-x-clip rounded-md border shadow">
 								{Object.entries(colors).map(([name, value], idx) => {
 									const isHex = value.startsWith('#')
 									const style = window.getComputedStyle(document.body)
@@ -42,19 +42,19 @@ const meta: Meta<{
 									const colorHex =
 										isHex ? value : hslToHex(Number(h), Number(s), Number(l))
 									return (
-										<div key={idx} className='flex w-full flex-col pb-2'>
+										<div key={idx} className="flex w-full flex-col pb-2">
 											<div
-												className='h-16 w-full'
+												className="h-16 w-full"
 												style={{
 													backgroundColor: value,
 												}}
 											></div>
-											<p className='text-center font-semibold'>{name}</p>
-											<p className='text-xs text-center opacity-70'>
+											<p className="text-center font-semibold">{name}</p>
+											<p className="text-xs text-center opacity-70">
 												{variable}
 											</p>
-											<p className='text-xs text-center'>{colorHex}</p>
-											<p className='text-xs text-center'>{colorHSL}</p>
+											<p className="text-xs text-center">{colorHex}</p>
+											<p className="text-xs text-center">{colorHSL}</p>
 										</div>
 									)
 								})}

@@ -22,14 +22,14 @@ const meta = {
 	},
 	render: (args) => (
 		<Tabs {...args}>
-			<TabsList className='grid grid-cols-2'>
-				<TabsTrigger value='account'>Account</TabsTrigger>
-				<TabsTrigger value='password'>Password</TabsTrigger>
+			<TabsList className="grid grid-cols-2">
+				<TabsTrigger value="account">Account</TabsTrigger>
+				<TabsTrigger value="password">Password</TabsTrigger>
 			</TabsList>
-			<TabsContent value='account'>
+			<TabsContent value="account">
 				Make changes to your account here.
 			</TabsContent>
-			<TabsContent value='password'>Change your password here.</TabsContent>
+			<TabsContent value="password">Change your password here.</TabsContent>
 		</Tabs>
 	),
 	parameters: {

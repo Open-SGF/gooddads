@@ -35,7 +35,7 @@ const ApplicationLogo: React.FC<ApplicationLogoProps> = ({
 	return (
 		<img
 			src={selectedLogo}
-			alt='Good Dads logo'
+			alt="Good Dads logo"
 			style={{
 				width: typeof size === 'number' ? `${size}px` : size,
 				height: 'auto',

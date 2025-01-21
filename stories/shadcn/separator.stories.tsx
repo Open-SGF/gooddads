@@ -21,9 +21,9 @@ type Story = StoryObj<typeof meta>
  */
 export const Horizontal: Story = {
 	render: () => (
-		<div className='flex gap-2'>
+		<div className="flex gap-2">
 			<div>Left</div>
-			<Separator orientation='vertical' className='h-auto' />
+			<Separator orientation="vertical" className="h-auto" />
 			<div>Right</div>
 		</div>
 	),
@@ -34,9 +34,9 @@ export const Horizontal: Story = {
  */
 export const Vertical: Story = {
 	render: () => (
-		<div className='grid gap-2'>
+		<div className="grid gap-2">
 			<div>Top</div>
-			<Separator orientation='horizontal' />
+			<Separator orientation="horizontal" />
 			<div>Bottom</div>
 		</div>
 	),

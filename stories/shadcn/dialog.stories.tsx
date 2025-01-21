@@ -31,10 +31,10 @@ const meta = {
 						account and remove your data from our servers.
 					</DialogDescription>
 				</DialogHeader>
-				<DialogFooter className='gap-4'>
-					<button className='hover:underline'>Cancel</button>
+				<DialogFooter className="gap-4">
+					<button className="hover:underline">Cancel</button>
 					<DialogClose>
-						<button className='rounded bg-primary px-4 py-2 text-primary-foreground'>
+						<button className="rounded bg-primary px-4 py-2 text-primary-foreground">
 							Continue
 						</button>
 					</DialogClose>

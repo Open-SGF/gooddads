@@ -15,11 +15,11 @@ const meta: Meta<typeof Checkbox> = {
 		disabled: false,
 	},
 	render: (args) => (
-		<div className='flex space-x-2'>
+		<div className="flex space-x-2">
 			<Checkbox {...args} />
 			<label
 				htmlFor={args.id}
-				className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50'
+				className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
 			>
 				Accept terms and conditions
 			</label>

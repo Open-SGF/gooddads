@@ -31,7 +31,7 @@ const meta = {
 	render: (args) => (
 		<DropdownMenu {...args}>
 			<DropdownMenuTrigger>Open</DropdownMenuTrigger>
-			<DropdownMenuContent className='w-44'>
+			<DropdownMenuContent className="w-44">
 				<DropdownMenuLabel>My Account</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem>Profile</DropdownMenuItem>
@@ -62,7 +62,7 @@ export const WithShortcuts: Story = {
 	render: (args) => (
 		<DropdownMenu {...args}>
 			<DropdownMenuTrigger>Open</DropdownMenuTrigger>
-			<DropdownMenuContent className='w-44'>
+			<DropdownMenuContent className="w-44">
 				<DropdownMenuLabel>Controls</DropdownMenuLabel>
 				<DropdownMenuItem>
 					Back
@@ -84,32 +84,32 @@ export const WithSubmenus: Story = {
 	render: (args) => (
 		<DropdownMenu {...args}>
 			<DropdownMenuTrigger>Open</DropdownMenuTrigger>
-			<DropdownMenuContent className='w-44'>
+			<DropdownMenuContent className="w-44">
 				<DropdownMenuItem>
-					<Search className='size-4 mr-2' />
+					<Search className="size-4 mr-2" />
 					<span>Search</span>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
 					<DropdownMenuItem>
-						<Plus className='size-4 mr-2' />
+						<Plus className="size-4 mr-2" />
 						<span>New Team</span>
 						<DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
 					</DropdownMenuItem>
 					<DropdownMenuSub>
 						<DropdownMenuSubTrigger>
-							<UserPlus className='size-4 mr-2' />
+							<UserPlus className="size-4 mr-2" />
 							<span>Invite users</span>
 						</DropdownMenuSubTrigger>
 						<DropdownMenuPortal>
 							<DropdownMenuSubContent>
 								<DropdownMenuItem>
-									<Mail className='size-4 mr-2' />
+									<Mail className="size-4 mr-2" />
 									<span>Email</span>
 								</DropdownMenuItem>
 								<DropdownMenuSeparator />
 								<DropdownMenuItem>
-									<PlusCircle className='size-4 mr-2' />
+									<PlusCircle className="size-4 mr-2" />
 									<span>More...</span>
 								</DropdownMenuItem>
 							</DropdownMenuSubContent>
@@ -128,12 +128,12 @@ export const WithRadioItems: Story = {
 	render: (args) => (
 		<DropdownMenu {...args}>
 			<DropdownMenuTrigger>Open</DropdownMenuTrigger>
-			<DropdownMenuContent className='w-44'>
+			<DropdownMenuContent className="w-44">
 				<DropdownMenuLabel inset>Status</DropdownMenuLabel>
-				<DropdownMenuRadioGroup value='warning'>
-					<DropdownMenuRadioItem value='info'>Info</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value='warning'>Warning</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value='error'>Error</DropdownMenuRadioItem>
+				<DropdownMenuRadioGroup value="warning">
+					<DropdownMenuRadioItem value="info">Info</DropdownMenuRadioItem>
+					<DropdownMenuRadioItem value="warning">Warning</DropdownMenuRadioItem>
+					<DropdownMenuRadioItem value="error">Error</DropdownMenuRadioItem>
 				</DropdownMenuRadioGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>
@@ -147,7 +147,7 @@ export const WithCheckboxes: Story = {
 	render: (args) => (
 		<DropdownMenu {...args}>
 			<DropdownMenuTrigger>Open</DropdownMenuTrigger>
-			<DropdownMenuContent className='w-44'>
+			<DropdownMenuContent className="w-44">
 				<DropdownMenuCheckboxItem checked>
 					Autosave
 					<DropdownMenuShortcut>⌘S</DropdownMenuShortcut>

@@ -69,7 +69,7 @@ export default function List({
 			user={auth.user}
 			header={
 				<div className={'flex justify-between items-center flex-1'}>
-					<h2 className='font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight'>
+					<h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
 						Users
 					</h2>
 
@@ -83,10 +83,10 @@ export default function List({
 				</div>
 			}
 		>
-			<Head title='Users' />
-			<div className='py-12'>
-				<div className='max-w-7xl mx-auto sm:px-6 lg:px-8'>
-					<div className='flex flex-col bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 gap-6'>
+			<Head title="Users" />
+			<div className="py-12">
+				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+					<div className="flex flex-col bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 gap-6">
 						<div className={'flex gap-3 justify-between'}>
 							<Input
 								type={'search'}
@@ -104,14 +104,14 @@ export default function List({
 									defaultValue={pageSize.toString()}
 								>
 									<SelectTrigger>
-										<SelectValue placeholder='Page Size' />
+										<SelectValue placeholder="Page Size" />
 									</SelectTrigger>
 									<SelectContent>
 										<SelectGroup>
-											<SelectItem value='10'>10</SelectItem>
-											<SelectItem value='25'>25</SelectItem>
-											<SelectItem value='50'>50</SelectItem>
-											<SelectItem value='100'>100</SelectItem>
+											<SelectItem value="10">10</SelectItem>
+											<SelectItem value="25">25</SelectItem>
+											<SelectItem value="50">50</SelectItem>
+											<SelectItem value="100">100</SelectItem>
 										</SelectGroup>
 									</SelectContent>
 								</Select>
@@ -119,7 +119,7 @@ export default function List({
 						</div>
 						{query.search && (
 							<div className={'flex items-center gap-2 '}>
-								<div className='text-gray-900 dark:text-gray-100'>
+								<div className="text-gray-900 dark:text-gray-100">
 									Search results for "{query.search}"
 								</div>
 								<Button
@@ -138,7 +138,7 @@ export default function List({
 								</Button>
 							</div>
 						)}
-						<div className='text-gray-900 dark:text-gray-100'>
+						<div className="text-gray-900 dark:text-gray-100">
 							{users && users.length > 0 && (
 								<Table>
 									<TableHeader>
@@ -174,7 +174,7 @@ export default function List({
 								</Table>
 							)}
 							{users && users.length === 0 && (
-								<div className='text-center text-gray-500 dark:text-gray-400'>
+								<div className="text-center text-gray-500 dark:text-gray-400">
 									No users found.
 								</div>
 							)}

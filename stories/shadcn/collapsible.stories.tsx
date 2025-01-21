@@ -21,9 +21,9 @@ const meta = {
 	},
 	render: (args) => (
 		<Collapsible {...args}>
-			<CollapsibleTrigger className='flex gap-2'>
-				<h3 className='font-semibold'>Can I use this in my project?</h3>
-				<Info className='size-6' />
+			<CollapsibleTrigger className="flex gap-2">
+				<h3 className="font-semibold">Can I use this in my project?</h3>
+				<Info className="size-6" />
 			</CollapsibleTrigger>
 			<CollapsibleContent>
 				Yes. Free to use for personal and commercial projects. No attribution

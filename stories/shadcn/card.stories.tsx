@@ -42,19 +42,19 @@ const meta = {
 				<CardTitle>Notifications</CardTitle>
 				<CardDescription>You have 3 unread messages.</CardDescription>
 			</CardHeader>
-			<CardContent className='grid gap-4'>
+			<CardContent className="grid gap-4">
 				{notifications.map((notification, index) => (
-					<div key={index} className='flex items-center gap-4'>
-						<BellRing className='size-6' />
+					<div key={index} className="flex items-center gap-4">
+						<BellRing className="size-6" />
 						<div>
 							<p>{notification.title}</p>
-							<p className='text-foreground/50'>{notification.description}</p>
+							<p className="text-foreground/50">{notification.description}</p>
 						</div>
 					</div>
 				))}
 			</CardContent>
 			<CardFooter>
-				<button className='hover:underline'>Close</button>
+				<button className="hover:underline">Close</button>
 			</CardFooter>
 		</Card>
 	),

@@ -22,20 +22,20 @@ const meta = {
 		<Pagination {...args}>
 			<PaginationContent>
 				<PaginationItem>
-					<PaginationPrevious size={'icon'} href='#' />
+					<PaginationPrevious size={'icon'} href="#" />
 				</PaginationItem>
 				<PaginationItem>
-					<PaginationLink size={'lg'} href='#'>
+					<PaginationLink size={'lg'} href="#">
 						1
 					</PaginationLink>
 				</PaginationItem>
 				<PaginationItem>
-					<PaginationLink size={'lg'} href='#'>
+					<PaginationLink size={'lg'} href="#">
 						2
 					</PaginationLink>
 				</PaginationItem>
 				<PaginationItem>
-					<PaginationLink size={'lg'} href='#'>
+					<PaginationLink size={'lg'} href="#">
 						3
 					</PaginationLink>
 				</PaginationItem>
@@ -43,7 +43,7 @@ const meta = {
 					<PaginationEllipsis />
 				</PaginationItem>
 				<PaginationItem>
-					<PaginationNext size={'icon'} href='#' />
+					<PaginationNext size={'icon'} href="#" />
 				</PaginationItem>
 			</PaginationContent>
 		</Pagination>

@@ -16,7 +16,7 @@ const meta = {
 	argTypes: {},
 	render: (args) => (
 		<Avatar {...args}>
-			<AvatarImage src='https://github.com/shadcn.png' />
+			<AvatarImage src="https://github.com/shadcn.png" />
 			<AvatarFallback>CN</AvatarFallback>
 		</Avatar>
 	),

@@ -20,17 +20,17 @@ const meta: Meta<{
 		children: 'Typeface',
 	},
 	render: (args) => (
-		<table className='w-full table-auto text-left text-sm text-foreground rtl:text-right'>
-			<thead className='text-xs bg-muted uppercase'>
+		<table className="w-full table-auto text-left text-sm text-foreground rtl:text-right">
+			<thead className="text-xs bg-muted uppercase">
 				<tr>
-					<th scope='col' className='px-6 py-3'>
+					<th scope="col" className="px-6 py-3">
 						Name
 					</th>
-					<th scope='col' className='hidden px-6 py-3 sm:table-cell'>
+					<th scope="col" className="hidden px-6 py-3 sm:table-cell">
 						Property
 					</th>
-					<th scope='col' className='px-6 py-3'>
-						<span className='sr-only'>Preview</span>
+					<th scope="col" className="px-6 py-3">
+						<span className="sr-only">Preview</span>
 					</th>
 				</tr>
 			</thead>
@@ -43,13 +43,13 @@ const meta: Meta<{
 						resolved ? value.replace(/var\(--(.*?)\)/, resolved) : value
 
 					return (
-						<tr key={name} className='border-b bg-card'>
-							<td className='px-6 py-4'>{name}</td>
-							<td className='hidden px-6 py-4 sm:table-cell'>
+						<tr key={name} className="border-b bg-card">
+							<td className="px-6 py-4">{name}</td>
+							<td className="hidden px-6 py-4 sm:table-cell">
 								{resolvedValue}
 							</td>
-							<td className='px-6 py-4 leading-tight'>
-								<p className='line-clamp-1' style={{ [args.key]: value }}>
+							<td className="px-6 py-4 leading-tight">
+								<p className="line-clamp-1" style={{ [args.key]: value }}>
 									{args.children}
 								</p>
 							</td>

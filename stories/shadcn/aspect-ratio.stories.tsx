@@ -11,18 +11,18 @@ const meta: Meta<typeof AspectRatio> = {
 	tags: ['autodocs'],
 	argTypes: {},
 	render: (args) => (
-		<AspectRatio {...args} className='bg-slate-50 dark:bg-slate-800'>
+		<AspectRatio {...args} className="bg-slate-50 dark:bg-slate-800">
 			<img
-				src='https://images.unsplash.com/photo-1576075796033-848c2a5f3696?w=800&dpr=2&q=80'
-				alt='Photo by Alvaro Pinot'
+				src="https://images.unsplash.com/photo-1576075796033-848c2a5f3696?w=800&dpr=2&q=80"
+				alt="Photo by Alvaro Pinot"
 				// fill
-				className='rounded-md object-cover'
+				className="rounded-md object-cover"
 			/>
 		</AspectRatio>
 	),
 	decorators: [
 		(Story) => (
-			<div className='w-1/2'>
+			<div className="w-1/2">
 				<Story />
 			</div>
 		),

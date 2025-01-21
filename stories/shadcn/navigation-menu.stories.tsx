@@ -32,7 +32,7 @@ const meta = {
 							Documentation
 						</NavigationMenuTrigger>
 						<NavigationMenuContent>
-							<ul className='grid w-96 p-2'>
+							<ul className="grid w-96 p-2">
 								<li>
 									<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 										API Reference
@@ -55,8 +55,8 @@ const meta = {
 				<NavigationMenuItem>
 					<NavigationMenuLink
 						className={navigationMenuTriggerStyle()}
-						href='https:www.google.com'
-						target='_blank'
+						href="https:www.google.com"
+						target="_blank"
 					>
 						External
 					</NavigationMenuLink>
