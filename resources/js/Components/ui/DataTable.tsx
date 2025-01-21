@@ -191,8 +191,8 @@ const SortingIcon = ({
       strokeLinejoin="round"
       className={cn(
         'lucide lucide-chevrons-up-down',
-        `[&>path:nth-child(1)]:${isSorted && direction === 'asc' ? 'stroke-[hsl(var(--primary))]' : 'stroke-current'}`,
-        `[&>path:nth-child(2)]:${isSorted && direction === 'desc' ? 'stroke-[hsl(var(--primary))]' : 'stroke-current'}`,
+        isSorted && direction === 'asc' ? '[&>path:nth-child(1)]:stroke-[hsl(var(--primary))]' : '[&>path:nth-child(1)]:stroke-current',
+        isSorted && direction === 'desc' ? '[&>path:nth-child(2)]:stroke-[hsl(var(--primary))]' : '[&>path:nth-child(2)]:stroke-current',
       )}
     >
       <path d="m7 9 5-5 5 5" />
