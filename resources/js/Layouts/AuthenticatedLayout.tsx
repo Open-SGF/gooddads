@@ -116,6 +116,13 @@ export default function Authenticated({
                                active={route().current('dashboard')}>
               Dashboard
             </ResponsiveNavLink>
+
+            {hasPermission('list users') && (
+              <ResponsiveNavLink href={route('users.list')}
+                       active={route().current('users.list')}>
+                Users
+              </ResponsiveNavLink>
+            )}
           </div>
 
           <div
