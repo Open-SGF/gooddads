@@ -1,11 +1,6 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import {
-  CheckIcon,
-  XCircle,
-  ChevronDown,
-  XIcon,
-} from 'lucide-react'
+import { CheckIcon, XCircle, ChevronDown, XIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import {
@@ -60,58 +55,58 @@ interface MultiSelectProps
    */
   options: {
     /** The text to display for the option. */
-    label: string;
+    label: string
     /** The unique value associated with the option. */
-    value: string;
+    value: string
     /** Optional icon component to display alongside the option. */
-    icon?: React.ComponentType<{ className?: string }>;
-  }[];
+    icon?: React.ComponentType<{ className?: string }>
+  }[]
 
   /**
    * Callback function triggered when the selected values change.
    * Receives an array of the new selected values.
    */
-  onValueChange: (value: string[]) => void;
+  onValueChange: (value: string[]) => void
 
   /** The default selected values when the component mounts. */
-  defaultValue?: string[];
+  defaultValue?: string[]
 
   /**
    * Placeholder text to be displayed when no values are selected.
    * Optional, defaults to "Select options".
    */
-  placeholder?: string;
+  placeholder?: string
 
   /**
    * Animation duration in seconds for the visual effects (e.g., bouncing badges).
    * Optional, defaults to 0 (no animation).
    */
-  animation?: number;
+  animation?: number
 
   /**
    * Maximum number of items to display. Extra selected items will be summarized.
    * Optional, defaults to 3.
    */
-  maxCount?: number;
+  maxCount?: number
 
   /**
    * The modality of the popover. When set to true, interaction with outside elements
    * will be disabled and only popover content will be visible to screen readers.
    * Optional, defaults to false.
    */
-  modalPopover?: boolean;
+  modalPopover?: boolean
 
   /**
    * If true, renders the multi-select component as a child of another component.
    * Optional, defaults to false.
    */
-  asChild?: boolean;
+  asChild?: boolean
 
   /**
    * Additional class names to apply custom styles to the multi-select component.
    * Optional, can be used to add custom styles.
    */
-  className?: string;
+  className?: string
 }
 
 export const MultiSelect = React.forwardRef<
@@ -128,7 +123,6 @@ export const MultiSelect = React.forwardRef<
       animation = 0,
       maxCount = 3,
       modalPopover = false,
-      asChild = false,
       className,
       ...props
     },
@@ -209,9 +203,7 @@ export const MultiSelect = React.forwardRef<
                     return (
                       <Badge
                         key={value}
-                        className={cn(
-                          multiSelectVariants({ variant }),
-                        )}
+                        className={cn(multiSelectVariants({ variant }))}
                         style={{ animationDuration: `${animation}s` }}
                       >
                         {IconComponent && (
@@ -259,8 +251,7 @@ export const MultiSelect = React.forwardRef<
                     orientation="vertical"
                     className="flex min-h-6 h-full"
                   />
-                  <ChevronDown
-                    className="h-4 mx-2 cursor-pointer text-muted-foreground" />
+                  <ChevronDown className="h-4 mx-2 cursor-pointer text-muted-foreground" />
                 </div>
               </div>
             ) : (
@@ -268,8 +259,7 @@ export const MultiSelect = React.forwardRef<
                 <span className="text-sm text-muted-foreground mx-3">
                   {placeholder}
                 </span>
-                <ChevronDown
-                  className="h-4 cursor-pointer text-muted-foreground mx-2" />
+                <ChevronDown className="h-4 cursor-pointer text-muted-foreground mx-2" />
               </div>
             )}
           </Button>
@@ -323,8 +313,7 @@ export const MultiSelect = React.forwardRef<
                         <CheckIcon className="h-4 w-4" />
                       </div>
                       {option.icon && (
-                        <option.icon
-                          className="mr-2 h-4 w-4 text-muted-foreground" />
+                        <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
                       )}
                       <span>{option.label}</span>
                     </CommandItem>

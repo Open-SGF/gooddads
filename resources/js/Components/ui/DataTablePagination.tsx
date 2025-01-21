@@ -5,7 +5,9 @@ import { cn } from '@/lib/utils'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import {
   Select,
-  SelectContent, SelectGroup, SelectItem,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/Components/ui/Select'
@@ -21,13 +23,16 @@ export const DataTablePagination = () => {
         ...query,
         page: undefined,
         pageSize: value,
-      }
+      },
     })
   }
-
+  // prettier-ignore
   return (
     <div
-      className={'grid [grid-template-columns:1fr_1fr] [grid-template-rows:auto_auto] [grid-template-areas:\'pagination_pagination\'\'results_pagesize\'] gap-4 items-center md:[grid-template-columns:1fr_auto_1fr] md:[grid-template-rows:auto] md:[grid-template-areas:\'results_pagination_pagesize\']'}>
+      className={cn([
+        "grid [grid-template-columns:1fr_1fr] [grid-template-areas:'pagination_pagination''results_pagesize'] gap-4 items-center md:[grid-template-columns:1fr_auto_1fr] md:[grid-template-rows:auto] md:[grid-template-areas:'results_pagination_pagesize']",
+        totalPages > 1 ? '[grid-template-rows:auto_auto]' : undefined,
+      ])}>
       <div
         className="text-sm font-medium [grid-area:results]">
         Results: {((page - 1) * pageSize) + 1} - {Math.min(page * pageSize, count)} of {count}

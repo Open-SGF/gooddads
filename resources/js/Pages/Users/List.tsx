@@ -19,8 +19,6 @@ export type UsersListPageProps = PageProps & PaginationProps & {
 export default function List({
                                auth,
                                users,
-                               ziggy: { query },
-                               ...pagination
                              }: UsersListPageProps) {
   const { hasPermission } = usePermission(auth.user)
 
@@ -85,7 +83,7 @@ export default function List({
       <Head title="Users" />
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-           <DataTable<User> fields={fields} data={users} query={query} {...pagination}/>
+           <DataTable<User> fields={fields} data={users} />
         </div>
       </div>
     </AuthenticatedLayout>
