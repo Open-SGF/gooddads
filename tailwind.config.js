@@ -1,6 +1,7 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
 import tailwindAnimate from 'tailwindcss-animate'
 import forms from '@tailwindcss/forms'
+import plugin from 'tailwindcss/plugin'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -99,5 +100,15 @@ export default {
 		},
 	},
 
-	plugins: [forms, tailwindAnimate],
+	plugins: [
+		forms,
+		tailwindAnimate,
+		plugin(({ addUtilities }) => {
+			addUtilities({
+				'.field-sizing-content': {
+					'field-sizing': 'content',
+				},
+			})
+		}),
+	],
 }

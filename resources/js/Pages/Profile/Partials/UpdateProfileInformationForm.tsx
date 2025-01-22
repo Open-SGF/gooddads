@@ -17,7 +17,7 @@ export default function UpdateProfileInformation({
 
 	const { data, setData, patch, errors, processing, recentlySuccessful } =
 		useForm({
-			name: user.name,
+			name: user.first_name,
 			email: user.email,
 		})
 
@@ -71,7 +71,8 @@ export default function UpdateProfileInformation({
 					<InputError className="mt-2" message={errors.email} />
 				</div>
 
-				{mustVerifyEmail && user.email_verified_at === null && (
+				{/*{mustVerifyEmail && user.email_verified_at === null && (*/}
+				{mustVerifyEmail && (
 					<div>
 						<p className="text-sm mt-2 text-gray-800 dark:text-gray-200">
 							Your email address is unverified.

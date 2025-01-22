@@ -12,24 +12,26 @@ class UsersController extends Controller
 {
   public function list(Request $request): Response
   {
-    // get page url param
     $page = intval($request->get('page', 1) ?: 1);
     $search = $request->query('search');
     $pageSize = $request->query('pageSize', 10);
-    $orderBy = $request->query('orderBy', 'first_name,ASC');
-    [$column, $direction] = explode(',', $orderBy);
+    $sort = $request->query('sort', 'first_name,asc');
+    $filters = $request->query('filters', '');
+    [$column, $direction] = explode(',', $sort);
     $users = User::when($search, fn($query) => $query
-      ->where('first_name', 'like', "%{$search}%"))
-      ->orWhere('last_name', 'like', "%{$search}%")
-      ->orWhere('email', 'like', "%{$search}%")
+      ->where('first_name', 'like', "%$search%")->orWhere('last_name', 'like', "%$search%")->orWhere('email', 'like', "%$search%"))
+      ->when($filters, fn($query) => $query->where(fn($query) => collect(explode(',', $filters))
+        ->map(fn($filter) => explode('=', $filter))
+        ->each(fn($filter) => $query->where($filter[0], 'like', "%$filter[1]%")))
+      )
       ->orderBy($column, $direction)
-      ->paginate($pageSize, $columns = ['*'], $pageName = 'users', $page);
-    return Inertia::render('Users/UsersList', [
+      ->paginate($pageSize, ['*'], 'users', $page);
+    return Inertia::render('Users/List', [
       'users' => UserResource::collection($users)->resolve(),
       'page' => $users->currentPage(),
       'pageSize' => $users->perPage(),
       'totalPages' => $users->lastPage(),
-      'userCount' => $users->total(),
+      'count' => $users->total(),
     ]);
   }
 

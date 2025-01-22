@@ -24,3 +24,4 @@ yarn-error.log
 dbml-error.log
 
 *storybook.log
+.DS_Store
