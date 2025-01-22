@@ -17,22 +17,30 @@ export type BaseRow = {
 	id: number
 }
 
-export type DataTableFields<T> = {
-	fieldKey: Extract<keyof T, string> | 'actions'
-	label: string
-	disabled?: boolean
-	sort?: boolean
-	filter?: boolean
-	export?: boolean
-	content?: (row: T) => ReactNode
-}
-
 type DataTableProps<T> = {
 	fields: DataTableFields<T>[]
 	data: T[]
 	allowSelect?: boolean
 	tableActions?: (disabled: boolean, rows: T[]) => ReactNode[]
 }
+
+type BaseDataTableFields = {
+	label: string
+	disabled?: boolean
+	sort?: boolean
+	filter?: boolean
+	export?: boolean
+}
+
+export type DataTableFields<T> =
+	| (BaseDataTableFields & {
+			fieldKey: Extract<keyof T, string>
+			content?: (row: T) => ReactNode
+	  })
+	| (BaseDataTableFields & {
+			fieldKey: 'actions'
+			content: (row: T) => ReactNode
+	  })
 
 export const DataTable = <T extends BaseRow>({
 	fields,
