@@ -12,17 +12,14 @@ class UsersController extends Controller
 {
   public function list(Request $request): Response
   {
-    // get page url param
     $page = intval($request->get('page', 1) ?: 1);
     $search = $request->query('search');
     $pageSize = $request->query('pageSize', 10);
     $sort = $request->query('sort', 'first_name,asc');
     $filters = $request->query('filters', '');
-//    dd($filters);
     [$column, $direction] = explode(',', $sort);
     $users = User::when($search, fn($query) => $query
       ->where('first_name', 'like', "%$search%")->orWhere('last_name', 'like', "%$search%")->orWhere('email', 'like', "%$search%"))
-      // filter by filters query where the url looks like http://localhost/users?filters=first_name%3DAdmin%2Clast_name%3DUser. Use a like match and require that all filters match
       ->when($filters, fn($query) => $query->where(fn($query) => collect(explode(',', $filters))
         ->map(fn($filter) => explode('=', $filter))
         ->each(fn($filter) => $query->where($filter[0], 'like', "%$filter[1]%")))
