@@ -7,7 +7,7 @@ import {
 } from '@/Components/ui/Table'
 import { createContext, ReactNode, useContext, useState } from 'react'
 import { Button } from '@/Components/ui/Button'
-import { TableFilter } from '@/Components/ui'
+import { Checkbox, TableFilter } from '@/Components/ui'
 import { DataTablePagination } from '@/Components/ui/DataTablePagination'
 import { router, usePage } from '@inertiajs/react'
 import { cn } from '@/lib/utils'
@@ -20,22 +20,28 @@ type BaseRow = {
 }
 
 export type DataTableFields<T> = {
-  id: string
+  id: Extract<keyof T, string> | 'actions',
   label: string
   disabled?: boolean
-  sorting?: boolean
+  sort?: boolean
+  filter?: boolean
+  export?: boolean
   content?: (row: T) => ReactNode
 }
 
 type DataTableProps<T> = {
   fields: DataTableFields<T>[]
   data: T[]
+  allowSelect?: boolean
+  tableActions?: (disabled: boolean, rows: T[]) => ReactNode[]
 }
 
 export const DataTable = <T extends BaseRow>({
-  fields,
-  data,
-}: DataTableProps<T>) => {
+                                               fields,
+                                               data,
+                                               allowSelect = false,
+                                               tableActions,
+                                             }: DataTableProps<T>) => {
   const {
     ziggy: { query },
     page,
@@ -47,6 +53,10 @@ export const DataTable = <T extends BaseRow>({
 
   const [sort, setSort] = useState(queryAsObject.sort || 'id,asc')
   const [sortField, sortDirection] = sort.split(',')
+  const [selectAll, setSelectAll] = useState(false)
+  const [selectedRows, setSelectedRows] = useState<T[]>([])
+
+  const tableActionsDisabled = selectedRows.length === 0
 
   const handleSort = (field: DataTableFields<T>) => {
     const newSort =
@@ -63,46 +73,88 @@ export const DataTable = <T extends BaseRow>({
     })
   }
 
+  const handleSelectAll = () => {
+    setSelectAll(!selectAll)
+    if (!selectAll) {
+      setSelectedRows(data)
+    } else {
+      setSelectedRows([])
+    }
+  }
+
+  const handleSelectRow = (id: number) => {
+    if (selectedRows.map(row => row.id).includes(id)) {
+      setSelectedRows(selectedRows.filter(row => row.id !== id))
+    } else {
+      setSelectedRows([...selectedRows, data.find(row => row.id === id)!])
+    }
+  }
+
   return (
     <DataTableProvider
       value={{ fields, data, page, pageSize, totalPages, count, query }}
     >
-      <div className="flex flex-col bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 gap-6">
+      <div
+        className="flex flex-col bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 gap-6">
         <TableFilter />
+        {tableActions && (
+          <div className="flex items-center gap-3">{tableActions(tableActionsDisabled, selectedRows)}</div>
+        )}
         {data.length > 0 && (
           <Table>
             <TableHeader className={'font-medium bg-gray-100'}>
               <TableRow>
+                {allowSelect && (
+                  <TableCell key={'select'}>
+                    <div className={'flex items-center'}>
+                      <Checkbox
+                        checked={selectAll}
+                        onCheckedChange={handleSelectAll}
+                      />
+                    </div>
+                  </TableCell>
+                )}
                 {fields.map((field) => {
                   if (field.disabled) {
                     return null
                   }
 
-                  if (field.sorting) {
-                    return (
-                      <TableCell key={field.id}>
-                        <Button
-                          variant="link"
-                          className={'p-0 text-foreground font-medium gap-2'}
-                          onClick={() => handleSort(field)}
-                        >
-                          {field.label}
-                          <SortingIcon
-                            direction={sortDirection}
-                            isSorted={sortField === field.id}
-                          />
-                        </Button>
-                      </TableCell>
-                    )
+                  if (field.sort === false) {
+                    return <TableCell className={'whitespace-nowrap'}
+                                      key={field.id}>{field.label}</TableCell>
                   }
 
-                  return <TableCell key={field.id}>{field.label}</TableCell>
+                  return (
+                    <TableCell key={field.id}>
+                      <Button
+                        variant="link"
+                        className={'p-0 text-foreground font-medium gap-2'}
+                        onClick={() => handleSort(field)}
+                      >
+                        {field.label}
+                        <SortingIcon
+                          direction={sortDirection}
+                          isSorted={sortField === field.id}
+                        />
+                      </Button>
+                    </TableCell>
+                  )
                 })}
               </TableRow>
             </TableHeader>
             <TableBody>
               {data.map((row) => (
                 <TableRow key={row.id}>
+                  {allowSelect && (
+                    <TableCell key={'select'}>
+                      <div className={'flex items-center'}>
+                        <Checkbox
+                          checked={selectedRows.map(row => row.id).includes(row.id)}
+                          onCheckedChange={() => handleSelectRow(row.id)}
+                        />
+                      </div>
+                    </TableCell>
+                  )}
                   {fields.map((field) => {
                     if (field.disabled) {
                       return null
@@ -161,9 +213,9 @@ interface DataTableProviderProps<T extends BaseRow> {
 }
 
 export const DataTableProvider = <T extends BaseRow>({
-  value,
-  children,
-}: DataTableProviderProps<T>) => {
+                                                       value,
+                                                       children,
+                                                     }: DataTableProviderProps<T>) => {
   return (
     <DataTableContext.Provider value={value}>
       {children}
@@ -172,9 +224,9 @@ export const DataTableProvider = <T extends BaseRow>({
 }
 
 const SortingIcon = ({
-  direction,
-  isSorted,
-}: {
+                       direction,
+                       isSorted,
+                     }: {
   direction: string
   isSorted: boolean
 }) => {

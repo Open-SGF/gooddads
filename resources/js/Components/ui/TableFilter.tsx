@@ -89,8 +89,8 @@ export const TableFilter = () => {
     const filtersString =
       Object.keys(filters).length > 0
         ? Object.entries(filters)
-            .map(([key, filter]) => `${key}=${filter.value}`)
-            .join(',')
+          .map(([key, filter]) => `${key}=${filter.value}`)
+          .join(',')
         : undefined
     router.reload({
       data: {
@@ -117,7 +117,7 @@ export const TableFilter = () => {
       <div className={'flex flex-wrap gap-3 align-center'}>
         <Input
           type={'search'}
-          placeholder={'Search users...'}
+          placeholder={'Search'}
           onChange={handleSearch}
           className={'flex-1'}
           defaultValue={query.search || undefined}
@@ -144,7 +144,7 @@ export const TableFilter = () => {
                 <CommandEmpty>No columns found.</CommandEmpty>
                 <CommandGroup>
                   {fields
-                    .filter((field) => !Object.keys(filters).includes(field.id))
+                    .filter((field) => !Object.keys(filters).includes(field.id) && field.filter !== false)
                     .map((field) => (
                       <CommandItem
                         key={field.id}
@@ -192,9 +192,10 @@ export const TableFilter = () => {
           </Button>
         </div>
       )}
-      <div className={'flex flex-wrap gap-3 align-center'}>
-        {Object.keys(filters).length > 0 &&
-          Object.entries(filters).map(([key, filter]) => (
+
+      {Object.keys(filters).length > 0 && (
+        <div className={'flex flex-wrap gap-3 align-center'}>
+          {Object.entries(filters).map(([key, filter]) => (
             <FilterItem
               key={key}
               label={filter.label}
@@ -206,20 +207,21 @@ export const TableFilter = () => {
               handleFilter={handleFilter}
             />
           ))}
-      </div>
+        </div>
+      )}
     </div>
   )
 }
 
 const FilterItem = ({
-  label,
-  value,
-  filterKey,
-  shouldFocus,
-  handleRemoveFilter,
-  handleSetFilters,
-  handleFilter,
-}: FilterItemProps) => {
+                      label,
+                      value,
+                      filterKey,
+                      shouldFocus,
+                      handleRemoveFilter,
+                      handleSetFilters,
+                      handleFilter,
+                    }: FilterItemProps) => {
   const [isFocused, setIsFocused] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -263,19 +265,21 @@ const FilterItem = ({
         onFocusCapture={() => inputRef.current?.select()}
         onKeyDown={(e) => handleKeyPress(e)}
         defaultValue={value}
+        aria-keyshortcuts={'Enter Escape'}
         className={cn(
           'flex h-auto max-w-28 border-none bg-background pr-0 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 field-sizing-content',
         )}
       />
-      <div
-        className={'p-2 hover:cursor-pointer'}
+      <Button
+        variant={'link'}
+        className={'p-2 h-7 w-7 mx-1 hover:cursor-pointer'}
         onClick={() => {
           handleRemoveFilter(filterKey)
           handleFilter()
         }}
       >
         <XIcon size={18} />
-      </div>
+      </Button>
     </div>
   )
 }
