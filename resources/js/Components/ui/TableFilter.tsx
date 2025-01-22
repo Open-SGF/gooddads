@@ -44,7 +44,8 @@ export const TableFilter = () => {
 			return Object.fromEntries(
 				query.filters.split(',').map((filter) => {
 					const [key, value] = filter.split('=')
-					const label = fields.find((field) => field.id === key)?.label ?? ''
+					const label =
+						fields.find((field) => field.fieldKey === key)?.label ?? ''
 					return [key, { value, label: label }]
 				}),
 			)
@@ -146,18 +147,18 @@ export const TableFilter = () => {
 									{fields
 										.filter(
 											(field) =>
-												!Object.keys(filters).includes(field.id) &&
+												!Object.keys(filters).includes(field.fieldKey) &&
 												field.filter !== false,
 										)
 										.map((field) => (
 											<CommandItem
-												key={field.id}
-												value={field.id}
+												key={field.fieldKey}
+												value={field.fieldKey}
 												onSelect={() => {
 													setFilters((prev) => {
 														return {
 															...prev,
-															[field.id]: {
+															[field.fieldKey]: {
 																value: '',
 																label: field.label,
 															},

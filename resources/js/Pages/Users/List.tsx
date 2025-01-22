@@ -29,19 +29,19 @@ export default function List({ auth, users }: UsersListPageProps) {
 
 	const fields: DataTableFields<User>[] = [
 		{
-			id: 'first_name',
+			fieldKey: 'first_name',
 			label: 'First Name',
 		},
 		{
-			id: 'last_name',
+			fieldKey: 'last_name',
 			label: 'Last Name',
 		},
 		{
-			id: 'email',
+			fieldKey: 'email',
 			label: 'Email',
 		},
 		{
-			id: 'permissions',
+			fieldKey: 'permissions',
 			label: 'Permissions',
 			sort: false,
 			content: (row) => {
@@ -54,7 +54,7 @@ export default function List({ auth, users }: UsersListPageProps) {
 			},
 		},
 		{
-			id: 'roles',
+			fieldKey: 'roles',
 			label: 'Roles',
 			sort: false,
 			filter: false,
@@ -65,7 +65,7 @@ export default function List({ auth, users }: UsersListPageProps) {
 			},
 		},
 		{
-			id: 'actions',
+			fieldKey: 'actions',
 			label: '',
 			disabled: !hasPermission('edit users'),
 			sort: false,
@@ -88,12 +88,7 @@ export default function List({ auth, users }: UsersListPageProps) {
 		>
 			<DownloadIcon /> Export to CSV
 		</Button>,
-		<Button
-			disabled={disabled}
-			variant="destructive"
-			key="delete"
-			size="sm"
-		>
+		<Button disabled={disabled} variant="destructive" key="delete" size="sm">
 			<TrashIcon href="#" /> Delete
 		</Button>,
 	]

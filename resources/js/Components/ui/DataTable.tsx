@@ -13,13 +13,12 @@ import { router, usePage } from '@inertiajs/react'
 import { cn } from '@/lib/utils'
 import { UsersListPageProps } from '@/Pages/Users/List'
 
-type BaseRow = {
+export type BaseRow = {
 	id: number
-	[key: string]: unknown
 }
 
 export type DataTableFields<T> = {
-	id: Extract<keyof T, string> | 'actions'
+	fieldKey: Extract<keyof T, string> | 'actions'
 	label: string
 	disabled?: boolean
 	sort?: boolean
@@ -59,9 +58,9 @@ export const DataTable = <T extends BaseRow>({
 
 	const handleSort = (field: DataTableFields<T>) => {
 		const newSort =
-			sortField === field.id && sortDirection === 'desc' ?
+			sortField === field.fieldKey && sortDirection === 'desc' ?
 				''
-			:	`${field.id},${sortField === field.id ? 'desc' : 'asc'}`
+			:	`${field.fieldKey},${sortField === field.fieldKey ? 'desc' : 'asc'}`
 		setSort(newSort)
 		router.reload({
 			data: {
@@ -121,14 +120,17 @@ export const DataTable = <T extends BaseRow>({
 
 									if (field.sort === false) {
 										return (
-											<TableCell className="whitespace-nowrap" key={field.id}>
+											<TableCell
+												className="whitespace-nowrap"
+												key={field.fieldKey}
+											>
 												{field.label}
 											</TableCell>
 										)
 									}
 
 									return (
-										<TableCell key={field.id}>
+										<TableCell key={field.fieldKey}>
 											<Button
 												variant="link"
 												className="p-0 text-foreground font-medium gap-2"
@@ -137,7 +139,7 @@ export const DataTable = <T extends BaseRow>({
 												{field.label}
 												<SortingIcon
 													direction={sortDirection}
-													isSorted={sortField === field.id}
+													isSorted={sortField === field.fieldKey}
 												/>
 											</Button>
 										</TableCell>
@@ -165,9 +167,15 @@ export const DataTable = <T extends BaseRow>({
 											return null
 										}
 
+										if (field.fieldKey === 'actions') {
+											return field.content ? field.content(row) : null
+										}
+
 										return (
-											<TableCell key={field.id}>
-												{field.content ? field.content(row) : row[field.id]}
+											<TableCell key={field.fieldKey}>
+												{field.content ?
+													field.content(row)
+												:	(row[field.fieldKey] as ReactNode)}
 											</TableCell>
 										)
 									})}
@@ -187,7 +195,7 @@ export const DataTable = <T extends BaseRow>({
 	)
 }
 
-interface DataTableContextProps<T extends Record<string, string | number>> {
+interface DataTableContextProps<T extends Record<string, unknown>> {
 	fields: DataTableFields<T>[]
 	data: T[]
 	page: number
