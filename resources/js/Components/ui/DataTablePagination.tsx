@@ -39,9 +39,9 @@ export const DataTablePagination = () => {
       </div>
       {totalPages > 1 && (
         <ButtonGroup
-          className={'justify-center [grid-area:pagination]'}>
+          className="justify-center [grid-area:pagination]">
 
-          <Button variant={'outline'}
+          <Button variant="outline"
                   onClick={() => router.reload({
                     data: {
                       ...query,
@@ -63,10 +63,10 @@ export const DataTablePagination = () => {
                     })
                   }}>
             <SelectTrigger
-              className={'flex gap-1 font-medium z-10 rounded-l-none rounded-r-none border-l-0 flex-1 justify-center'}>
+              className="flex gap-1 font-medium z-10 rounded-l-none rounded-r-none border-l-0 flex-1 justify-center">
               <SelectValue>Page {page} of {totalPages}</SelectValue>
             </SelectTrigger>
-            <SelectContent align={'center'}>
+            <SelectContent align="center">
               <SelectGroup>
                 {Array.from({ length: totalPages }, (_, i) => (
                   <SelectItem key={i}
@@ -75,7 +75,7 @@ export const DataTablePagination = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Button variant={'outline'}
+          <Button variant="outline"
                   onClick={() => router.reload({
                     data: {
                       ...query,
@@ -90,12 +90,12 @@ export const DataTablePagination = () => {
         </ButtonGroup>
       )}
       <div
-        className={'flex gap-2 items-center justify-self-end order-3 [grid-area:pagesize]'}>
-        <Label htmlFor={'pageSize'} className={'whitespace-nowrap'}>Page
+        className="flex gap-2 items-center justify-self-end order-3 [grid-area:pagesize]">
+        <Label htmlFor="pageSize" className="whitespace-nowrap">Page
           Size:</Label>
         <Select onValueChange={handlePageSize}
                 defaultValue={pageSize.toString()}>
-          <SelectTrigger className={'font-medium'}>
+          <SelectTrigger className="font-medium">
             <SelectValue placeholder="Page Size" />
           </SelectTrigger>
           <SelectContent>

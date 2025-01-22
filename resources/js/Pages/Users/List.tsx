@@ -71,8 +71,8 @@ export default function List({ auth, users }: UsersListPageProps) {
 			sort: false,
 			filter: false,
 			content: () => (
-				<Button variant={'outline'} size={'sm'}>
-					<Pencil1Icon href={'#'} /> Edit
+				<Button variant="outline" size="sm">
+					<Pencil1Icon href="#" /> Edit
 				</Button>
 			),
 		},
@@ -82,19 +82,19 @@ export default function List({ auth, users }: UsersListPageProps) {
 		<Button
 			disabled={disabled}
 			onClick={() => handleExport(data)}
-			variant={'outline'}
-			key={'export'}
-			size={'sm'}
+			variant="outline"
+			key="export"
+			size="sm"
 		>
 			<DownloadIcon /> Export to CSV
 		</Button>,
 		<Button
 			disabled={disabled}
-			variant={'destructive'}
-			key={'delete'}
-			size={'sm'}
+			variant="destructive"
+			key="delete"
+			size="sm"
 		>
-			<TrashIcon href={'#'} /> Delete
+			<TrashIcon href="#" /> Delete
 		</Button>,
 	]
 
@@ -102,13 +102,13 @@ export default function List({ auth, users }: UsersListPageProps) {
 		<AuthenticatedLayout
 			user={auth.user}
 			header={
-				<div className={'flex justify-between items-center flex-1'}>
+				<div className="flex justify-between items-center flex-1">
 					<h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
 						Users
 					</h2>
 
 					{hasPermission('create users') && (
-						<Button size={'sm'} asChild>
+						<Button size="sm" asChild>
 							<a href={route('users.create')}>
 								<PlusIcon /> Create User
 							</a>

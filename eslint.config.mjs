@@ -20,6 +20,10 @@ export default tseslint.config(
 			'react/react-in-jsx-scope': 'off',
 			'react/jsx-uses-react': 'off',
 			'react/no-unescaped-entities': 'off',
+			'react/jsx-curly-brace-presence': [
+				'error',
+				{ props: 'never', children: 'never' },
+			],
 		},
 		ignores: ['vendor', 'bootstrap', 'public'],
 	},

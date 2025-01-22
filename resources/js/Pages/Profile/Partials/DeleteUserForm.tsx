@@ -57,7 +57,7 @@ export default function DeleteUserForm({
 				</p>
 			</header>
 
-			<Button variant={'destructive'} onClick={confirmUserDeletion}>
+			<Button variant="destructive" onClick={confirmUserDeletion}>
 				Delete Account
 			</Button>
 
@@ -93,12 +93,12 @@ export default function DeleteUserForm({
 					</div>
 
 					<div className="mt-6 flex justify-end">
-						<Button variant={'secondary'} onClick={closeModal}>
+						<Button variant="secondary" onClick={closeModal}>
 							Cancel
 						</Button>
 
 						<Button
-							variant={'destructive'}
+							variant="destructive"
 							className="ms-3"
 							disabled={processing}
 						>

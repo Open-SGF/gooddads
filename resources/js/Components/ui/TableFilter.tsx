@@ -113,13 +113,13 @@ export const TableFilter = () => {
 	}, 300)
 
 	return (
-		<div className={'flex flex-col gap-3'}>
-			<div className={'flex flex-wrap gap-3 align-center'}>
+		<div className="flex flex-col gap-3">
+			<div className="flex flex-wrap gap-3 align-center">
 				<Input
-					type={'search'}
-					placeholder={'Search'}
+					type="search"
+					placeholder="Search"
 					onChange={handleSearch}
-					className={'flex-1'}
+					className="flex-1"
 					defaultValue={query.search || undefined}
 				/>
 				<Popover open={open} onOpenChange={setOpen}>
@@ -137,10 +137,10 @@ export const TableFilter = () => {
 							<ListFilterIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 						</Button>
 					</PopoverTrigger>
-					<PopoverContent align={'end'} className="p-0">
+					<PopoverContent align="end" className="p-0">
 						<Command>
 							<CommandList>
-								<CommandInput className={'my-2'} placeholder="Search columns" />
+								<CommandInput className="my-2" placeholder="Search columns" />
 								<CommandEmpty>No columns found.</CommandEmpty>
 								<CommandGroup>
 									{fields
@@ -176,13 +176,13 @@ export const TableFilter = () => {
 				</Popover>
 			</div>
 			{query.search && (
-				<div className={'flex items-center gap-2 '}>
+				<div className="flex items-center gap-2 ">
 					<div className="text-gray-900 dark:text-gray-100">
 						Search results for "{query.search}"
 					</div>
 					<Button
-						variant={'outline'}
-						size={'sm'}
+						variant="outline"
+						size="sm"
 						onClick={() =>
 							router.reload({
 								data: {
@@ -198,7 +198,7 @@ export const TableFilter = () => {
 			)}
 
 			{Object.keys(filters).length > 0 && (
-				<div className={'flex flex-wrap gap-3 align-center'}>
+				<div className="flex flex-wrap gap-3 align-center">
 					{Object.entries(filters).map(([key, filter]) => (
 						<FilterItem
 							key={key}
@@ -250,16 +250,14 @@ const FilterItem = ({
 			)}
 		>
 			<div
-				className={
-					'border-r h-full align-baseline border-input p-2 bg-input text-input-foreground text-sm font-medium user-select-none hover:cursor-pointer'
-				}
+				className="border-r h-full align-baseline border-input p-2 bg-input text-input-foreground text-sm font-medium user-select-none hover:cursor-pointer"
 				onClick={() => inputRef.current?.focus()}
 			>
 				{label}
 			</div>
 			<input
 				ref={inputRef}
-				type={'text'}
+				type="text"
 				onFocus={() => setIsFocused(true)}
 				onBlur={(e) => {
 					setIsFocused(false)
@@ -269,14 +267,14 @@ const FilterItem = ({
 				onFocusCapture={() => inputRef.current?.select()}
 				onKeyDown={(e) => handleKeyPress(e)}
 				defaultValue={value}
-				aria-keyshortcuts={'Enter Escape'}
+				aria-keyshortcuts="Enter Escape"
 				className={cn(
 					'flex h-auto max-w-28 border-none bg-background pr-0 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 field-sizing-content',
 				)}
 			/>
 			<Button
-				variant={'link'}
-				className={'p-2 h-7 w-7 mx-1 hover:cursor-pointer'}
+				variant="link"
+				className="p-2 h-7 w-7 mx-1 hover:cursor-pointer"
 				onClick={() => {
 					handleRemoveFilter(filterKey)
 					handleFilter()

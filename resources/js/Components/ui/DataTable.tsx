@@ -15,8 +15,7 @@ import { UsersListPageProps } from '@/Pages/Users/List'
 
 type BaseRow = {
 	id: number
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	[key: string]: any
+	[key: string]: unknown
 }
 
 export type DataTableFields<T> = {
@@ -103,11 +102,11 @@ export const DataTable = <T extends BaseRow>({
 				)}
 				{data.length > 0 && (
 					<Table>
-						<TableHeader className={'font-medium bg-gray-100'}>
+						<TableHeader className="font-medium bg-gray-100">
 							<TableRow>
 								{allowSelect && (
-									<TableCell key={'select'}>
-										<div className={'flex items-center'}>
+									<TableCell key="select">
+										<div className="flex items-center">
 											<Checkbox
 												checked={selectAll}
 												onCheckedChange={handleSelectAll}
@@ -122,7 +121,7 @@ export const DataTable = <T extends BaseRow>({
 
 									if (field.sort === false) {
 										return (
-											<TableCell className={'whitespace-nowrap'} key={field.id}>
+											<TableCell className="whitespace-nowrap" key={field.id}>
 												{field.label}
 											</TableCell>
 										)
@@ -132,7 +131,7 @@ export const DataTable = <T extends BaseRow>({
 										<TableCell key={field.id}>
 											<Button
 												variant="link"
-												className={'p-0 text-foreground font-medium gap-2'}
+												className="p-0 text-foreground font-medium gap-2"
 												onClick={() => handleSort(field)}
 											>
 												{field.label}
@@ -150,8 +149,8 @@ export const DataTable = <T extends BaseRow>({
 							{data.map((row) => (
 								<TableRow key={row.id}>
 									{allowSelect && (
-										<TableCell key={'select'}>
-											<div className={'flex items-center'}>
+										<TableCell key="select">
+											<div className="flex items-center">
 												<Checkbox
 													checked={selectedRows
 														.map((row) => row.id)
