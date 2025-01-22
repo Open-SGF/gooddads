@@ -4,30 +4,30 @@ import { router } from '@inertiajs/react'
 import { cn } from '@/lib/utils'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
 } from '@/Components/ui/Select'
 import { Label } from '@/Components/ui/Label'
 import { useDataTableContext } from '@/Components/ui'
 
 export const DataTablePagination = () => {
-  const { page, pageSize, totalPages, count, query } = useDataTableContext()
+	const { page, pageSize, totalPages, count, query } = useDataTableContext()
 
-  const handlePageSize = (value: string) => {
-    router.reload({
-      data: {
-        ...query,
-        page: undefined,
-        pageSize: value,
-      },
-    })
-  }
-  // prettier-ignore
-  return (
+	const handlePageSize = (value: string) => {
+		router.reload({
+			data: {
+				...query,
+				page: undefined,
+				pageSize: value,
+			},
+		})
+	}
+	// prettier-ignore
+	return (
     <div
       className={cn([
         "grid [grid-template-columns:1fr_1fr] [grid-template-areas:'pagination_pagination''results_pagesize'] gap-4 items-center md:[grid-template-columns:1fr_auto_1fr] md:[grid-template-rows:auto] md:[grid-template-areas:'results_pagination_pagesize']",

@@ -130,21 +130,28 @@ export default function Authenticated({
 					</div>
 				</div>
 
-        <div
-          className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
-          <div className="pt-2 pb-3 space-y-1">
-            <ResponsiveNavLink href={route('dashboard')}
-                               active={route().current('dashboard')}>
-              Dashboard
-            </ResponsiveNavLink>
+				<div
+					className={
+						(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'
+					}
+				>
+					<div className="pt-2 pb-3 space-y-1">
+						<ResponsiveNavLink
+							href={route('dashboard')}
+							active={route().current('dashboard')}
+						>
+							Dashboard
+						</ResponsiveNavLink>
 
-            {hasPermission('list users') && (
-              <ResponsiveNavLink href={route('users.list')}
-                       active={route().current('users.list')}>
-                Users
-              </ResponsiveNavLink>
-            )}
-          </div>
+						{hasPermission('list users') && (
+							<ResponsiveNavLink
+								href={route('users.list')}
+								active={route().current('users.list')}
+							>
+								Users
+							</ResponsiveNavLink>
+						)}
+					</div>
 
 					<div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
 						<div className="px-4">
