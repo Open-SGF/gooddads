@@ -167,14 +167,12 @@ export const DataTable = <T extends BaseRow>({
 											return null
 										}
 
-										if (field.fieldKey === 'actions') {
-											return field.content ? field.content(row) : null
-										}
-
 										return (
 											<TableCell key={field.fieldKey}>
 												{field.content ?
 													field.content(row)
+												: field.fieldKey === 'actions' ?
+													null
 												:	(row[field.fieldKey] as ReactNode)}
 											</TableCell>
 										)
