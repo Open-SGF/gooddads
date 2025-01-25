@@ -49,4 +49,3 @@ jobs:
               issue_number: context.issue.number,
               body: `Storybook is published here: **${{ needs.test.outputs.storybookUrl }}**`
             });
-
