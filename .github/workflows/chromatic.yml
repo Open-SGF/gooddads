@@ -28,17 +28,5 @@ jobs:
         with:
           #👇 Chromatic projectToken,
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Add comment with Storybook URL
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            // Post a comment on the PR or commit with the Storybook URL from the test job
-            await github.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: `**Preview Storybok**: ${{ steps.chromatic.outputs.storybookUrl }}`
-            });
