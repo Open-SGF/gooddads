@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - storybook-publish-adr
 
 # List of jobs
 jobs:
