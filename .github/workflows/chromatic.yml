@@ -28,5 +28,6 @@ jobs:
         with:
           #👇 Chromatic projectToken,
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-
+          # Only publish, no tests
+          exitOnceUploaded: true
           token: ${{ secrets.GITHUB_TOKEN }}
