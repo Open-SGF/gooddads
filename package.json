@@ -9,11 +9,9 @@
 		"prettier:check": "npx prettier . --check",
 		"prettier:write": "npx prettier . --write",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build",
-		"chromatic": "npx chromatic "
+		"build-storybook": "storybook build"
 	},
 	"devDependencies": {
-		"@chromatic-com/storybook": "^1.9.0",
 		"@dbml/cli": "^3.8.0",
 		"@eslint/js": "^9.18.0",
 		"@headlessui/react": "^1.4.2",
