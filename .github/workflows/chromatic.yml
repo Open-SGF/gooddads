@@ -13,9 +13,7 @@ jobs:
     # Operating System
     runs-on: ubuntu-latest
     outputs:
-      storybookUrl:
-        description: 'Storybook URL'
-        value: ${{ jobs.test.outputs.storybookUrl }}
+      storybookUrl: ${{ jobs.test.outputs.storybookUrl }}
     # Job steps
     steps:
       - uses: actions/checkout@v4
