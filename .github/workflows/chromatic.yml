@@ -13,8 +13,6 @@ jobs:
   test:
     # Operating System
     runs-on: ubuntu-latest
-    outputs:
-      storybookUrl: ${{ jobs.test.outputs.storybookUrl }}
     # Job steps
     steps:
       - uses: actions/checkout@v4
@@ -25,17 +23,13 @@ jobs:
           node-version: 20
       - run: npm ci
       #👇 Adds Chromatic as a step in the workflow
-      - uses: chromaui/action@latest
+      - id: 'chromatic'
+        uses: chromaui/action@latest
         # Options required for Chromatic's GitHub Action
         with:
           #👇 Chromatic projectToken,
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
-  comment:
-    # This ensures the comment job only runs after the test job completes
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
       - name: Add comment with Storybook URL
         uses: actions/github-script@v6
         with:
@@ -46,5 +40,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `Storybook is published here: **${{ needs.test.outputs.storybookUrl }}**`
+              body: `**Preview Storybok**: ${{ steps.chromatic.outputs.storybookUrl }}`
             });
