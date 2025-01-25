@@ -12,6 +12,10 @@ jobs:
   test:
     # Operating System
     runs-on: ubuntu-latest
+    outputs:
+      storybookUrl:
+        description: 'Storybook URL'
+        value: ${{ jobs.test.outputs.storybookUrl }}
     # Job steps
     steps:
       - uses: actions/checkout@v4
@@ -28,3 +32,21 @@ jobs:
           #👇 Chromatic projectToken,
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
+  comment:
+    # This ensures the comment job only runs after the test job completes
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add comment with Storybook URL
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // Post a comment on the PR or commit with the Storybook URL from the test job
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `Storybook is published here: **${{ needs.test.outputs.storybookUrl }}**`
+            });
+
