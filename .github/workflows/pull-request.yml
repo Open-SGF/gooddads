@@ -31,6 +31,5 @@ jobs:
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          # Only publish, no tests, no review
           exitOnceUploaded: true
           token: ${{ secrets.GITHUB_TOKEN }}
