@@ -1,0 +1,36 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*' # Use the latest LTS version of Node.js
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run prettier check
+        run: npm run prettier:check
+
+      - name: Run lint check
+        run: npm run lint:check
+
+      - name: Chromatic publish
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # Only publish, no tests, no review
+          exitOnceUploaded: true
+          token: ${{ secrets.GITHUB_TOKEN }}
