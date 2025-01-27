@@ -31,7 +31,7 @@ jobs:
 
       - name: Chromatic publish
         id: chromatic
-        if: github.repository != 'Open-SGF/good-dads'
+        if: github.repository != 'Open-SGF/gooddads'
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
