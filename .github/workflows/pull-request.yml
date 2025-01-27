@@ -1,31 +1,38 @@
 name: Pull Request
 
 on:
+  push:
+    branches: [main, storybook-publish-adr]
   pull_request:
-    branches:
-      - main
 
 jobs:
-  test:
-    # Operating System
+  pull-request:
     runs-on: ubuntu-latest
-    # Job steps
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - run: npm ci
-      #👇 Adds Chromatic as a step in the workflow
-      - id: 'chromatic'
+          node-version: 'lts/*' # Use the latest LTS version of Node.js
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run prettier check
+        run: npm run prettier:check
+
+      - name: Run lint check
+        run: npm run lint:check
+
+      - name: Chromatic publish
+        id: chromatic
         uses: chromaui/action@latest
-        # Options required for Chromatic's GitHub Action
         with:
-          #👇 Chromatic projectToken,
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          # Only publish, no tests
+          projectToken: ${{ vars.CHROMATIC_PROJECT_TOKEN }}
           exitOnceUploaded: true
           token: ${{ secrets.GITHUB_TOKEN }}
-
