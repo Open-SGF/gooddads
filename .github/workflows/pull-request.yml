@@ -33,6 +33,6 @@ jobs:
         id: chromatic
         uses: chromaui/action@latest
         with:
-          projectToken: ${{ vars.CHROMATIC_PROJECT_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitOnceUploaded: true
           token: ${{ secrets.GITHUB_TOKEN }}
