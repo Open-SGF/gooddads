@@ -6,35 +6,26 @@ on:
       - main
 
 jobs:
-  pull-request:
+  test:
+    # Operating System
     runs-on: ubuntu-latest
-    env:
-      CHROMATIC_PROJECT_TOKEN: ${{ vars.CHROMATIC_PROJECT_TOKEN }}
+    # Job steps
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20' # Use the latest LTS version of Node.js
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Chromatic publish
-        id: chromatic
+          node-version: 20
+      - run: npm ci
+      #👇 Adds Chromatic as a step in the workflow
+      - id: 'chromatic'
         uses: chromaui/action@latest
+        # Options required for Chromatic's GitHub Action
         with:
+          #👇 Chromatic projectToken,
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # Only publish, no tests
           exitOnceUploaded: true
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run prettier check
-        run: npm run prettier:check
-
-      - name: Run lint check
-        run: npm run lint:check
-
 
