@@ -9,7 +9,7 @@ jobs:
   pull-request:
     runs-on: ubuntu-latest
     env:
-      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      CHROMATIC_PROJECT_TOKEN: ${{ vars.CHROMATIC_PROJECT_TOKEN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
