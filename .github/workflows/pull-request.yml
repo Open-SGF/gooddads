@@ -28,8 +28,9 @@ jobs:
         run: npm run lint:check
 
       - name: Chromatic publish
+        id: chromatic
         uses: chromaui/action@latest
         with:
+          projectToken: ${{ vars.CHROMATIC_PROJECT_TOKEN }}
           exitOnceUploaded: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
