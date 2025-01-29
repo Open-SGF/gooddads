@@ -1,4 +1,4 @@
-name: Chromatic Publish (ref)
+name: Chromatic Publish
 
 on:
   pull_request_target:
