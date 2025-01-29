@@ -1,7 +1,7 @@
 import { useState, PropsWithChildren, ReactNode } from 'react'
 import ApplicationLogo from '@/Components/ui/ApplicationLogo'
 import Dropdown from '@/Components/Dropdown'
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink'
+import { ResponsiveNavLink } from '@/Components/ui/ResponsiveNavLink'
 import {
 	NavigationMenu,
 	NavigationMenuList,
