@@ -16,6 +16,7 @@
   - For Linux: [Docker Desktop](https://docs.docker.com/desktop/install/linux-install/)
 - Navigate to the project directory and run `composer install`
 - Duplicate the .env.example: `cp .env.example .env`
+- Generate a new APP_KEY: `sail artisan key:generate`. This will automatically update the .env file for the APP_KEY value.
 - For running sail commands, by default, you are required to enter the full path to the executable in `vendor/bin/sail`. Most devs prefer to create an alias in their shell so they only have to type `sail`. Read the sail docs about [configuring a sail alias](https://laravel.com/docs/11.x/sail#configuring-a-shell-alias). Further documentation will assume an alias exists in your shell.
 
 ## Installing Current Project Dependencies
@@ -38,7 +39,8 @@
 
 - Start the project: `sail up -d`
 - Run DB migration scripts only on initial setup and after creating new migrations `sail artisan migrate --seed`
-- View the project in your browser at http://localhost:80
+- Run the inertia frontend: `npm run dev`
+- View the project in your browser at http://localhost
   - The URL port number is configured in the `.env` file as APP_PORT
 
 ## Project Linting
