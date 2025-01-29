@@ -3,9 +3,16 @@ import ApplicationLogo from '@/Components/ui/ApplicationLogo'
 import Dropdown from '@/Components/Dropdown'
 import NavLink from '@/Components/NavLink'
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink'
+import {
+	NavigationMenu,
+	NavigationMenuList,
+	NavigationMenuItem,
+	NavigationMenuLink,
+} from '@/Components/ui'
 import { Link } from '@inertiajs/react'
 import { User } from '@/types'
 import { usePermission } from '@/hooks/permissions'
+import { House, Users, FileChartColumn, FolderClosed, GraduationCap } from 'lucide-react'
 
 export default function Authenticated({
 	user,
@@ -31,17 +38,59 @@ export default function Authenticated({
 								</Link>
 							</div>
 							<div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-								<NavLink href={route('home')} active={route().current('home')}>
-									Dashboard
-								</NavLink>
-								{hasPermission('view users') && (
-									<NavLink
-										href={route('users.list')}
-										active={route().current('users.list')}
-									>
-										Users
-									</NavLink>
-								)}
+								<NavigationMenu>
+									<NavigationMenuList>
+										<NavigationMenuItem>
+											<NavigationMenuLink
+												href={route('dashboard')}
+												active={route().current('dashboard')}
+												// className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+											>
+												<House color="black" size={20} /> Dashboard
+											</NavigationMenuLink>
+										</NavigationMenuItem>
+										<NavigationMenuItem>
+											{hasPermission('list users') && (
+												<NavigationMenuLink
+													href={route('users.list')}
+													active={route().current('users.list')}
+												>
+													<Users color="black" size={20} /> Users
+												</NavigationMenuLink>
+											)}
+										</NavigationMenuItem>
+										<NavigationMenuItem>
+											{hasPermission('list users') && (
+												<NavigationMenuLink
+													href={route('users.list')}
+													active={route().current('users.list')}
+												>
+													<FolderClosed color="black" size={20} /> Curriculum
+												</NavigationMenuLink>
+											)}
+										</NavigationMenuItem>
+										<NavigationMenuItem>
+											{hasPermission('list users') && (
+												<NavigationMenuLink
+													href={route('users.list')}
+													active={route().current('users.list')}
+												>
+													<GraduationCap color="black" size={20} /> Classes
+												</NavigationMenuLink>
+											)}
+										</NavigationMenuItem>
+										<NavigationMenuItem>
+											{hasPermission('list users') && (
+												<NavigationMenuLink
+													href={route('users.list')}
+													active={route().current('users.list')}
+												>
+													<FileChartColumn color="black" size={20} /> Reports
+												</NavigationMenuLink>
+											)}
+										</NavigationMenuItem>
+									</NavigationMenuList>
+								</NavigationMenu>
 							</div>
 						</div>
 
