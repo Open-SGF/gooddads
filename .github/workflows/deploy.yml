@@ -1,7 +1,7 @@
-name: Chromatic Publish
+name: Deploy
 
 on:
-  pull_request_target:
+  push:
     branches:
       - main
 
@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Check out the PR head
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Install dependencies
         run: npm ci
