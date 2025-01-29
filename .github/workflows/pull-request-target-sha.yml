@@ -9,10 +9,14 @@ jobs:
   chromatic:
     runs-on: ubuntu-latest
     steps:
+      - name: commits
+        run: echo "PR_FETCH_DEPTH=$(( ${{ github.event.pull_request.commits }} + 1 ))" >> "${GITHUB_ENV}"
+
       - name: Check out the PR head
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: ${{ steps.commits.outputs.PR_FETCH_DEPTH }}
 
       - name: Install dependencies
         run: npm ci
