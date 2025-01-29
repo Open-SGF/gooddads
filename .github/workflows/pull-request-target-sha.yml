@@ -1,4 +1,4 @@
-name: Chromatic Publish (ref)
+name: Chromatic Publish (sha)
 
 on:
   pull_request_target:
@@ -12,8 +12,7 @@ jobs:
       - name: Check out the PR head
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Install dependencies
         run: npm ci
