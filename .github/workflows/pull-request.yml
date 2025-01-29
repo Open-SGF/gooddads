@@ -2,7 +2,7 @@ name: Pull Request
 
 on:
   push:
-    branches: [main, storybook-publish-adr]
+    branches: [main]
   pull_request:
 
 jobs:
@@ -28,12 +28,3 @@ jobs:
 
       - name: Run lint check
         run: npm run lint:check
-
-      - name: Chromatic publish
-        id: chromatic
-        if: github.repository != 'Open-SGF/gooddads'
-        uses: chromaui/action@latest
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          exitOnceUploaded: true
-          token: ${{ secrets.GITHUB_TOKEN }}
