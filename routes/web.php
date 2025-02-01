@@ -6,6 +6,7 @@ use App\Http\Controllers\Intake\ParticipantRegistrationController;
 use App\Http\Controllers\Intake\ParticipantSignupController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UsersController;
