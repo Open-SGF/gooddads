@@ -15,6 +15,11 @@ Route::get('/', function () {
     ]);
 });
 
+Route::controller(\App\Http\Controllers\LegalController::class)->group(function () {
+    Route::get('/privacy-policy', 'privacyPolicy')->name('privacy-policy');
+    Route::get('/terms-of-service', 'termsOfService')->name('terms-of-service');
+});
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
