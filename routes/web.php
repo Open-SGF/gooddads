@@ -19,6 +19,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/stepper-demo', function () {
+    return Inertia::render('StepperDemo/StepperDemo');
+})->middleware(['auth', 'verified'])->name('stepper-demo');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

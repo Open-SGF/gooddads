@@ -141,7 +141,7 @@ const StepperStep = <T extends Stepperize.Step, Icon extends React.ReactNode>({
   if (variant === "circle") {
     return (
       <li
-        id={id}
+        id={of.id}
         className={cn(
           "stepper-step flex shrink-0 items-center gap-4 rounded-md transition-colors",
           className
