@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Intake\IntakeController;
+use App\Http\Controllers\Intake\ParticipantSignupController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Intake\ParticipantRegistrationController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -34,5 +37,24 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users', [UsersController::class, 'list'])->name('users.list');
     Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
 });
+
+Route::name('intake')
+    ->prefix('intake')
+    ->group(function () {
+        Route::middleware(['role:intake'])->group(function () {
+            Route::get('/', [IntakeController::class, 'index'])->name('.index');
+            Route::get('register', [ParticipantRegistrationController::class, 'create'])->name('.register');
+            Route::post('register', [ParticipantRegistrationController::class, 'store']);
+        });
+
+        Route::middleware('role:participant')->group(function () {
+            Route::get('signup', [ParticipantSignupController::class, 'create'])->name('.signup');
+            Route::post('signup', [ParticipantRegistrationController::class, 'store']);
+        });
+
+
+    });
+
+
 
 require __DIR__.'/auth.php';
