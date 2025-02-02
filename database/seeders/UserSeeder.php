@@ -87,5 +87,7 @@ class UserSeeder extends Seeder
       'email' => 'participant@example.com',
       'password' => bcrypt('password123'),
     ])->assignRole('participant');
+
+
   }
 }
