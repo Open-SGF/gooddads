@@ -26,70 +26,85 @@ export default function Authenticated({
 	const { hasPermission } = usePermission(user)
 
 	return (
-		<div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-			<nav className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="flex justify-between h-16">
-						<div className="flex">
-							<div className="shrink-0 flex items-center self-end">
+		<div className="min-h-screen dark:bg-gray-900 flex flex-row">
+			<div className='max-w-s flex flex-col'>
+<div className="p-4 sm:p-6 lg:p-8 shrink-0 flex items-center justify-center">
 								<Link href="/">
 									<ApplicationLogo variant="horizontal-black" size={86} />
 								</Link>
 							</div>
-							<div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-								<NavigationMenu>
-									<NavigationMenuList>
-										<NavigationMenuItem>
+											<NavigationMenu className='justify-start'>
+									<NavigationMenuList className='flex flex-col justify-start items-end'>
+										<NavigationMenuItem className='w-full'>
 											<NavigationMenuLink
 												href={route('dashboard')}
 												active={route().current('dashboard')}
-												// className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+												className="group/navlink inline-flex h-10 w-full justify-start items-center gap-4 px-7 py-2 text-sm font-medium transition-colors hover:bg-primary hover:text-accent-foreground focus:bg-primary focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary/50 data-[active]:text-foreground data-[state=open]:bg-primary/50 data-[state=open]:text-foreground"
 											>
-												<House color="black" size={20} /> Dashboard
+												<House className='transition-colors group-hover/navlink:stroke-white group-focus/navlink:stroke-white group-data-[active]/navlink:stroke-black group-data-[state=open]/navlink:stroke-black' color="black" size={20} /> Dashboard
 											</NavigationMenuLink>
 										</NavigationMenuItem>
-										<NavigationMenuItem>
+										<NavigationMenuItem className='w-full'>
 											{hasPermission('list users') && (
 												<NavigationMenuLink
 													href={route('users.list')}
 													active={route().current('users.list')}
+																									className="group/navlink inline-flex h-10 w-full justify-start items-center gap-4 px-7 py-2 text-sm font-medium transition-colors hover:bg-primary hover:text-accent-foreground focus:bg-primary focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary/50 data-[active]:text-foreground data-[state=open]:bg-primary/50 data-[state=open]:text-foreground"
 												>
-													<Users color="black" size={20} /> Users
+													<Users className='transition-colors group-hover/navlink:stroke-white group-focus/navlink:stroke-white group-data-[active]/navlink:stroke-black group-data-[state=open]/navlink:stroke-black' color="black" size={20} /> Users
 												</NavigationMenuLink>
 											)}
 										</NavigationMenuItem>
-										<NavigationMenuItem>
+										<NavigationMenuItem className='w-full'>
 											{hasPermission('list users') && (
 												<NavigationMenuLink
 													href={route('users.list')}
 													active={route().current('users.list')}
+																									className="group/navlink inline-flex h-10 w-full justify-start items-center gap-4 px-7 py-2 text-sm font-medium transition-colors hover:bg-primary hover:text-accent-foreground focus:bg-primary focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary/50 data-[active]:text-foreground data-[state=open]:bg-primary/50 data-[state=open]:text-foreground"
 												>
-													<FolderClosed color="black" size={20} /> Curriculum
+													<FolderClosed className='transition-colors group-hover/navlink:stroke-white group-focus/navlink:stroke-white group-data-[active]/navlink:stroke-black group-data-[state=open]/navlink:stroke-black' color="black" size={20} /> Curriculum
 												</NavigationMenuLink>
 											)}
 										</NavigationMenuItem>
-										<NavigationMenuItem>
+										<NavigationMenuItem className='w-full'>
 											{hasPermission('list users') && (
 												<NavigationMenuLink
 													href={route('users.list')}
 													active={route().current('users.list')}
+																									className="group/navlink inline-flex h-10 w-full justify-start items-center gap-4 px-7 py-2 text-sm font-medium transition-colors hover:bg-primary hover:text-accent-foreground focus:bg-primary focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary/50 data-[active]:text-foreground data-[state=open]:bg-primary/50 data-[state=open]:text-foreground"
 												>
-													<GraduationCap color="black" size={20} /> Classes
+													<GraduationCap className='transition-colors group-hover/navlink:stroke-white group-focus/navlink:stroke-white group-data-[active]/navlink:stroke-black group-data-[state=open]/navlink:stroke-black' color="black" size={20} /> Classes
 												</NavigationMenuLink>
 											)}
 										</NavigationMenuItem>
-										<NavigationMenuItem>
+										<NavigationMenuItem className='w-full'>
 											{hasPermission('list users') && (
 												<NavigationMenuLink
 													href={route('users.list')}
 													active={route().current('users.list')}
+													className="group/navlink inline-flex h-10 w-full justify-start items-center gap-4 px-7 py-2 text-sm font-medium transition-colors hover:bg-primary hover:text-accent-foreground focus:bg-primary focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary/50 data-[active]:text-foreground data-[state=open]:bg-primary/50 data-[state=open]:text-foreground"
 												>
-													<FileChartColumn color="black" size={20} /> Reports
+													<FileChartColumn className='transition-colors group-hover/navlink:stroke-white group-focus/navlink:stroke-white group-data-[active]/navlink:stroke-black group-data-[state=open]/navlink:stroke-black' color="black" size={20} /> Reports
 												</NavigationMenuLink>
 											)}
 										</NavigationMenuItem>
 									</NavigationMenuList>
 								</NavigationMenu>
+			</div>
+
+
+			<div className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="flex justify-between h-16">
+						<div className="flex">
+							<div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+							{header && (
+				<header className="bg-white dark:bg-gray-800 shadow">
+					<div className="max-w-7xl min-h-9 mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center">
+						{header}
+					</div>
+				</header>
+			)}
 							</div>
 						</div>
 
@@ -222,17 +237,11 @@ export default function Authenticated({
 						</div>
 					</div>
 				</div>
-			</nav>
+			</div>
 
-			{header && (
-				<header className="bg-white dark:bg-gray-800 shadow">
-					<div className="max-w-7xl min-h-9 mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center">
-						{header}
-					</div>
-				</header>
-			)}
 
 			<main>{children}</main>
-		</div>
+			</div>
+	
 	)
 }
