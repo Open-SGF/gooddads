@@ -1,11 +1,11 @@
 import { Link, InertiaLinkProps } from '@inertiajs/react'
 
-export default function ResponsiveNavLink({
+const ResponsiveNavLink = ({
 	active = false,
 	className = '',
 	children,
 	...props
-}: InertiaLinkProps & { active?: boolean }) {
+}: InertiaLinkProps & { active?: boolean }) => {
 	return (
 		<Link
 			{...props}
@@ -19,3 +19,5 @@ export default function ResponsiveNavLink({
 		</Link>
 	)
 }
+
+export { ResponsiveNavLink }
