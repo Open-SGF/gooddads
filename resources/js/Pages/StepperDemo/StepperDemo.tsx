@@ -19,6 +19,7 @@ const steps: Step[] = [
     { id: "step-1", title: "Step 1", description: "This is the first step" },
     { id: "step-2", title: "Step 2", description: "This is the second step" },
     { id: "step-3", title: "Step 3", description: "This is the third step" },
+    { id: "step-4", title: "Step 4", description: "This is the fourth step" },
 ];
 
 const stepperInstance = defineStepper(...steps);
@@ -41,8 +42,9 @@ export default function StepperDemo({ auth }: PageProps) {
 					<div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 						<div className="p-6 text-gray-900 dark:text-gray-100">
                             <Stepper instance = { stepperInstance } className="space-y-4" variant="horizontal">
-                                {({ methods }) => (
+                                {({ methods }) => (                                    
                                     <React.Fragment>
+                                        {/* <pre>{JSON.stringify(methods, null, 2)}</pre> */}
                                         <StepperNavigation>
                                             {methods.all.map((step) => (
                                             <StepperStep
@@ -54,18 +56,28 @@ export default function StepperDemo({ auth }: PageProps) {
                                                 <StepperDescription>{step.description}</StepperDescription>
                                             </StepperStep>
                                             ))}
-                                        </StepperNavigation>
+                                        </StepperNavigation>  
+                                        <div className="flex items-center gap-2">
+                                            {/* <span className="text-sm text-muted-foreground">
+                                                Step {methods.current.id}
+                                            </span> */}
+                                            {/* <pre>{JSON.stringify(methods.current, null, 2)}</pre> */}
+                                        </div>                                     
+
                                         {methods.switch({
-                                            "step-1": (step) => <Content step={step} />,
-                                            "step-2": (step) => <Content step={step} />,
-                                            "step-3": (step) => <Content step={step} />,
+                                            "step-1": (step) => <Content step = {step} />,
+                                            "step-2": (step) => <Content step = {step} />,
+                                            "step-3": (step) => <Content step = {step} />,
+                                            "step-4": (step) => <Content step = {step} />,
                                         })}
+
                                         <StepperControls>
                                             {!methods.isLast && (
                                             <Button
                                                 variant="secondary"
                                                 onClick={methods.prev}
                                                 disabled={methods.isFirst}
+                                                
                                             >
                                                 Previous
                                             </Button>
@@ -87,8 +99,12 @@ export default function StepperDemo({ auth }: PageProps) {
 // A simple content component that will be rendered for each step.
 const Content = ({ step }: { step: Step }) => {
     return (
-      <StepperPanel when={ step } className="h-[200px] flex items-center justify-center rounded border bg-slate-50 p-8">
-        <p className="text-xl font-normal">Content for {step.id}</p>
-      </StepperPanel>
+      <div> 
+        {/* <div>This is the contentpanel for step {step.id}</div>
+        <pre>{JSON.stringify(step, null, 2)}</pre> */}
+        <StepperPanel when={ step } className="h-[200px] flex items-center justify-center rounded border bg-slate-50 p-8">
+            <p className="text-xl font-normal">Content for {step.id}</p>
+        </StepperPanel>
+      </div>
     );
   };

@@ -468,6 +468,15 @@ const StepperPanel = <T extends Stepperize.Step>({
     throw new Error(`Step ${when.id} does not exist in the stepper instance`)
   }
 
+  // Track step changes
+  const [currentStep, setCurrentStep] = React.useState(methods.current);
+
+  React.useEffect(() => {
+    setCurrentStep(methods.current);
+  }, [methods.current]); // Re-run when current step updates
+
+  // console.log("Before onBeforeAction")
+
   const onBeforeAction = React.useCallback(
     async (
       action: StepAction,
@@ -485,6 +494,7 @@ const StepperPanel = <T extends Stepperize.Step>({
           : instance.utils.getFirst()
 
       const shouldProceed = await callback({ prevStep, nextStep })
+
       if (shouldProceed) {
         if (action === "next") methods.next()
         if (action === "prev") methods.prev()
@@ -498,12 +508,15 @@ const StepperPanel = <T extends Stepperize.Step>({
 
   return (
     <React.Fragment>
-      {methods.when(when.id, (step): React.ReactNode => (
+      {/* <pre>WHEN: {JSON.stringify(when, null, 2)}</pre> */}
+      {/* <pre>CURRENT: {JSON.stringify(methods.current, null, 2)}</pre> */}
+      {methods.when(currentStep.id, (step): React.ReactNode => (
         <Comp
           className={cn("stepper-panel flex-1", className)}
           ref={(node) => scrollIntoStepperPanel(node, tracking)}
           {...props}
         >
+          {/* <pre>STEP: {JSON.stringify(step, null, 2)}</pre> */}
           {(typeof children === "function"
             ? children({ step: step as T, onBeforeAction })
             : children) as React.ReactNode}
