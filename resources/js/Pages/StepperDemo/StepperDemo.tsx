@@ -52,7 +52,7 @@ export default function StepperDemo({ auth }: PageProps) {
                                                 of={step}
                                                 onClick={() => methods.goTo(step.id)}
                                             >
-                                                <StepperTitle>{step.title}-{step.id}</StepperTitle>
+                                                <StepperTitle>{step.title}</StepperTitle>
                                                 <StepperDescription>{step.description}</StepperDescription>
                                             </StepperStep>
                                             ))}

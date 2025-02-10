@@ -151,7 +151,8 @@ const StepperStep = <T extends Stepperize.Step, Icon extends React.ReactNode>({
           currentStep={stepIndex + 1}
           totalSteps={instance.steps.length}
         />
-        <div className="stepper-step-content flex flex-col items-start gap-1">
+        <div className="stepper-step-content flex flex-col items-start gap-1">          
+          
           {title}
           {description}
         </div>
@@ -160,7 +161,7 @@ const StepperStep = <T extends Stepperize.Step, Icon extends React.ReactNode>({
   }
 
   return (
-    <>
+    <>        
       <li
         id={id}
         className={cn([
@@ -209,6 +210,12 @@ const StepperStep = <T extends Stepperize.Step, Icon extends React.ReactNode>({
           />
         )}
         <div className="stepper-step-content flex flex-col items-start">
+          <pre>isActive: {String(isActive)}</pre>
+          <pre>currentStep-id: {currentStep.id}</pre>
+          <pre>of-id: {of.id}</pre>
+          <pre>step-index: {stepIndex}</pre>
+          <pre>currentIndex: {currentIndex}</pre>
+          <pre>isLast: {String(isLast)}</pre>
           {title}
           {description}
         </div>
@@ -469,11 +476,11 @@ const StepperPanel = <T extends Stepperize.Step>({
   }
 
   // Track step changes
-  const [currentStep, setCurrentStep] = React.useState(methods.current);
+  // const [currentStep, setCurrentStep] = React.useState(methods.current);
 
-  React.useEffect(() => {
-    setCurrentStep(methods.current);
-  }, [methods.current]); // Re-run when current step updates
+  // React.useEffect(() => {
+  //   setCurrentStep(methods.current);
+  // }, [methods.current]); // Re-run when current step updates
 
   // console.log("Before onBeforeAction")
 
@@ -510,7 +517,8 @@ const StepperPanel = <T extends Stepperize.Step>({
     <React.Fragment>
       {/* <pre>WHEN: {JSON.stringify(when, null, 2)}</pre> */}
       {/* <pre>CURRENT: {JSON.stringify(methods.current, null, 2)}</pre> */}
-      {methods.when(currentStep.id, (step): React.ReactNode => (
+      {/* {methods.when(currentStep.id, (step): React.ReactNode => ( */}
+      {methods.when(methods.current.id, (step): React.ReactNode => (
         <Comp
           className={cn("stepper-panel flex-1", className)}
           ref={(node) => scrollIntoStepperPanel(node, tracking)}
