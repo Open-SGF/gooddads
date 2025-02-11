@@ -28,46 +28,51 @@ const meta: Meta<typeof StepperProvider> = {
         labelOrientation: {
             options: ['horizontal', 'vertical'],
             control: {type: 'radio'}
-        }
+        },
+
     },
     args: {
         variant: 'horizontal',
-        labelOrientation: 'horizontal'
+        labelOrientation: 'horizontal',
+        tracking: false,
     },
     render: (args) => (
         <StepperProvider className="space-y-4" {...args} >
         {({ methods }) => (
             <React.Fragment>
-            <StepperNavigation>
-                {methods.all.map((step) => (
-                <StepperStep
-                    key={step.id}
-                    of={step.id}
-                    onClick={() => methods.goTo(step.id)}
-                >
-                    <StepperTitle>{step.title}</StepperTitle>
-                </StepperStep>
-                ))}
-            </StepperNavigation>
-            {methods.switch({
-                "step-1": (step) => <Content id={step.id} />,
-                "step-2": (step) => <Content id={step.id} />,
-                "step-3": (step) => <Content id={step.id} />,
-            })}
-            <StepperControls>
-                {!methods.isLast && (
-                <Button
-                    variant="secondary"
-                    onClick={methods.prev}
-                    disabled={methods.isFirst}
-                >
-                    Previous
-                </Button>
-                )}
-                <Button onClick={methods.isLast ? methods.reset : methods.next}>
-                {methods.isLast ? "Reset" : "Next"}
-                </Button>
-            </StepperControls>
+                <StepperNavigation>
+                    {methods.all.map((step) => (
+                    <StepperStep
+                        key={step.id}
+                        of={step.id}
+                        onClick={() => methods.goTo(step.id)}
+                    >
+                        <StepperTitle>{step.title}</StepperTitle>
+                    </StepperStep>
+                    ))}
+                </StepperNavigation>
+
+                {methods.switch({
+                    "step-1": (step) => <Content id={step.id} />,
+                    "step-2": (step) => <Content id={step.id} />,
+                    "step-3": (step) => <Content id={step.id} />,
+                })}
+
+                <StepperControls>
+                    {!methods.isLast && (
+                    <Button
+                        variant="secondary"
+                        onClick={methods.prev}
+                        disabled={methods.isFirst}
+                    >
+                        Previous
+                    </Button>
+                    )}
+
+                    <Button onClick={methods.isLast ? methods.reset : methods.next}>
+                        {methods.isLast ? "Reset" : "Next"}
+                    </Button>
+                </StepperControls>
             </React.Fragment>
         )}
         </StepperProvider>
@@ -90,7 +95,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 /**
- * The default form of the drawer.
+ * The default form of the stepper.
  */
 // @ts-ignore
 export const Default: Story = {}
