@@ -77,9 +77,6 @@ const meta: Meta<typeof StepperProvider> = {
         )}
         </StepperProvider>
     ),
-    parameters: {
-        layout: "centered",
-    },
 } satisfies Meta<typeof StepperProvider>;
 
 const Content = ({ id }: { id: string }) => {
