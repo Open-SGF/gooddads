@@ -28,7 +28,7 @@ export default function ParticipantRegister() {
 	return (
 		<GuestLayout>
 			<Head title="Participant Registration" />
-
+			<div className={'text-xl mt-3 mb-6'}>New Participant Registration</div>
 			<form onSubmit={submit}>
 				<div>
 					<Label htmlFor="first_name">First Name</Label>

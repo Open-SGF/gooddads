@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Intake\IntakeController;
+use App\Http\Controllers\Intake\ParticipantDisclosureController;
 use App\Http\Controllers\Intake\ParticipantSignupController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -49,7 +50,12 @@ Route::name('intake')
 
         Route::middleware('role:participant')->group(function () {
             Route::get('signup', [ParticipantSignupController::class, 'create'])->name('.signup');
-            Route::post('signup', [ParticipantRegistrationController::class, 'store']);
+            Route::post('signup', [ParticipantSignupController::class, 'store']);
+        });
+
+        Route::middleware('role:participant')->group(function () {
+            Route::get('disclosure', [ParticipantDisclosureController::class, 'create'])->name('.disclosure');
+            Route::post('disclosure', [ParticipantDisclosureController::class, 'store']);
         });
 
 
