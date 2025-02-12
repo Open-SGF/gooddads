@@ -18,16 +18,15 @@ use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class ParticipantSignupController extends Controller
+class ParticipantDisclosureController extends Controller
 {
     /**
      * Display the registration view.
      */
-    public function create(): Response
+    public function create(Request $request): Response
     {
-        return Inertia::render('Intake/Signup',[
-            'ethnicity' => Ethnicity::displayArray(),
-            'maritalStatus' => MaritalStatus::displayArray(),
+        return Inertia::render('Intake/Disclosure',[
+            'participant' => $request->user()?->participant ?? [],
         ]);
     }
 
@@ -36,13 +35,10 @@ class ParticipantSignupController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(ParticipantSignupStoreRequest $request, ParticipantService $participantService): RedirectResponse
+    public function store(Request $request, ParticipantService $participantService)
     {
-        $participantData = $request->validated();
-
-        $participantService->create($request->user(), $participantData);
-
-        return redirect(route('intake.disclosure', absolute: false));
+        // todo: implement
+        return back();
     }
 
 

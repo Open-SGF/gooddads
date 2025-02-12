@@ -22,7 +22,7 @@ export const IntakeIndex: React.FC<IntakeIndexProps> = ({ auth }) => {
 			<div className="py-12">
 				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
 					<Button>
-						<Link href={route('users.create')}>Start Registration</Link>
+						<Link href={route('intake.register')}>Start Registration</Link>
 					</Button>
 				</div>
 			</div>

@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->date('date_of_birth');
-            $table->text('contact');
+            $table->boolean('phone_contact')->nullable();
+            $table->boolean('custody')->nullable();
+            $table->boolean('visitation')->nullable();
+            $table->text('contact')->nullable();
             $table->decimal('child_support', 6, 2);
             $table->timestamps();
         });
