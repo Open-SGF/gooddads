@@ -25,12 +25,18 @@ class ParticipantSignupStoreRequest extends FormRequest
     {
         return [
             'date' => ['required', 'date'],
-            'address' => ['required', 'string', 'max:191'],
+            'address_line1' => ['required', 'string', 'max:191'],
+            'address_line2' => ['nullable', 'string', 'max:191'],
+            'address_city' => ['required', 'string', 'max:191'],
+            'address_state' => ['required', 'string', 'max:191'],
+            'address_zipcode' => ['required', 'string', 'max:191'],
+
             'employer' => ['nullable', 'string', 'max:191'],
             't_shirt_size' => ['nullable', 'string', 'max:191'],
-            'home_cell_phone' => ['required', 'string', 'max:20', new UsPhoneNumber()],
-            'work_phone' => ['nullable', 'string', 'max:20', new UsPhoneNumber()],
-            'other_number' => ['nullable', 'string', 'max:20', new UsPhoneNumber()],
+            'home_phone_number' => ['required', 'string', 'max:20', new UsPhoneNumber()],
+            'work_phone_number' => ['nullable', 'string', 'max:20', new UsPhoneNumber()],
+            'cell_phone_number' => ['nullable', 'string', 'max:20', new UsPhoneNumber()],
+            'alt_contact_number' => ['nullable', 'string', 'max:20', new UsPhoneNumber()],
             'probation_parole_case_worker_name' => ['nullable', 'string', 'max:191'],
             'probation_parole_case_worker_phone' => ['nullable', 'string', 'max:20', new UsPhoneNumber()],
             'marital_status' => ['required', Rule::in(MaritalStatus::values())],
@@ -49,11 +55,6 @@ class ParticipantSignupStoreRequest extends FormRequest
             'children_info.*.phone_contact' => ['required_with:children_info', 'boolean'],
             'children_info.*.child_support' => ['required_with:children_info', 'numeric'],
 
-            // These may be unnecessary if we use children specific values above
-            //            'contact_with_children' => ['nullable', 'boolean'],
-            //            'custody' => ['nullable', 'boolean'],
-            //            'visitation' => ['nullable', 'boolean'],
-            //            'phone_contact' => ['nullable', 'boolean'],
 
         ];
     }
