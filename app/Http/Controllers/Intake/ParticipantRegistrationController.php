@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intake;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\UsPhoneNumber;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class ParticipantRegistrationController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'phone_number' => 'required',
+            'phone_number' => ['required', new UsPhoneNumber()],
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'terms' => ['required', 'accepted'],
