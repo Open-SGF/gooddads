@@ -34,7 +34,7 @@ export default function Authenticated({
 
 	return (
 		<div className="min-h-screen dark:bg-gray-900 flex flex-row">
-			<div className="max-w-3xs flex flex-col border-r border-var(--border)">
+			<div className="max-w-3xs flex flex-col flex-[1_1_200px] border-r border-var(--border)">
 				<div className="p-4 sm:p-6 lg:p-8 shrink-0 flex items-center justify-center">
 					<Link href="/">
 						<ApplicationLogo variant="horizontal-black" size={120} />
@@ -122,32 +122,35 @@ export default function Authenticated({
 						</NavigationMenuItem>
 					</NavigationMenuList>
 				</NavigationMenu>
-				<ResponsiveNavLink method="post" href={route('logout')} as="button" className="group/logout flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:text-sidebar-ring focus:text-sidebar-ring" >
+				<ResponsiveNavLink
+					method="post"
+					href={route('logout')}
+					as="button"
+					className="group/logout flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:text-sidebar-ring focus:text-sidebar-ring"
+				>
 					<LogOut
 						className="transition-colors group-hover/logout:stroke-sidebar-ring group-focus/logout:stroke-sidebar-ring"
-						color='black'
+						color="black"
 						size={20}
 					/>{' '}
 					Log Out
 				</ResponsiveNavLink>
 			</div>
 
-			<div className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="flex justify-between h-16">
-						<div className="flex">
-							<div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-								{header && (
-									<header className="bg-white dark:bg-gray-800 shadow">
-										<div className="max-w-7xl min-h-9 mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center">
-											{header}
-										</div>
-									</header>
-								)}
-							</div>
+			<div className="flex flex-col flex-[1_1_80%]">
+				<div className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 h-fit">
+					<div className="flex justify-between">
+						<div className="flex items-center hidden space-x-8 sm:flex">
+							{header && (
+								<header className="bg-white dark:bg-gray-800">
+									<div className="mx-auto py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10 flex items-center">
+										{header}
+									</div>
+								</header>
+							)}
 						</div>
 
-						<div className="hidden sm:flex sm:items-center sm:ms-6">
+						<div className="flex items-center py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10">
 							<div className="ms-3 relative">
 								<Dropdown>
 									<Dropdown.Trigger>
@@ -227,58 +230,58 @@ export default function Authenticated({
 							</button>
 						</div>
 					</div>
-				</div>
 
-				<div
-					className={
-						(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'
-					}
-				>
-					<div className="pt-2 pb-3 space-y-1">
-						<ResponsiveNavLink
-							href={route('home')}
-							active={route().current('home')}
-						>
-							Dashboard
-						</ResponsiveNavLink>
-
-						{hasPermission('list users') && (
+					<div
+						className={
+							(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'
+						}
+					>
+						<div className="pt-2 pb-3 space-y-1">
 							<ResponsiveNavLink
-								href={route('users.list')}
-								active={route().current('users.list')}
+								href={route('dashboard')}
+								active={route().current('dashboard')}
 							>
-								Users
+								Dashboard
 							</ResponsiveNavLink>
-						)}
-					</div>
 
-					<div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-						<div className="px-4">
-							<div className="font-medium text-base text-gray-800 dark:text-gray-200">
-								{user.first_name} {user.last_name}
-							</div>
-							<div className="font-medium text-sm text-gray-500">
-								{user.email}
-							</div>
+							{hasPermission('list users') && (
+								<ResponsiveNavLink
+									href={route('users.list')}
+									active={route().current('users.list')}
+								>
+									Users
+								</ResponsiveNavLink>
+							)}
 						</div>
 
-						<div className="mt-3 space-y-1">
-							<ResponsiveNavLink href={route('profile.edit')}>
-								Profile
-							</ResponsiveNavLink>
-							<ResponsiveNavLink
-								method="post"
-								href={route('logout')}
-								as="button"
-							>
-								Log Out
-							</ResponsiveNavLink>
+						<div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+							<div className="px-4">
+								<div className="font-medium text-base text-gray-800 dark:text-gray-200">
+									{user.first_name} {user.last_name}
+								</div>
+								<div className="font-medium text-sm text-gray-500">
+									{user.email}
+								</div>
+							</div>
+
+							<div className="mt-3 space-y-1">
+								<ResponsiveNavLink href={route('profile.edit')}>
+									Profile
+								</ResponsiveNavLink>
+								<ResponsiveNavLink
+									method="post"
+									href={route('logout')}
+									as="button"
+								>
+									Log Out
+								</ResponsiveNavLink>
+							</div>
 						</div>
 					</div>
 				</div>
+
+				<main>{children}</main>
 			</div>
-
-			<main>{children}</main>
 		</div>
 	)
 }
