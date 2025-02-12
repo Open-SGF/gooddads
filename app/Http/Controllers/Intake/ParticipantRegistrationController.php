@@ -45,12 +45,14 @@ class ParticipantRegistrationController extends Controller
             'email' => $request->email,
             'phone_number' => $request->phone_number,
             'password' => Hash::make($request->password),
-        ])->assignRole('participant');
+        ]);
+
+        $user->assignRole('participant');
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('intake.signup', absolute: false));
+        return redirect(route('intake.signup'));
     }
 }
