@@ -43,10 +43,11 @@ class Participant extends Model
     protected $fillable = [
         'user_id',
         'region_id',
-        'street',
+        'address_line_1',
+        'address_line_2',
         'city',
         'state',
-        'zip_code',
+        'zipcode',
         'employer',
         'cell_phone_number',
         'home_phone_number',

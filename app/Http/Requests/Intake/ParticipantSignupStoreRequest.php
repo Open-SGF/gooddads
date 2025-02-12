@@ -25,11 +25,11 @@ class ParticipantSignupStoreRequest extends FormRequest
     {
         return [
             'date' => ['required', 'date'],
-            'address_line1' => ['required', 'string', 'max:191'],
-            'address_line2' => ['nullable', 'string', 'max:191'],
-            'address_city' => ['required', 'string', 'max:191'],
-            'address_state' => ['required', 'string', 'max:191'],
-            'address_zipcode' => ['required', 'string', 'max:191'],
+            'address_line_1' => ['required', 'string', 'max:191'],
+            'address_line_2' => ['nullable', 'string', 'max:191'],
+            'city' => ['required', 'string', 'max:191'],
+            'state' => ['required', 'string', 'max:191'],
+            'zipcode' => ['required', 'string', 'max:191'],
 
             'employer' => ['nullable', 'string', 'max:191'],
             't_shirt_size' => ['nullable', 'string', 'max:191'],
@@ -41,7 +41,7 @@ class ParticipantSignupStoreRequest extends FormRequest
             'probation_parole_case_worker_phone' => ['nullable', 'string', 'max:20', new UsPhoneNumber()],
             'marital_status' => ['required', Rule::in(MaritalStatus::values())],
             'ethnicity' => ['required', Rule::in(Ethnicity::values())],
-            'monthly_child_support_payment' => ['nullable', 'numeric'],
+            'monthly_child_support' => ['nullable', 'numeric'],
             'region_id' => ['required', 'exists:regions,id'],
 
             // Children information
@@ -49,7 +49,6 @@ class ParticipantSignupStoreRequest extends FormRequest
             'children_info.*.first_name' => ['required_with:children_info', 'string'],
             'children_info.*.last_name' => ['required_with:children_info', 'string'],
             'children_info.*.date_of_birth' => ['required_with:children_info', 'date'],
-            'children_info.*.contact' => ['required_with:children_info', 'string'],
             'children_info.*.custody' => ['required_with:children_info', 'boolean'],
             'children_info.*.visitation' => ['required_with:children_info', 'boolean'],
             'children_info.*.phone_contact' => ['required_with:children_info', 'boolean'],

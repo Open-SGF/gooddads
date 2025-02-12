@@ -6,6 +6,7 @@ use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Intake\ParticipantSignupStoreRequest;
+use App\Models\Region;
 use App\Models\User;
 use App\Services\ParticipantService;
 use Illuminate\Auth\Events\Registered;
@@ -28,6 +29,7 @@ class ParticipantSignupController extends Controller
         return Inertia::render('Intake/Signup',[
             'ethnicity' => Ethnicity::displayArray(),
             'maritalStatus' => MaritalStatus::displayArray(),
+            'regions' => Region::get(['id', 'description']),
         ]);
     }
 
