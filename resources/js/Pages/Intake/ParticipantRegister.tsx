@@ -8,6 +8,7 @@ export default function ParticipantRegister() {
 		first_name: '',
 		last_name: '',
 		email: '',
+		phone_number: '',
 		password: '',
 		password_confirmation: '',
 		terms: false,
@@ -22,7 +23,11 @@ export default function ParticipantRegister() {
 	const submit: FormEventHandler = (e) => {
 		e.preventDefault()
 
-		post(route('intake.register'))
+		post(route('intake.register'), {
+			onError: (err) => {
+				window.console.log(err)
+			},
+		})
 	}
 
 	return (
@@ -77,6 +82,23 @@ export default function ParticipantRegister() {
 					/>
 
 					<InputError message={errors.email} className="mt-2" />
+				</div>
+
+				<div className="mt-4">
+					<Label htmlFor="phone">Phone Number</Label>
+
+					<Input
+						id="phone"
+						type="tel"
+						name="phone"
+						value={data.phone_number}
+						className="mt-1 block w-full"
+						autoComplete="tel"
+						onChange={(e) => setData('phone_number', e.target.value)}
+						required
+					/>
+
+					<InputError message={errors.phone_number} className="mt-2" />
 				</div>
 
 				<div className="mt-4">
