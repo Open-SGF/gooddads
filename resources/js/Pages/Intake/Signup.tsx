@@ -1,27 +1,13 @@
-import { PageProps } from '@/types'
+import { PageProps, Child } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import { useForm } from '@inertiajs/react'
 import { format } from 'date-fns'
 import { Button, Input, InputError } from '@/Components/ui'
 
 interface StartPageProps extends PageProps {
-	sessionId: string
-	formData: StartForm
-}
-
-interface StartForm {
-	sessionId: string
-	// fullName: string
-	// date: string
-	addressLine1: string
-	addressLine2: string
-	addressCity: string
-	addressZipcode: string
-	addressState: string
-	phone: string
-	alternateContactName: string
-	alternateContactNumber: string
-	childName: string
+	maritalStatus: Record<string, string>,
+	ethnicity: Record<string, string>,
+	region: Record<string, string>,
 }
 
 const currentDate = () => {
@@ -31,21 +17,31 @@ const currentDate = () => {
 export default function StartPage({
 	sessionId,
 	formData: defaultFormData,
+	maritalStatus,
+	ethnicity,
+	region
 }: StartPageProps) {
-	const { data, setData, post, errors, processing } = useForm<StartForm>({
-		sessionId: defaultFormData?.sessionId ?? '',
-		// fullName: defaultFormData?.fullName ?? '',
-		// date: defaultFormData?.date ?? currentDate(),
-		addressLine1: defaultFormData?.addressLine1 ?? '',
-		addressLine2: defaultFormData?.addressLine2 ?? '',
-		addressCity: defaultFormData?.addressCity ?? '',
-		addressZipcode: defaultFormData?.addressZipcode ?? '',
-		addressState: defaultFormData?.addressState ?? '',
-		phone: defaultFormData?.phone ?? '',
-		alternateContactName: defaultFormData?.alternateContactName ?? '',
-		alternateContactNumber: defaultFormData?.alternateContactNumber ?? '',
-		childName: defaultFormData?.childName ?? '',
-	})
+	const { data, setData, post, errors, processing } = useForm({
+		date: currentDate(),
+		address_line_1: '',
+		address_line_2: '',
+		city: '',
+		state: '',
+		zipcode: '',
+		employer: '',
+		t_shirt_size: '',
+		home_phone_number: '',
+		work_phone_number: '',
+		cell_phone_number: '',		
+		alt_contact_number: '',
+		probation_parole_case_worker_name: '',
+		probation_parole_case_worker_phone: '',
+		marital_status: '',
+		ethnicity: '',
+		monthtly_child_support: '',
+		region: '',
+		children_info: [] as Child[],
+	});
 
 	return (
 		<IntakeLayout
@@ -60,26 +56,26 @@ export default function StartPage({
 					post(route('intake.start'))
 				}}
 			>
-				<div className={'flex flex-col gap-y-3'}>
+<div className={'flex flex-col gap-y-3'}>
 					<div>
 						<Input
 							placeholder="Address Line 1"
 							className="w-full"
 							autoComplete={'off'}
-							value={data.addressLine1}
-							onChange={(e) => setData('addressLine1', e.target.value)}
+							value={data.address_line_1}
+							onChange={(e) => setData('address_line_1', e.target.value)}
 						/>
-						<InputError message={errors.addressLine1} className="mt-2" />
+						<InputError message={errors.address_line_1} className="mt-2" />
 					</div>
 					<div>
 						<Input
 							placeholder="Address Line 2"
 							className="w-full"
 							autoComplete={'off'}
-							value={data.addressLine2}
-							onChange={(e) => setData('addressLine2', e.target.value)}
+							value={data.address_line_2}
+							onChange={(e) => setData('address_line_2', e.target.value)}
 						/>
-						<InputError message={errors.addressLine2} className="mt-2" />
+						<InputError message={errors.address_line_2} className="mt-2" />
 					</div>
 					<div className={'flex gap-x-3'}>
 						<div className={'w-full'}>
@@ -87,45 +83,84 @@ export default function StartPage({
 								placeholder="City"
 								className="inline"
 								autoComplete={'off'}
-								value={data.addressCity}
-								onChange={(e) => setData('addressCity', e.target.value)}
+								value={data.city}
+								onChange={(e) => setData('city', e.target.value)}
 							/>
-							<InputError message={errors.addressCity} className="mt-2" />
+							<InputError message={errors.city} className="mt-2" />
+						</div>
+						<div className={'w-full'}>
+							<Input
+								placeholder="State"
+								className="inline"
+								autoComplete={'off'}
+								value={data.state}
+								onChange={(e) => setData('state', e.target.value)}
+							/>
+							<InputError message={errors.state} className="mt-2" />
 						</div>
 						<div className={'w-full'}>
 							<Input
 								placeholder="Zip Code"
 								className="inline"
 								autoComplete={'off'}
-								value={data.addressZipcode}
-								onChange={(e) => setData('addressZipcode', e.target.value)}
+								value={data.zipcode}
+								onChange={(e) => setData('zipcode', e.target.value)}
 							/>
-							<InputError message={errors.addressZipcode} className="mt-2" />
+							<InputError message={errors.zipcode} className="mt-2" />
 						</div>
 					</div>
 					<div>
 						<Input
-							type="tel"
-							placeholder="Phone Number"
+							placeholder="Employer"
 							className="w-full"
 							autoComplete={'off'}
-							value={data.phone}
-							onChange={(e) => setData('phone', e.target.value)}
+							value={data.employer}
+							onChange={(e) => setData('employer', e.target.value)}
 						/>
-						<InputError message={errors.phone} className="mt-2" />
+						<InputError message={errors.employer} className="mt-2" />
 					</div>
 					<div>
 						<Input
-							placeholder="Alternate Contact Name"
-							autoComplete={'off'}
+							placeholder="T-shirt Size"
 							className="w-full"
-							value={data.alternateContactName}
-							onChange={(e) => setData('alternateContactName', e.target.value)}
+							autoComplete={'off'}
+							value={data.t_shirt_size}
+							onChange={(e) => setData('t_shirt_size', e.target.value)}
 						/>
-						<InputError
-							message={errors.alternateContactName}
-							className="mt-2"
+						<InputError message={errors.t_shirt_size} className="mt-2" />
+					</div>
+					<div>
+						<Input
+							type="tel"
+							placeholder="Home Phone Number"
+							className="w-full"
+							autoComplete={'off'}
+							value={data.home_phone_number}
+							onChange={(e) => setData('home_phone_number', e.target.value)}
 						/>
+						<InputError message={errors.home_phone_number} className="mt-2" />
+					</div>
+					<div>
+						<Input
+							type="tel"
+							placeholder="Work Phone Number"
+							className="w-full"
+							autoComplete={'off'}
+							value={data.work_phone_number}
+							onChange={(e) => setData('work_phone_number', e.target.value)}
+						/>
+						<InputError message={errors.work_phone_number} className="mt-2" />
+					</div>
+					<div>
+						<Input
+							type="tel"
+							placeholder="Cell Phone Number"
+							className="w-full"
+							autoComplete={'off'}
+							value={data.cell_phone_number}
+							onChange={(e) => setData('cell_phone_number', e.target.value)}
+						/>
+						<InputError message={errors.cell_phone_number} className="mt-2" />
 					</div>
 					<div>
 						<Input
@@ -133,25 +168,90 @@ export default function StartPage({
 							placeholder="Alternate Phone Number"
 							autoComplete={'off'}
 							className="w-full"
-							value={data.alternateContactNumber}
+							value={data.alt_contact_number}
 							onChange={(e) =>
-								setData('alternateContactNumber', e.target.value)
+								setData('alt_contact_number', e.target.value)
 							}
 						/>
 						<InputError
-							message={errors.alternateContactNumber}
+							message={errors.alt_contact_number}
 							className="mt-2"
 						/>
 					</div>
 					<div>
 						<Input
-							placeholder="Children's Name"
+							placeholder="Probation Officer's Name"
 							className="w-full"
 							autoComplete={'off'}
-							value={data.childName}
-							onChange={(e) => setData('childName', e.target.value)}
+							value={data.probation_parole_case_worker_name}
+							onChange={(e) => setData('probation_parole_case_worker_name', e.target.value)}
 						/>
-						<InputError message={errors.childName} className="mt-2" />
+						<InputError message={errors.probation_parole_case_worker_name} className="mt-2" />
+					</div>
+					<div>
+						<Input
+							placeholder="Probation Officer's Phone Number"
+							className="w-full"
+							autoComplete={'off'}
+							value={data.probation_parole_case_worker_phone}
+							onChange={(e) => setData('probation_parole_case_worker_phone', e.target.value)}
+						/>
+						<InputError message={errors.probation_parole_case_worker_phone} className="mt-2" />
+					</div>
+					<div>
+						<select
+							className='w-full border p-2 rounded'
+							value={data.marital_status}
+							onChange={(e) => setData('marital_status', e.target.value)}
+						>
+							<option value = "">Martial Status</option>
+							{
+								Object.entries(maritalStatus).map(([key, value]) => (
+									<option key = {key} value = {key}>{value}</option>
+								))
+							}
+						</select>
+						<InputError message={errors.marital_status} className="mt-2" />
+					</div>
+					<div>
+						<select
+							className='w-full border p-2 rounded'
+							value={data.ethnicity}
+							onChange={(e) => setData('ethnicity', e.target.value)}
+						>
+							<option value = "">Ethnicity</option>
+							{
+								Object.entries(ethnicity).map(([key, value]) => (
+									<option key = {key} value = {key}>{value}</option>
+								))
+							}
+						</select>
+						<InputError message={errors.ethnicity} className="mt-2" />
+					</div>			
+					<div>
+						<Input
+							placeholder="Monthly Child Support"
+							className="w-full"
+							autoComplete={'off'}
+							value={data.monthtly_child_support}
+							onChange={(e) => setData('monthtly_child_support', e.target.value)}
+						/>
+						<InputError message={errors.monthtly_child_support} className="mt-2" />
+					</div>
+					<div>
+						<select
+							className='w-full border p-2 rounded'
+							value={data.ethnicity}
+							onChange={(e) => setData('region', e.target.value)}
+						>
+							<option value = "">Region ID</option>
+							{
+								Object.entries(region).map(([key, value]) => (
+									<option key = {key} value = {key}>{value}</option>
+								))
+							}
+						</select>
+						<InputError message={errors.region} className="mt-2" />
 					</div>
 					<div className={'flex justify-center'}>
 						<Button
