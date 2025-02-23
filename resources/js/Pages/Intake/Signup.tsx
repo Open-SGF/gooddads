@@ -2,7 +2,7 @@ import { PageProps, Child } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import { useForm } from '@inertiajs/react'
 import { format } from 'date-fns'
-import { Button, Input, InputError } from '@/Components/ui'
+import { Button, Input, InputError, ChildrenTable } from '@/Components/ui'
 
 interface StartPageProps extends PageProps {
 	maritalStatus: Record<string, string>,
@@ -43,6 +43,25 @@ export default function StartPage({
 		children_info: [] as Child[],
 	});
 
+	const addChild = () => {
+		// Create a new empty child object with default values
+		const newChild: Child = {
+		  first_name: "",
+		  last_name: "",
+		  date_of_birth: "", // Empty string, you can use an initial date string if needed
+		  child_support: 0,
+		  custody: false,
+		  visitation: false,
+		  phone_contact: false,
+		};
+	
+		// Update the children array with the new child
+		setData((prevData) => ({
+		  ...prevData,
+		  children_info: [...prevData.children_info, newChild],
+		}));
+	  };
+
 	return (
 		<IntakeLayout
 			title={'Sign Up'}
@@ -56,7 +75,7 @@ export default function StartPage({
 					post(route('intake.start'))
 				}}
 			>
-<div className={'flex flex-col gap-y-3'}>
+			<div className={'flex flex-col gap-y-3'}>
 					<div>
 						<Input
 							placeholder="Address Line 1"
@@ -228,6 +247,19 @@ export default function StartPage({
 						</select>
 						<InputError message={errors.ethnicity} className="mt-2" />
 					</div>			
+										<div>
+					<ChildrenTable children={data.children_info} setChildren={(children) => setData("children_info", children)}  />
+					</div>
+					<div className={'flex justify-center'}>
+						<Button
+							className="ms-4"
+							onClick={addChild}
+							size="default"
+							variant="default"
+						>
+							Add child
+						</Button>
+					</div>
 					<div>
 						<Input
 							placeholder="Monthly Child Support"
