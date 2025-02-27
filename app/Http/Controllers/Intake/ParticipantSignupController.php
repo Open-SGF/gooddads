@@ -26,10 +26,12 @@ class ParticipantSignupController extends Controller
      */
     public function create(): Response
     {
+        // dd(Region::get(['id', 'description'])->toArray());
+
         return Inertia::render('Intake/Signup',[
             'ethnicity' => Ethnicity::displayArray(),
             'maritalStatus' => MaritalStatus::displayArray(),
-            'region' => Region::get(['id', 'description']) -> pluck('id', 'description'),
+            'regions' => Region::get(['id', 'description'])->toArray(),
         ]);
     }
 

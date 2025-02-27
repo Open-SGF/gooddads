@@ -2,16 +2,41 @@ import { PageProps, Child } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import { useForm } from '@inertiajs/react'
 import { format } from 'date-fns'
-import { Button, Input, InputError, ChildrenTable } from '@/Components/ui'
+import { Button, Input, InputError, Label } from '@/Components/ui'
+import { ChildrenTable } from '@/Components/ChildrenTable'
 
 interface StartPageProps extends PageProps {
 	maritalStatus: Record<string, string>,
 	ethnicity: Record<string, string>,
-	region: Record<string, string>,
+	regions: {
+		id:string;
+		description: string;
+	 }[];
 }
 
 const currentDate = () => {
-	return format(new Date(), 'mm/dd/yyyy')
+	return format(new Date(), 'yyyy-MM-dd')
+}
+
+function convertDotNotationToNested(obj: Record<string, string>): any {
+  const result: any = {};
+
+  for (const [key, value] of Object.entries(obj)) {
+	const parts = key.split('.');
+	let current = result;
+
+	for (let i = 0; i < parts.length - 1; i++) {
+	  const part = parts[i];
+	  if (!current[part]) {
+		current[part] = /^\d+$/.test(parts[i + 1]) ? {} : {};
+	  }
+	  current = current[part];
+	}
+
+	current[parts[parts.length - 1]] = value;
+  }
+
+  return result;
 }
 
 export default function StartPage({
@@ -19,8 +44,9 @@ export default function StartPage({
 	formData: defaultFormData,
 	maritalStatus,
 	ethnicity,
-	region
+	regions
 }: StartPageProps) {
+
 	const { data, setData, post, errors, processing } = useForm({
 		date: currentDate(),
 		address_line_1: '',
@@ -39,10 +65,10 @@ export default function StartPage({
 		marital_status: '',
 		ethnicity: '',
 		monthtly_child_support: '',
-		region: '',
+		region_id: '',
 		children_info: [] as Child[],
 	});
-
+	console.log(data.date)
 	const addChild = () => {
 		// Create a new empty child object with default values
 		const newChild: Child = {
@@ -62,21 +88,25 @@ export default function StartPage({
 		}));
 	  };
 
+	const errors_deconstructed = convertDotNotationToNested(errors)
+	console.log(errors)
 	return (
 		<IntakeLayout
 			title={'Sign Up'}
 			subtitle={"Welcome, we're happy to have you!"}
 		>
+			{Object.keys(errors).length > 0 && (
+				<div className='text-red-600 text-lg text-center pb-4'>Please fix the errors and resubmit</div>
+			)}
 			<form
 				onSubmit={(e) => {
 					e.preventDefault()
-					window.console.log('posting')
-
-					post(route('intake.start'))
+					post(route('intake.signup'))
 				}}
 			>
 			<div className={'flex flex-col gap-y-3'}>
 					<div>
+						<Label>Address Line 1</Label>
 						<Input
 							placeholder="Address Line 1"
 							className="w-full"
@@ -87,6 +117,7 @@ export default function StartPage({
 						<InputError message={errors.address_line_1} className="mt-2" />
 					</div>
 					<div>
+					<Label>Address Line 2</Label>
 						<Input
 							placeholder="Address Line 2"
 							className="w-full"
@@ -98,6 +129,7 @@ export default function StartPage({
 					</div>
 					<div className={'flex gap-x-3'}>
 						<div className={'w-full'}>
+							<Label>City</Label>
 							<Input
 								placeholder="City"
 								className="inline"
@@ -108,6 +140,7 @@ export default function StartPage({
 							<InputError message={errors.city} className="mt-2" />
 						</div>
 						<div className={'w-full'}>
+							<Label>State</Label>
 							<Input
 								placeholder="State"
 								className="inline"
@@ -118,6 +151,7 @@ export default function StartPage({
 							<InputError message={errors.state} className="mt-2" />
 						</div>
 						<div className={'w-full'}>
+							<Label>Zip Code</Label>
 							<Input
 								placeholder="Zip Code"
 								className="inline"
@@ -129,6 +163,7 @@ export default function StartPage({
 						</div>
 					</div>
 					<div>
+						<Label>Employer</Label>
 						<Input
 							placeholder="Employer"
 							className="w-full"
@@ -139,6 +174,7 @@ export default function StartPage({
 						<InputError message={errors.employer} className="mt-2" />
 					</div>
 					<div>
+						<Label>T-shirt Size</Label>
 						<Input
 							placeholder="T-shirt Size"
 							className="w-full"
@@ -149,6 +185,7 @@ export default function StartPage({
 						<InputError message={errors.t_shirt_size} className="mt-2" />
 					</div>
 					<div>
+						<Label>Home Phone Number</Label>
 						<Input
 							type="tel"
 							placeholder="Home Phone Number"
@@ -160,6 +197,7 @@ export default function StartPage({
 						<InputError message={errors.home_phone_number} className="mt-2" />
 					</div>
 					<div>
+						<Label>Work Phone Number</Label>
 						<Input
 							type="tel"
 							placeholder="Work Phone Number"
@@ -171,6 +209,7 @@ export default function StartPage({
 						<InputError message={errors.work_phone_number} className="mt-2" />
 					</div>
 					<div>
+						<Label>Cell Phone Number</Label>
 						<Input
 							type="tel"
 							placeholder="Cell Phone Number"
@@ -182,6 +221,7 @@ export default function StartPage({
 						<InputError message={errors.cell_phone_number} className="mt-2" />
 					</div>
 					<div>
+						<Label>Alternate Phone Number</Label>
 						<Input
 							type="tel"
 							placeholder="Alternate Phone Number"
@@ -198,6 +238,7 @@ export default function StartPage({
 						/>
 					</div>
 					<div>
+						<Label>Probation Officer's Name</Label>
 						<Input
 							placeholder="Probation Officer's Name"
 							className="w-full"
@@ -208,6 +249,7 @@ export default function StartPage({
 						<InputError message={errors.probation_parole_case_worker_name} className="mt-2" />
 					</div>
 					<div>
+						<Label>Probation Officer's Phone Number</Label>
 						<Input
 							placeholder="Probation Officer's Phone Number"
 							className="w-full"
@@ -218,6 +260,7 @@ export default function StartPage({
 						<InputError message={errors.probation_parole_case_worker_phone} className="mt-2" />
 					</div>
 					<div>
+						<Label>Marital Status</Label>
 						<select
 							className='w-full border p-2 rounded'
 							value={data.marital_status}
@@ -233,6 +276,7 @@ export default function StartPage({
 						<InputError message={errors.marital_status} className="mt-2" />
 					</div>
 					<div>
+						<Label>Ethnicity</Label>
 						<select
 							className='w-full border p-2 rounded'
 							value={data.ethnicity}
@@ -247,8 +291,8 @@ export default function StartPage({
 						</select>
 						<InputError message={errors.ethnicity} className="mt-2" />
 					</div>			
-										<div>
-					<ChildrenTable children={data.children_info} setChildren={(children) => setData("children_info", children)}  />
+					<div>
+						<ChildrenTable children={data.children_info} setChildren={(children) => setData("children_info", children)} errors = {errors_deconstructed.children_info}  />
 					</div>
 					<div className={'flex justify-center'}>
 						<Button
@@ -256,11 +300,12 @@ export default function StartPage({
 							onClick={addChild}
 							size="default"
 							variant="default"
+							type = 'button'
 						>
 							Add child
 						</Button>
 					</div>
-					<div>
+					{/* <div>
 						<Input
 							placeholder="Monthly Child Support"
 							className="w-full"
@@ -269,21 +314,22 @@ export default function StartPage({
 							onChange={(e) => setData('monthtly_child_support', e.target.value)}
 						/>
 						<InputError message={errors.monthtly_child_support} className="mt-2" />
-					</div>
+					</div> */}
 					<div>
+						<Label>Region ID</Label>
 						<select
 							className='w-full border p-2 rounded'
-							value={data.ethnicity}
-							onChange={(e) => setData('region', e.target.value)}
+							value={data.region_id}
+							onChange={(e) => setData('region_id', e.target.value)}
 						>
 							<option value = "">Region ID</option>
 							{
-								Object.entries(region).map(([key, value]) => (
-									<option key = {key} value = {key}>{value}</option>
+								regions?.map(region => (
+									<option key = {region.id} value = {region.id}>{region.description}</option>
 								))
 							}
 						</select>
-						<InputError message={errors.region} className="mt-2" />
+						<InputError message={errors.region_id} className="mt-2" />
 					</div>
 					<div className={'flex justify-center'}>
 						<Button
