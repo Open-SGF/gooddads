@@ -24,7 +24,6 @@ class ParticipantSignupStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => ['required', 'date'],
             'address_line_1' => ['required', 'string', 'max:191'],
             'address_line_2' => ['nullable', 'string', 'max:191'],
             'city' => ['required', 'string', 'max:191'],

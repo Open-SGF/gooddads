@@ -142,7 +142,6 @@ export default function ParticipantRegister() {
 								checked={data.terms}
 								onCheckedChange={(checked) => setData('terms', !!checked)}
 								name="terms"
-								// required
 							/>
 							<div className="ms-2  ">
 								I agree to the{' '}

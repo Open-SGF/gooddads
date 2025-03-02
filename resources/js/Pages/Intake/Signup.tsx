@@ -14,10 +14,6 @@ interface StartPageProps extends PageProps {
 	 }[];
 }
 
-const currentDate = () => {
-	return format(new Date(), 'yyyy-MM-dd')
-}
-
 function convertDotNotationToNested(obj: Record<string, string>): any {
   const result: any = {};
 
@@ -48,7 +44,6 @@ export default function StartPage({
 }: StartPageProps) {
 
 	const { data, setData, post, errors, processing } = useForm({
-		date: currentDate(),
 		address_line_1: '',
 		address_line_2: '',
 		city: '',
@@ -66,9 +61,10 @@ export default function StartPage({
 		ethnicity: '',
 		monthtly_child_support: '',
 		region_id: '',
-		children_info: [] as Child[],
+		children_info: [{first_name: '', last_name: '', date_of_birth: '', child_support: 0, custody: false, visitation: false, phone_contact: false}] as Child[],
+
 	});
-	console.log(data.date)
+
 	const addChild = () => {
 		// Create a new empty child object with default values
 		const newChild: Child = {
@@ -89,7 +85,7 @@ export default function StartPage({
 	  };
 
 	const errors_deconstructed = convertDotNotationToNested(errors)
-	console.log(errors)
+
 	return (
 		<IntakeLayout
 			title={'Sign Up'}
@@ -305,18 +301,8 @@ export default function StartPage({
 							Add child
 						</Button>
 					</div>
-					{/* <div>
-						<Input
-							placeholder="Monthly Child Support"
-							className="w-full"
-							autoComplete={'off'}
-							value={data.monthtly_child_support}
-							onChange={(e) => setData('monthtly_child_support', e.target.value)}
-						/>
-						<InputError message={errors.monthtly_child_support} className="mt-2" />
-					</div> */}
 					<div>
-						<Label>Region ID</Label>
+						<Label>Region</Label>
 						<select
 							className='w-full border p-2 rounded'
 							value={data.region_id}

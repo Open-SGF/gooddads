@@ -24,7 +24,6 @@ class ParticipantSignupTest extends TestCase
         $region = Region::factory()->create();
 
         $participantData = [
-            'date' => now()->format('Y-m-d'),
             'address_line_1' => '123 Main St',
             'address_line_2' => 'Apt 1',
             'city' => 'Anytown',

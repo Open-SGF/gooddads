@@ -26,7 +26,6 @@ class ParticipantSignupController extends Controller
      */
     public function create(): Response
     {
-        // dd(Region::get(['id', 'description'])->toArray());
 
         return Inertia::render('Intake/Signup',[
             'ethnicity' => Ethnicity::displayArray(),
@@ -43,6 +42,7 @@ class ParticipantSignupController extends Controller
     public function store(ParticipantSignupStoreRequest $request, ParticipantService $participantService): RedirectResponse
     {
         $participantData = $request->validated();
+        $participantData['date'] ??= now();
 
         $participantService->create($request->user(), $participantData);
 
