@@ -6,33 +6,33 @@ import { Button, Input, InputError, Label } from '@/Components/ui'
 import { ChildrenTable } from '@/Components/ChildrenTable'
 
 interface StartPageProps extends PageProps {
-	maritalStatus: Record<string, string>,
-	ethnicity: Record<string, string>,
+	maritalStatus: Record<string, string>
+	ethnicity: Record<string, string>
 	regions: {
-		id:string;
-		description: string;
-	 }[];
+		id: string
+		description: string
+	}[]
 }
 
 function convertDotNotationToNested(obj: Record<string, string>): any {
-  const result: any = {};
+	const result: any = {}
 
-  for (const [key, value] of Object.entries(obj)) {
-	const parts = key.split('.');
-	let current = result;
+	for (const [key, value] of Object.entries(obj)) {
+		const parts = key.split('.')
+		let current = result
 
-	for (let i = 0; i < parts.length - 1; i++) {
-	  const part = parts[i];
-	  if (!current[part]) {
-		current[part] = /^\d+$/.test(parts[i + 1]) ? {} : {};
-	  }
-	  current = current[part];
+		for (let i = 0; i < parts.length - 1; i++) {
+			const part = parts[i]
+			if (!current[part]) {
+				current[part] = /^\d+$/.test(parts[i + 1]) ? {} : {}
+			}
+			current = current[part]
+		}
+
+		current[parts[parts.length - 1]] = value
 	}
 
-	current[parts[parts.length - 1]] = value;
-  }
-
-  return result;
+	return result
 }
 
 export default function StartPage({
@@ -40,9 +40,8 @@ export default function StartPage({
 	formData: defaultFormData,
 	maritalStatus,
 	ethnicity,
-	regions
+	regions,
 }: StartPageProps) {
-
 	const { data, setData, post, errors, processing } = useForm({
 		address_line_1: '',
 		address_line_2: '',
@@ -53,7 +52,7 @@ export default function StartPage({
 		t_shirt_size: '',
 		home_phone_number: '',
 		work_phone_number: '',
-		cell_phone_number: '',		
+		cell_phone_number: '',
 		alt_contact_number: '',
 		probation_parole_case_worker_name: '',
 		probation_parole_case_worker_phone: '',
@@ -61,28 +60,37 @@ export default function StartPage({
 		ethnicity: '',
 		monthtly_child_support: '',
 		region_id: '',
-		children_info: [{first_name: '', last_name: '', date_of_birth: '', child_support: 0, custody: false, visitation: false, phone_contact: false}] as Child[],
-
-	});
+		children_info: [
+			{
+				first_name: '',
+				last_name: '',
+				date_of_birth: '',
+				child_support: 0,
+				custody: false,
+				visitation: false,
+				phone_contact: false,
+			},
+		] as Child[],
+	})
 
 	const addChild = () => {
 		// Create a new empty child object with default values
 		const newChild: Child = {
-		  first_name: "",
-		  last_name: "",
-		  date_of_birth: "", // Empty string, you can use an initial date string if needed
-		  child_support: 0,
-		  custody: false,
-		  visitation: false,
-		  phone_contact: false,
-		};
-	
+			first_name: '',
+			last_name: '',
+			date_of_birth: '', // Empty string, you can use an initial date string if needed
+			child_support: 0,
+			custody: false,
+			visitation: false,
+			phone_contact: false,
+		}
+
 		// Update the children array with the new child
 		setData((prevData) => ({
-		  ...prevData,
-		  children_info: [...prevData.children_info, newChild],
-		}));
-	  };
+			...prevData,
+			children_info: [...prevData.children_info, newChild],
+		}))
+	}
 
 	const errors_deconstructed = convertDotNotationToNested(errors)
 
@@ -92,7 +100,9 @@ export default function StartPage({
 			subtitle={"Welcome, we're happy to have you!"}
 		>
 			{Object.keys(errors).length > 0 && (
-				<div className='text-red-600 text-lg text-center pb-4'>Please fix the errors and resubmit</div>
+				<div className="text-red-600 text-lg text-center pb-4">
+					Please fix the errors and resubmit
+				</div>
 			)}
 			<form
 				onSubmit={(e) => {
@@ -100,7 +110,7 @@ export default function StartPage({
 					post(route('intake.signup'))
 				}}
 			>
-			<div className={'flex flex-col gap-y-3'}>
+				<div className={'flex flex-col gap-y-3'}>
 					<div>
 						<Label>Address Line 1</Label>
 						<Input
@@ -113,7 +123,7 @@ export default function StartPage({
 						<InputError message={errors.address_line_1} className="mt-2" />
 					</div>
 					<div>
-					<Label>Address Line 2</Label>
+						<Label>Address Line 2</Label>
 						<Input
 							placeholder="Address Line 2"
 							className="w-full"
@@ -224,14 +234,9 @@ export default function StartPage({
 							autoComplete={'off'}
 							className="w-full"
 							value={data.alt_contact_number}
-							onChange={(e) =>
-								setData('alt_contact_number', e.target.value)
-							}
+							onChange={(e) => setData('alt_contact_number', e.target.value)}
 						/>
-						<InputError
-							message={errors.alt_contact_number}
-							className="mt-2"
-						/>
+						<InputError message={errors.alt_contact_number} className="mt-2" />
 					</div>
 					<div>
 						<Label>Probation Officer's Name</Label>
@@ -240,9 +245,14 @@ export default function StartPage({
 							className="w-full"
 							autoComplete={'off'}
 							value={data.probation_parole_case_worker_name}
-							onChange={(e) => setData('probation_parole_case_worker_name', e.target.value)}
+							onChange={(e) =>
+								setData('probation_parole_case_worker_name', e.target.value)
+							}
 						/>
-						<InputError message={errors.probation_parole_case_worker_name} className="mt-2" />
+						<InputError
+							message={errors.probation_parole_case_worker_name}
+							className="mt-2"
+						/>
 					</div>
 					<div>
 						<Label>Probation Officer's Phone Number</Label>
@@ -251,44 +261,53 @@ export default function StartPage({
 							className="w-full"
 							autoComplete={'off'}
 							value={data.probation_parole_case_worker_phone}
-							onChange={(e) => setData('probation_parole_case_worker_phone', e.target.value)}
+							onChange={(e) =>
+								setData('probation_parole_case_worker_phone', e.target.value)
+							}
 						/>
-						<InputError message={errors.probation_parole_case_worker_phone} className="mt-2" />
+						<InputError
+							message={errors.probation_parole_case_worker_phone}
+							className="mt-2"
+						/>
 					</div>
 					<div>
 						<Label>Marital Status</Label>
 						<select
-							className='w-full border p-2 rounded'
+							className="w-full border p-2 rounded"
 							value={data.marital_status}
 							onChange={(e) => setData('marital_status', e.target.value)}
 						>
-							<option value = "">Martial Status</option>
-							{
-								Object.entries(maritalStatus).map(([key, value]) => (
-									<option key = {key} value = {key}>{value}</option>
-								))
-							}
+							<option value="">Martial Status</option>
+							{Object.entries(maritalStatus).map(([key, value]) => (
+								<option key={key} value={key}>
+									{value}
+								</option>
+							))}
 						</select>
 						<InputError message={errors.marital_status} className="mt-2" />
 					</div>
 					<div>
 						<Label>Ethnicity</Label>
 						<select
-							className='w-full border p-2 rounded'
+							className="w-full border p-2 rounded"
 							value={data.ethnicity}
 							onChange={(e) => setData('ethnicity', e.target.value)}
 						>
-							<option value = "">Ethnicity</option>
-							{
-								Object.entries(ethnicity).map(([key, value]) => (
-									<option key = {key} value = {key}>{value}</option>
-								))
-							}
+							<option value="">Ethnicity</option>
+							{Object.entries(ethnicity).map(([key, value]) => (
+								<option key={key} value={key}>
+									{value}
+								</option>
+							))}
 						</select>
 						<InputError message={errors.ethnicity} className="mt-2" />
-					</div>			
+					</div>
 					<div>
-						<ChildrenTable children={data.children_info} setChildren={(children) => setData("children_info", children)} errors = {errors_deconstructed.children_info}  />
+						<ChildrenTable
+							children={data.children_info}
+							setChildren={(children) => setData('children_info', children)}
+							errors={errors_deconstructed.children_info}
+						/>
 					</div>
 					<div className={'flex justify-center'}>
 						<Button
@@ -296,7 +315,7 @@ export default function StartPage({
 							onClick={addChild}
 							size="default"
 							variant="default"
-							type = 'button'
+							type="button"
 						>
 							Add child
 						</Button>
@@ -304,16 +323,16 @@ export default function StartPage({
 					<div>
 						<Label>Region</Label>
 						<select
-							className='w-full border p-2 rounded'
+							className="w-full border p-2 rounded"
 							value={data.region_id}
 							onChange={(e) => setData('region_id', e.target.value)}
 						>
-							<option value = "">Region ID</option>
-							{
-								regions?.map(region => (
-									<option key = {region.id} value = {region.id}>{region.description}</option>
-								))
-							}
+							<option value="">Region ID</option>
+							{regions?.map((region) => (
+								<option key={region.id} value={region.id}>
+									{region.description}
+								</option>
+							))}
 						</select>
 						<InputError message={errors.region_id} className="mt-2" />
 					</div>
