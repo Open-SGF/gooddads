@@ -10,6 +10,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CurriculumController;
+use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\ReportsController;
 
 Route::get('/', function () {
     return Auth::check()
@@ -22,15 +25,15 @@ Route::controller(LegalController::class)->group(function () {
     Route::get('/terms-of-service', 'termsOfService')->name('terms-of-service');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware('auth')->name('profile.')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('destroy');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/users', [UsersController::class, 'list'])->name('users.list');
-    Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
+Route::middleware(['auth'])->name('users.')->group(function () {
+    Route::get('/users', [UsersController::class, 'list'])->name('list');
+    Route::get('/users/create', [UsersController::class, 'create'])->name('create');
 });
 
 Route::name('intake')
@@ -54,14 +57,16 @@ Route::name('intake')
     });
 Route::middleware(['auth'])->group(function () {
     Route::get('/curriculum', [UsersController::class, 'list'])->name('curriculum.list');
+Route::middleware(['auth'])->name('curriculum.')->group(function () {
+    Route::get('/curriculum', [CurriculumController::class, 'list'])->name('list');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/classes', [UsersController::class, 'list'])->name('classes.list');
+Route::middleware(['auth'])->name('classes.')->group(function () {
+    Route::get('/classes', [ClassesController::class, 'list'])->name('list');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/reports', [UsersController::class, 'list'])->name('reports.list');
+Route::middleware(['auth'])->name('reports.')->group(function () {
+    Route::get('/reports', [ReportsController::class, 'list'])->name('list');
 });
 
 require __DIR__.'/auth.php';
