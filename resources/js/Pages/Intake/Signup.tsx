@@ -14,27 +14,6 @@ interface StartPageProps extends PageProps {
 	}[]
 }
 
-function convertDotNotationToNested(obj: Record<string, string>): any {
-	const result: any = {}
-
-	for (const [key, value] of Object.entries(obj)) {
-		const parts = key.split('.')
-		let current = result
-
-		for (let i = 0; i < parts.length - 1; i++) {
-			const part = parts[i]
-			if (!current[part]) {
-				current[part] = /^\d+$/.test(parts[i + 1]) ? {} : {}
-			}
-			current = current[part]
-		}
-
-		current[parts[parts.length - 1]] = value
-	}
-
-	return result
-}
-
 export default function StartPage({
 	sessionId,
 	formData: defaultFormData,
@@ -91,8 +70,6 @@ export default function StartPage({
 			children_info: [...prevData.children_info, newChild],
 		}))
 	}
-
-	const errors_deconstructed = convertDotNotationToNested(errors)
 
 	return (
 		<IntakeLayout
@@ -306,7 +283,7 @@ export default function StartPage({
 						<ChildrenTable
 							children={data.children_info}
 							setChildren={(children) => setData('children_info', children)}
-							errors={errors_deconstructed.children_info}
+							errors={errors}
 						/>
 					</div>
 					<div className={'flex justify-center'}>

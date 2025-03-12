@@ -5,7 +5,7 @@ import { Button, Checkbox, Input, InputError, Label } from '@/Components/ui'
 export interface ChildrenTableProps {
 	children: Child[]
 	setChildren: (children: Child[]) => void
-	errors: any
+	errors: Record<string, string>
 }
 
 const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
@@ -47,7 +47,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									}
 								/>
 								<InputError
-									message={errors?.[index]?.first_name?.replace(
+									message={errors[`children_info.${index}.first_name`]?.replace(
 										`children_info.${index}.first_name`,
 										'First name',
 									)}
@@ -66,7 +66,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									}
 								/>
 								<InputError
-									message={errors?.[index]?.last_name?.replace(
+									message={errors[`children_info.${index}.last_name`]?.replace(
 										`children_info.${index}.last_name`,
 										'Last name',
 									)}
@@ -86,7 +86,9 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									}
 								/>
 								<InputError
-									message={errors?.[index]?.date_of_birth?.replace(
+									message={errors[
+										`children_info.${index}.date_of_birth`
+									]?.replace(
 										`children_info.${index}.date_of_birth`,
 										'Date of birth',
 									)}
@@ -105,7 +107,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									/>
 									<Label htmlFor="custody">Custody</Label>
 									<InputError
-										message={errors?.[index]?.custody}
+										message={errors[`children_info.${index}.custody`]}
 										className="mt-2"
 									/>
 								</div>
@@ -119,7 +121,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									/>
 									<Label htmlFor="visitation">Visitation</Label>
 									<InputError
-										message={errors?.[index]?.visitation}
+										message={errors[`children_info.${index}.visitation`]}
 										className="mt-2"
 									/>
 								</div>
@@ -133,7 +135,9 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									/>
 									<Label htmlFor="phone_contact">Phone Contact</Label>
 									<InputError
-										message={errors?.[index]?.phone_contact?.replace(
+										message={errors[
+											`children_info.${index}.phone_contact`
+										]?.replace(
 											`children_info.${index}.phone_contact`,
 											'Phone contact',
 										)}
@@ -158,7 +162,9 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									}
 								/>
 								<InputError
-									message={errors?.[index]?.child_support?.replace(
+									message={errors[
+										`children_info.${index}.child_support`
+									]?.replace(
 										`children_info.${index}.child_support`,
 										'Child support',
 									)}
