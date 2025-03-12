@@ -73,10 +73,10 @@ export default function Authenticated({
 							)}
 						</NavigationMenuItem>
 						<NavigationMenuItem className="w-full">
-							{hasPermission('list users') && (
+							{hasPermission('list curriculum') && (
 								<NavigationMenuLink
-									href={route('users.list')}
-									active={route().current('users.list')}
+									href={route('curriculum.list')}
+									active={route().current('curriculum.list')}
 									className="group/navlink flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:bg-primary/50 hover:text-foreground focus:bg-primary/50 focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary data-[active]:text-accent-foreground data-[state=open]:bg-primary data-[state=open]:text-accent-foreground"
 								>
 									<FolderClosed
@@ -89,10 +89,10 @@ export default function Authenticated({
 							)}
 						</NavigationMenuItem>
 						<NavigationMenuItem className="w-full">
-							{hasPermission('list users') && (
+							{hasPermission('list classes') && (
 								<NavigationMenuLink
-									href={route('users.list')}
-									active={route().current('users.list')}
+									href={route('classes.list')}
+									active={route().current('classes.list')}
 									className="group/navlink flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:bg-primary/50 hover:text-foreground focus:bg-primary/50 focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary data-[active]:text-accent-foreground data-[state=open]:bg-primary data-[state=open]:text-accent-foreground"
 								>
 									<GraduationCap
@@ -105,7 +105,7 @@ export default function Authenticated({
 							)}
 						</NavigationMenuItem>
 						<NavigationMenuItem className="w-full">
-							{hasPermission('list users') && (
+							{hasPermission('list reports') && (
 								<NavigationMenuLink
 									href={route('reports.list')}
 									active={route().current('reports.list')}
