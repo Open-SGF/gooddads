@@ -25,8 +25,22 @@ return new class extends Migration
             $table->string('work_phone_number', 12)->nullable();
             $table->string('alt_contact_number', 12)->nullable();
             $table->enum('marital_status', ['single', 'married', 'divorced', 'widowed']);
-            $table->enum('ethnicity', ['white', 'africanAmerican', 'nativeAmerican', 'asian', 'pacificIslander']);
+            $table->enum('ethnicity', ['white', 'africanAmerican', 'nativeAmerican', 'asian', 'pacificIslander', 'hispanic', 'noAnswer']);
             $table->decimal('monthly_child_support', 6, 2)->nullable();
+
+
+            $table->string('t_shirt_size')->nullable();
+            $table->string('probation_parole_case_worker_name')->nullable();
+            $table->string('probation_parole_case_worker_phone')->nullable();
+
+            // Contact with children
+            $table->boolean('contact_with_children')->nullable();
+            $table->boolean('custody')->nullable();
+            $table->boolean('visitation')->nullable();
+            $table->boolean('phone_contact')->nullable();
+            $table->string('participant_photo')->nullable();
+            $table->decimal('monthly_child_support_payment', 10, 2)->nullable();
+
             $table->date('intake_date')->nullable();
             $table->timestamps();
         });
