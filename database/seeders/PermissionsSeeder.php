@@ -83,6 +83,20 @@ class PermissionsSeeder extends Seeder
 			'name' => 'list users',
 		]);
 
+		Permission::create([
+			'id' => Str::uuid(),
+			'name' => 'list curriculum',
+		]);
+
+		Permission::create([
+			'id' => Str::uuid(),
+			'name' => 'list classes',
+		]);
+
+		Permission::create([
+			'id' => Str::uuid(),
+			'name' => 'list reports',
+		]);
 
 		/**
 		 * Assign permissions to roles
@@ -93,6 +107,9 @@ class PermissionsSeeder extends Seeder
 			'edit users',
 			'delete users',
 			'list users',
+			'list curriculum',
+			'list classes',
+			'list reports',
 		]);
 		$regionDirector->givePermissionTo(['list users']);
     $programDirector->givePermissionTo(['list users']);
