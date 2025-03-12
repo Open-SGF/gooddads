@@ -10,7 +10,11 @@ export default function Login({
 	status?: string
 	canResetPassword: boolean
 }) {
-	const { data, setData, post, processing, errors, reset } = useForm({
+	const { data, setData, post, processing, errors, reset } = useForm<{
+		email: string
+		password: string
+		remember: boolean
+	}>({
 		email: '',
 		password: '',
 		remember: false,
