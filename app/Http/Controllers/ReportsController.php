@@ -6,25 +6,25 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Gate;
-use App\Models\Report;
+// use App\Models\Report;
 
 class ReportsController extends Controller
 {
-    public function __construct()
-    {
-        // Restrict access to users with specific roles
-        $this->middleware(['auth', 'role:auditor|case_manager|director|region_director|admin']);
-    }
+    // public function __construct()
+    // {
+    //     // Restrict access to users with specific roles
+    //     $this->middleware(['auth', 'role:auditor|case_manager|director|region_director|admin']);
+    // }
 
     /**
      * Display a list of reports.
      */
-    public function index(Request $request): Response
+    public function list(Request $request): Response
     {
         // Authorization check
-        if (!Gate::allows('view-reports')) {
-            abort(403, 'Unauthorized action.');
-        }
+        // if (!Gate::allows('view-reports')) {
+        //     abort(403, 'Unauthorized action.');
+        // }
 
         $search = $request->query('search');
         $pageSize = $request->query('pageSize', 10);
@@ -32,14 +32,14 @@ class ReportsController extends Controller
         [$column, $direction] = explode(',', $sort);
 
         // Fetch reports based on filters and sorting
-        $reports = Report::when($search, fn($query) => $query
-                ->where('title', 'like', "%$search%")
-                ->orWhere('description', 'like', "%$search%"))
-            ->orderBy($column, $direction)
-            ->paginate($pageSize);
+        // $reports = Report::when($search, fn($query) => $query
+        //         ->where('title', 'like', "%$search%")
+        //         ->orWhere('description', 'like', "%$search%"))
+        //     ->orderBy($column, $direction)
+        //     ->paginate($pageSize);
 
-        return Inertia::render('Reports/Index', [
-            'reports' => $reports,
+        return Inertia::render('Reports/List', [
+            'reports' => [],
         ]);
     }
 
