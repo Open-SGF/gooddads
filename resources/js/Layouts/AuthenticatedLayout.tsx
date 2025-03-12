@@ -107,8 +107,8 @@ export default function Authenticated({
 						<NavigationMenuItem className="w-full">
 							{hasPermission('list users') && (
 								<NavigationMenuLink
-									href={route('users.list')}
-									active={route().current('users.list')}
+									href={route('reports.list')}
+									active={route().current('reports.list')}
 									className="group/navlink flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:bg-primary/50 hover:text-foreground focus:bg-primary/50 focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary data-[active]:text-accent-foreground data-[state=open]:bg-primary data-[state=open]:text-accent-foreground"
 								>
 									<FileChartColumn
