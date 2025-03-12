@@ -1,7 +1,6 @@
 import { PageProps, Child } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import { useForm } from '@inertiajs/react'
-import { format } from 'date-fns'
 import { Button, Input, InputError, Label } from '@/Components/ui'
 import { ChildrenTable } from '@/Components/ChildrenTable'
 
@@ -15,8 +14,6 @@ interface StartPageProps extends PageProps {
 }
 
 export default function StartPage({
-	sessionId,
-	formData: defaultFormData,
 	maritalStatus,
 	ethnicity,
 	regions,
@@ -72,10 +69,7 @@ export default function StartPage({
 	}
 
 	return (
-		<IntakeLayout
-			title="Sign Up"
-			subtitle="Welcome, we're happy to have you!"
-		>
+		<IntakeLayout title="Sign Up" subtitle="Welcome, we're happy to have you!">
 			{Object.keys(errors).length > 0 && (
 				<div className="text-red-600 text-lg text-center pb-4">
 					Please fix the errors and resubmit
@@ -281,8 +275,8 @@ export default function StartPage({
 					</div>
 					<div>
 						<ChildrenTable
-							children={data.children_info}
-							setChildren={(children) => setData('children_info', children)}
+							childrenInfo={data.children_info}
+							setChildrenInfo={(children) => setData('children_info', children)}
 							errors={errors}
 						/>
 					</div>

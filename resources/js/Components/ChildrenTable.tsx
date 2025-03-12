@@ -3,27 +3,27 @@ import { Child } from '@/types'
 import { Button, Checkbox, Input, InputError, Label } from '@/Components/ui'
 
 export interface ChildrenTableProps {
-	children: Child[]
-	setChildren: (children: Child[]) => void
+	childrenInfo: Child[]
+	setChildrenInfo: (childrenInfo: Child[]) => void
 	errors: Record<string, string>
 }
 
 const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
-	({ children, setChildren, errors, ...props }, ref) => {
+	({ childrenInfo, setChildrenInfo, errors }) => {
 		const handleInputChange = (
 			index: number,
 			field: keyof Child,
-			value: any,
+			value: unknown,
 		) => {
 			// Update the value of a specific field in the child object at the given index
-			const updatedChildren = [...children]
+			const updatedChildren = [...childrenInfo]
 			updatedChildren[index] = { ...updatedChildren[index], [field]: value }
-			setChildren(updatedChildren)
+			setChildrenInfo(updatedChildren)
 		}
 
 		const handleDelete = (index: number) => {
-			const updatedChildren = children.filter((_, i) => i !== index)
-			setChildren(updatedChildren) // Make sure to update the parent state
+			const updatedChildren = childrenInfo.filter((_, i) => i !== index)
+			setChildrenInfo(updatedChildren) // Make sure to update the parent state
 		}
 
 		return (
@@ -32,7 +32,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 					<Label className="text-2xl">Family Information</Label>
 				</div>
 				<div className="flex flex-col">
-					{children.map((child, index) => (
+					{childrenInfo.map((child, index) => (
 						<div key={index} className="grid grid-cols-4 border-b mb-4 pb-4">
 							<div className="flex-1 p-2">
 								<Label>First Name</Label>

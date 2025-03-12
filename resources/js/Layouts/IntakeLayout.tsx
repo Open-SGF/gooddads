@@ -13,7 +13,6 @@ export default function IntakeLayout({
 	children,
 	title,
 	subtitle,
-	progress,
 }: IntakeLayoutProps) {
 	return (
 		<div className="min-h-screen w-full flex justify-center">

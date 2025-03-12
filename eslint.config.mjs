@@ -24,6 +24,10 @@ export default tseslint.config(
 				'error',
 				{ props: 'never', children: 'never' },
 			],
+			'@typescript-eslint/no-empty-object-type': [
+				'error',
+				{ allowInterfaces: 'with-single-extends' },
+			],
 		},
 		ignores: ['vendor', 'bootstrap', 'public'],
 	},
