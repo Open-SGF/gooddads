@@ -1,33 +1,49 @@
 <?php
-
 namespace App\Http\Resources;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Contracts\Support\Arrayable;
+use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @mixin User
  */
-class UserResource extends JsonResource
+#[TypeScript]
+class UserResource extends DataTransferObject implements Arrayable
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(Request $request): array
+    public int $id;
+
+    public string $first_name = '';
+
+    public string $last_name = '';
+
+    public string $email = '';
+
+    /** @var string[] $roles */
+    public array $roles = [];
+
+    /** @var string[] $permissions */
+    public array $permissions = [];
+
+    public string $created_at = '';
+
+    public string $updated_at = '';
+
+    public string $email_verified_at = '';
+
+    public static function make(User $user): self
     {
-        return [
-          'id' => $this->id,
-          'first_name' => $this->first_name,
-          'last_name' => $this->last_name,
-          'email' => $this->email,
-          'roles' => $this->getRoleNames(),
-          'permissions' => $this->getAllPermissions()->pluck('name')->toArray(),
-          'created_at' => $this->created_at,
-          'updated_at' => $this->updated_at,
-          'email_verified_at' => $this->email_verified_at
-        ];
+        return new self([
+          'id' => (int)$user->id,
+          'first_name' => $user->first_name,
+          'last_name' => $user->last_name,
+          'email' => $user->email,
+          'roles' => $user->getRoleNames(),
+          'permissions' => $user->getAllPermissions()->pluck('name')->toArray(),
+          'created_at' => $user->created_at,
+          'updated_at' => $user->updated_at,
+          'email_verified_at' => $user->email_verified_at
+        ]);
     }
 }

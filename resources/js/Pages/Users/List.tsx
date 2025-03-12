@@ -1,20 +1,21 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import { Head } from '@inertiajs/react'
-import { PageProps, PaginationProps, User } from '@/types'
+import { PageProps, PaginationProps } from '@/types'
 import { Button, DataTable, DataTableFields } from '@/Components/ui'
 import { Pencil1Icon, PlusIcon } from '@radix-ui/react-icons'
 import { usePermission } from '@/hooks/permissions'
 import { DownloadIcon, TrashIcon } from 'lucide-react'
 import { json2csv } from 'json-2-csv'
+import { UserResource } from '@/types'
 
 export type UsersListPageProps = PageProps &
 	PaginationProps & {
-		users: User[]
+		users: UserResource[]
 	}
 
 export default function List({ auth, users }: UsersListPageProps) {
 	const { hasPermission } = usePermission(auth.user)
-	const handleExport = async (data: User[]) => {
+	const handleExport = async (data: UserResource[]) => {
 		const csv = json2csv(data)
 		const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
 		const url = URL.createObjectURL(blob)
@@ -27,7 +28,7 @@ export default function List({ auth, users }: UsersListPageProps) {
 		document.body.removeChild(link)
 	}
 
-	const fields: DataTableFields<User>[] = [
+	const fields: DataTableFields<UserResource>[] = [
 		{
 			fieldKey: 'first_name',
 			label: 'First Name',
@@ -78,7 +79,7 @@ export default function List({ auth, users }: UsersListPageProps) {
 		},
 	]
 
-	const tableActions = (disabled: boolean, data: User[]) => [
+	const tableActions = (disabled: boolean, data: UserResource[]) => [
 		<Button
 			disabled={disabled}
 			onClick={() => handleExport(data)}
@@ -115,7 +116,7 @@ export default function List({ auth, users }: UsersListPageProps) {
 			<Head title="Users" />
 			<div className="py-12">
 				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-					<DataTable<User>
+					<DataTable<UserResource>
 						fields={fields}
 						data={users}
 						allowSelect={true}
