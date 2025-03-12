@@ -30,4 +30,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/curriculum', [UsersController::class, 'list'])->name('curriculum.list');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/classes', [UsersController::class, 'list'])->name('classes.list');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/reports', [UsersController::class, 'list'])->name('reports.list');
+});
+
 require __DIR__.'/auth.php';
