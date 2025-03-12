@@ -40,7 +40,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 								<Input
 									placeholder="First name"
 									className="w-full"
-									autoComplete={'off'}
+									autoComplete="off"
 									value={child.first_name}
 									onChange={(e) =>
 										handleInputChange(index, 'first_name', e.target.value)
@@ -59,7 +59,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 								<Input
 									placeholder="Last name"
 									className="w-full"
-									autoComplete={'off'}
+									autoComplete="off"
 									value={child.last_name}
 									onChange={(e) =>
 										handleInputChange(index, 'last_name', e.target.value)
@@ -79,7 +79,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									type="date"
 									placeholder="Date of Birth"
 									className="w-full"
-									autoComplete={'off'}
+									autoComplete="off"
 									value={child.date_of_birth}
 									onChange={(e) =>
 										handleInputChange(index, 'date_of_birth', e.target.value)
@@ -151,7 +151,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									type="number"
 									placeholder="Monthy Child Support"
 									className="w-full"
-									autoComplete={'off'}
+									autoComplete="off"
 									value={child.child_support}
 									onChange={(e) =>
 										handleInputChange(

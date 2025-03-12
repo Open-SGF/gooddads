@@ -73,8 +73,8 @@ export default function StartPage({
 
 	return (
 		<IntakeLayout
-			title={'Sign Up'}
-			subtitle={"Welcome, we're happy to have you!"}
+			title="Sign Up"
+			subtitle="Welcome, we're happy to have you!"
 		>
 			{Object.keys(errors).length > 0 && (
 				<div className="text-red-600 text-lg text-center pb-4">
@@ -87,13 +87,13 @@ export default function StartPage({
 					post(route('intake.signup'))
 				}}
 			>
-				<div className={'flex flex-col gap-y-3'}>
+				<div className="flex flex-col gap-y-3">
 					<div>
 						<Label>Address Line 1</Label>
 						<Input
 							placeholder="Address Line 1"
 							className="w-full"
-							autoComplete={'off'}
+							autoComplete="off"
 							value={data.address_line_1}
 							onChange={(e) => setData('address_line_1', e.target.value)}
 						/>
@@ -104,41 +104,41 @@ export default function StartPage({
 						<Input
 							placeholder="Address Line 2"
 							className="w-full"
-							autoComplete={'off'}
+							autoComplete="off"
 							value={data.address_line_2}
 							onChange={(e) => setData('address_line_2', e.target.value)}
 						/>
 						<InputError message={errors.address_line_2} className="mt-2" />
 					</div>
-					<div className={'flex gap-x-3'}>
-						<div className={'w-full'}>
+					<div className="flex gap-x-3">
+						<div className="w-full">
 							<Label>City</Label>
 							<Input
 								placeholder="City"
 								className="inline"
-								autoComplete={'off'}
+								autoComplete="off"
 								value={data.city}
 								onChange={(e) => setData('city', e.target.value)}
 							/>
 							<InputError message={errors.city} className="mt-2" />
 						</div>
-						<div className={'w-full'}>
+						<div className="w-full">
 							<Label>State</Label>
 							<Input
 								placeholder="State"
 								className="inline"
-								autoComplete={'off'}
+								autoComplete="off"
 								value={data.state}
 								onChange={(e) => setData('state', e.target.value)}
 							/>
 							<InputError message={errors.state} className="mt-2" />
 						</div>
-						<div className={'w-full'}>
+						<div className="w-full">
 							<Label>Zip Code</Label>
 							<Input
 								placeholder="Zip Code"
 								className="inline"
-								autoComplete={'off'}
+								autoComplete="off"
 								value={data.zipcode}
 								onChange={(e) => setData('zipcode', e.target.value)}
 							/>
@@ -150,7 +150,7 @@ export default function StartPage({
 						<Input
 							placeholder="Employer"
 							className="w-full"
-							autoComplete={'off'}
+							autoComplete="off"
 							value={data.employer}
 							onChange={(e) => setData('employer', e.target.value)}
 						/>
@@ -161,7 +161,7 @@ export default function StartPage({
 						<Input
 							placeholder="T-shirt Size"
 							className="w-full"
-							autoComplete={'off'}
+							autoComplete="off"
 							value={data.t_shirt_size}
 							onChange={(e) => setData('t_shirt_size', e.target.value)}
 						/>
@@ -173,7 +173,7 @@ export default function StartPage({
 							type="tel"
 							placeholder="Home Phone Number"
 							className="w-full"
-							autoComplete={'off'}
+							autoComplete="off"
 							value={data.home_phone_number}
 							onChange={(e) => setData('home_phone_number', e.target.value)}
 						/>
@@ -185,7 +185,7 @@ export default function StartPage({
 							type="tel"
 							placeholder="Work Phone Number"
 							className="w-full"
-							autoComplete={'off'}
+							autoComplete="off"
 							value={data.work_phone_number}
 							onChange={(e) => setData('work_phone_number', e.target.value)}
 						/>
@@ -197,7 +197,7 @@ export default function StartPage({
 							type="tel"
 							placeholder="Cell Phone Number"
 							className="w-full"
-							autoComplete={'off'}
+							autoComplete="off"
 							value={data.cell_phone_number}
 							onChange={(e) => setData('cell_phone_number', e.target.value)}
 						/>
@@ -208,7 +208,7 @@ export default function StartPage({
 						<Input
 							type="tel"
 							placeholder="Alternate Phone Number"
-							autoComplete={'off'}
+							autoComplete="off"
 							className="w-full"
 							value={data.alt_contact_number}
 							onChange={(e) => setData('alt_contact_number', e.target.value)}
@@ -220,7 +220,7 @@ export default function StartPage({
 						<Input
 							placeholder="Probation Officer's Name"
 							className="w-full"
-							autoComplete={'off'}
+							autoComplete="off"
 							value={data.probation_parole_case_worker_name}
 							onChange={(e) =>
 								setData('probation_parole_case_worker_name', e.target.value)
@@ -236,7 +236,7 @@ export default function StartPage({
 						<Input
 							placeholder="Probation Officer's Phone Number"
 							className="w-full"
-							autoComplete={'off'}
+							autoComplete="off"
 							value={data.probation_parole_case_worker_phone}
 							onChange={(e) =>
 								setData('probation_parole_case_worker_phone', e.target.value)
@@ -286,7 +286,7 @@ export default function StartPage({
 							errors={errors}
 						/>
 					</div>
-					<div className={'flex justify-center'}>
+					<div className="flex justify-center">
 						<Button
 							className="ms-4"
 							onClick={addChild}
@@ -313,7 +313,7 @@ export default function StartPage({
 						</select>
 						<InputError message={errors.region_id} className="mt-2" />
 					</div>
-					<div className={'flex justify-center'}>
+					<div className="flex justify-center">
 						<Button
 							className="ms-4"
 							disabled={processing}
