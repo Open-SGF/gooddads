@@ -16,7 +16,7 @@
 		"@dbml/cli": "^3.8.0",
 		"@eslint/js": "^9.18.0",
 		"@headlessui/react": "^1.4.2",
-		"@inertiajs/react": "^1.0.0",
+		"@inertiajs/react": "^2.0.5",
 		"@storybook/addon-essentials": "^8.3.6",
 		"@storybook/addon-interactions": "^8.3.6",
 		"@storybook/addon-links": "^8.3.6",
