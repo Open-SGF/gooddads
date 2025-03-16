@@ -32,24 +32,41 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
 });
 
-Route::name('intake')
+Route::name('intake.')
     ->prefix('intake')
     ->group(function () {
         Route::middleware(['role:intake'])->group(function () {
-            Route::get('/', [IntakeController::class, 'index'])->name('.index');
-            Route::get('register', [ParticipantRegistrationController::class, 'create'])->name('.register');
+            Route::get('/', [IntakeController::class, 'index'])->name('index');
+            Route::get('register', [ParticipantRegistrationController::class, 'create'])->name('register');
             Route::post('register', [ParticipantRegistrationController::class, 'store']);
         });
 
         Route::middleware('role:participant')->group(function () {
-            Route::get('signup', [ParticipantSignupController::class, 'create'])->name('.signup');
+            Route::get('signup', [ParticipantSignupController::class, 'create'])->name('signup');
             Route::post('signup', [ParticipantSignupController::class, 'store']);
         });
 
-        Route::middleware('role:participant')->group(function () {
-            Route::get('disclosure', [ParticipantDisclosureController::class, 'create'])->name('.disclosure');
-            Route::post('disclosure', [ParticipantDisclosureController::class, 'store']);
+        Route::middleware('role:participant')
+            ->name('disclosure.')
+            ->prefix('disclosure')
+            ->group(function () {
+            Route::get('/', [ParticipantDisclosureController::class, 'create'])->name('index');
+            Route::post('/', [ParticipantDisclosureController::class, 'store']);
+            Route::get('/edit', [ParticipantDisclosureController::class, 'edit'])->name(
+                'edit');
+            Route::put('{id}', [ParticipantDisclosureController::class, 'update']);
         });
+
+        Route::middleware('role:participant')
+            ->name('fatherhood-assessment.')
+            ->prefix('fatherhood-assessment.')
+            ->group(function () {
+            Route::get('/', [ParticipantDisclosureController::class, 'create'])->name('index');
+            Route::post('/', [ParticipantDisclosureController::class, 'store']);
+            Route::get('edit', [ParticipantDisclosureController::class, 'edit'])->name('edit');
+            Route::put('{id}', [ParticipantDisclosureController::class, 'update']);
+        });
+
     });
 
 require __DIR__.'/auth.php';
