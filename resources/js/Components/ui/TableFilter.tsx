@@ -45,7 +45,9 @@ export const TableFilter = () => {
 				query.filters.split(',').map((filter) => {
 					const [key, value] = filter.split('=')
 					const label =
-						fields.find((field) => field.fieldKey === key)?.label ?? ''
+						fields.find(
+							(field) => (field.databaseField ?? field.fieldKey) === key,
+						)?.label ?? ''
 					return [key, { value, label: label }]
 				}),
 			)
@@ -158,7 +160,7 @@ export const TableFilter = () => {
 													setFilters((prev) => {
 														return {
 															...prev,
-															[field.fieldKey]: {
+															[field.databaseField ?? field.fieldKey]: {
 																value: '',
 																label: field.label,
 															},
