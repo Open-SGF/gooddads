@@ -34,7 +34,7 @@ export default function Authenticated({
 
 	return (
 		<div className="min-h-screen dark:bg-gray-900 flex flex-row">
-			<div className="max-w-3xs flex flex-col flex-[1_1_200px] border-r border-var(--border)">
+			<div className="max-w-3xs flex flex-col flex-[1_1_200px] border-r border-var(--border) hidden sm:flex">
 				<div className="p-4 sm:p-6 lg:p-8 shrink-0 flex items-center justify-center">
 					<Link href="/">
 						<ApplicationLogo variant="horizontal-black" size={120} />
@@ -140,9 +140,14 @@ export default function Authenticated({
 			<div className="flex flex-col flex-[1_1_80%]">
 				<div className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 h-fit">
 					<div className="flex justify-between">
-						<div className="flex items-center hidden space-x-8 sm:flex">
+						<div className="flex items-center space-x-8 sm:flex">
 							{header && (
-								<header className="bg-white dark:bg-gray-800">
+								<header className="bg-white dark:bg-gray-800 flex flex-row">
+									<div className="p-4 sm:p-6 lg:p-8 shrink-0 flex items-center justify-center sm:hidden">
+										<Link href="/">
+											<ApplicationLogo variant="horizontal-black" size={80} />
+										</Link>
+									</div>
 									<div className="mx-auto py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10 flex items-center">
 										{header}
 									</div>
@@ -150,7 +155,7 @@ export default function Authenticated({
 							)}
 						</div>
 
-						<div className="flex items-center py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10">
+						<div className="flex items-center hidden sm:flex py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10">
 							<div className="ms-3 relative">
 								<Dropdown>
 									<Dropdown.Trigger>
@@ -250,6 +255,33 @@ export default function Authenticated({
 									active={route().current('users.list')}
 								>
 									Users
+								</ResponsiveNavLink>
+							)}
+
+							{hasPermission('list curriculum') && (
+								<ResponsiveNavLink
+									href={route('curriculum.list')}
+									active={route().current('curriculum.list')}
+								>
+									Curriculum
+								</ResponsiveNavLink>
+							)}
+
+							{hasPermission('list classes') && (
+								<ResponsiveNavLink
+									href={route('classes.list')}
+									active={route().current('classes.list')}
+								>
+									Classes
+								</ResponsiveNavLink>
+							)}
+
+							{hasPermission('list reports') && (
+								<ResponsiveNavLink
+									href={route('reports.list')}
+									active={route().current('reports.list')}
+								>
+									Reports
 								</ResponsiveNavLink>
 							)}
 						</div>
