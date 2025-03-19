@@ -23,4 +23,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
 });
 
-require __DIR__.'/auth.php';
+Route::get('phpmyinfo', function () {
+    phpinfo();
+})->name('phpmyinfo');
+
+require __DIR__ . '/auth.php';

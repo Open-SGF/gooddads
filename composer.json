@@ -16,6 +16,7 @@
 		"laravel/tinker": "^2.9",
 		"spatie/data-transfer-object": "^3.9",
 		"spatie/enum": "^3.13",
+		"spatie/laravel-data": "^4.14",
 		"spatie/laravel-permission": "^6.9",
 		"spatie/laravel-typescript-transformer": "^2.5",
 		"tightenco/ziggy": "^2.0"

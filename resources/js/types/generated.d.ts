@@ -6,14 +6,14 @@ export type Ethnicity =
 	| 'pacificIslander'
 export type MaritalStatus = 'single' | 'married' | 'divorced' | 'widowed'
 export type QuizQuestionType = 'trueFalse' | 'multipleChoice' | 'shortAnswer'
-export type UserResource = {
-	id: number
-	first_name: string
-	last_name: string
+export type UserData = {
+	id: string
+	firstName: string
+	lastName: string
 	email: string
 	roles: Array<string>
 	permissions: Array<string>
-	created_at: string
-	updated_at: string
-	email_verified_at: string
+	created_at: string | null
+	updated_at: string | null
+	emailVerifiedAt: string | null
 }
