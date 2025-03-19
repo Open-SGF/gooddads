@@ -46,7 +46,7 @@ class ParticipantSignupController extends Controller
 
         $participantService->create($request->user(), $participantData);
 
-        return redirect(route('intake.disclosure', absolute: false));
+        return redirect(route('intake.disclosure.index', absolute: false));
     }
 
 

@@ -49,22 +49,24 @@ Route::name('intake.')
         Route::middleware('role:participant')
             ->name('disclosure.')
             ->prefix('disclosure')
+            ->controller(ParticipantDisclosureController::class)
             ->group(function () {
-            Route::get('/', [ParticipantDisclosureController::class, 'create'])->name('index');
-            Route::post('/', [ParticipantDisclosureController::class, 'store']);
-            Route::get('/edit', [ParticipantDisclosureController::class, 'edit'])->name(
-                'edit');
-            Route::put('{id}', [ParticipantDisclosureController::class, 'update']);
+                Route::get('/',  'create')->name('index');
+                Route::get('/',  'create')->name('create');
+                Route::post('/',  'store')->name('store');
+                Route::get('/edit', 'edit')->name('edit');
+                Route::match(['put', 'patch'], '{disclosureAuthorization}', 'update')->name('update');
         });
 
         Route::middleware('role:participant')
             ->name('fatherhood-assessment.')
             ->prefix('fatherhood-assessment.')
             ->group(function () {
-            Route::get('/', [ParticipantDisclosureController::class, 'create'])->name('index');
-            Route::post('/', [ParticipantDisclosureController::class, 'store']);
-            Route::get('edit', [ParticipantDisclosureController::class, 'edit'])->name('edit');
-            Route::put('{id}', [ParticipantDisclosureController::class, 'update']);
+                Route::get('/', [ParticipantDisclosureController::class, 'create'])->name('index');
+                Route::get('/', [ParticipantDisclosureController::class, 'create'])->name('create');
+                Route::post('/', [ParticipantDisclosureController::class, 'store'])->name('store');
+                Route::get('edit', [ParticipantDisclosureController::class, 'edit'])->name('edit');
+                Route::match(['put', 'patch'],'{id}', [ParticipantDisclosureController::class, 'update'])->name('update');
         });
 
     });

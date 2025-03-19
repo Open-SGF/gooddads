@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property string $id
@@ -99,4 +100,13 @@ class Participant extends Model
     {
         return $this->hasMany(Child::class);
     }
+
+    /**
+     * Get the disclosure authorizations for the participant.
+     */
+    public function disclosureAuthorization(): HasMany
+    {
+        return $this->hasMany(ParticipantDisclosureAuthorization::class);
+    }
+    
 }
