@@ -30,6 +30,7 @@ type BaseDataTableFields = {
 	sort?: boolean
 	filter?: boolean
 	export?: boolean
+	databaseField?: string
 }
 
 export type DataTableFields<T> =
@@ -66,9 +67,12 @@ export const DataTable = <T extends BaseRow>({
 
 	const handleSort = (field: DataTableFields<T>) => {
 		const newSort =
-			sortField === field.fieldKey && sortDirection === 'desc' ?
+			(
+				sortField === (field.databaseField ?? field.fieldKey) &&
+				sortDirection === 'desc'
+			) ?
 				''
-			:	`${field.fieldKey},${sortField === field.fieldKey ? 'desc' : 'asc'}`
+			:	`${field.databaseField ?? field.fieldKey},${sortField === (field.databaseField ?? field.fieldKey) ? 'desc' : 'asc'}`
 		setSort(newSort)
 		router.reload({
 			data: {
