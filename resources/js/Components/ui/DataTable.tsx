@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils'
 import { UsersListPageProps } from '@/Pages/Users/List'
 
 export type BaseRow = {
-	id: number
+	id: string
 }
 
 type DataTableProps<T> = {
@@ -88,7 +88,7 @@ export const DataTable = <T extends BaseRow>({
 		}
 	}
 
-	const handleSelectRow = (id: number) => {
+	const handleSelectRow = (id: string) => {
 		if (selectedRows.map((row) => row.id).includes(id)) {
 			setSelectedRows(selectedRows.filter((row) => row.id !== id))
 		} else {
