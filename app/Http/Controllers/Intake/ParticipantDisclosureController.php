@@ -19,7 +19,7 @@ class ParticipantDisclosureController extends Controller
     {
         $participant = $request->user()->participant;
 
-        return Inertia::render('Intake/Disclosure/DisclosureIndex',[
+        return Inertia::render('Intake/Disclosure/Index',[
             'participant' => ParticipantResource::make($participant),
             'disclosureAuthorizations' => $participant?->disclosureAuthorizations?->toArray(),
         ]);
@@ -31,7 +31,7 @@ class ParticipantDisclosureController extends Controller
      */
     public function create(Request $request): Response
     {
-        return Inertia::render('Intake/Disclosure/DisclosureCreate',[
+        return Inertia::render('Intake/Disclosure/Create',[
             'participant' => ParticipantResource::make($request->user()->participant),
         ]);
     }
@@ -61,7 +61,7 @@ class ParticipantDisclosureController extends Controller
     {
         $participant = $request->user()->participant;
 
-        return Inertia::render('Intake/Disclosure/DisclosureShow', [
+        return Inertia::render('Intake/Disclosure/Show', [
             'participant' => ParticipantResource::make($participant),
             'disclosureAuthorization' => $disclosureAuthorization,
         ]);
@@ -74,7 +74,7 @@ class ParticipantDisclosureController extends Controller
     {
         $participant = $request->user()->participant;
         
-        return Inertia::render('Intake/Disclosure', [
+        return Inertia::render('Intake/Disclosure/Edit', [
             'participant' => ParticipantResource::make($participant),
             'disclosureAuthorization' => $disclosureAuthorization,
         ]);

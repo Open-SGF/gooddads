@@ -20,7 +20,7 @@ class ParticipantDisclosureTest extends TestCase
     }
 
     /**
-     * Test that the disclosure form can be accessed by a participant.
+     * Test that the disclosure index is rendered properly
      */
     public function test_disclosure_index_is_rendered(): void
     {

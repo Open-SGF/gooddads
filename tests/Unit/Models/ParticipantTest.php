@@ -3,7 +3,6 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Participant;
-use App\Models\ParticipantDisclosureAuthorization;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
