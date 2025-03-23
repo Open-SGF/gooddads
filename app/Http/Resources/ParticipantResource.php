@@ -21,7 +21,8 @@ class ParticipantResource extends JsonResource
         return [
           'id' => $this->id,
           'user_id' => $this->user_id,
-          'user' => $this->whenLoaded('user', fn() => UserResource::make($this->user)),
+          'user' => UserResource::make($this->user),
+          'name' => $this->user->first_name . ' ' . $this->user->last_name,
           'region_id' => $this->region_id,
           'region' => $this->whenLoaded('region', RegionResource::make($this->region)),
           'children' => $this->whenLoaded('children', ChildResource::collection($this->children)),

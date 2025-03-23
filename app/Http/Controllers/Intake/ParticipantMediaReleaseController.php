@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Intake;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Intake\StoreParticipantMediaReleaseRequest;
 use App\Http\Requests\Intake\UpdateParticipantMediaReleaseRequest;
+use App\Http\Resources\ParticipantMediaReleaseResource;
 use App\Http\Resources\ParticipantResource;
 use App\Models\ParticipantMediaRelease;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class ParticipantMediaReleaseController extends Controller
 
         return Inertia::render('Intake/MediaRelease/Index',[
             'participant' => ParticipantResource::make($participant),
-            'mediaReleases' => $participant?->mediaReleases?->toArray(),
+            'mediaReleases' => ParticipantMediaReleaseResource::collection($participant?->mediaReleases?->toArray()),
         ]);
     }
 
@@ -57,7 +58,7 @@ class ParticipantMediaReleaseController extends Controller
 
         return Inertia::render('Intake/MediaRelease/Show', [
             'participant' => ParticipantResource::make($participant),
-            'mediaRelease' => $mediaRelease->toArray(),
+            'mediaRelease' => ParticipantMediaReleaseResource::make($mediaRelease),
         ]);
     }
 
@@ -70,7 +71,7 @@ class ParticipantMediaReleaseController extends Controller
 
         return Inertia::render('Intake/MediaRelease/Edit', [
             'participant' => ParticipantResource::make($participant),
-            'mediaRelease' => $mediaRelease->toArray(),
+            'mediaRelease' => ParticipantMediaReleaseResource::make($mediaRelease),
         ]);
     }
 
