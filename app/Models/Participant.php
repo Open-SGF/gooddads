@@ -104,7 +104,7 @@ class Participant extends Model
     /**
      * Get the disclosure authorizations for the participant.
      */
-    public function disclosureAuthorization(): HasMany
+    public function disclosureAuthorizations(): HasMany
     {
         return $this->hasMany(ParticipantDisclosureAuthorization::class);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Intake;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Intake\ParticipantDisclosureAuthorizationStoreRequest;
 use App\Http\Requests\Intake\ParticipantDisclosureAuthorizationUpdateRequest;
+use App\Http\Resources\ParticipantResource;
 use App\Models\ParticipantDisclosureAuthorization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,13 +14,25 @@ use Inertia\Response;
 
 class ParticipantDisclosureController extends Controller
 {
+
+    public function index(Request $request): Response
+    {
+        $participant = $request->user()->participant;
+
+        return Inertia::render('Intake/Disclosure/DisclosureIndex',[
+            'participant' => ParticipantResource::make($participant),
+            'disclosureAuthorizations' => $participant?->disclosureAuthorizations?->toArray(),
+        ]);
+    }
+
+
     /**
      * Display the registration view.
      */
     public function create(Request $request): Response
     {
-        return Inertia::render('Intake/Disclosure',[
-            'participant' => $request->user()?->participant ?? [],
+        return Inertia::render('Intake/Disclosure/DisclosureCreate',[
+            'participant' => ParticipantResource::make($request->user()->participant),
         ]);
     }
 
@@ -32,32 +45,38 @@ class ParticipantDisclosureController extends Controller
     {
         $validated = $request->validated();
         
-        // Get the current participant
         $participant = $request->user()->participant;
-        
-        // Create or update the disclosure authorization
-        if ($participant->disclosureAuthorization) {
-            // Update existing authorization
-            $participant->disclosureAuthorization->update($validated);
-            $disclosureAuthorization = $participant->disclosureAuthorization;
-        } else {
-            // Create new authorization
-            $disclosureAuthorization = $participant->disclosureAuthorization()->create($validated);
-        }
-        
-        return redirect()->route('intake.fatherhood-assessment.index');
+
+        $participant->disclosureAuthorizations()->create($validated);
+
+        return redirect()->back(303)->with('message', 'Disclosure Authorization Created Successfully');
+    }
+
+
+
+    /**
+     * Show the form for editing the disclosure agreement.
+     */
+    public function show(Request $request,  ParticipantDisclosureAuthorization $disclosureAuthorization): Response
+    {
+        $participant = $request->user()->participant;
+
+        return Inertia::render('Intake/Disclosure/DisclosureShow', [
+            'participant' => ParticipantResource::make($participant),
+            'disclosureAuthorization' => $disclosureAuthorization,
+        ]);
     }
 
     /**
      * Show the form for editing the disclosure agreement.
      */
-    public function edit(Request $request): Response
+    public function edit(Request $request, ParticipantDisclosureAuthorization $disclosureAuthorization): Response
     {
         $participant = $request->user()->participant;
         
         return Inertia::render('Intake/Disclosure', [
-            'participant' => $participant,
-            'disclosureAuthorization' => $participant->disclosureAuthorization,
+            'participant' => ParticipantResource::make($participant),
+            'disclosureAuthorization' => $disclosureAuthorization,
         ]);
     }
 
@@ -72,6 +91,18 @@ class ParticipantDisclosureController extends Controller
 
         $disclosureAuthorization->update($validated);
 
-        return redirect()->route('intake.fatherhood-assessment.index');
+        return redirect()->back(303)->with('message', 'Disclosure Authorization Updated Successfully');
+    }
+
+
+    public function destroy(Request $request, ParticipantDisclosureAuthorization $disclosureAuthorization): RedirectResponse
+    {
+        if($disclosureAuthorization->participant_id !== $request->user()->participant->id) {
+            abort(403);
+        }
+
+        $disclosureAuthorization->delete();
+
+        return redirect()->back(303)->with('message', 'Disclosure Authorization Deleted Successfully');
     }
 }

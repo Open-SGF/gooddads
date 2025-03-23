@@ -25,24 +25,5 @@ class ParticipantService {
         return $participant->children()->createMany($childrenInfo);
     }
 
-    /**
-     * Create or update a participant's disclosure authorization.
-     *
-     * @param \App\Models\Participant $participant
-     * @param array $data
-     * @return \App\Models\ParticipantDisclosureAuthorization
-     */
-    public function createOrUpdateDisclosureAuthorization($participant, array $data)
-    {
-        // Check if the participant already has a disclosure authorization
-        if ($participant->disclosureAuthorization) {
-            // Update existing authorization
-            $participant->disclosureAuthorization->update($data);
-            return $participant->disclosureAuthorization;
-        }
-        
-        // Create new authorization
-        return $participant->disclosureAuthorization()->create($data);
-    }
 
 }

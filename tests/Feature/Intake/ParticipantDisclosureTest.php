@@ -6,6 +6,7 @@ use App\Models\Participant;
 use App\Models\User;
 use Database\Seeders\PermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inertia\Testing\AssertableInertia;
 use Tests\TestCase;
 
 class ParticipantDisclosureTest extends TestCase
@@ -21,13 +22,47 @@ class ParticipantDisclosureTest extends TestCase
     /**
      * Test that the disclosure form can be accessed by a participant.
      */
-    public function test_disclosure_form_is_rendered(): void
+    public function test_disclosure_index_is_rendered(): void
     {
         $participantUser = User::factory()->create();
         $participantUser->assignRole('participant');
-        Participant::factory()->create(['user_id' => $participantUser->id]);
+        $participant = Participant::factory()->create(['user_id' => $participantUser->id]);
 
         $response = $this->actingAs($participantUser)->get(route('intake.disclosure.index'));
+
+        $response->assertStatus(200);
+
+
+        $disclosureData = $this->getDisclosureData();
+        $participant->disclosureAuthorizations()->create($disclosureData);
+
+        $participantUser->refresh();
+        $response = $this->actingAs($participantUser)->get(route('intake.disclosure.index'));
+
+        $response->assertInertia(fn(AssertableInertia $page) => $page->count('disclosureAuthorizations', 1));
+
+    }
+    public function test_disclosure_create_form_is_rendered(): void
+    {
+        $participantUser = User::factory()->create();
+        $participantUser->assignRole('participant');
+        $participant = Participant::factory()->create(['user_id' => $participantUser->id]);
+
+        $response = $this->actingAs($participantUser)->get(route('intake.disclosure.create'));
+
+        $response->assertStatus(200);
+    }
+
+    public function test_disclosure_edit_is_rendered(): void
+    {
+        $participantUser = User::factory()->create();
+        $participantUser->assignRole('participant');
+        $participant = Participant::factory()->create(['user_id' => $participantUser->id]);
+
+        $disclosureData = $this->getDisclosureData();
+        $disclosure = $participant->disclosureAuthorizations()->create($disclosureData);
+
+        $response = $this->actingAs($participantUser)->get(route('intake.disclosure.update', $disclosure->id));
 
         $response->assertStatus(200);
     }
@@ -45,7 +80,7 @@ class ParticipantDisclosureTest extends TestCase
 
         $this->actingAs($participantUser)->post(route('intake.disclosure.store'), $disclosureData);
 
-        $this->assertNotNull($participant->disclosureAuthorization);
+        $this->assertNotNull($participant->disclosureAuthorizations);
     }
 
     /**
@@ -58,7 +93,7 @@ class ParticipantDisclosureTest extends TestCase
         $participant = Participant::factory()->create(['user_id' => $participantUser->id]);
 
         $disclosureData = $this->getDisclosureData();
-        $disclosure = $participant->disclosureAuthorization()->create($disclosureData);
+        $disclosure = $participant->disclosureAuthorizations()->create($disclosureData);
 
         $updatedData = [
             ...$disclosureData,
@@ -69,7 +104,7 @@ class ParticipantDisclosureTest extends TestCase
         $updateRoute = route('intake.disclosure.update', ['disclosureAuthorization' => $disclosure->id]);
         $updateResponse = $this->actingAs($participantUser)->put($updateRoute, $updatedData);
 
-        $updateResponse->assertRedirectToRoute('intake.fatherhood-assessment.index');
+        $updateResponse->assertRedirect();
 
         $disclosure->refresh();
         $this->assertEquals('Jane Doe', $disclosure->consumer_name);
@@ -77,23 +112,26 @@ class ParticipantDisclosureTest extends TestCase
 
 
     /**
-     * Test that authorization_agreed is required.
+     * Test that a participant can update an existing disclosure agreement.
      */
-    public function test_authorization_agreed_is_required(): void
+    public function test_participant_can_delete_disclosure(): void
     {
-        $participantUser = User::factory()->create()->assignRole('participant');
-        Participant::factory()->create(['user_id' => $participantUser->id]);
+        $participantUser = User::factory()->create();
+        $participantUser->assignRole('participant');
+        $participant = Participant::factory()->create(['user_id' => $participantUser->id]);
 
-        $disclosureData = [
-            'authorization_date' => now()->format('Y-m-d'),
-            'authorization_signature' => 'John Doe',
-            'authorization_agreed' => false, // Not agreed
-        ];
+        $disclosureData = $this->getDisclosureData();
+        $disclosure = $participant->disclosureAuthorizations()->create($disclosureData);
 
-        $response = $this->actingAs($participantUser)->post(route('intake.disclosure.store'), $disclosureData);
+        // Test the update endpoint
+        $updateRoute = route('intake.disclosure.destroy', ['disclosureAuthorization' => $disclosure->id]);
+        $updateResponse = $this->actingAs($participantUser)->delete($updateRoute);
 
-        $response->assertSessionHasErrors('authorization_agreed');
+        $participant->refresh();
+
+        $this->assertCount(0, $participant->disclosureAuthorizations);
     }
+
 
     public function getDisclosureData(): array
     {

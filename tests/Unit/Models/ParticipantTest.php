@@ -31,30 +31,4 @@ class ParticipantTest extends TestCase
         $this->assertInstanceOf(User::class, $participant->user);
         $this->assertEquals($user->id, $participant->user->id);
     }
-
-    /**
-     * Test the relationship between Participant and ParticipantDisclosureAuthorization.
-     *
-     * @return void
-     */
-    public function test_disclosure_authorization_relationship()
-    {
-        // Create a participant
-        $participant = Participant::factory()->create();
-        
-        // Initially, the participant should not have a disclosure authorization
-        $this->assertNull($participant->disclosureAuthorization);
-        
-        // Create a disclosure authorization for the participant
-        $disclosureAuth = ParticipantDisclosureAuthorization::factory()->create([
-            'participant_id' => $participant->id
-        ]);
-        
-        // Refresh the participant model
-        $participant->refresh();
-        
-        // Now the participant should have a disclosure authorization
-        $this->assertInstanceOf(ParticipantDisclosureAuthorization::class, $participant->disclosureAuthorization);
-        $this->assertEquals($disclosureAuth->id, $participant->disclosureAuthorization->id);
-    }
 } 

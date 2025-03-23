@@ -47,16 +47,8 @@ Route::name('intake.')
         });
 
         Route::middleware('role:participant')
-            ->name('disclosure.')
-            ->prefix('disclosure')
-            ->controller(ParticipantDisclosureController::class)
-            ->group(function () {
-                Route::get('/',  'create')->name('index');
-                Route::get('/',  'create')->name('create');
-                Route::post('/',  'store')->name('store');
-                Route::get('/edit', 'edit')->name('edit');
-                Route::match(['put', 'patch'], '{disclosureAuthorization}', 'update')->name('update');
-        });
+            ->resource('disclosure', ParticipantDisclosureController::class)
+            ->parameter('disclosure', 'disclosureAuthorization');
 
         Route::middleware('role:participant')
             ->name('fatherhood-assessment.')

@@ -31,7 +31,7 @@ class ParticipantDisclosureAuthorizationTest extends TestCase
         $this->assertEquals($participant->id, $disclosureAuth->participant->id);
         
         // Test the relationship from participant to disclosure
-        $this->assertTrue($participant->disclosureAuthorization->is($disclosureAuth));
+        $this->assertTrue($participant->disclosureAuthorizations->is($disclosureAuth));
     }
 
     /**
