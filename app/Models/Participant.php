@@ -124,4 +124,12 @@ class Participant extends Model
         return $this->hasMany(ParticipantFatherhoodSurvey::class);
     }
 
+    /**
+     * Get the Service Plans for the participant.
+     */
+    public function servicePlans(): HasMany
+    {
+        return $this->hasMany(ParticipantServicePlan::class);
+    }
+
 }

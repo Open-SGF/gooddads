@@ -5,6 +5,7 @@ use App\Http\Controllers\Intake\ParticipantDisclosureController;
 use App\Http\Controllers\Intake\ParticipantFatherhoodAssessmentController;
 use App\Http\Controllers\Intake\ParticipantFatherhoodSurveyController;
 use App\Http\Controllers\Intake\ParticipantRegistrationController;
+use App\Http\Controllers\Intake\ParticipantServicePlanController;
 use App\Http\Controllers\Intake\ParticipantSignupController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
@@ -60,6 +61,10 @@ Route::name('intake.')
         Route::middleware('role:participant')
             ->resource('fatherhood-survey', ParticipantFatherhoodSurveyController::class)
             ->parameter('fatherhood-survey', 'fatherhoodSurvey');
+
+        Route::middleware('role:participant')
+            ->resource('service-plan', ParticipantServicePlanController::class)
+            ->parameter('service-plan', 'servicePlan');
 
 
     });
