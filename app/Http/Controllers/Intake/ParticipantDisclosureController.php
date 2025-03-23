@@ -27,7 +27,7 @@ class ParticipantDisclosureController extends Controller
 
 
     /**
-     * Display the registration view.
+     * Display the create view.
      */
     public function create(Request $request): Response
     {

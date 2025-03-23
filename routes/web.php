@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Intake\IntakeController;
 use App\Http\Controllers\Intake\ParticipantDisclosureController;
+use App\Http\Controllers\Intake\ParticipantFatherhoodAssessmentController;
 use App\Http\Controllers\Intake\ParticipantRegistrationController;
 use App\Http\Controllers\Intake\ParticipantSignupController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
+use App\Models\ParticipantFatherhoodAssesment;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UsersController;
@@ -51,15 +53,9 @@ Route::name('intake.')
             ->parameter('disclosure', 'disclosureAuthorization');
 
         Route::middleware('role:participant')
-            ->name('fatherhood-assessment.')
-            ->prefix('fatherhood-assessment.')
-            ->group(function () {
-                Route::get('/', [ParticipantDisclosureController::class, 'create'])->name('index');
-                Route::get('/', [ParticipantDisclosureController::class, 'create'])->name('create');
-                Route::post('/', [ParticipantDisclosureController::class, 'store'])->name('store');
-                Route::get('edit', [ParticipantDisclosureController::class, 'edit'])->name('edit');
-                Route::match(['put', 'patch'],'{id}', [ParticipantDisclosureController::class, 'update'])->name('update');
-        });
+            ->resource('fatherhood-assessment', ParticipantFatherhoodAssessmentController::class)
+            ->parameter('fatherhood-assessment', 'fatherhoodAssessment');
+
 
     });
 
