@@ -46,7 +46,7 @@ class ParticipantDisclosureTest extends TestCase
     {
         $participantUser = User::factory()->create();
         $participantUser->assignRole('participant');
-        $participant = Participant::factory()->create(['user_id' => $participantUser->id]);
+        Participant::factory()->create(['user_id' => $participantUser->id]);
 
         $response = $this->actingAs($participantUser)->get(route('intake.disclosure.create'));
 
@@ -125,7 +125,7 @@ class ParticipantDisclosureTest extends TestCase
 
         // Test the update endpoint
         $updateRoute = route('intake.disclosure.destroy', ['disclosureAuthorization' => $disclosure->id]);
-        $updateResponse = $this->actingAs($participantUser)->delete($updateRoute);
+        $this->actingAs($participantUser)->delete($updateRoute);
 
         $participant->refresh();
 
