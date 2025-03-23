@@ -40,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
 Route::name('intake.')
     ->prefix('intake')
     ->group(function () {
+        Route::get('/dev-auth', [IntakeController::class, 'devAuth']);
+        Route::get('/intake-complete', [IntakeController::class, 'intakeComplete'])->name('complete');
+
         Route::middleware(['role:intake'])->group(function () {
             Route::get('/', [IntakeController::class, 'index'])->name('index');
             Route::get('register', [ParticipantRegistrationController::class, 'create'])->name('register');

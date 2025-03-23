@@ -1,23 +1,28 @@
 import React from 'react'
-import { Head } from '@inertiajs/react'
 import { type PageProps } from '@/types'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import type { Participant } from '@/types/participant'
+import MediaReleaseForm from '@/Components/Intake/MediaReleaseForm'
+import IntakeLayout from '@/Layouts/IntakeLayout'
+import type { IntakeMediaReleaseForm } from '@/types/intake-media-release-form'
 
-interface AssessmentPageProps extends PageProps {
+interface ReleasePageProps extends PageProps {
 	participant: Participant
+	mediaReleaseForm: IntakeMediaReleaseForm
 }
 
-export const Show: React.FC<AssessmentPageProps> = ({ auth, participant }) => {
+export const Show: React.FC<ReleasePageProps> = ({
+	participant,
+	mediaReleaseForm,
+}) => {
 	return (
-		<AuthenticatedLayout user={auth.user}>
-			<Head title="Fatherhood Assessment" />
-			<div className="py-12">
-				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-					Fatherhood Assessment for {participant.user.first_name}
-				</div>
-			</div>
-		</AuthenticatedLayout>
+		<IntakeLayout title="Media Release" subtitle="Please sign the release form">
+			<MediaReleaseForm
+				participant={participant}
+				mediaReleaseForm={mediaReleaseForm}
+				viewOnly={true}
+				nextRoute={'intake.media-release.index'}
+			/>
+		</IntakeLayout>
 	)
 }
 

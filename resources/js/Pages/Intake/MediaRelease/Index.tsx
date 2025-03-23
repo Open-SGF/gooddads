@@ -1,23 +1,112 @@
 import React from 'react'
-import { Head } from '@inertiajs/react'
 import { type PageProps } from '@/types'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import type { Participant } from '@/types/participant'
+import IntakeLayout from '@/Layouts/IntakeLayout'
+import type { IntakeMediaReleaseForm } from '@/types/intake-media-release-form'
+import { Button } from '@/Components/ui'
+import { router } from '@inertiajs/react'
+import { clsx } from 'clsx'
 
 interface AssessmentPageProps extends PageProps {
 	participant: Participant
+	mediaReleases: IntakeMediaReleaseForm[]
 }
 
-export const Index: React.FC<AssessmentPageProps> = ({ auth, participant }) => {
+export const Index: React.FC<AssessmentPageProps> = ({
+	participant,
+	mediaReleases,
+}) => {
+	if (mediaReleases.length === 0) {
+		router.visit(route('intake.media-release.create'))
+	}
+
 	return (
-		<AuthenticatedLayout user={auth.user}>
-			<Head title="Fatherhood Assessment" />
-			<div className="py-12">
-				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-					Fatherhood Assessment for {participant.user.first_name}
-				</div>
+		<IntakeLayout
+			title="Media Release"
+			subtitle={`${participant.user.first_name}, Media Release`}
+		>
+			<div className="grid grid-cols-3 gap-y-3">
+				<div className="font-semibold ">Signed Date</div>
+				<div className="font-semibold ">Signed Name</div>
+				<div className="flex justify-end font-semibold ">Actions</div>
+				{mediaReleases.map((mediaRelease, index) => (
+					<React.Fragment key={mediaRelease.id}>
+						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+							{mediaRelease.signature_date}
+						</div>
+						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+							{mediaRelease.signature}
+						</div>
+						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+							<Button
+								onClick={() => {
+									router.visit(
+										route('intake.media-release.show', mediaRelease.id),
+									)
+								}}
+								className="ms-4"
+								size="default"
+								variant="outline"
+							>
+								View
+							</Button>
+							<Button
+								onClick={() => {
+									router.visit(
+										route('intake.media-release.edit', mediaRelease.id),
+									)
+								}}
+								className="ms-4"
+								size="default"
+								variant="outline"
+							>
+								Edit
+							</Button>
+							<Button
+								onClick={() => {
+									confirm(
+										'Are you sure you want to delete this media release?',
+									) &&
+										router.delete(
+											route('intake.media-release.destroy', mediaRelease.id),
+										)
+								}}
+								className="ms-4"
+								size="default"
+								variant="outline"
+							>
+								Delete
+							</Button>
+						</div>
+					</React.Fragment>
+				))}
 			</div>
-		</AuthenticatedLayout>
+			<div className="flex mt-6 gap-2 justify-end border-t pt-3">
+				<Button
+					onClick={() => {
+						router.visit(route('intake.media-release.create'))
+					}}
+					className="ms-4"
+					size="default"
+					variant="outline"
+				>
+					Sign New Release
+				</Button>
+
+				{mediaReleases.length > 0 && (
+					<Button
+						onClick={() => {
+							router.visit(route('intake.complete'))
+						}}
+						className="ms-4"
+						size="default"
+						variant="outline"
+					>
+						Continue
+					</Button>
+				)}
+			</div>
+		</IntakeLayout>
 	)
 }
 

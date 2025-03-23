@@ -23,7 +23,7 @@ class ParticipantMediaReleaseController extends Controller
 
         return Inertia::render('Intake/MediaRelease/Index',[
             'participant' => ParticipantResource::make($participant),
-            'mediaReleases' => ParticipantMediaReleaseResource::collection($participant?->mediaReleases?->toArray()),
+            'mediaReleases' => ParticipantMediaReleaseResource::collection($participant?->mediaReleases),
         ]);
     }
 
@@ -68,6 +68,8 @@ class ParticipantMediaReleaseController extends Controller
     public function edit(Request $request, ParticipantMediaRelease $mediaRelease)
     {
         $participant = $request->user()->participant;
+
+        \Log::debug('media release', ['form' => ParticipantMediaReleaseResource::make($mediaRelease)->resolve()]);
 
         return Inertia::render('Intake/MediaRelease/Edit', [
             'participant' => ParticipantResource::make($participant),
