@@ -43,4 +43,11 @@ class ParticipantFactory extends Factory
 
         ];
     }
+
+    public function configure(): static
+    {
+        return $this->afterCreating(function (Participant $participant) {
+            $participant->user->assignRole('participant');
+        });
+    }
 }
