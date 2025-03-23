@@ -132,4 +132,11 @@ class Participant extends Model
         return $this->hasMany(ParticipantServicePlan::class);
     }
 
+    /**
+     * Get the Media Releases for the participant.
+     */
+    public function mediaReleases(): HasMany
+    {
+        return $this->hasMany(ParticipantMediaRelease::class);
+    }
 }

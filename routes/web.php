@@ -4,6 +4,7 @@ use App\Http\Controllers\Intake\IntakeController;
 use App\Http\Controllers\Intake\ParticipantDisclosureController;
 use App\Http\Controllers\Intake\ParticipantFatherhoodAssessmentController;
 use App\Http\Controllers\Intake\ParticipantFatherhoodSurveyController;
+use App\Http\Controllers\Intake\ParticipantMediaReleaseController;
 use App\Http\Controllers\Intake\ParticipantRegistrationController;
 use App\Http\Controllers\Intake\ParticipantServicePlanController;
 use App\Http\Controllers\Intake\ParticipantSignupController;
@@ -65,6 +66,11 @@ Route::name('intake.')
         Route::middleware('role:participant')
             ->resource('service-plan', ParticipantServicePlanController::class)
             ->parameter('service-plan', 'servicePlan');
+
+        Route::middleware('role:participant')
+            ->resource('media-release', ParticipantMediaReleaseController::class)
+            ->parameter('media-release', 'mediaRelease');
+
 
 
     });
