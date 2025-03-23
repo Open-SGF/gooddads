@@ -116,4 +116,12 @@ class Participant extends Model
         return $this->hasMany(ParticipantFatherhoodAssessment::class);
     }
 
+    /**
+     * Get the Fatherhood Surveys for the participant.
+     */
+    public function fatherhoodSurveys(): HasMany
+    {
+        return $this->hasMany(ParticipantFatherhoodSurvey::class);
+    }
+
 }
