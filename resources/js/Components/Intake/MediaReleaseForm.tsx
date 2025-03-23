@@ -53,7 +53,7 @@ export const MediaReleaseForm: React.FC<MediaReleaseFormProps> = ({
 				}
 
 				if (mediaReleaseForm?.id) {
-					form.post(route('intake.media-release.store'), {
+					form.put(route('intake.media-release.update'), {
 						onSuccess: () => {
 							continueToNextStep()
 						},
