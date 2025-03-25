@@ -25,6 +25,9 @@ class ParticipantDisclosureAuthorizationFactory extends Factory
      */
     public function definition(): array
     {
+
+        $isOtherAuthorized = $this->faker->boolean();
+
         return [
             'participant_id' => Participant::factory(),
             'consumer_name' => $this->faker->name(),
@@ -36,7 +39,8 @@ class ParticipantDisclosureAuthorizationFactory extends Factory
             'is_fsd_authorized' => $this->faker->boolean(),
             'is_cd_authorized' => $this->faker->boolean(),
             'is_dls_authorized' => $this->faker->boolean(),
-            'other_authorized_entity' => $this->faker->company(),
+            'is_other_authorized' => $isOtherAuthorized,
+            'other_authorized_entity' => $isOtherAuthorized ? $this->faker->company() : null,
             'subject_name' => $this->faker->name(),
             'subject_phone' => $this->faker->phoneNumber(),
             'subject_dob' => $this->faker->date(),
