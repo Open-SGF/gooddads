@@ -3,20 +3,26 @@ import { Head } from '@inertiajs/react'
 import { type PageProps } from '@/types'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import type { Participant } from '@/types/participant'
+import FatherhoodSurveyForm from '@/Components/Intake/FatherhoodSurveyForm'
+import type { IntakeFatherhoodSurveyFormData } from '@/types/intake-fatherhood-survey-form'
 
 interface AssessmentPageProps extends PageProps {
 	participant: Participant
+	fatherhoodSurvey: IntakeFatherhoodSurveyFormData
 }
 
-export const Edit: React.FC<AssessmentPageProps> = ({ auth, participant }) => {
+export const Edit: React.FC<AssessmentPageProps> = ({
+	auth,
+	participant,
+	fatherhoodSurvey,
+}) => {
 	return (
 		<AuthenticatedLayout user={auth.user}>
-			<Head title="Fatherhood Assessment" />
-			<div className="py-12">
-				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-					Fatherhood Assessment for {participant.user.first_name}
-				</div>
-			</div>
+			<Head title="Fatherhood Survey" />
+			<FatherhoodSurveyForm
+				participant={participant}
+				fatherhoodSurvey={fatherhoodSurvey}
+			/>
 		</AuthenticatedLayout>
 	)
 }

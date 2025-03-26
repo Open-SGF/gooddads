@@ -11,14 +11,14 @@ import dayjs from 'dayjs'
 
 interface AssessmentPageProps extends PageProps {
 	participant: Participant
-	fatherhoodAssessments: IntakeFatherhoodAssessmentForm[]
+	fatherhoodSurveys: IntakeFatherhoodAssessmentForm[]
 }
 
 export const Index: React.FC<AssessmentPageProps> = ({
 	participant,
-	fatherhoodAssessments,
+	fatherhoodSurveys,
 }) => {
-	if (fatherhoodAssessments.length === 0) {
+	if (fatherhoodSurveys.length === 0) {
 		router.visit(route('intake.fatherhood-assessment.create'))
 	}
 
@@ -31,7 +31,7 @@ export const Index: React.FC<AssessmentPageProps> = ({
 				<div className="font-semibold ">Signed Date</div>
 				<div className="font-semibold ">Signed Name</div>
 				<div className="flex justify-end font-semibold ">Actions</div>
-				{fatherhoodAssessments.map((assessment, index) => (
+				{fatherhoodSurveys.map((assessment, index) => (
 					<React.Fragment key={assessment.id}>
 						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							{assessment.participant_name}
@@ -96,7 +96,7 @@ export const Index: React.FC<AssessmentPageProps> = ({
 					Create New Assessment
 				</Button>
 
-				{fatherhoodAssessments.length > 0 && (
+				{fatherhoodSurveys.length > 0 && (
 					<Button
 						onClick={() => {
 							router.visit(route('intake.fatherhood-survey.index'))
