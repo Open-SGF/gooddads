@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Intake;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Intake\ParticipantDisclosureAuthorizationStoreRequest;
-use App\Http\Requests\Intake\ParticipantDisclosureAuthorizationUpdateRequest;
+use App\Http\Requests\Intake\StoreParticipantDisclosureAuthorizationRequest;
+use App\Http\Requests\Intake\UpdateParticipantDisclosureAuthorizationRequest;
 use App\Http\Resources\ParticipantResource;
 use App\Models\ParticipantDisclosureAuthorization;
 use Illuminate\Http\RedirectResponse;
@@ -41,7 +41,7 @@ class ParticipantDisclosureController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(ParticipantDisclosureAuthorizationStoreRequest $request)
+    public function store(StoreParticipantDisclosureAuthorizationRequest $request)
     {
         $validated = $request->validated();
         
@@ -85,7 +85,7 @@ class ParticipantDisclosureController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(ParticipantDisclosureAuthorizationUpdateRequest $request, ParticipantDisclosureAuthorization $disclosureAuthorization): RedirectResponse
+    public function update(UpdateParticipantDisclosureAuthorizationRequest $request, ParticipantDisclosureAuthorization $disclosureAuthorization): RedirectResponse
     {
         $validated = $request->validated();
 
