@@ -8,7 +8,7 @@ use App\Rules\UsPhoneNumber;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ParticipantSignupStoreRequest extends FormRequest
+class StoreParticipantSignupRequest extends FormRequest
 {
     public function authorize(): bool
     {

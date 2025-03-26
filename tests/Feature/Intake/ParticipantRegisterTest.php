@@ -19,9 +19,6 @@ class ParticipantRegisterTest extends TestCase
         $this->seed(PermissionsSeeder::class);
     }
 
-    /**
-     * A basic feature test example.
-     */
     public function test_intake_form_can_only_be_accessed_by_intake_role(): void
     {
 
