@@ -134,11 +134,16 @@ const FatherhoodAssessmentForm: React.FC<FatherhoodAssessmentFormProps> = ({
 					}
 
 					if (fatherhoodAssessmentForm?.id) {
-						form.post(route('intake.fatherhood-assessment.update'), {
-							onSuccess: () => {
-								continueToNextStep()
+						form.put(
+							route('intake.fatherhood-assessment.update', [
+								fatherhoodAssessmentForm.id,
+							]),
+							{
+								onSuccess: () => {
+									continueToNextStep()
+								},
 							},
-						})
+						)
 					} else {
 						form.post(route('intake.fatherhood-assessment.store'), {
 							onSuccess: () => {
