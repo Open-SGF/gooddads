@@ -17,7 +17,6 @@ class UsersController extends Controller
         $pageSize = $request->query('pageSize', '10');
         $sort = $request->query('sort', 'first_name,asc');
         $filters = $request->query('filters', '');
-        [$column, $direction] = explode(',', $sort);
         $users = User::when($search, fn ($query) => $query
             ->where('first_name', 'like', "%$search%")->orWhere('last_name', 'like', "%$search%")->orWhere('email', 'like', "%$search%"))
             ->when($filters, fn ($query) => $query->where(fn ($query) => collect(explode(',', $filters))
