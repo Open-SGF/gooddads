@@ -1,18 +1,17 @@
 <?php
 
+use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\Intake\IntakeController;
 use App\Http\Controllers\Intake\ParticipantDisclosureController;
 use App\Http\Controllers\Intake\ParticipantRegistrationController;
 use App\Http\Controllers\Intake\ParticipantSignupController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\CurriculumController;
-use App\Http\Controllers\ClassesController;
-use App\Http\Controllers\ReportsController;
 
 Route::get('/', function () {
     return Auth::check()
