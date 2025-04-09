@@ -1,11 +1,24 @@
 import { useState, PropsWithChildren, ReactNode } from 'react'
 import ApplicationLogo from '@/Components/ui/ApplicationLogo'
 import Dropdown from '@/Components/Dropdown'
-import NavLink from '@/Components/NavLink'
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink'
+import { ResponsiveNavLink } from '@/Components/ui/ResponsiveNavLink'
+import {
+	NavigationMenu,
+	NavigationMenuList,
+	NavigationMenuItem,
+	NavigationMenuLink,
+} from '@/Components/ui'
 import { Link } from '@inertiajs/react'
 import { User } from '@/types'
 import { usePermission } from '@/hooks/permissions'
+import {
+	House,
+	Users,
+	FileChartColumn,
+	FolderClosed,
+	GraduationCap,
+	LogOut,
+} from 'lucide-react'
 
 export default function Authenticated({
 	user,
@@ -20,32 +33,124 @@ export default function Authenticated({
 	const { hasPermission } = usePermission(user)
 
 	return (
-		<div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-			<nav className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="flex justify-between h-16">
-						<div className="flex">
-							<div className="shrink-0 flex items-center self-end">
-								<Link href="/">
-									<ApplicationLogo variant="horizontal-black" size={86} />
-								</Link>
-							</div>
-							<div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-								<NavLink href={route('home')} active={route().current('home')}>
-									Dashboard
-								</NavLink>
-								{hasPermission('view users') && (
-									<NavLink
-										href={route('users.list')}
-										active={route().current('users.list')}
-									>
-										Users
-									</NavLink>
-								)}
-							</div>
+		<div className="min-h-screen dark:bg-gray-900 flex flex-row">
+			<div className="max-w-3xs flex flex-col flex-[1_1_200px] border-r border-var(--border) hidden sm:flex">
+				<div className="p-4 sm:p-6 lg:p-8 shrink-0 flex items-center justify-center">
+					<Link href="/">
+						<ApplicationLogo variant="horizontal-black" size={120} />
+					</Link>
+				</div>
+				<NavigationMenu className="w-full max-w-full [&>div]:w-full">
+					<NavigationMenuList className="flex flex-col w-full space-x-0">
+						<NavigationMenuItem className="w-full">
+							<NavigationMenuLink
+								href={route('home')}
+								active={route().current('home')}
+							>
+								<House
+									className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
+									color="black"
+									size={20}
+								/>{' '}
+								Dashboard
+							</NavigationMenuLink>
+						</NavigationMenuItem>
+						<NavigationMenuItem className="w-full">
+							{hasPermission('list users') && (
+								<NavigationMenuLink
+									href={route('users.list')}
+									active={route().current('users.list')}
+								>
+									<Users
+										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
+										color="black"
+										size={20}
+									/>{' '}
+									Users
+								</NavigationMenuLink>
+							)}
+						</NavigationMenuItem>
+						<NavigationMenuItem className="w-full">
+							{hasPermission('list curriculum') && (
+								<NavigationMenuLink
+									href={route('curriculum.list')}
+									active={route().current('curriculum.list')}
+								>
+									<FolderClosed
+										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
+										color="black"
+										size={20}
+									/>{' '}
+									Curriculum
+								</NavigationMenuLink>
+							)}
+						</NavigationMenuItem>
+						<NavigationMenuItem className="w-full">
+							{hasPermission('list classes') && (
+								<NavigationMenuLink
+									href={route('classes.list')}
+									active={route().current('classes.list')}
+								>
+									<GraduationCap
+										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
+										color="black"
+										size={20}
+									/>{' '}
+									Classes
+								</NavigationMenuLink>
+							)}
+						</NavigationMenuItem>
+						<NavigationMenuItem className="w-full">
+							{hasPermission('list reports') && (
+								<NavigationMenuLink
+									href={route('reports.list')}
+									active={route().current('reports.list')}
+								>
+									<FileChartColumn
+										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
+										color="black"
+										size={20}
+									/>{' '}
+									Reports
+								</NavigationMenuLink>
+							)}
+						</NavigationMenuItem>
+					</NavigationMenuList>
+				</NavigationMenu>
+				<ResponsiveNavLink
+					method="post"
+					href={route('logout')}
+					as="button"
+					className="group/logout flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:text-sidebar-ring focus:text-sidebar-ring"
+				>
+					<LogOut
+						className="transition-colors group-hover/logout:stroke-sidebar-ring group-focus/logout:stroke-sidebar-ring"
+						color="black"
+						size={20}
+					/>{' '}
+					Log Out
+				</ResponsiveNavLink>
+			</div>
+
+			<div className="flex flex-col flex-[1_1_80%]">
+				<div className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 h-fit">
+					<div className="flex justify-between">
+						<div className="flex items-center space-x-8 sm:flex">
+							{header && (
+								<header className="bg-white dark:bg-gray-800 flex flex-row">
+									<div className="p-4 sm:p-6 lg:p-8 shrink-0 flex items-center justify-center sm:hidden">
+										<Link href="/">
+											<ApplicationLogo variant="horizontal-black" size={80} />
+										</Link>
+									</div>
+									<div className="mx-auto py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10 flex items-center">
+										{header}
+									</div>
+								</header>
+							)}
 						</div>
 
-						<div className="hidden sm:flex sm:items-center sm:ms-6">
+						<div className="flex items-center hidden sm:flex py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10">
 							<div className="ms-3 relative">
 								<Dropdown>
 									<Dropdown.Trigger>
@@ -125,66 +230,85 @@ export default function Authenticated({
 							</button>
 						</div>
 					</div>
-				</div>
 
-				<div
-					className={
-						(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'
-					}
-				>
-					<div className="pt-2 pb-3 space-y-1">
-						<ResponsiveNavLink
-							href={route('home')}
-							active={route().current('home')}
-						>
-							Dashboard
-						</ResponsiveNavLink>
-
-						{hasPermission('list users') && (
+					<div
+						className={
+							(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'
+						}
+					>
+						<div className="pt-2 pb-3 space-y-1">
 							<ResponsiveNavLink
-								href={route('users.list')}
-								active={route().current('users.list')}
+								href={route('home')}
+								active={route().current('home')}
 							>
-								Users
+								Dashboard
 							</ResponsiveNavLink>
-						)}
-					</div>
 
-					<div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-						<div className="px-4">
-							<div className="font-medium text-base text-gray-800 dark:text-gray-200">
-								{user.first_name} {user.last_name}
-							</div>
-							<div className="font-medium text-sm text-gray-500">
-								{user.email}
-							</div>
+							{hasPermission('list users') && (
+								<ResponsiveNavLink
+									href={route('users.list')}
+									active={route().current('users.list')}
+								>
+									Users
+								</ResponsiveNavLink>
+							)}
+
+							{hasPermission('list curriculum') && (
+								<ResponsiveNavLink
+									href={route('curriculum.list')}
+									active={route().current('curriculum.list')}
+								>
+									Curriculum
+								</ResponsiveNavLink>
+							)}
+
+							{hasPermission('list classes') && (
+								<ResponsiveNavLink
+									href={route('classes.list')}
+									active={route().current('classes.list')}
+								>
+									Classes
+								</ResponsiveNavLink>
+							)}
+
+							{hasPermission('list reports') && (
+								<ResponsiveNavLink
+									href={route('reports.list')}
+									active={route().current('reports.list')}
+								>
+									Reports
+								</ResponsiveNavLink>
+							)}
 						</div>
 
-						<div className="mt-3 space-y-1">
-							<ResponsiveNavLink href={route('profile.edit')}>
-								Profile
-							</ResponsiveNavLink>
-							<ResponsiveNavLink
-								method="post"
-								href={route('logout')}
-								as="button"
-							>
-								Log Out
-							</ResponsiveNavLink>
+						<div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+							<div className="px-4">
+								<div className="font-medium text-base text-gray-800 dark:text-gray-200">
+									{user.first_name} {user.last_name}
+								</div>
+								<div className="font-medium text-sm text-gray-500">
+									{user.email}
+								</div>
+							</div>
+
+							<div className="mt-3 space-y-1">
+								<ResponsiveNavLink href={route('profile.edit')}>
+									Profile
+								</ResponsiveNavLink>
+								<ResponsiveNavLink
+									method="post"
+									href={route('logout')}
+									as="button"
+								>
+									Log Out
+								</ResponsiveNavLink>
+							</div>
 						</div>
 					</div>
 				</div>
-			</nav>
 
-			{header && (
-				<header className="bg-white dark:bg-gray-800 shadow">
-					<div className="max-w-7xl min-h-9 mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center">
-						{header}
-					</div>
-				</header>
-			)}
-
-			<main>{children}</main>
+				<main>{children}</main>
+			</div>
 		</div>
 	)
 }
