@@ -57,6 +57,7 @@ Route::name('intake')
     });
 Route::middleware(['auth'])->group(function () {
     Route::get('/curriculum', [UsersController::class, 'list'])->name('curriculum.list');
+});
 Route::middleware(['auth'])->name('curriculum.')->group(function () {
     Route::get('/curriculum', [CurriculumController::class, 'list'])->name('list');
 });
