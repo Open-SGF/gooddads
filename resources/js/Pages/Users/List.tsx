@@ -7,6 +7,7 @@ import { usePermission } from '@/hooks/permissions'
 import { DownloadIcon, TrashIcon } from 'lucide-react'
 import { json2csv } from 'json-2-csv'
 import { UserData } from '@/types'
+import { Users } from 'lucide-react'
 
 export type UsersListPageProps = PageProps &
 	PaginationProps & {
@@ -100,8 +101,9 @@ export default function List({ auth, users }: UsersListPageProps) {
 		<AuthenticatedLayout
 			user={auth.user}
 			header={
-				<div className="flex justify-between items-center flex-1">
-					<h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+				<div className="flex justify-between items-center flex-1 gap-6">
+					<h2 className="inline-flex gap-4 font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+						<Users color="black" size={24} />
 						Users
 					</h2>
 
