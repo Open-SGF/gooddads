@@ -1,9 +1,11 @@
 export type Ethnicity =
 	| 'white'
-	| 'africanAmerican'
-	| 'nativeAmerican'
+	| 'african_american'
+	| 'native_american'
 	| 'asian'
-	| 'pacificIslander'
+	| 'pacific_islander'
+	| 'hispanic'
+	| 'no_answer'
 export type MaritalStatus = 'single' | 'married' | 'divorced' | 'widowed'
 export type QuizQuestionType = 'trueFalse' | 'multipleChoice' | 'shortAnswer'
 export type UserData = {
@@ -13,7 +15,7 @@ export type UserData = {
 	email: string
 	roles: Array<string>
 	permissions: Array<string>
-	created_at: string | null
-	updated_at: string | null
+	createdAt: string | null
+	updatedAt: string | null
 	emailVerifiedAt: string | null
 }
