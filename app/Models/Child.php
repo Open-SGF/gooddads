@@ -32,6 +32,9 @@ class Child extends Model
         'last_name',
         'date_of_birth',
         'contact',
+        'custody',
+        'visitation',
+        'phone_contact',
         'child_support',
     ];
 
@@ -42,6 +45,9 @@ class Child extends Model
     protected $casts = [
         'date_of_birth' => 'immutable_date',
         'child_support' => 'decimal:2',
+        'custody' => 'boolean',
+        'visitation' => 'boolean',
+        'phone_contact' => 'boolean',
     ];
 
     /**

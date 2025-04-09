@@ -43,10 +43,11 @@ class Participant extends Model
     protected $fillable = [
         'user_id',
         'region_id',
-        'street',
+        'address_line_1',
+        'address_line_2',
         'city',
         'state',
-        'zip_code',
+        'zipcode',
         'employer',
         'cell_phone_number',
         'home_phone_number',
@@ -97,5 +98,45 @@ class Participant extends Model
     public function children(): HasMany
     {
         return $this->hasMany(Child::class);
+    }
+
+    /**
+     * Get the disclosure authorizations for the participant.
+     */
+    public function disclosureAuthorizations(): HasMany
+    {
+        return $this->hasMany(ParticipantDisclosureAuthorization::class);
+    }
+
+    /**
+     * Get the Fatherhood Assessments for the participant.
+     */
+    public function fatherhoodAssessments(): HasMany
+    {
+        return $this->hasMany(ParticipantFatherhoodAssessment::class);
+    }
+
+    /**
+     * Get the Fatherhood Surveys for the participant.
+     */
+    public function fatherhoodSurveys(): HasMany
+    {
+        return $this->hasMany(ParticipantFatherhoodSurvey::class);
+    }
+
+    /**
+     * Get the Service Plans for the participant.
+     */
+    public function servicePlans(): HasMany
+    {
+        return $this->hasMany(ParticipantServicePlan::class);
+    }
+
+    /**
+     * Get the Media Releases for the participant.
+     */
+    public function mediaReleases(): HasMany
+    {
+        return $this->hasMany(ParticipantMediaRelease::class);
     }
 }
