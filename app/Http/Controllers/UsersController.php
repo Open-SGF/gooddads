@@ -16,6 +16,7 @@ class UsersController extends Controller
         $search = $request->query('search');
         $pageSize = $request->query('pageSize', '10');
         $sort = $request->query('sort', 'first_name,asc');
+        [$column, $direction] = explode(',', $sort);
         $filters = $request->query('filters', '');
         $users = User::when($search, fn ($query) => $query
             ->where('first_name', 'like', "%$search%")->orWhere('last_name', 'like', "%$search%")->orWhere('email', 'like', "%$search%"))
@@ -26,7 +27,6 @@ class UsersController extends Controller
             ->orderBy($column, $direction)
             ->paginate($pageSize, ['*'], 'users', $page);
 
-//        dd($users);
         return Inertia::render('Users/List', [
             'users' => UserData::collect($users)->values(),
             'page' => $users->currentPage(),
