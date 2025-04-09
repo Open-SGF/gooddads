@@ -77,7 +77,20 @@ const NavigationMenuContent = React.forwardRef<
 ))
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
 
-const NavigationMenuLink = NavigationMenuPrimitive.Link
+const NavigationMenuLink = React.forwardRef<
+	React.ElementRef<typeof NavigationMenuPrimitive.Link>,
+	React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Link>
+>(({ className, ...props }, ref) => (
+	<NavigationMenuPrimitive.Link
+		className={cn(
+			'group/navlink flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:bg-primary/50 hover:text-foreground focus:bg-primary/50 focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary data-[active]:text-accent-foreground data-[state=open]:bg-primary data-[state=open]:text-accent-foreground',
+			className,
+		)}
+		ref={ref}
+		{...props}
+	/>
+))
+NavigationMenuLink.displayName = NavigationMenuPrimitive.Link.displayName
 
 const NavigationMenuViewport = React.forwardRef<
 	React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,

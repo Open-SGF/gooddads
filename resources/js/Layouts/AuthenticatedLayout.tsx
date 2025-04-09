@@ -44,9 +44,8 @@ export default function Authenticated({
 					<NavigationMenuList className="flex flex-col w-full space-x-0">
 						<NavigationMenuItem className="w-full">
 							<NavigationMenuLink
-								href={route('dashboard')}
-								active={route().current('dashboard')}
-								className="group/navlink flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:bg-primary/50 hover:text-foreground focus:bg-primary/50 focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary data-[active]:text-accent-foreground data-[state=open]:bg-primary data-[state=open]:text-accent-foreground"
+								href={route('home')}
+								active={route().current('home')}
 							>
 								<House
 									className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
@@ -61,7 +60,6 @@ export default function Authenticated({
 								<NavigationMenuLink
 									href={route('users.list')}
 									active={route().current('users.list')}
-									className="group/navlink flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:bg-primary/50 hover:text-foreground focus:bg-primary/50 focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary data-[active]:text-accent-foreground data-[state=open]:bg-primary data-[state=open]:text-accent-foreground"
 								>
 									<Users
 										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
@@ -77,7 +75,6 @@ export default function Authenticated({
 								<NavigationMenuLink
 									href={route('curriculum.list')}
 									active={route().current('curriculum.list')}
-									className="group/navlink flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:bg-primary/50 hover:text-foreground focus:bg-primary/50 focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary data-[active]:text-accent-foreground data-[state=open]:bg-primary data-[state=open]:text-accent-foreground"
 								>
 									<FolderClosed
 										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
@@ -93,7 +90,6 @@ export default function Authenticated({
 								<NavigationMenuLink
 									href={route('classes.list')}
 									active={route().current('classes.list')}
-									className="group/navlink flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:bg-primary/50 hover:text-foreground focus:bg-primary/50 focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary data-[active]:text-accent-foreground data-[state=open]:bg-primary data-[state=open]:text-accent-foreground"
 								>
 									<GraduationCap
 										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
@@ -109,7 +105,6 @@ export default function Authenticated({
 								<NavigationMenuLink
 									href={route('reports.list')}
 									active={route().current('reports.list')}
-									className="group/navlink flex w-full justify-start items-center gap-4 px-7 py-5 text-sm font-medium transition-colors hover:bg-primary/50 hover:text-foreground focus:bg-primary/50 focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-primary data-[active]:text-accent-foreground data-[state=open]:bg-primary data-[state=open]:text-accent-foreground"
 								>
 									<FileChartColumn
 										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
@@ -243,8 +238,8 @@ export default function Authenticated({
 					>
 						<div className="pt-2 pb-3 space-y-1">
 							<ResponsiveNavLink
-								href={route('dashboard')}
-								active={route().current('dashboard')}
+								href={route('home')}
+								active={route().current('home')}
 							>
 								Dashboard
 							</ResponsiveNavLink>
