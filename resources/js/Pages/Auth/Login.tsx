@@ -3,6 +3,12 @@ import GuestLayout from '@/Layouts/GuestLayout'
 import { Button, Label, Input, InputError, Checkbox } from '@/Components/ui'
 import { Head, Link, useForm } from '@inertiajs/react'
 
+interface LoginFormDefinition extends Record<string, string | boolean | null> {
+	email: string
+	password: string
+	remember: boolean
+}
+
 export default function Login({
 	status,
 	canResetPassword,
@@ -10,7 +16,7 @@ export default function Login({
 	status?: string
 	canResetPassword: boolean
 }) {
-	const { data, setData, post, processing, errors, reset } = useForm({
+	const { data, setData, post, processing, errors, reset } = useForm<LoginFormDefinition>({
 		email: '',
 		password: '',
 		remember: false,

@@ -21,7 +21,7 @@ class ParticipantDisclosureController extends Controller
 
         return Inertia::render('Intake/Disclosure/Index',[
             'participant' => ParticipantResource::make($participant),
-            'disclosureAuthorizations' => $participant?->disclosureAuthorizations?->toArray(),
+            'disclosureAuthorizations' => $participant?->disclosureAuthorizations?->toArray() ?? [],
         ]);
     }
 

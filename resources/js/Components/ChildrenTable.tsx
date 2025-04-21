@@ -5,7 +5,7 @@ import { Button, Checkbox, Input, InputError, Label } from '@/Components/ui'
 export interface ChildrenTableProps {
 	childrenInfo: Child[]
 	setChildrenInfo: (childrenInfo: Child[]) => void
-	errors: Record<string, string>
+	errors: Record<string, string | undefined>
 }
 
 const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(

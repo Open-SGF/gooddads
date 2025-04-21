@@ -1,18 +1,18 @@
 import React from 'react'
-import { Head } from '@inertiajs/react'
 import { type PageProps } from '@/types'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
+import { Participant } from '@/types/participant'
+import IntakeLayout from '@/Layouts/IntakeLayout'
+import DisclosureAuthorizationForm from '@/Components/Intake/DisclosureAuthorizationForm'
 
-interface DisclosureProps extends PageProps {}
+interface DisclosureProps extends PageProps {
+	participant: Participant
+}
 
-export const Create: React.FC<DisclosureProps> = ({ auth }) => {
+export const Create: React.FC<DisclosureProps> = ({ participant }) => {
 	return (
-		<AuthenticatedLayout user={auth.user}>
-			<Head title="Disclosure" />
-			<div className="py-12">
-				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">Disclosure</div>
-			</div>
-		</AuthenticatedLayout>
+		<IntakeLayout title="Disclosure authorization" subtitle="Please sign the authorization disclosure form">
+			<DisclosureAuthorizationForm participant={participant} nextRoute='intake.fatherhood-assessment.index'/>
+		</IntakeLayout>
 	)
 }
 

@@ -22,7 +22,7 @@ class ParticipantFatherhoodAssessmentController extends Controller
 
         return Inertia::render('Intake/FatherhoodAssessment/Index',[
             'participant' => ParticipantResource::make($participant),
-            'fatherhoodAssessments' => $participant?->fatherhoodAssessments?->toArray(),
+            'fatherhoodAssessments' => $participant?->fatherhoodAssessments?->toArray() ?? [],
         ]);
     }
 

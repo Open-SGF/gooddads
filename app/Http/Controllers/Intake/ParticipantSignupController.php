@@ -28,6 +28,7 @@ class ParticipantSignupController extends Controller
     {
 
         return Inertia::render('Intake/Signup',[
+            'user' => Auth::user(),
             'ethnicity' => Ethnicity::displayArray(),
             'maritalStatus' => MaritalStatus::displayArray(),
             'regions' => Region::get(['id', 'description'])->toArray(),

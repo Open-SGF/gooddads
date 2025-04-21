@@ -33,7 +33,7 @@ export const MediaReleaseForm: React.FC<MediaReleaseFormProps> = ({
 			signature_date:
 				mediaReleaseForm?.signature_date ?? dayjs().format('MM/DD/YYYY') ?? '',
 			phone_number:
-				mediaReleaseForm?.phone_number ?? participant?.cell_phone_number ?? '',
+				mediaReleaseForm?.phone_number ?? participant?.home_phone_number ?? '',
 			email: mediaReleaseForm?.email ?? participant?.user.email ?? '',
 		})
 
