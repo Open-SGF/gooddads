@@ -93,7 +93,7 @@ export const MediaReleaseForm: React.FC<MediaReleaseFormProps> = ({
 
 				<div className="flex gap-x-6 w-full ">
 					<div className="w-full">
-						<Label className={'w-fit '}>Signature</Label>
+						<Label className="w-fit ">Signature</Label>
 						<Input
 							placeholder="Signature "
 							className="w-full"
@@ -117,7 +117,7 @@ export const MediaReleaseForm: React.FC<MediaReleaseFormProps> = ({
 						<InputError message={errors.signature_date} className="mt-2" />
 					</div>
 				</div>
-				<div className={'flex gap-6 w-full'}>
+				<div className="flex gap-6 w-full">
 					<div>
 						<Label>Phone Number</Label>
 						<Input

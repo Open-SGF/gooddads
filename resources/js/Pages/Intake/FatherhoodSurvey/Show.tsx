@@ -23,7 +23,7 @@ export const Show: React.FC<AssessmentPageProps> = ({
 				participant={participant}
 				fatherhoodSurvey={fatherhoodSurveyForm}
 				viewOnly={true}
-				nextRoute={'intake.service-plan.index'}
+				nextRoute="intake.service-plan.index"
 			/>
 		</AuthenticatedLayout>
 	)

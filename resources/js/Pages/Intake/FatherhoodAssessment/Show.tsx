@@ -20,7 +20,7 @@ export const Show: React.FC<IntakePageProps> = ({
 				participant={participant}
 				fatherhoodAssessmentForm={fatherhoodAssessment}
 				viewOnly={true}
-				nextRoute={'intake.fatherhood-assessment.index'}
+				nextRoute="intake.fatherhood-assessment.index"
 			/>
 		</IntakeLayout>
 	)

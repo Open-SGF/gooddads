@@ -20,7 +20,7 @@ export const Show: React.FC<ReleasePageProps> = ({
 				participant={participant}
 				mediaReleaseForm={mediaReleaseForm}
 				viewOnly={true}
-				nextRoute={'intake.media-release.index'}
+				nextRoute="intake.media-release.index"
 			/>
 		</IntakeLayout>
 	)
