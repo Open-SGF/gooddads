@@ -6,7 +6,6 @@ import FatherhoodAssessmentForm from '@/Components/Intake/FatherhoodAssessmentFo
 
 interface IntakePageProps extends PageProps {
 	participant: Participant
-	fatherhoodAssessment: any
 }
 
 export const Create: React.FC<IntakePageProps> = ({ participant }) => {

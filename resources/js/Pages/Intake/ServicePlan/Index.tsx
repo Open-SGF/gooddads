@@ -65,8 +65,9 @@ export const Index: React.FC<AssessmentPageProps> = ({
 							</Button>
 							<Button
 								onClick={() => {
-									confirm('Are you sure you want to delete this?') &&
-										router.delete(route('intake.service-plan.destroy', plan.id))
+									if (confirm('Are you sure you want to delete this?')) {
+										router.delete(route('intake.service-plan.destroy', plan.id));
+									}
 								}}
 								className="ms-4"
 								size="default"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { router, useForm } from '@inertiajs/react'
 
 import dayjs from 'dayjs'

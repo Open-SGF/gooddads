@@ -6,10 +6,11 @@ import { Button } from '@/Components/ui'
 import { router } from '@inertiajs/react'
 import { clsx } from 'clsx'
 import dayjs from 'dayjs'
+import { IntakeFatherhoodSurveyFormData as IntakeFatherhoodSurveyForm } from '@/types/intake-fatherhood-survey-form'
 
 interface SurveyPageProps extends PageProps {
 	participant: Participant
-	fatherhoodSurveys: any[]
+	fatherhoodSurveys: IntakeFatherhoodSurveyForm[]
 }
 
 export const Index: React.FC<SurveyPageProps> = ({
@@ -60,10 +61,11 @@ export const Index: React.FC<SurveyPageProps> = ({
 							</Button>
 							<Button
 								onClick={() => {
-									confirm('Are you sure you want to delete this?') &&
+									if (confirm('Are you sure you want to delete this?')) {
 										router.delete(
 											route('intake.fatherhood-survey.destroy', survey.id),
-										)
+										);
+									}
 								}}
 								className="ms-4"
 								size="default"

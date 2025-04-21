@@ -1,7 +1,7 @@
 // Types
 
 // React Component
-import React, { useState, FormEvent } from 'react'
+import React from 'react'
 import { router, useForm } from '@inertiajs/react'
 import type { IntakeFatherhoodSurveyFormData } from '@/types/intake-fatherhood-survey-form'
 import type { Participant } from '@/types/participant'
@@ -57,7 +57,7 @@ interface FatherhoodSurveyFormProps {
 }
 
 const FatherhoodSurveyForm: React.FC<FatherhoodSurveyFormProps> = ({
-	participant,
+	// participant,
 	fatherhoodSurvey,
 	viewOnly = false,
 	nextRoute = 'intake.service-plan.index',

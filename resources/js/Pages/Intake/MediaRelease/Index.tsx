@@ -64,12 +64,11 @@ export const Index: React.FC<AssessmentPageProps> = ({
 							</Button>
 							<Button
 								onClick={() => {
-									confirm(
-										'Are you sure you want to delete this media release?',
-									) &&
+									if (confirm('Are you sure you want to delete this media release?')) {
 										router.delete(
 											route('intake.media-release.destroy', mediaRelease.id),
-										)
+										);
+									}
 								}}
 								className="ms-4"
 								size="default"

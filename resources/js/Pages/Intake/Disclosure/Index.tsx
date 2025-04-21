@@ -1,14 +1,11 @@
 import React from 'react'
-// import { Head } from '@inertiajs/react'
 import { type PageProps } from '@/types'
-// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import type { Participant } from '@/types/participant'
 import type { IntakeDisclosureAuthorizationForm } from '@/types/intake-disclosure-authorization-form'
 import { Button } from '@/Components/ui'
 import { router } from '@inertiajs/react'
 import { clsx } from 'clsx'
 import IntakeLayout from '@/Layouts/IntakeLayout'
-import dayjs from 'dayjs'
 
 interface DisclosureProps extends PageProps {
 	participant: Participant
@@ -72,13 +69,14 @@ export const Index: React.FC<DisclosureProps> = ({
 							</Button>
 							<Button
 								onClick={() => {
-									confirm('Are you sure you want to delete this?') &&
+									if (confirm('Are you sure you want to delete this?')) {
 										router.delete(
 											route(
 												'intake.disclosure.destroy',
 												disclosureAuthentication.id,
 											),
-										)
+										);
+									}
 								}}
 								className="ms-4"
 								size="default"
