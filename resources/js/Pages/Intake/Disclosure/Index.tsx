@@ -11,13 +11,13 @@ import IntakeLayout from '@/Layouts/IntakeLayout'
 import dayjs from 'dayjs'
 
 interface DisclosureProps extends PageProps {
-		participant: Participant
-		disclosureAuthorizations: IntakeDisclosureAuthorizationForm[]
+	participant: Participant
+	disclosureAuthorizations: IntakeDisclosureAuthorizationForm[]
 }
 
 export const Index: React.FC<DisclosureProps> = ({
 	participant,
-	disclosureAuthorizations
+	disclosureAuthorizations,
 }) => {
 	if (disclosureAuthorizations.length === 0) {
 		router.visit(route('intake.disclosure.create'))
@@ -43,7 +43,10 @@ export const Index: React.FC<DisclosureProps> = ({
 							<Button
 								onClick={() => {
 									router.visit(
-										route('intake.disclosure.show', disclosureAuthentication.id),
+										route(
+											'intake.disclosure.show',
+											disclosureAuthentication.id,
+										),
 									)
 								}}
 								className="ms-4"
@@ -55,7 +58,10 @@ export const Index: React.FC<DisclosureProps> = ({
 							<Button
 								onClick={() => {
 									router.visit(
-										route('intake.disclosure.edit', disclosureAuthentication.id),
+										route(
+											'intake.disclosure.edit',
+											disclosureAuthentication.id,
+										),
 									)
 								}}
 								className="ms-4"

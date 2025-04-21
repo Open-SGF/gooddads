@@ -10,8 +10,14 @@ interface DisclosureProps extends PageProps {
 
 export const Create: React.FC<DisclosureProps> = ({ participant }) => {
 	return (
-		<IntakeLayout title="Disclosure authorization" subtitle="Please sign the authorization disclosure form">
-			<DisclosureAuthorizationForm participant={participant} nextRoute='intake.fatherhood-assessment.index'/>
+		<IntakeLayout
+			title="Disclosure authorization"
+			subtitle="Please sign the authorization disclosure form"
+		>
+			<DisclosureAuthorizationForm
+				participant={participant}
+				nextRoute="intake.fatherhood-assessment.index"
+			/>
 		</IntakeLayout>
 	)
 }

@@ -16,8 +16,6 @@ export const Index: React.FC<AssessmentPageProps> = ({
 	participant,
 	servicePlans,
 }) => {
-
-
 	if (servicePlans.length === 0) {
 		router.visit(route('intake.service-plan.create'))
 	}
@@ -39,7 +37,9 @@ export const Index: React.FC<AssessmentPageProps> = ({
 						{/* <div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							{dayjs(plan.created_at).format('MM/DD/YYYY')}
 						</div> */}
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>Service plan object has no created date</div>
+						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+							Service plan object has no created date
+						</div>
 						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							<Button
 								onClick={() => {
@@ -55,9 +55,7 @@ export const Index: React.FC<AssessmentPageProps> = ({
 							</Button>
 							<Button
 								onClick={() => {
-									router.visit(
-										route('intake.service-plan.edit', plan.id),
-									)
+									router.visit(route('intake.service-plan.edit', plan.id))
 								}}
 								className="ms-4"
 								size="default"
@@ -68,12 +66,7 @@ export const Index: React.FC<AssessmentPageProps> = ({
 							<Button
 								onClick={() => {
 									confirm('Are you sure you want to delete this?') &&
-										router.delete(
-											route(
-												'intake.service-plan.destroy',
-												plan.id,
-											),
-										)
+										router.delete(route('intake.service-plan.destroy', plan.id))
 								}}
 								className="ms-4"
 								size="default"

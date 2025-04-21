@@ -16,11 +16,12 @@ export default function Login({
 	status?: string
 	canResetPassword: boolean
 }) {
-	const { data, setData, post, processing, errors, reset } = useForm<LoginFormDefinition>({
-		email: '',
-		password: '',
-		remember: false,
-	})
+	const { data, setData, post, processing, errors, reset } =
+		useForm<LoginFormDefinition>({
+			email: '',
+			password: '',
+			remember: false,
+		})
 
 	useEffect(() => {
 		return () => {

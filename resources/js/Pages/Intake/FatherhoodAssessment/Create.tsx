@@ -11,7 +11,10 @@ interface IntakePageProps extends PageProps {
 
 export const Create: React.FC<IntakePageProps> = ({ participant }) => {
 	return (
-		<IntakeLayout title="Fatherhood assessment" subtitle="Please fill out the assessmentform">
+		<IntakeLayout
+			title="Fatherhood assessment"
+			subtitle="Please fill out the assessmentform"
+		>
 			<FatherhoodAssessmentForm participant={participant} />
 		</IntakeLayout>
 	)

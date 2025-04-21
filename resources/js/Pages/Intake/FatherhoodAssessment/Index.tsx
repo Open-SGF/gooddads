@@ -17,8 +17,6 @@ export const Index: React.FC<AssessmentPageProps> = ({
 	participant,
 	fatherhoodAssessments,
 }) => {
-
-
 	if (fatherhoodAssessments.length === 0) {
 		router.visit(route('intake.fatherhood-assessment.create'))
 	}

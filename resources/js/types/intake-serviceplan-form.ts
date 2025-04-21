@@ -1,6 +1,6 @@
 export interface IntakeServicePlanForm {
 	id: string
-	
+
 	participant_name: string
 	client_number: string
 	review_date: string
