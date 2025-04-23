@@ -16,15 +16,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $id
  * @property string $user_id
  * @property string $region_id
- * @property string $street
+ * @property string $address_line_1
+ * @property string $address_line_2
  * @property string $city
  * @property string $state
- * @property string $zip_code
+ * @property string $zipcode
  * @property string $employer
  * @property string $cell_phone_number
  * @property string $home_phone_number
  * @property string $work_phone_number
- * @property string $at_contact_number
+ * @property string $alt_contact_number
  * @property string $marital_status
  * @property string $ethnicity
  * @property float $monthly_child_support
@@ -52,11 +53,15 @@ class Participant extends Model
         'cell_phone_number',
         'home_phone_number',
         'work_phone_number',
-        'at_contact_number',
+        'alt_contact_number',
         'marital_status',
         'ethnicity',
         'monthly_child_support',
         'intake_date',
+        't_shirt_size',
+        'probation_parole_case_worker_name',
+        'probation_parole_case_worker_phone',
+        'participant_photo',
     ];
 
     protected $keyType = 'string';
