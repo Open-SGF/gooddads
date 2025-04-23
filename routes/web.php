@@ -7,6 +7,7 @@ use App\Http\Controllers\Intake\ParticipantDisclosureController;
 use App\Http\Controllers\Intake\ParticipantRegistrationController;
 use App\Http\Controllers\Intake\ParticipantSignupController;
 use App\Http\Controllers\LegalController;
+use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
@@ -33,6 +34,11 @@ Route::middleware('auth')->name('profile.')->group(function () {
 Route::middleware(['auth'])->name('users.')->group(function () {
     Route::get('/users', [UsersController::class, 'list'])->name('list');
     Route::get('/users/create', [UsersController::class, 'create'])->name('create');
+    Route::post('/users', [UsersController::class, 'store'])->name('store');
+    Route::get('/users/{user}/edit', [UsersController::class, 'edit'])->name('edit');
+    Route::put('/users/{user}', [UsersController::class, 'update'])->name('update');
+    Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('destroy');
+    Route::get('/users/{user}', [UsersController::class, 'show'])->name('show');
 });
 
 Route::name('intake')
@@ -67,6 +73,11 @@ Route::middleware(['auth'])->name('classes.')->group(function () {
 
 Route::middleware(['auth'])->name('reports.')->group(function () {
     Route::get('/reports', [ReportsController::class, 'list'])->name('list');
+});
+
+// Add participant routes
+Route::middleware(['auth'])->name('participants.')->group(function () {
+    Route::delete('/participants/{participant}', [ParticipantController::class, 'destroy'])->name('destroy');
 });
 
 require __DIR__.'/auth.php';

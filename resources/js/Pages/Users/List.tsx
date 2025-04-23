@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import { Head } from '@inertiajs/react'
+import { Head, router } from '@inertiajs/react'
 import { PageProps, PaginationProps } from '@/types'
 import { Button, DataTable, DataTableFields } from '@/Components/ui'
 import { Pencil1Icon, PlusIcon } from '@radix-ui/react-icons'
@@ -74,9 +74,11 @@ export default function List({ auth, users }: UsersListPageProps) {
 			disabled: !hasPermission('edit users'),
 			sort: false,
 			filter: false,
-			content: () => (
-				<Button variant="outline" size="sm">
-					<Pencil1Icon href="#" /> Edit
+			content: (row) => (
+				<Button variant="outline" size="sm" asChild>
+					<a href={route('users.edit', row.id)}>
+						<Pencil1Icon /> Edit
+					</a>
 				</Button>
 			),
 		},
@@ -92,8 +94,25 @@ export default function List({ auth, users }: UsersListPageProps) {
 		>
 			<DownloadIcon /> Export to CSV
 		</Button>,
-		<Button disabled={disabled} variant="destructive" key="delete" size="sm">
-			<TrashIcon href="#" /> Delete
+		<Button
+			disabled={disabled || !hasPermission('delete users')}
+			variant="destructive"
+			key="delete"
+			size="sm"
+			onClick={() => {
+				if (
+					data.length > 0 &&
+					confirm(
+						`Are you sure you want to delete ${data.length} selected users?`,
+					)
+				) {
+					data.forEach((user) => {
+						router.delete(route('users.destroy', user.id))
+					})
+				}
+			}}
+		>
+			<TrashIcon /> Delete
 		</Button>,
 	]
 
@@ -107,13 +126,11 @@ export default function List({ auth, users }: UsersListPageProps) {
 						Users
 					</h2>
 
-					{hasPermission('create users') && (
-						<Button size="sm" asChild>
-							<a href={route('users.create')}>
-								<PlusIcon /> Create User
-							</a>
-						</Button>
-					)}
+					<Button size="sm" asChild>
+						<a href={route('users.create')}>
+							<PlusIcon /> Create User
+						</a>
+					</Button>
 				</div>
 			}
 		>
