@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils'
 import { UsersListPageProps } from '@/Pages/Users/List'
 
 export type BaseRow = {
-	id: number
+	id: string
 }
 
 type DataTableProps<T> = {
@@ -30,6 +30,7 @@ type BaseDataTableFields = {
 	sort?: boolean
 	filter?: boolean
 	export?: boolean
+	databaseField?: string
 }
 
 export type DataTableFields<T> =
@@ -66,9 +67,12 @@ export const DataTable = <T extends BaseRow>({
 
 	const handleSort = (field: DataTableFields<T>) => {
 		const newSort =
-			sortField === field.fieldKey && sortDirection === 'desc' ?
+			(
+				sortField === (field.databaseField ?? field.fieldKey) &&
+				sortDirection === 'desc'
+			) ?
 				''
-			:	`${field.fieldKey},${sortField === field.fieldKey ? 'desc' : 'asc'}`
+			:	`${field.databaseField ?? field.fieldKey},${sortField === (field.databaseField ?? field.fieldKey) ? 'desc' : 'asc'}`
 		setSort(newSort)
 		router.reload({
 			data: {
@@ -88,7 +92,7 @@ export const DataTable = <T extends BaseRow>({
 		}
 	}
 
-	const handleSelectRow = (id: number) => {
+	const handleSelectRow = (id: string) => {
 		if (selectedRows.map((row) => row.id).includes(id)) {
 			setSelectedRows(selectedRows.filter((row) => row.id !== id))
 		} else {

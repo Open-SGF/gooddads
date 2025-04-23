@@ -1,14 +1,5 @@
 import { Config } from 'ziggy-js'
-
-export interface User {
-	id: number
-	first_name: string
-	last_name: string
-	email: string
-	phone_number: number
-	roles: string[]
-	permissions: string[]
-}
+import { UserData } from '@/types/generated'
 
 export type Ziggy = {
 	ziggy: Config & { location: string; query: Record<string, string> }
@@ -18,7 +9,7 @@ export type PageProps<
 	T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {
 	auth: {
-		user: User
+		user: UserData
 	}
 } & Ziggy
 
@@ -28,6 +19,8 @@ export type PaginationProps = {
 	totalPages: number
 	count: number
 }
+
+export * from './generated'
 
 export type Child = {
 	first_name: string
