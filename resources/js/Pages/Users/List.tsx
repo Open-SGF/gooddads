@@ -59,7 +59,7 @@ export default function List({ auth, users }: UsersListPageProps) {
 		},
 		{
 			fieldKey: 'roles',
-			label: 'Roles',
+			label: 'RolesEnum',
 			sort: false,
 			filter: false,
 			content: (row) => {
