@@ -2,6 +2,12 @@ import * as React from 'react'
 import * as ToastPrimitives from '@radix-ui/react-toast'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { X } from 'lucide-react'
+import {
+	CheckCircledIcon,
+	CrossCircledIcon,
+	ExclamationTriangleIcon,
+	InfoCircledIcon,
+} from '@radix-ui/react-icons'
 
 import { cn } from '@/lib/utils'
 
@@ -40,6 +46,30 @@ const toastVariants = cva(
 		},
 	},
 )
+
+// Helper component to display the right icon based on variant
+const ToastIcon = ({
+	variant,
+}: {
+	variant?: 'default' | 'success' | 'error' | 'warning' | 'destructive'
+}) => {
+	const iconClasses = 'h-5 w-5 mr-2 flex-shrink-0'
+
+	switch (variant) {
+		case 'success':
+			return <CheckCircledIcon className={cn(iconClasses, 'text-white')} />
+		case 'error':
+			return <CrossCircledIcon className={cn(iconClasses, 'text-white')} />
+		case 'warning':
+			return (
+				<ExclamationTriangleIcon className={cn(iconClasses, 'text-white')} />
+			)
+		case 'destructive':
+			return <CrossCircledIcon className={cn(iconClasses, 'text-white')} />
+		default:
+			return <InfoCircledIcon className={cn(iconClasses, 'text-white')} />
+	}
+}
 
 const Toast = React.forwardRef<
 	React.ElementRef<typeof ToastPrimitives.Root>,
@@ -95,13 +125,18 @@ ToastClose.displayName = ToastPrimitives.Close.displayName
 
 const ToastTitle = React.forwardRef<
 	React.ElementRef<typeof ToastPrimitives.Title>,
-	React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
->(({ className, ...props }, ref) => (
-	<ToastPrimitives.Title
-		ref={ref}
-		className={cn('text-sm font-semibold', className)}
-		{...props}
-	/>
+	React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title> & {
+		variant?: 'default' | 'success' | 'error' | 'warning' | 'destructive'
+	}
+>(({ className, variant, ...props }, ref) => (
+	<div className="flex items-center">
+		<ToastIcon variant={variant} />
+		<ToastPrimitives.Title
+			ref={ref}
+			className={cn('text-sm font-semibold', className)}
+			{...props}
+		/>
+	</div>
 ))
 ToastTitle.displayName = ToastPrimitives.Title.displayName
 
@@ -131,4 +166,5 @@ export {
 	ToastDescription,
 	ToastClose,
 	ToastAction,
+	ToastIcon,
 }
