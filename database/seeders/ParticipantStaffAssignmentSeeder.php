@@ -26,11 +26,10 @@ class ParticipantStaffAssignmentSeeder extends Seeder
         }
 
         // Assign staff users to participants
-        $participants->each(fn(Participant $participant) =>
-            ParticipantStaffAssignment::factory()->create([
-                'participant_user_id' => $participant->user->id,
-                'staff_user_id' => $staffUsers->random()->id,
-            ]));
+        $participants->each(fn (Participant $participant) => ParticipantStaffAssignment::factory()->create([
+            'participant_user_id' => $participant->user->id,
+            'staff_user_id' => $staffUsers->random()->id,
+        ]));
 
     }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('quiz_assignments', static function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->constrained('users');
+            $table->foreignUuid('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignUuid('quiz_question_id')->constrained('quiz_questions');
             $table->foreignUuid('quiz_question_option_id')->nullable()->constrained('quiz_question_options');
             $table->text('answer');

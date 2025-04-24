@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
+use App\Enums\Roles;
 use Carbon\CarbonImmutable;
 use Database\Factories\ParticipantFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -40,6 +41,16 @@ class Participant extends Model
     use HasFactory;
 
     use HasUuids;
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::created(function (Participant $participant) {
+            $participant->user->assignRole(Roles::Participant);
+        });
+    }
 
     protected $fillable = [
         'user_id',

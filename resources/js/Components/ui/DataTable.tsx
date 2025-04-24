@@ -104,7 +104,7 @@ export const DataTable = <T extends BaseRow>({
 		<DataTableProvider
 			value={{ fields, data, page, pageSize, totalPages, count, query }}
 		>
-			<div className="flex flex-col bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg gap-6">
+			<div className="flex flex-col bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg gap-6">
 				<TableFilter />
 				{tableActions && (
 					<div className="flex items-center gap-3">

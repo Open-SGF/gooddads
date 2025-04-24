@@ -14,13 +14,11 @@ class ParticipantSeeder extends Seeder
      */
     public function run(): void
     {
-        // Fetch existing Users and Regions
-        $users = User::all();
         $regions = Region::all();
 
         // Ensure we have users and regions before creating participants
-        if ($users->isEmpty() || $regions->isEmpty()) {
-            $this->command->info('Users or Regions are empty. Skipping Participant creation.');
+        if ($regions->isEmpty()) {
+            $this->command->info('Regions are empty. Skipping Participant creation.');
 
             return;
         }
@@ -28,7 +26,6 @@ class ParticipantSeeder extends Seeder
         // Create Participants using the recycle method
         Participant::factory()
             ->count(200)
-            ->recycle($users)
             ->recycle($regions)
             ->create();
     }
