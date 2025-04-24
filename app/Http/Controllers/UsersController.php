@@ -3,13 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Data\UserData;
+use App\Enums\Permissions;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class UsersController extends Controller
 {
+    private array $userValidationRules;
+
+    public function __construct()
+    {
+        $this->userValidationRules = [
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
+            'phone_number' => ['required', 'string', 'max:12'],
+            'password' => ['required', Rules\Password::defaults()],
+            'active' => ['boolean'],
+            'roles' => ['required', 'array'],
+        ];
+    }
+
     public function list(Request $request): Response
     {
         $page = intval($request->get('page', 1) ?: 1);
@@ -36,41 +54,20 @@ class UsersController extends Controller
         ]);
     }
 
-    //    public function show(User $user): Response
-    //    {
-    //        return Inertia::render('Users/Show', [
-    //            'user' => new UserResource($user),
-    //        ]);
-    //    }
-    //
-    //    public function edit(User $user): Response
-    //    {
-    //        return Inertia::render('Users/Edit', [
-    //            'user' => new UserResource($user),
-    //        ]);
-    //    }
-    //
-    //    public function update(User $user): Response
-    //    {
-    //        $user->update(
-    //            request()->validate([
-    //                'name' => ['required', 'max:50'],
-    //                'email' => ['required', 'email'],
-    //            ])
-    //        );
-    //
-    //        return redirect()->route('users.index');
-    //    }
-    //
-    //    public function destroy(User $user)
-    //    {
-    //        $user->delete();
-    //
-    //        return redirect()->route('users.index');
-    //    }
-
-    public function create(): Response
+    public function destroy(User $user): RedirectResponse
     {
-        return Inertia::render('Users/Create');
+        if (! auth()->user()->hasPermissionTo(Permissions::DeleteUsers)) {
+            return back()->withErrors(['error' => 'You do not have permission to delete users.']);
+        }
+        if (auth()->id() === $user->id) {
+            return back()->withErrors(['error' => 'You cannot delete your own account.']);
+        }
+
+        $user->delete();
+
+        return redirect()->route('users.list')->with('toast', [
+            'type' => 'success',
+            'message' => "User {$user->first_name} {$user->last_name} was successfully deleted.",
+        ]);
     }
 }
