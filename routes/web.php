@@ -38,6 +38,7 @@ Route::middleware(['auth'])->name('users.')->group(function () {
     Route::get('/users/{user}/edit', [UsersController::class, 'edit'])->name('edit');
     Route::put('/users/{user}', [UsersController::class, 'update'])->name('update');
     Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('destroy');
+    Route::delete('/users', [UsersController::class, 'destroyMultiple'])->name('destroyMultiple');
     Route::get('/users/{user}', [UsersController::class, 'show'])->name('show');
 });
 

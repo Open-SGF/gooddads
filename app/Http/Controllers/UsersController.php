@@ -65,9 +65,32 @@ class UsersController extends Controller
 
         $user->delete();
 
-        return redirect()->route('users.list')->with('toast', [
-            'type' => 'success',
-            'message' => "User {$user->first_name} {$user->last_name} was successfully deleted.",
-        ]);
+        return redirect()->route('users.list')->with('toast', "User {$user->first_name} {$user->last_name} was successfully deleted.");
+    }
+
+    public function destroyMultiple(Request $request): RedirectResponse
+    {
+        if (! auth()->user()->hasPermissionTo(Permissions::DeleteUsers)) {
+            return back()->withErrors(['error' => 'You do not have permission to delete users.']);
+        }
+
+        $userIds = $request->input('user_ids', []);
+
+        if (empty($userIds)) {
+            return back()->withErrors(['error' => 'No users specified for deletion.']);
+        }
+
+        // Prevent deleting your own account
+        if (in_array(auth()->id(), $userIds)) {
+            return back()->withErrors(['error' => 'You cannot delete your own account.']);
+        }
+
+        $users = User::whereIn('id', $userIds)->get();
+        $count = $users->count();
+
+        // Delete the users
+        User::whereIn('id', $userIds)->delete();
+
+        return back()->with('toast', "{$count} ".($count === 1 ? 'user' : 'users').' successfully deleted.');
     }
 }

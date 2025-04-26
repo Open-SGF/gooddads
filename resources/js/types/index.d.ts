@@ -11,6 +11,7 @@ export type PageProps<
 	auth: {
 		user: UserData
 	}
+	toast: string
 } & Ziggy
 
 export type PaginationProps = {

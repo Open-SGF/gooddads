@@ -5,7 +5,7 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/Components/ui/Table'
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { createContext, ReactNode, useContext, useState, forwardRef, useImperativeHandle, Ref } from 'react'
 import { Button } from '@/Components/ui/Button'
 import { Checkbox, TableFilter } from '@/Components/ui'
 import { DataTablePagination } from '@/Components/ui/DataTablePagination'
@@ -43,12 +43,15 @@ export type DataTableFields<T> =
 			content: (row: T) => ReactNode
 	  })
 
-export const DataTable = <T extends BaseRow>({
-	fields,
-	data,
-	allowSelect = false,
-	tableActions,
-}: DataTableProps<T>) => {
+export type DataTableRef = {
+	resetRowSelection: () => void
+}
+
+function DataTableComponent<T extends BaseRow>(
+	props: DataTableProps<T>,
+	ref: Ref<DataTableRef>
+) {
+	const { fields, data, allowSelect = false, tableActions } = props;
 	const {
 		ziggy: { query },
 		page,
@@ -64,6 +67,14 @@ export const DataTable = <T extends BaseRow>({
 	const [selectedRows, setSelectedRows] = useState<T[]>([])
 
 	const tableActionsDisabled = selectedRows.length === 0
+
+	// Expose the resetRowSelection method via ref
+	useImperativeHandle(ref, () => ({
+		resetRowSelection: () => {
+			setSelectedRows([])
+			setSelectAll(false)
+		}
+	}), [])
 
 	const handleSort = (field: DataTableFields<T>) => {
 		const newSort =
@@ -205,14 +216,19 @@ export const DataTable = <T extends BaseRow>({
 	)
 }
 
+// Create the forwarded ref version of the component
+export const DataTable = forwardRef(DataTableComponent) as <T extends BaseRow>(
+	props: DataTableProps<T> & { ref?: Ref<DataTableRef> }
+) => JSX.Element;
+
 interface DataTableContextProps<T extends Record<string, unknown>> {
-	fields: DataTableFields<T>[]
-	data: T[]
-	page: number
-	pageSize: number
-	totalPages: number
-	count: number
-	query: Record<string, string>
+	fields: DataTableFields<T>[];
+	data: T[];
+	page: number;
+	pageSize: number;
+	totalPages: number;
+	count: number;
+	query: Record<string, string>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -231,8 +247,8 @@ export const useDataTableContext = <T extends BaseRow>() => {
 }
 
 interface DataTableProviderProps<T extends BaseRow> {
-	value: DataTableContextProps<T>
-	children: ReactNode
+	value: DataTableContextProps<T>;
+	children: ReactNode;
 }
 
 export const DataTableProvider = <T extends BaseRow>({
