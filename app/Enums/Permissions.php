@@ -12,6 +12,7 @@ enum Permissions: string
     case EditUsers = 'edit users';
     case DeleteUsers = 'delete users';
     case ListUsers = 'list users';
+    case ViewUsers = 'view users';
     case ListCurriculum = 'list curriculum';
     case ListClasses = 'list classes';
     case ListReports = 'list reports';
@@ -23,6 +24,7 @@ enum Permissions: string
             self::EditUsers => 'Edit Users',
             self::DeleteUsers => 'Delete Users',
             self::ListUsers => 'List Users',
+            self::ViewUsers => 'View Users',
             self::ListCurriculum => 'List Curriculum',
             self::ListClasses => 'List Classes',
             self::ListReports => 'List Reports',

@@ -63,13 +63,14 @@ class PermissionsSeeder extends Seeder
             Permissions::EditUsers,
             Permissions::DeleteUsers,
             Permissions::ListUsers,
+            Permissions::ViewUsers,
             Permissions::ListCurriculum,
             Permissions::ListClasses,
             Permissions::ListReports,
         ]);
-        $regionDirector->givePermissionTo([Permissions::ListUsers]);
-        $programDirector->givePermissionTo([Permissions::ListUsers]);
-        $facilitator->givePermissionTo([Permissions::ListUsers]);
+        $regionDirector->givePermissionTo([Permissions::ListUsers, Permissions::ViewUsers]);
+        $programDirector->givePermissionTo([Permissions::ListUsers, Permissions::ViewUsers]);
+        $facilitator->givePermissionTo([Permissions::ListUsers, Permissions::ViewUsers]);
         $auditor->givePermissionTo([]);
         $intake->givePermissionTo(Permissions::CreateUsers);
         $participant->givePermissionTo([]);

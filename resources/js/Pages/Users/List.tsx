@@ -2,9 +2,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import { Head, router } from '@inertiajs/react'
 import { PageProps, PaginationProps } from '@/types'
 import { Button, DataTable, DataTableFields } from '@/Components/ui'
-import { Pencil1Icon, PlusIcon } from '@radix-ui/react-icons'
+import { PlusIcon } from '@radix-ui/react-icons'
 import { usePermission } from '@/hooks/permissions'
-import { DownloadIcon, TrashIcon } from 'lucide-react'
+import { DownloadIcon, TrashIcon, EyeIcon } from 'lucide-react'
 import { json2csv } from 'json-2-csv'
 import { UserData } from '@/types'
 import { Users } from 'lucide-react'
@@ -31,9 +31,9 @@ export default function List({ auth, users }: UsersListPageProps) {
 	const { hasPermission } = usePermission(auth.user)
 	const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 	const [usersToDelete, setUsersToDelete] = useState<UserData[]>([])
-    
-    // Force re-render of DataTable to clear selections
-    const [dataTableKey, setDataTableKey] = useState(0)
+
+	// Force re-render of DataTable to clear selections
+	const [dataTableKey, setDataTableKey] = useState(0)
 
 	const handleExport = async (data: UserData[]) => {
 		const csv = json2csv(data)
@@ -55,15 +55,16 @@ export default function List({ auth, users }: UsersListPageProps) {
 				data: { user_ids: userIds },
 				onSuccess: (page) => {
 					// Type cast to access the toast message
-					const message = (page?.props as any)?.toast?.message || 'Users deleted successfully'
+					const message =
+						(page?.props as any)?.toast?.message || 'Users deleted successfully'
 					toast.success('Success', {
 						description: message,
 					})
 					setShowDeleteDialog(false)
 					setUsersToDelete([])
-                    
-                    // Force DataTable to reset by changing its key
-                    setDataTableKey(prevKey => prevKey + 1)
+
+					// Force DataTable to reset by changing its key
+					setDataTableKey((prevKey) => prevKey + 1)
 				},
 				onError: (errors) => {
 					forEach(errors, (error) => {
@@ -117,13 +118,13 @@ export default function List({ auth, users }: UsersListPageProps) {
 		{
 			fieldKey: 'actions',
 			label: '',
-			disabled: !hasPermission('edit users'),
+			disabled: !hasPermission('view users'),
 			sort: false,
 			filter: false,
 			content: (row) => (
 				<Button variant="outline" size="sm" asChild>
-					<a href={route('users.edit', row.id)}>
-						<Pencil1Icon /> Edit
+					<a href={route('users.show', row.id)}>
+						<EyeIcon className="h-4 w-4 mr-2" /> View
 					</a>
 				</Button>
 			),
@@ -208,6 +209,7 @@ export default function List({ auth, users }: UsersListPageProps) {
 							fields={fields}
 							data={users}
 							allowSelect={true}
+							rowSelect={true}
 							tableActions={tableActions}
 						/>
 					</div>

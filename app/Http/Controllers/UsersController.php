@@ -54,6 +54,20 @@ class UsersController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified user.
+     */
+    public function show(User $user): Response
+    {
+        if (! auth()->user()->hasPermissionTo(Permissions::ViewUsers)) {
+            abort(403, 'You do not have permission to view user details.');
+        }
+
+        return Inertia::render('Users/Show', [
+            'user' => UserData::from($user),
+        ]);
+    }
+
     public function destroy(User $user): RedirectResponse
     {
         if (! auth()->user()->hasPermissionTo(Permissions::DeleteUsers)) {
@@ -65,7 +79,10 @@ class UsersController extends Controller
 
         $user->delete();
 
-        return redirect()->route('users.list')->with('toast', "User {$user->first_name} {$user->last_name} was successfully deleted.");
+        return redirect()->route('users.list')->with('toast', [
+            'type' => 'success',
+            'message' => "User {$user->first_name} {$user->last_name} was successfully deleted.",
+        ]);
     }
 
     public function destroyMultiple(Request $request): RedirectResponse
@@ -91,6 +108,9 @@ class UsersController extends Controller
         // Delete the users
         User::whereIn('id', $userIds)->delete();
 
-        return back()->with('toast', "{$count} ".($count === 1 ? 'user' : 'users').' successfully deleted.');
+        return back()->with('toast', [
+            'type' => 'success',
+            'message' => "{$count} ".($count === 1 ? 'user' : 'users').' successfully deleted.',
+        ]);
     }
 }

@@ -5,7 +5,15 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/Components/ui/Table'
-import { createContext, ReactNode, useContext, useState, forwardRef, useImperativeHandle, Ref } from 'react'
+import {
+	createContext,
+	ReactNode,
+	useContext,
+	useState,
+	forwardRef,
+	useImperativeHandle,
+	Ref,
+} from 'react'
 import { Button } from '@/Components/ui/Button'
 import { Checkbox, TableFilter } from '@/Components/ui'
 import { DataTablePagination } from '@/Components/ui/DataTablePagination'
@@ -21,6 +29,7 @@ type DataTableProps<T> = {
 	fields: DataTableFields<T>[]
 	data: T[]
 	allowSelect?: boolean
+	rowSelect?: boolean
 	tableActions?: (disabled: boolean, rows: T[]) => ReactNode[]
 }
 
@@ -49,9 +58,15 @@ export type DataTableRef = {
 
 function DataTableComponent<T extends BaseRow>(
 	props: DataTableProps<T>,
-	ref: Ref<DataTableRef>
+	ref: Ref<DataTableRef>,
 ) {
-	const { fields, data, allowSelect = false, tableActions } = props;
+	const {
+		fields,
+		data,
+		allowSelect = false,
+		rowSelect = true,
+		tableActions,
+	} = props
 	const {
 		ziggy: { query },
 		page,
@@ -69,12 +84,16 @@ function DataTableComponent<T extends BaseRow>(
 	const tableActionsDisabled = selectedRows.length === 0
 
 	// Expose the resetRowSelection method via ref
-	useImperativeHandle(ref, () => ({
-		resetRowSelection: () => {
-			setSelectedRows([])
-			setSelectAll(false)
-		}
-	}), [])
+	useImperativeHandle(
+		ref,
+		() => ({
+			resetRowSelection: () => {
+				setSelectedRows([])
+				setSelectAll(false)
+			},
+		}),
+		[],
+	)
 
 	const handleSort = (field: DataTableFields<T>) => {
 		const newSort =
@@ -111,11 +130,18 @@ function DataTableComponent<T extends BaseRow>(
 		}
 	}
 
+	// Function to handle row click for selection
+	const handleRowClick = (row: T) => {
+		if (allowSelect && rowSelect) {
+			handleSelectRow(row.id)
+		}
+	}
+
 	return (
 		<DataTableProvider
 			value={{ fields, data, page, pageSize, totalPages, count, query }}
 		>
-			<div className="flex flex-col bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg gap-6">
+			<div className="flex flex-col bg-white dark:bg-gray-800 sm:rounded-lg gap-6">
 				<TableFilter />
 				{tableActions && (
 					<div className="flex items-center gap-3">
@@ -172,13 +198,24 @@ function DataTableComponent<T extends BaseRow>(
 						</TableHeader>
 						<TableBody>
 							{data.map((row) => (
-								<TableRow key={row.id}>
+								<TableRow
+									key={row.id}
+									onClick={() => handleRowClick(row)}
+									className={cn(
+										allowSelect &&
+											rowSelect &&
+											'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900',
+									)}
+								>
 									{allowSelect && (
-										<TableCell key="select">
+										<TableCell
+											key="select"
+											onClick={(e) => e.stopPropagation()}
+										>
 											<div className="flex items-center">
 												<Checkbox
 													checked={selectedRows
-														.map((row) => row.id)
+														.map((r) => r.id)
 														.includes(row.id)}
 													onCheckedChange={() => handleSelectRow(row.id)}
 												/>
@@ -191,7 +228,12 @@ function DataTableComponent<T extends BaseRow>(
 										}
 
 										return (
-											<TableCell key={field.fieldKey}>
+											<TableCell
+												key={field.fieldKey}
+												onClick={(e) =>
+													field.fieldKey === 'actions' && e.stopPropagation()
+												}
+											>
 												{field.content ?
 													field.content(row)
 												: field.fieldKey === 'actions' ?
@@ -218,17 +260,17 @@ function DataTableComponent<T extends BaseRow>(
 
 // Create the forwarded ref version of the component
 export const DataTable = forwardRef(DataTableComponent) as <T extends BaseRow>(
-	props: DataTableProps<T> & { ref?: Ref<DataTableRef> }
-) => JSX.Element;
+	props: DataTableProps<T> & { ref?: Ref<DataTableRef> },
+) => JSX.Element
 
 interface DataTableContextProps<T extends Record<string, unknown>> {
-	fields: DataTableFields<T>[];
-	data: T[];
-	page: number;
-	pageSize: number;
-	totalPages: number;
-	count: number;
-	query: Record<string, string>;
+	fields: DataTableFields<T>[]
+	data: T[]
+	page: number
+	pageSize: number
+	totalPages: number
+	count: number
+	query: Record<string, string>
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -247,8 +289,8 @@ export const useDataTableContext = <T extends BaseRow>() => {
 }
 
 interface DataTableProviderProps<T extends BaseRow> {
-	value: DataTableContextProps<T>;
-	children: ReactNode;
+	value: DataTableContextProps<T>
+	children: ReactNode
 }
 
 export const DataTableProvider = <T extends BaseRow>({

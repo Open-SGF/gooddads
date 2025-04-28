@@ -32,3 +32,13 @@ export type Child = {
 	visitation: boolean
 	phone_contact: boolean
 }
+
+export type Permissions =
+	| 'create users'
+	| 'edit users'
+	| 'delete users'
+	| 'list users'
+	| 'view users'
+	| 'list curriculum'
+	| 'list classes'
+	| 'list reports'
