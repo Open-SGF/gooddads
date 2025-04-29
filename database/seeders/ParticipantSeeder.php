@@ -6,6 +6,7 @@ use App\Models\Participant;
 use App\Models\Region;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ParticipantSeeder extends Seeder
 {
@@ -28,5 +29,18 @@ class ParticipantSeeder extends Seeder
             ->count(200)
             ->recycle($regions)
             ->create();
+
+        $participantId = Str::uuid();
+        User::factory()->create([
+            'id' => $participantId,
+            'first_name' => 'Participant',
+            'last_name' => 'User',
+            'email' => 'participant@example.com',
+            'password' => bcrypt('password123'),
+        ]);
+
+        Participant::create([
+            'user_id' => $participantId,
+        ]);
     }
 }
