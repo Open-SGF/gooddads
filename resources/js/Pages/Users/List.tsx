@@ -81,6 +81,7 @@ export default function List({ auth, users }: UsersListPageProps) {
 			fieldKey: 'permissions',
 			label: 'Permissions',
 			sort: false,
+			filter: false,
 			content: (row) => {
 				return row.permissions
 					.map(
