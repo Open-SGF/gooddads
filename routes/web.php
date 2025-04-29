@@ -7,7 +7,6 @@ use App\Http\Controllers\Intake\ParticipantDisclosureController;
 use App\Http\Controllers\Intake\ParticipantRegistrationController;
 use App\Http\Controllers\Intake\ParticipantSignupController;
 use App\Http\Controllers\LegalController;
-use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
@@ -74,11 +73,6 @@ Route::middleware(['auth'])->name('classes.')->group(function () {
 
 Route::middleware(['auth'])->name('reports.')->group(function () {
     Route::get('/reports', [ReportsController::class, 'list'])->name('list')->breadcrumb('Reports', 'home');
-});
-
-// Add participant routes
-Route::middleware(['auth'])->name('participants.')->group(function () {
-    Route::delete('/participants/{participant}', [ParticipantController::class, 'destroy'])->name('destroy');
 });
 
 require __DIR__.'/auth.php';
