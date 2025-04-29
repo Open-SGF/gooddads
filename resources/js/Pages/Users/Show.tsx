@@ -13,7 +13,7 @@ import {
 	AlertDialogTitle,
 	Button,
 } from '@/Components/ui'
-import { Users, ArrowLeft, Edit } from 'lucide-react'
+import { Users, Edit } from 'lucide-react'
 import { usePermission } from '@/hooks/permissions'
 import { formatDate } from '@/lib/utils'
 import { useState } from 'react'
