@@ -8,12 +8,10 @@ export default function List({ auth }: PageProps) {
 		<AuthenticatedLayout
 			user={auth.user}
 			header={
-				<div className="flex justify-between items-center flex-1 gap-6">
-					<h2 className="inline-flex gap-4 font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-						<GraduationCap color="black" size={24} />
-						Classes
-					</h2>
-				</div>
+				<>
+					<GraduationCap color="black" size={24} />
+					Classes
+				</>
 			}
 		>
 			<Head title="Classes" />

@@ -70,12 +70,10 @@ export default function UserForm({ auth, user, roles }: UserFormProps) {
 		<AuthenticatedLayout
 			user={auth.user}
 			header={
-				<div className="flex justify-between items-center flex-1 gap-6">
-					<h2 className="inline-flex gap-4 font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-						<Users color="black" size={24} />
-						{isEditMode ? 'Edit User' : 'Create User'}
-					</h2>
-				</div>
+				<>
+					<Users color="black" size={24} />
+					{isEditMode ? 'Edit User' : 'Create User'}
+				</>
 			}
 		>
 			<Head title={isEditMode ? 'Edit User' : 'Create User'} />

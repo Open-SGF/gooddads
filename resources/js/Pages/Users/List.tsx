@@ -19,8 +19,6 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 } from '@/Components/ui/AlertDialog'
-import { toast } from 'sonner'
-import { forEach } from 'lodash-es'
 
 export type UsersListPageProps = PageProps &
 	PaginationProps & {
@@ -53,23 +51,11 @@ export default function List({ auth, users }: UsersListPageProps) {
 			const userIds = usersToDelete.map((user) => user.id)
 			router.delete(route('users.destroyMultiple'), {
 				data: { user_ids: userIds },
-				onSuccess: (page) => {
-					// Type cast to access the toast message
-					const message =
-						(page?.props as any)?.toast?.message || 'Users deleted successfully'
-					toast.success('Success', {
-						description: message,
-					})
-					setShowDeleteDialog(false)
+				onSuccess: () => {
 					setUsersToDelete([])
-
-					// Force DataTable to reset by changing its key
 					setDataTableKey((prevKey) => prevKey + 1)
 				},
-				onError: (errors) => {
-					forEach(errors, (error) => {
-						toast.error('Error', { description: error })
-					})
+				onFinish: () => {
 					setShowDeleteDialog(false)
 				},
 			})
@@ -187,32 +173,29 @@ export default function List({ auth, users }: UsersListPageProps) {
 			<AuthenticatedLayout
 				user={auth.user}
 				header={
-					<div className="flex justify-between items-center flex-1 gap-6">
-						<h2 className="inline-flex gap-4 font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-							<Users color="black" size={24} />
-							Users
-						</h2>
-
-						<Button size="sm" asChild>
-							<a href={route('users.create')}>
-								<PlusIcon /> Create User
-							</a>
-						</Button>
-					</div>
+					<>
+						<Users color="black" size={24} />
+						Users
+					</>
+				}
+				actions={
+					<Button size="sm" asChild>
+						<a href={route('users.create')}>
+							<PlusIcon /> Create User
+						</a>
+					</Button>
 				}
 			>
 				<Head title="Users" />
-				<div className="py-12">
-					<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-						<DataTable
-							key={dataTableKey}
-							fields={fields}
-							data={users}
-							allowSelect={true}
-							rowSelect={true}
-							tableActions={tableActions}
-						/>
-					</div>
+				<div className="mx-auto sm:px-6 lg:px-8">
+					<DataTable
+						key={dataTableKey}
+						fields={fields}
+						data={users}
+						allowSelect={true}
+						rowSelect={true}
+						tableActions={tableActions}
+					/>
 				</div>
 			</AuthenticatedLayout>
 		</>
