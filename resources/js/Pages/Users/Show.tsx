@@ -94,7 +94,7 @@ export default function Show({ auth, user }: UserShowProps) {
 					</>
 				}
 			>
-				<Head title={`User: ${user.firstName} ${user.lastName}`} />
+				<Head title={`${user.firstName} ${user.lastName}`} />
 				<div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 					<div className="grid md:grid-cols-2 gap-8">
 						<div>
