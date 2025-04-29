@@ -191,7 +191,7 @@ export default function Authenticated({
 
 			<div className="flex flex-col flex-[1_1_80%]">
 				<div className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 h-fit">
-					<div className="flex justify-between h-24 px-2 sm:px-4 lg:px-5 items-center">
+					<div className="flex justify-between h-24 px-6 sm:px-8 lg:px-10 items-center">
 						<div className="flex items-center space-x-8 sm:flex">
 							{header && (
 								<header className="bg-white dark:bg-gray-800 flex flex-row">
@@ -366,7 +366,7 @@ export default function Authenticated({
 
 				<main className="flex flex-col gap-6 overflow-x-auto px-6 sm:px-8 lg:px-10 py-4">
 					{(actions || breadcrumbs) && (
-						<div className="flex items-center justify-between gap-4">
+						<div className="flex items-center justify-between gap-4 min-h-10">
 							<Breadcrumb>
 								<BreadcrumbList>
 									{breadcrumbs.length > 0 &&
