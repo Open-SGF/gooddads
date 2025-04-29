@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Data\UserData;
 use App\Enums\Permissions;
+use App\Enums\Roles;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -111,6 +114,88 @@ class UsersController extends Controller
         return back()->with('toast', [
             'type' => 'success',
             'message' => "{$count} ".($count === 1 ? 'user' : 'users').' successfully deleted.',
+        ]);
+    }
+
+    public function create(): Response
+    {
+        if (! auth()->user()->hasPermissionTo(Permissions::CreateUsers)) {
+            abort(403, 'You do not have permission to create users.');
+        }
+
+        return Inertia::render('Users/Create', [
+            'roles' => Roles::cases(),
+        ]);
+    }
+
+    public function edit(User $user): Response
+    {
+        if (! auth()->user()->hasPermissionTo(Permissions::EditUsers)) {
+            abort(403, 'You do not have permission to edit users.');
+        }
+
+        return Inertia::render('Users/Edit', [
+            'user' => UserData::from($user),
+            'roles' => Roles::cases(),
+        ]);
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        if (! auth()->user()->hasPermissionTo(Permissions::CreateUsers)) {
+            return back()->withErrors(['error' => 'You do not have permission to create users.']);
+        }
+
+        $request->validate($this->userValidationRules);
+
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'password' => Hash::make($request->password),
+            'active' => $request->active,
+        ]);
+
+        $user->syncRoles($request->roles);
+
+        return redirect()->route('users.list')->with('toast', [
+            'type' => 'success',
+            'message' => "User {$user->first_name} {$user->last_name} was successfully created.",
+        ]);
+    }
+
+    public function update(Request $request, User $user): RedirectResponse
+    {
+        if (! auth()->user()->hasPermissionTo(Permissions::EditUsers)) {
+            return back()->withErrors(['error' => 'You do not have permission to edit users.']);
+        }
+
+        $rules = $this->userValidationRules;
+        $rules['email'] = ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->ignore($user->id)];
+        $rules['password'] = ['nullable', Rules\Password::defaults()];
+
+        $request->validate($rules);
+
+        $user->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'active' => $request->active,
+        ]);
+
+        if ($request->password) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
+
+        $user->syncRoles($request->roles);
+
+        return redirect()->route('users.list')->with('toast', [
+            'type' => 'success',
+            'message' => "User {$user->first_name} {$user->last_name} was successfully updated.",
         ]);
     }
 }

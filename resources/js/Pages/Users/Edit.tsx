@@ -1,11 +1,11 @@
-import { PageProps, Roles, UserData } from '@/types';
-import UserForm from './Form';
+import { PageProps, Roles, UserData } from '@/types'
+import Form from './Form'
 
-interface EditUserProps extends PageProps {
-  user: UserData;
-  roles: Roles[];
+interface EditProps extends PageProps {
+	user: UserData
+	roles: Roles[]
 }
 
-export default function Edit(props: EditUserProps) {
-  return <UserForm {...props} />;
-} 
+export default function Edit(props: EditProps) {
+	return <Form {...props} />
+}

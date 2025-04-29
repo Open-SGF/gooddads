@@ -1,4 +1,10 @@
-import { useState, PropsWithChildren, ReactNode, useEffect } from 'react'
+import {
+	useState,
+	PropsWithChildren,
+	ReactNode,
+	useEffect,
+	Fragment,
+} from 'react'
 import ApplicationLogo from '@/Components/ui/ApplicationLogo'
 import Dropdown from '@/Components/Dropdown'
 import { ResponsiveNavLink } from '@/Components/ui/ResponsiveNavLink'
@@ -40,7 +46,7 @@ export default function Authenticated({
 	user: UserData
 	header?: ReactNode
 	actions?: ReactNode
-	showBreadcrumbs: boolean
+	showBreadcrumbs?: boolean
 }>) {
 	const [showingNavigationDropdown, setShowingNavigationDropdown] =
 		useState(false)
@@ -363,7 +369,7 @@ export default function Authenticated({
 				<main className="flex flex-col gap-6">
 					{(actions || breadcrumbs) && (
 						<div className="flex items-center justify-between gap-4 px-6 lg:px-8 mt-4">
-							<Breadcrumb>
+							<Breadcrumb className="py-3">
 								<BreadcrumbList>
 									{breadcrumbs.length > 0 &&
 										breadcrumbs.map((breadcrumb) => {
@@ -375,14 +381,14 @@ export default function Authenticated({
 												)
 											}
 											return (
-												<>
-													<BreadcrumbItem key={breadcrumb.title}>
+												<Fragment key={breadcrumb.title}>
+													<BreadcrumbItem>
 														<BreadcrumbLink href={breadcrumb.url}>
 															{breadcrumb.title}
 														</BreadcrumbLink>
 													</BreadcrumbItem>
 													<BreadcrumbSeparator />
-												</>
+												</Fragment>
 											)
 										})}
 								</BreadcrumbList>

@@ -1,11 +1,10 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import { Head } from '@inertiajs/react'
-import { PageProps } from '@/types'
+import { PageProps, Roles } from '@/types'
+import Form from './Form'
 
-export default function Create({ auth }: PageProps) {
-	return (
-		<AuthenticatedLayout user={auth.user} header="Create User">
-			<Head title="Create User" />
-		</AuthenticatedLayout>
-	)
+interface CreateProps extends PageProps {
+	roles: Roles[]
+}
+
+export default function Create(props: CreateProps) {
+	return <Form {...props} />
 }

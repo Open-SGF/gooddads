@@ -187,7 +187,7 @@ export default function List({ auth, users }: UsersListPageProps) {
 				}
 			>
 				<Head title="Users" />
-				<div className="mx-auto sm:px-6 lg:px-8">
+				<div className="w-full mx-auto sm:px-6 lg:px-8">
 					<DataTable
 						key={dataTableKey}
 						fields={fields}
