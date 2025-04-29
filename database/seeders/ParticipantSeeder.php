@@ -31,6 +31,7 @@ class ParticipantSeeder extends Seeder
             ->create();
 
         $participantId = Str::uuid();
+        $regionId = Region::where('description', 'Springfield, MO')->first()->id;
         User::factory()->create([
             'id' => $participantId,
             'first_name' => 'Participant',
@@ -41,6 +42,23 @@ class ParticipantSeeder extends Seeder
 
         Participant::create([
             'user_id' => $participantId,
+            'region_id' => $regionId,
+            'address_line_1' => '123 Main St',
+            'address_line_2' => 'Apt 1',
+            'city' => 'Anytown',
+            'state' => 'CA',
+            'zipcode' => '12345',
+            'employer' => 'Example Company',
+            'home_phone_number' => '123-456-7890',
+            'work_phone_number' => '987-654-3210',
+            'cell_phone_number' => '555-555-5555',
+            'alt_contact_number' => '555-555-5555',
+            'marital_status' => 'single',
+            'ethnicity' => 'hispanic',
+            'monthly_child_support' => 100,
+            't_shirt_size' => 'L',
+            'intake_date' => now(),
+
         ]);
     }
 }
