@@ -92,7 +92,7 @@ export default function Authenticated({
 	return (
 		<div className="h-screen dark:bg-gray-900 flex flex-row">
 			<div className="max-w-3xs flex flex-col flex-[1_1_200px] border-r border-var(--border) sm:flex">
-				<div className="p-4 sm:p-6 lg:p-8 shrink-0 flex items-center justify-center">
+				<div className="h-24 shrink-0 flex items-center justify-center">
 					<Link href="/">
 						<ApplicationLogo variant="horizontal-black" size={120} />
 					</Link>
@@ -191,7 +191,7 @@ export default function Authenticated({
 
 			<div className="flex flex-col flex-[1_1_80%]">
 				<div className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 h-fit">
-					<div className="flex justify-between">
+					<div className="flex justify-between h-24 px-2 sm:px-4 lg:px-5 items-center">
 						<div className="flex items-center space-x-8 sm:flex">
 							{header && (
 								<header className="bg-white dark:bg-gray-800 flex flex-row">
@@ -200,16 +200,14 @@ export default function Authenticated({
 											<ApplicationLogo variant="horizontal-black" size={80} />
 										</Link>
 									</div>
-									<div className="mx-auto py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10 flex items-center">
-										<h2 className="inline-flex gap-4 font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-											{header}
-										</h2>
-									</div>
+									<h2 className="inline-flex gap-4 font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+										{header}
+									</h2>
 								</header>
 							)}
 						</div>
 
-						<div className="flex items-center sm:flex py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10">
+						<div>
 							<div className="ms-3 relative">
 								<Dropdown>
 									<Dropdown.Trigger>
