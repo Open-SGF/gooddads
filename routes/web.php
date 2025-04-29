@@ -34,11 +34,11 @@ Route::middleware(['auth'])->name('users.')->group(function () {
     Route::get('/users', [UsersController::class, 'list'])->name('list')->breadcrumb('Users', 'home');
     Route::get('/users/create', [UsersController::class, 'create'])->name('create')->breadcrumb('Create User', 'users.list');
     Route::post('/users', [UsersController::class, 'store'])->name('store');
-    Route::get('/users/{user}/edit', [UsersController::class, 'edit'])->name('edit')->breadcrumb(fn ($user) => "Edit {$user->first_name} {$user->last_name}", 'users.list');
+    Route::get('/users/{user}/edit', [UsersController::class, 'edit'])->name('edit')->breadcrumb(fn ($user) => "Edit $user->first_name $user->last_name", 'users.list');
     Route::put('/users/{user}', [UsersController::class, 'update'])->name('update');
     Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('destroy');
     Route::delete('/users', [UsersController::class, 'destroyMultiple'])->name('destroyMultiple');
-    Route::get('/users/{user}', [UsersController::class, 'show'])->name('show')->breadcrumb(fn ($user) => "{$user->first_name} {$user->last_name}", 'users.list');
+    Route::get('/users/{user}', [UsersController::class, 'show'])->name('show')->breadcrumb(fn ($user) => "$user->first_name $user->last_name", 'users.list');
 });
 
 Route::name('intake')

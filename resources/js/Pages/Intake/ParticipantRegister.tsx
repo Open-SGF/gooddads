@@ -4,7 +4,15 @@ import { Button, Label, Input, InputError, Checkbox } from '@/Components/ui'
 import { Head, Link, useForm } from '@inertiajs/react'
 
 export default function ParticipantRegister() {
-	const { data, setData, post, processing, errors, reset } = useForm({
+	const { data, setData, post, processing, errors, reset } = useForm<{
+		first_name: string
+		last_name: string
+		email: string
+		phone_number: string
+		password: string
+		password_confirmation: string
+		terms: boolean
+	}>({
 		first_name: '',
 		last_name: '',
 		email: '',

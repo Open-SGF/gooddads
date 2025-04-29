@@ -12,6 +12,7 @@ export type Permissions =
 	| 'edit users'
 	| 'delete users'
 	| 'list users'
+	| 'view users'
 	| 'list curriculum'
 	| 'list classes'
 	| 'list reports'
@@ -30,7 +31,7 @@ export type UserData = {
 	firstName: string
 	lastName: string
 	email: string
-	roles: Array<string>
+	roles: Array<Roles>
 	permissions: Array<Permissions>
 	createdAt: string | null
 	updatedAt: string | null
