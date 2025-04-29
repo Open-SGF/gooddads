@@ -187,16 +187,14 @@ export default function List({ auth, users }: UsersListPageProps) {
 				}
 			>
 				<Head title="Users" />
-				<div className="w-full mx-auto sm:px-6 lg:px-8">
-					<DataTable
-						key={dataTableKey}
-						fields={fields}
-						data={users}
-						allowSelect={true}
-						rowSelect={true}
-						tableActions={tableActions}
-					/>
-				</div>
+				<DataTable
+					key={dataTableKey}
+					fields={fields}
+					data={users}
+					allowSelect={true}
+					rowSelect={true}
+					tableActions={tableActions}
+				/>
 			</AuthenticatedLayout>
 		</>
 	)

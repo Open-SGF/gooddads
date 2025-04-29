@@ -90,7 +90,7 @@ export default function Authenticated({
 	}, [props])
 
 	return (
-		<div className="min-h-screen dark:bg-gray-900 flex flex-row">
+		<div className="h-screen dark:bg-gray-900 flex flex-row">
 			<div className="max-w-3xs flex flex-col flex-[1_1_200px] border-r border-var(--border) sm:flex">
 				<div className="p-4 sm:p-6 lg:p-8 shrink-0 flex items-center justify-center">
 					<Link href="/">
@@ -366,10 +366,10 @@ export default function Authenticated({
 					</div>
 				</div>
 
-				<main className="flex flex-col gap-6">
+				<main className="flex flex-col gap-6 overflow-x-auto px-6 sm:px-8 lg:px-10 py-4">
 					{(actions || breadcrumbs) && (
-						<div className="flex items-center justify-between gap-4 px-6 lg:px-8 mt-4">
-							<Breadcrumb className="py-3">
+						<div className="flex items-center justify-between gap-4">
+							<Breadcrumb>
 								<BreadcrumbList>
 									{breadcrumbs.length > 0 &&
 										breadcrumbs.map((breadcrumb) => {
