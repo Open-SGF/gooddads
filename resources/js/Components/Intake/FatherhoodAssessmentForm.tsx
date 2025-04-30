@@ -3,7 +3,7 @@ import { router, useForm } from '@inertiajs/react'
 
 import dayjs from 'dayjs'
 import type { IntakeFatherhoodAssessmentForm } from '@/types/intake-fatherhood-assessment-form'
-import type { Participant } from '@/types/participant'
+import type { ParticipantData } from '@/types'
 
 // Type for our form data
 interface FatherhoodAssessmentForm
@@ -33,7 +33,7 @@ interface FatherhoodAssessmentForm
 
 interface FatherhoodAssessmentFormProps {
 	fatherhoodAssessmentForm?: IntakeFatherhoodAssessmentForm
-	participant: Participant
+	participant: ParticipantData
 	viewOnly?: boolean
 	nextRoute?: string
 }

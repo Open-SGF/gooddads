@@ -5,7 +5,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 
 interface DisclosureProps extends PageProps {}
 
-export const Edit: React.FC<DisclosureProps> = ({ auth }) => {
+export const Edit = ({ auth }: DisclosureProps) => {
 	return (
 		<AuthenticatedLayout user={auth.user}>
 			<Head title="Disclosure" />

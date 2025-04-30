@@ -1,11 +1,10 @@
 import React from 'react'
-import { type PageProps } from '@/types'
+import { PageProps, ParticipantData } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
-import type { Participant } from '@/types/participant'
 import ServicePlanForm from '@/Components/Intake/ServicePlanForm'
 
 interface AssessmentPageProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 }
 
 export const Create: React.FC<AssessmentPageProps> = ({ participant }) => {

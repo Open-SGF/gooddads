@@ -1,14 +1,13 @@
 import React from 'react'
-import { type PageProps } from '@/types'
-import { Participant } from '@/types/participant'
+import { PageProps, ParticipantData } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import DisclosureAuthorizationForm from '@/Components/Intake/DisclosureAuthorizationForm'
 
 interface DisclosureProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 }
 
-export const Create: React.FC<DisclosureProps> = ({ participant }) => {
+export const Create = ({ participant }: DisclosureProps) => {
 	return (
 		<IntakeLayout
 			title="Disclosure authorization"

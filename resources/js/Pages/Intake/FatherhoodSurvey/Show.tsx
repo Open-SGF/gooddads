@@ -1,13 +1,12 @@
 import React from 'react'
 import { Head } from '@inertiajs/react'
-import { type PageProps } from '@/types'
+import { PageProps, ParticipantData } from '@/types'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import type { Participant } from '@/types/participant'
 import type { IntakeFatherhoodSurveyFormData } from '@/types/intake-fatherhood-survey-form'
 import FatherhoodSurveyForm from '@/Components/Intake/FatherhoodSurveyForm'
 
 interface AssessmentPageProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 	fatherhoodSurveyForm: IntakeFatherhoodSurveyFormData
 }
 

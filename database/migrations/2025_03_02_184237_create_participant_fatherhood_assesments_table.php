@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('participant_fatherhood_assessments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('participant_id')->constrained();
+            $table->foreignUuid('participant_id')->constrained()->cascadeOnDelete();
             $table->string('vendor_name')->default('Good Dads');
             $table->string('participant_name');
             $table->date('date_of_birth');

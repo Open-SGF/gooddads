@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('participant_media_releases', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('participant_id')->constrained();
+            $table->foreignUuid('participant_id')->constrained()->cascadeOnDelete();
 
             $table->string('printed_name');
             $table->string('signature');

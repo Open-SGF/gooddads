@@ -1,12 +1,12 @@
 import React from 'react'
-import type { Participant } from '@/types/participant'
+import type { ParticipantData } from '@/types'
 import type { IntakeMediaReleaseForm } from '@/types/intake-media-release-form'
 import { router, useForm } from '@inertiajs/react'
 import { Button, Input, InputError, Label } from '@/Components/ui'
 import dayjs from 'dayjs'
 
 interface MediaReleaseFormProps {
-	participant: Participant
+	participant: ParticipantData
 	mediaReleaseForm?: IntakeMediaReleaseForm
 	viewOnly?: boolean
 	nextRoute?: string
@@ -33,7 +33,7 @@ export const MediaReleaseForm: React.FC<MediaReleaseFormProps> = ({
 			signature_date:
 				mediaReleaseForm?.signature_date ?? dayjs().format('MM/DD/YYYY') ?? '',
 			phone_number:
-				mediaReleaseForm?.phone_number ?? participant?.home_phone_number ?? '',
+				mediaReleaseForm?.phone_number ?? participant?.homePhoneNumber ?? '',
 			email: mediaReleaseForm?.email ?? participant?.user.email ?? '',
 		})
 

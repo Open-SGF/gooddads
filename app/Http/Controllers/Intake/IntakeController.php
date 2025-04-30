@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\Intake;
 
+use App\Data\ParticipantData;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ParticipantResource;
-use App\Models\Participant;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class IntakeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Intake/Index');
+        return Inertia::render('Intake/Index', [
+            'participant' => ParticipantData::fromModel($request->user()->participant),
+        ]);
     }
 
 
     public function intakeComplete(Request $request)
     {
         return Inertia::render('Intake/IntakeComplete',[
-            'participant' => ParticipantResource::make($request->user()->participant),
+            'participant' => ParticipantData::fromModel($request->user()->participant),
         ]);
     }
 

@@ -1,11 +1,10 @@
 import React from 'react'
 import { Head } from '@inertiajs/react'
-import { type PageProps } from '@/types'
+import { PageProps, ParticipantData } from '@/types'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import type { Participant } from '@/types/participant'
 
 interface AssessmentPageProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 }
 
 export const Edit: React.FC<AssessmentPageProps> = ({ auth, participant }) => {
@@ -14,7 +13,7 @@ export const Edit: React.FC<AssessmentPageProps> = ({ auth, participant }) => {
 			<Head title="Fatherhood Assessment" />
 			<div className="py-12">
 				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-					Fatherhood Assessment for {participant.user.first_name}
+					Fatherhood Assessment for {participant.user.firstName}
 				</div>
 			</div>
 		</AuthenticatedLayout>

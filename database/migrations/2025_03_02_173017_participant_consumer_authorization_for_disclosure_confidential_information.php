@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('participant_disclosure_authorization', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('participant_id')->constrained();
+            $table->foreignUuid('participant_id')->constrained()->cascadeOnDelete();
 
             // Consumer details
             $table->string('consumer_name');

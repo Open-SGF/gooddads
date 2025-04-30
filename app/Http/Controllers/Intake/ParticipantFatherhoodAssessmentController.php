@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Intake;
 
+use App\Data\ParticipantData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Intake\StoreParticipantFatherhoodAssessmentRequest;
 use App\Http\Requests\Intake\UpdateParticipantFatherhoodAssessmentRequest;
 use App\Http\Resources\ParticipantResource;
+use App\Models\Participant;
 use App\Models\ParticipantFatherhoodAssessment;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -16,48 +18,58 @@ class ParticipantFatherhoodAssessmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, Participant $participant)
     {
-        $participant = $request->user()->participant;
+        $this->authorize('view', $participant);
 
-        return Inertia::render('Intake/FatherhoodAssessment/Index',[
-            'participant' => ParticipantResource::make($participant),
-            'fatherhoodAssessments' => $participant?->fatherhoodAssessments?->toArray() ?? [],
+        return Inertia::render('Intake/ParticipantFatherhoodAssessment/Index', [
+            'participant' => ParticipantData::fromModel($participant),
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request): Response
+    public function create(Request $request)
     {
-        return Inertia::render('Intake/FatherhoodAssessment/Create',[
-            'participant' => ParticipantResource::make($request->user()->participant),
+        $participant = $request->user()->participant;
+        $this->authorize('create', [ParticipantFatherhoodAssessment::class, $participant]);
+
+        return Inertia::render('Intake/ParticipantFatherhoodAssessment/Create', [
+            'participant' => ParticipantData::fromModel($participant),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreParticipantFatherhoodAssessmentRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
         $participant = $request->user()->participant;
+        $this->authorize('create', [ParticipantFatherhoodAssessment::class, $participant]);
 
-        $participant->fatherhoodAssessments()->create($validated);
-        return redirect()->back(303)->with('message', 'Created Successfully');
+        $validated = $request->validate([
+            // Add validation rules here
+        ]);
+
+        $assessment = $participant->fatherhoodAssessments()->create($validated);
+
+        return redirect()->route('intake.participant-fatherhood-assessment.show', [
+            'participant' => $participant,
+            'assessment' => $assessment,
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, ParticipantFatherhoodAssessment $fatherhoodAssessment)
+    public function show(Request $request, Participant $participant, ParticipantFatherhoodAssessment $assessment)
     {
-        $participant = $request->user()->participant;
+        $this->authorize('view', $assessment);
 
-        return Inertia::render('Intake/FatherhoodAssessment/Show', [
-            'participant' => ParticipantResource::make($participant),
-            'fatherhoodAssessment' => $fatherhoodAssessment->toArray(),
+        return Inertia::render('Intake/ParticipantFatherhoodAssessment/Show', [
+            'participant' => ParticipantData::fromModel($participant),
+            'assessment' => $assessment,
         ]);
     }
 
@@ -77,12 +89,20 @@ class ParticipantFatherhoodAssessmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateParticipantFatherhoodAssessmentRequest $request, ParticipantFatherhoodAssessment $fatherhoodAssessment)
+    public function update(Request $request, Participant $participant, ParticipantFatherhoodAssessment $assessment)
     {
-        $validated = $request->validated();
-        $fatherhoodAssessment->update($validated);
+        $this->authorize('update', $assessment);
 
-        return redirect()->back(303)->with('message', 'Updated Successfully');
+        $validated = $request->validate([
+            // Add validation rules here
+        ]);
+
+        $assessment->update($validated);
+
+        return redirect()->route('intake.participant-fatherhood-assessment.show', [
+            'participant' => $participant,
+            'assessment' => $assessment,
+        ]);
     }
 
     /**

@@ -2,14 +2,28 @@
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Carbon\Carbon;
 
+/**
+ * @property string $id
+ * @property string $participant_id
+ * @property string $printed_name
+ * @property string $signature
+ * @property ?CarbonImmutable $signature_date
+ * @property string $phone_number
+ * @property string $email
+ * @property ?CarbonImmutable $date_completed
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ */
 class ParticipantMediaRelease extends Model
 {
-    use HasUuids, HasFactory;
+    use HasFactory, HasUuids;
 
     protected $fillable = [
         'participant_id',

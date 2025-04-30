@@ -1,12 +1,11 @@
 import React from 'react'
 import IntakeLayout from '@/Layouts/IntakeLayout'
-import type { PageProps } from '@/types'
-import { Participant } from '@/types/participant'
+import type { PageProps, ParticipantData } from '@/types'
 import { Button } from '@/Components/ui'
 import { router } from '@inertiajs/react'
 
 interface IntakeCompleteProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 }
 
 export const IntakeComplete: React.FC<IntakeCompleteProps> = ({
@@ -15,7 +14,7 @@ export const IntakeComplete: React.FC<IntakeCompleteProps> = ({
 	return (
 		<IntakeLayout
 			title="Intake Complete"
-			subtitle={`${participant.user.first_name}, Intake Is Complete`}
+			subtitle={`${participant.user.firstName}, Intake Is Complete`}
 		>
 			<div className="max-w-[80%] mx-auto [&>*]:w-full [&>div]:max-w-60 items-center flex flex-col gap-6">
 				<p className="text-center font-semibold">

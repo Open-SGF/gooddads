@@ -19,15 +19,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $street
  * @property string $city
  * @property string $state
- * @property string $zip_code
+ * @property string $zipcode
+ * @property string $address_line_1
+ * @property string $address_line_2
  * @property string $employer
  * @property string $cell_phone_number
  * @property string $home_phone_number
  * @property string $work_phone_number
  * @property string $at_contact_number
- * @property string $marital_status
- * @property string $ethnicity
- * @property float $monthly_child_support
+ * @property MaritalStatus $marital_status
+ * @property Ethnicity $ethnicity
+ * @property ?float $monthly_child_support
+ * @property string $t_shirt_size
+ * @property string probation_parole_case_worker_name
+ * @property string probation_parole_case_worker_phone
+ * @property string participant_photo
  * @property CarbonImmutable $intake_date
  * @property \App\Models\User $user
  * @property \App\Models\Region $region

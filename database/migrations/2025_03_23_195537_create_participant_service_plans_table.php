@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('participant_service_plans', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('participant_id')->constrained();
+            $table->foreignUuid('participant_id')->constrained()->cascadeOnDelete();
 
             $table->string('participant_name');
             $table->string('client_number');

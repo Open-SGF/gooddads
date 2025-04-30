@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Intake;
 
+use App\Data\ParticipantData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Intake\StoreParticipantDisclosureAuthorizationRequest;
 use App\Http\Requests\Intake\UpdateParticipantDisclosureAuthorizationRequest;
 use App\Http\Resources\ParticipantResource;
+use App\Models\Participant;
 use App\Models\ParticipantDisclosureAuthorization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,25 +16,25 @@ use Inertia\Response;
 
 class ParticipantDisclosureController extends Controller
 {
-
-    public function index(Request $request): Response
+    public function index(Request $request, Participant $participant)
     {
-        $participant = $request->user()->participant;
+        $this->authorize('view', $participant);
 
-        return Inertia::render('Intake/Disclosure/Index',[
-            'participant' => ParticipantResource::make($participant),
-            'disclosureAuthorizations' => $participant?->disclosureAuthorizations?->toArray() ?? [],
+        return Inertia::render('Intake/ParticipantDisclosure/Index', [
+            'participant' => ParticipantData::fromModel($participant),
         ]);
     }
-
 
     /**
      * Display the create view.
      */
-    public function create(Request $request): Response
+    public function create(Request $request)
     {
-        return Inertia::render('Intake/Disclosure/Create',[
-            'participant' => ParticipantResource::make($request->user()->participant),
+        $participant = $request->user()->participant;
+        $this->authorize('create', [ParticipantDisclosureAuthorization::class, $participant]);
+
+        return Inertia::render('Intake/ParticipantDisclosure/Create', [
+            'participant' => ParticipantData::fromModel($participant),
         ]);
     }
 
@@ -41,28 +43,32 @@ class ParticipantDisclosureController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(StoreParticipantDisclosureAuthorizationRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
-        
         $participant = $request->user()->participant;
+        $this->authorize('create', [ParticipantDisclosureAuthorization::class, $participant]);
 
-        $participant->disclosureAuthorizations()->create($validated);
+        $validated = $request->validate([
+            // Add validation rules here
+        ]);
 
-        return redirect()->back(303)->with('message', 'Disclosure Authorization Created Successfully');
+        $disclosure = $participant->disclosureAuthorizations()->create($validated);
+
+        return redirect()->route('intake.participant-disclosure.show', [
+            'participant' => $participant,
+            'disclosure' => $disclosure,
+        ]);
     }
-
-
 
     /**
      * Show the form for editing the disclosure agreement.
      */
-    public function show(Request $request,  ParticipantDisclosureAuthorization $disclosureAuthorization): Response
+    public function show(Request $request, Participant $participant, ParticipantDisclosureAuthorization $disclosureAuthorization): Response
     {
-        $participant = $request->user()->participant;
+        $this->authorize('view', $disclosureAuthorization);
 
         return Inertia::render('Intake/Disclosure/Show', [
-            'participant' => ParticipantResource::make($participant),
+            'participant' => ParticipantData::fromModel($participant),
             'disclosureAuthorization' => $disclosureAuthorization,
         ]);
     }
@@ -75,7 +81,7 @@ class ParticipantDisclosureController extends Controller
         $participant = $request->user()->participant;
         
         return Inertia::render('Intake/Disclosure/Edit', [
-            'participant' => ParticipantResource::make($participant),
+            'participant' => ParticipantData::fromModel($participant),
             'disclosureAuthorization' => $disclosureAuthorization,
         ]);
     }
@@ -85,19 +91,27 @@ class ParticipantDisclosureController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(UpdateParticipantDisclosureAuthorizationRequest $request, ParticipantDisclosureAuthorization $disclosureAuthorization): RedirectResponse
+    public function update(Request $request, Participant $participant, ParticipantDisclosureAuthorization $disclosureAuthorization): RedirectResponse
     {
-        $validated = $request->validated();
+        $this->authorize('update', $disclosureAuthorization);
+
+        $validated = $request->validate([
+            // Add validation rules here
+        ]);
 
         $disclosureAuthorization->update($validated);
 
-        return redirect()->back(303)->with('message', 'Disclosure Authorization Updated Successfully');
+        return redirect()->route('intake.participant-disclosure.show', [
+            'participant' => $participant,
+            'disclosure' => $disclosureAuthorization,
+        ]);
     }
 
-
-    public function destroy(Request $request, ParticipantDisclosureAuthorization $disclosureAuthorization): RedirectResponse
+    public function destroy(Request $request, Participant $participant, ParticipantDisclosureAuthorization $disclosureAuthorization): RedirectResponse
     {
-        if($disclosureAuthorization->participant_id !== $request->user()->participant->id) {
+        $this->authorize('delete', $disclosureAuthorization);
+
+        if($disclosureAuthorization->participant_id !== $participant->id) {
             abort(403);
         }
 

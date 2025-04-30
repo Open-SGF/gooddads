@@ -1,28 +1,27 @@
 import React from 'react'
-import { type PageProps } from '@/types'
-import type { Participant } from '@/types/participant'
+import { PageProps, ParticipantData } from '@/types'
 import type { IntakeDisclosureAuthorizationForm } from '@/types/intake-disclosure-authorization-form'
 import { Button } from '@/Components/ui'
 import { router } from '@inertiajs/react'
-import { clsx } from 'clsx'
 import IntakeLayout from '@/Layouts/IntakeLayout'
+import { cn } from '@/lib/utils'
 
 interface DisclosureProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 	disclosureAuthorizations: IntakeDisclosureAuthorizationForm[]
 }
 
-export const Index: React.FC<DisclosureProps> = ({
+export const Index = ({
 	participant,
 	disclosureAuthorizations,
-}) => {
+}: DisclosureProps) => {
 	if (disclosureAuthorizations.length === 0) {
 		router.visit(route('intake.disclosure.create'))
 	}
 	return (
 		<IntakeLayout
 			title="Disclosure Authorizations"
-			subtitle={`${participant.user.first_name}, Disclosure authorizations`}
+			subtitle={`${participant.user.firstName}, Disclosure authorizations`}
 		>
 			<div className="grid grid-cols-3 gap-y-3">
 				<div className="font-semibold ">Signed Date</div>
@@ -30,13 +29,13 @@ export const Index: React.FC<DisclosureProps> = ({
 				<div className="flex justify-end font-semibold ">Actions</div>
 				{disclosureAuthorizations.map((disclosureAuthentication, index) => (
 					<React.Fragment key={disclosureAuthentication.id}>
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							{participant.name}
 						</div>
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							{/* {dayjs(disclosureAuthentication.created_at).format('MM/DD/YYYY')} */}
 						</div>
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							<Button
 								onClick={() => {
 									router.visit(
@@ -75,7 +74,7 @@ export const Index: React.FC<DisclosureProps> = ({
 												'intake.disclosure.destroy',
 												disclosureAuthentication.id,
 											),
-										);
+										)
 									}
 								}}
 								className="ms-4"

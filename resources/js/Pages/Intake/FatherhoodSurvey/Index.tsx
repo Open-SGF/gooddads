@@ -1,15 +1,14 @@
 import React from 'react'
-import { type PageProps } from '@/types'
-import type { Participant } from '@/types/participant'
+import { PageProps, ParticipantData } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import { Button } from '@/Components/ui'
 import { router } from '@inertiajs/react'
-import { clsx } from 'clsx'
 import dayjs from 'dayjs'
 import { IntakeFatherhoodSurveyFormData as IntakeFatherhoodSurveyForm } from '@/types/intake-fatherhood-survey-form'
+import { cn } from '@/lib/utils'
 
 interface SurveyPageProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 	fatherhoodSurveys: IntakeFatherhoodSurveyForm[]
 }
 
@@ -24,17 +23,17 @@ export const Index: React.FC<SurveyPageProps> = ({
 	return (
 		<IntakeLayout
 			title="Fatherhood Survey"
-			subtitle={`${participant.user.first_name}, Fatherhood Survey`}
+			subtitle={`${participant.user.firstName}, Fatherhood Survey`}
 		>
 			<div className="grid grid-cols-2 gap-y-3">
 				<div className="font-semibold ">Signed Date</div>
 				<div className="flex justify-end font-semibold ">Actions</div>
 				{fatherhoodSurveys.map((survey, index) => (
 					<React.Fragment key={survey.id}>
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							{dayjs(survey.created_at).format('MM/DD/YYYY')}
 						</div>
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							<Button
 								onClick={() => {
 									router.visit(
@@ -64,7 +63,7 @@ export const Index: React.FC<SurveyPageProps> = ({
 									if (confirm('Are you sure you want to delete this?')) {
 										router.delete(
 											route('intake.fatherhood-survey.destroy', survey.id),
-										);
+										)
 									}
 								}}
 								className="ms-4"

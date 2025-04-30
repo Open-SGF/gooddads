@@ -1,10 +1,7 @@
-// Types
-
-// React Component
 import React from 'react'
 import { router, useForm } from '@inertiajs/react'
 import type { IntakeFatherhoodSurveyFormData } from '@/types/intake-fatherhood-survey-form'
-import type { Participant } from '@/types/participant'
+import type { ParticipantData } from '@/types'
 
 interface FatherhoodSurveyFormData
 	extends Record<string, string | number | boolean | null> {
@@ -51,7 +48,7 @@ interface FatherhoodSurveyFormData
 
 interface FatherhoodSurveyFormProps {
 	fatherhoodSurvey?: IntakeFatherhoodSurveyFormData
-	participant: Participant
+	participant: ParticipantData
 	viewOnly?: boolean
 	nextRoute?: string
 }

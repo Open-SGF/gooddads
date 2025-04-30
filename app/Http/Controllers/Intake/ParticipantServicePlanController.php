@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Intake;
 
+use App\Data\ParticipantData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Intake\StoreParticipantServicePlanRequest;
 use App\Http\Requests\Intake\UpdateParticipantServicePlanRequest;
-use App\Http\Resources\ParticipantResource;
+use App\Models\Participant;
 use App\Models\ParticipantServicePlan;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,48 +17,58 @@ class ParticipantServicePlanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, Participant $participant)
     {
-        $participant = $request->user()->participant;
+        $this->authorize('view', $participant);
 
-        return Inertia::render('Intake/ServicePlan/Index',[
-            'participant' => ParticipantResource::make($participant),
-            'servicePlans' => $participant?->servicePlans?->toArray(),
+        return Inertia::render('Intake/ParticipantServicePlan/Index', [
+            'participant' => ParticipantData::fromModel($participant),
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request): Response
+    public function create(Request $request)
     {
-        return Inertia::render('Intake/ServicePlan/Create',[
-            'participant' => ParticipantResource::make($request->user()->participant),
+        $participant = $request->user()->participant;
+        $this->authorize('create', [ParticipantServicePlan::class, $participant]);
+
+        return Inertia::render('Intake/ParticipantServicePlan/Create', [
+            'participant' => ParticipantData::fromModel($participant),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreParticipantservicePlanRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
         $participant = $request->user()->participant;
+        $this->authorize('create', [ParticipantServicePlan::class, $participant]);
 
-        $participant->servicePlans()->create($validated);
-        return redirect()->back(303)->with('message', 'Created Successfully');
+        $validated = $request->validate([
+            // Add validation rules here
+        ]);
+
+        $servicePlan = $participant->servicePlans()->create($validated);
+
+        return redirect()->route('intake.participant-service-plan.show', [
+            'participant' => $participant,
+            'servicePlan' => $servicePlan,
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, ParticipantservicePlan $servicePlan)
+    public function show(Request $request, Participant $participant, ParticipantServicePlan $servicePlan)
     {
-        $participant = $request->user()->participant;
+        $this->authorize('view', $servicePlan);
 
-        return Inertia::render('Intake/ServicePlan/Show', [
-            'participant' => ParticipantResource::make($participant),
-            'servicePlan' => $servicePlan->toArray(),
+        return Inertia::render('Intake/ParticipantServicePlan/Show', [
+            'participant' => ParticipantData::fromModel($participant),
+            'servicePlan' => $servicePlan,
         ]);
     }
 
@@ -69,7 +80,7 @@ class ParticipantServicePlanController extends Controller
         $participant = $request->user()->participant;
 
         return Inertia::render('Intake/ServicePlan/Edit', [
-            'participant' => ParticipantResource::make($participant),
+            'participant' => ParticipantData::fromModel($participant),
             'servicePlan' => $servicePlan->toArray(),
         ]);
     }
@@ -77,12 +88,20 @@ class ParticipantServicePlanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateParticipantServicePlanRequest $request, ParticipantServicePlan $servicePlan)
+    public function update(Request $request, Participant $participant, ParticipantServicePlan $servicePlan)
     {
-        $validated = $request->validated();
+        $this->authorize('update', $servicePlan);
+
+        $validated = $request->validate([
+            // Add validation rules here
+        ]);
+
         $servicePlan->update($validated);
 
-        return redirect()->back(303)->with('message', 'Updated Successfully');
+        return redirect()->route('intake.participant-service-plan.show', [
+            'participant' => $participant,
+            'servicePlan' => $servicePlan,
+        ]);
     }
 
     /**

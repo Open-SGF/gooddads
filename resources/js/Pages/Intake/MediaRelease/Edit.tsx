@@ -1,12 +1,11 @@
 import React from 'react'
-import { type PageProps } from '@/types'
-import type { Participant } from '@/types/participant'
+import { PageProps, ParticipantData } from '@/types'
 import MediaReleaseForm from '@/Components/Intake/MediaReleaseForm'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import type { IntakeMediaReleaseForm } from '@/types/intake-media-release-form'
 
 interface ReleasePageProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 	mediaRelease: IntakeMediaReleaseForm
 }
 

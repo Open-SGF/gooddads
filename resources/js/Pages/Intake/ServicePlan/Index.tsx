@@ -1,14 +1,13 @@
 import React from 'react'
-import { type PageProps } from '@/types'
+import { PageProps, ParticipantData } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import { Button } from '@/Components/ui'
 import { router } from '@inertiajs/react'
-import { clsx } from 'clsx'
-import type { Participant } from '@/types/participant'
 import type { IntakeServicePlanForm } from '@/types/intake-serviceplan-form'
+import { cn } from '@/lib/utils'
 
 interface AssessmentPageProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 	servicePlans: IntakeServicePlanForm[]
 }
 
@@ -31,16 +30,13 @@ export const Index: React.FC<AssessmentPageProps> = ({
 				<div className="flex justify-end font-semibold ">Actions</div>
 				{servicePlans.map((plan, index) => (
 					<React.Fragment key={plan.id}>
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							{plan.participant_name}
 						</div>
-						{/* <div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
-							{dayjs(plan.created_at).format('MM/DD/YYYY')}
-						</div> */}
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							Service plan object has no created date
 						</div>
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							<Button
 								onClick={() => {
 									router.visit(
@@ -66,7 +62,7 @@ export const Index: React.FC<AssessmentPageProps> = ({
 							<Button
 								onClick={() => {
 									if (confirm('Are you sure you want to delete this?')) {
-										router.delete(route('intake.service-plan.destroy', plan.id));
+										router.delete(route('intake.service-plan.destroy', plan.id))
 									}
 								}}
 								className="ms-4"

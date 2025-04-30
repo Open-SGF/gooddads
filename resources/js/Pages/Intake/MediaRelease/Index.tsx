@@ -1,14 +1,13 @@
 import React from 'react'
-import { type PageProps } from '@/types'
-import type { Participant } from '@/types/participant'
+import { PageProps, ParticipantData } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import type { IntakeMediaReleaseForm } from '@/types/intake-media-release-form'
 import { Button } from '@/Components/ui'
 import { router } from '@inertiajs/react'
-import { clsx } from 'clsx'
+import { cn } from '@/lib/utils'
 
 interface AssessmentPageProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 	mediaReleases: IntakeMediaReleaseForm[]
 }
 
@@ -23,7 +22,7 @@ export const Index: React.FC<AssessmentPageProps> = ({
 	return (
 		<IntakeLayout
 			title="Media Release"
-			subtitle={`${participant.user.first_name}, Media Release`}
+			subtitle={`${participant.user.firstName}, Media Release`}
 		>
 			<div className="grid grid-cols-3 gap-y-3">
 				<div className="font-semibold ">Signed Date</div>
@@ -31,13 +30,13 @@ export const Index: React.FC<AssessmentPageProps> = ({
 				<div className="flex justify-end font-semibold ">Actions</div>
 				{mediaReleases.map((mediaRelease, index) => (
 					<React.Fragment key={mediaRelease.id}>
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							{mediaRelease.signature_date}
 						</div>
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							{mediaRelease.signature}
 						</div>
-						<div className={clsx('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
+						<div className={cn('py-2', index % 2 === 0 ? 'bg-gray-100' : '')}>
 							<Button
 								onClick={() => {
 									router.visit(
@@ -64,10 +63,14 @@ export const Index: React.FC<AssessmentPageProps> = ({
 							</Button>
 							<Button
 								onClick={() => {
-									if (confirm('Are you sure you want to delete this media release?')) {
+									if (
+										confirm(
+											'Are you sure you want to delete this media release?',
+										)
+									) {
 										router.delete(
 											route('intake.media-release.destroy', mediaRelease.id),
-										);
+										)
 									}
 								}}
 								className="ms-4"

@@ -1,12 +1,11 @@
 import React from 'react'
-import { type PageProps } from '@/types'
-import type { Participant } from '@/types/participant'
+import { PageProps, ParticipantData } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import FatherhoodAssessmentForm from '@/Components/Intake/FatherhoodAssessmentForm'
 import type { IntakeFatherhoodAssessmentForm } from '@/types/intake-fatherhood-assessment-form'
 
 interface IntakePageProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 	fatherhoodAssessment: IntakeFatherhoodAssessmentForm
 }
 

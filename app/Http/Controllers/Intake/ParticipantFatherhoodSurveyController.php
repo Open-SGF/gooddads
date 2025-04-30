@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Intake;
 
+use App\Data\ParticipantData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Intake\StoreParticipantFatherhoodSurveyRequest;
 use App\Http\Requests\Intake\UpdateParticipantFatherhoodSurveyRequest;
-use App\Http\Resources\ParticipantResource;
+use App\Models\Participant;
 use App\Models\ParticipantFatherhoodSurvey;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,48 +17,58 @@ class ParticipantFatherhoodSurveyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, Participant $participant)
     {
-        $participant = $request->user()->participant;
+        $this->authorize('view', $participant);
 
-        return Inertia::render('Intake/FatherhoodSurvey/Index',[
-            'participant' => ParticipantResource::make($participant),
-            'fatherhoodSurveys' => $participant?->fatherhoodSurveys?->toArray(),
+        return Inertia::render('Intake/ParticipantFatherhoodSurvey/Index', [
+            'participant' => ParticipantData::fromModel($participant),
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request): Response
+    public function create(Request $request)
     {
-        return Inertia::render('Intake/FatherhoodSurvey/Create',[
-            'participant' => ParticipantResource::make($request->user()->participant),
+        $participant = $request->user()->participant;
+        $this->authorize('create', [ParticipantFatherhoodSurvey::class, $participant]);
+
+        return Inertia::render('Intake/ParticipantFatherhoodSurvey/Create', [
+            'participant' => ParticipantData::fromModel($participant),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreParticipantFatherhoodSurveyRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
         $participant = $request->user()->participant;
+        $this->authorize('create', [ParticipantFatherhoodSurvey::class, $participant]);
 
-        $participant->FatherhoodSurveys()->create($validated);
-        return redirect()->back(303)->with('message', 'Created Successfully');
+        $validated = $request->validate([
+            // Add validation rules here
+        ]);
+
+        $survey = $participant->fatherhoodSurveys()->create($validated);
+
+        return redirect()->route('intake.participant-fatherhood-survey.show', [
+            'participant' => $participant,
+            'survey' => $survey,
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, ParticipantFatherhoodSurvey $fatherhoodSurvey)
+    public function show(Request $request, Participant $participant, ParticipantFatherhoodSurvey $survey)
     {
-        $participant = $request->user()->participant;
+        $this->authorize('view', $survey);
 
-        return Inertia::render('Intake/FatherhoodSurvey/Show', [
-            'participant' => ParticipantResource::make($participant),
-            'fatherhoodSurvey' => $fatherhoodSurvey->toArray(),
+        return Inertia::render('Intake/ParticipantFatherhoodSurvey/Show', [
+            'participant' => ParticipantData::fromModel($participant),
+            'survey' => $survey,
         ]);
     }
 
@@ -69,7 +80,7 @@ class ParticipantFatherhoodSurveyController extends Controller
         $participant = $request->user()->participant;
 
         return Inertia::render('Intake/FatherhoodSurvey/Edit', [
-            'participant' => ParticipantResource::make($participant),
+            'participant' => ParticipantData::fromModel($participant),
             'fatherhoodSurvey' => $fatherhoodSurvey->toArray(),
         ]);
     }
@@ -77,12 +88,20 @@ class ParticipantFatherhoodSurveyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateParticipantFatherhoodSurveyRequest $request, ParticipantFatherhoodSurvey $fatherhoodSurvey)
+    public function update(Request $request, Participant $participant, ParticipantFatherhoodSurvey $survey)
     {
-        $validated = $request->validated();
-        $fatherhoodSurvey->update($validated);
+        $this->authorize('update', $survey);
 
-        return redirect()->back(303)->with('message', 'Updated Successfully');
+        $validated = $request->validate([
+            // Add validation rules here
+        ]);
+
+        $survey->update($validated);
+
+        return redirect()->route('intake.participant-fatherhood-survey.show', [
+            'participant' => $participant,
+            'survey' => $survey,
+        ]);
     }
 
     /**
@@ -94,5 +113,4 @@ class ParticipantFatherhoodSurveyController extends Controller
 
         return redirect()->back(303)->with('message', 'Deleted Successfully');
     }
-
 }

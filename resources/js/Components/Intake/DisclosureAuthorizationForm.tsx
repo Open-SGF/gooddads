@@ -11,10 +11,10 @@ import {
 	CardTitle,
 } from '@/Components/ui'
 import { IntakeDisclosureAuthorizationForm } from '@/types/intake-disclosure-authorization-form'
-import type { Participant } from '@/types/participant'
+import type { ParticipantData } from '@/types'
 
 interface DisclosureAuthorizationFormProps {
-	participant: Participant
+	participant: ParticipantData
 	disclosureAuthorizationForm?: IntakeDisclosureAuthorizationForm
 	viewOnly?: boolean
 	nextRoute?: string
@@ -126,13 +126,13 @@ export const DisclosureAuthorizationForm: React.FC<
 				disclosureAuthorizationForm?.subject_name ?? participant.name ?? '',
 			subject_phone:
 				disclosureAuthorizationForm?.subject_phone ??
-				participant.home_phone_number ??
+				participant.homePhoneNumber ??
 				'',
 			subject_dob: disclosureAuthorizationForm?.subject_dob ?? '',
 			subject_ssn: disclosureAuthorizationForm?.subject_ssn ?? '',
 			subject_address:
 				disclosureAuthorizationForm?.subject_address ??
-				participant.address_line_1 ??
+				participant.addressLine1 ??
 				'',
 			subject_email:
 				disclosureAuthorizationForm?.subject_email ??

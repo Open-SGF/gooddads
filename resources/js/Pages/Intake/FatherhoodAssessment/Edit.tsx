@@ -1,19 +1,18 @@
 import React from 'react'
-import { type PageProps } from '@/types'
-import type { Participant } from '@/types/participant'
+import { PageProps, ParticipantData } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import FatherhoodAssessmentForm from '@/Components/Intake/FatherhoodAssessmentForm'
 import type { IntakeFatherhoodAssessmentForm } from '@/types/intake-fatherhood-assessment-form'
 
 interface IntakePageProps extends PageProps {
-	participant: Participant
+	participant: ParticipantData
 	fatherhoodAssessment: IntakeFatherhoodAssessmentForm
 }
 
-export const Create: React.FC<IntakePageProps> = ({
+export const Create = ({
 	participant,
 	fatherhoodAssessment,
-}) => {
+}: IntakePageProps) => {
 	return (
 		<IntakeLayout title="Media Release" subtitle="Please sign the release form">
 			<FatherhoodAssessmentForm

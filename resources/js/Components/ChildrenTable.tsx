@@ -1,10 +1,10 @@
 import React from 'react'
-import { Child } from '@/types'
 import { Button, Checkbox, Input, InputError, Label } from '@/Components/ui'
+import { ChildData } from '@/types'
 
 export interface ChildrenTableProps {
-	childrenInfo: Child[]
-	setChildrenInfo: (childrenInfo: Child[]) => void
+	childrenInfo: ChildData[]
+	setChildrenInfo: (childrenInfo: ChildData[]) => void
 	errors: Record<string, string | undefined>
 }
 
@@ -12,7 +12,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 	({ childrenInfo, setChildrenInfo, errors }) => {
 		const handleInputChange = (
 			index: number,
-			field: keyof Child,
+			field: keyof ChildData,
 			value: unknown,
 		) => {
 			// Update the value of a specific field in the child object at the given index
@@ -41,14 +41,14 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									placeholder="First name"
 									className="w-full"
 									autoComplete="off"
-									value={child.first_name}
+									value={child.firstName}
 									onChange={(e) =>
-										handleInputChange(index, 'first_name', e.target.value)
+										handleInputChange(index, 'firstName', e.target.value)
 									}
 								/>
 								<InputError
-									message={errors[`children_info.${index}.first_name`]?.replace(
-										`children_info.${index}.first_name`,
+									message={errors[`children_info.${index}.firstName`]?.replace(
+										`children_info.${index}.firstName`,
 										'First name',
 									)}
 									className="mt-2"
@@ -60,14 +60,14 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									placeholder="Last name"
 									className="w-full"
 									autoComplete="off"
-									value={child.last_name}
+									value={child.lastName}
 									onChange={(e) =>
-										handleInputChange(index, 'last_name', e.target.value)
+										handleInputChange(index, 'lastName', e.target.value)
 									}
 								/>
 								<InputError
-									message={errors[`children_info.${index}.last_name`]?.replace(
-										`children_info.${index}.last_name`,
+									message={errors[`children_info.${index}.lastName`]?.replace(
+										`children_info.${index}.lastName`,
 										'Last name',
 									)}
 									className="mt-2"
@@ -80,16 +80,16 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									placeholder="Date of Birth"
 									className="w-full"
 									autoComplete="off"
-									value={child.date_of_birth}
+									value={child.dateOfBirth}
 									onChange={(e) =>
-										handleInputChange(index, 'date_of_birth', e.target.value)
+										handleInputChange(index, 'dateOfBirth', e.target.value)
 									}
 								/>
 								<InputError
 									message={errors[
-										`children_info.${index}.date_of_birth`
+										`children_info.${index}.dateOfBirth`
 									]?.replace(
-										`children_info.${index}.date_of_birth`,
+										`children_info.${index}.dateOfBirth`,
 										'Date of birth',
 									)}
 									className="mt-2"
@@ -100,7 +100,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 								<div className="flex p-2 items-center gap-1">
 									<Checkbox
 										id="custody"
-										checked={child.custody}
+										checked={child.custody ?? false}
 										onCheckedChange={(isChecked) =>
 											handleInputChange(index, 'custody', isChecked)
 										}
@@ -114,7 +114,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 								<div className="flex p-2 items-center gap-1">
 									<Checkbox
 										id="visitation"
-										checked={child.visitation}
+										checked={child.visitation ?? false}
 										onCheckedChange={(isChecked) =>
 											handleInputChange(index, 'visitation', isChecked)
 										}
@@ -128,17 +128,17 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 								<div className="flex p-2 items-center gap-1">
 									<Checkbox
 										id="phone_contact"
-										checked={child.phone_contact}
+										checked={!!child.phoneContact}
 										onCheckedChange={(isChecked) =>
-											handleInputChange(index, 'phone_contact', isChecked)
+											handleInputChange(index, 'phoneContact', isChecked)
 										}
 									/>
 									<Label htmlFor="phone_contact">Phone Contact</Label>
 									<InputError
 										message={errors[
-											`children_info.${index}.phone_contact`
+											`children_info.${index}.phoneContact`
 										]?.replace(
-											`children_info.${index}.phone_contact`,
+											`children_info.${index}.phoneContact`,
 											'Phone contact',
 										)}
 										className="mt-2"
@@ -152,11 +152,11 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									placeholder="Monthy Child Support"
 									className="w-full"
 									autoComplete="off"
-									value={child.child_support}
+									value={child.childSupport}
 									onChange={(e) =>
 										handleInputChange(
 											index,
-											'child_support',
+											'childSupport',
 											parseFloat(e.target.value),
 										)
 									}
