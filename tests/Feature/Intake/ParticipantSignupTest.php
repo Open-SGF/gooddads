@@ -67,7 +67,7 @@ class ParticipantSignupTest extends TestCase
 
         $response = $this->actingAs($participantUser)->post(route('intake.signup'), $participantData);
 
-        $response->assertRedirectToRoute('intake.disclosure');
+        $response->assertRedirectToRoute('intake.disclosure.index');
 
         $participant = $participantUser->participant()->first();
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('participants', static function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->constrained('users');
+            $table->foreignUuid('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignUuid('region_id')->nullable()->constrained('regions');
             $table->string('address_line_1', 100)->nullable();
             $table->string('address_line_2', 100)->nullable();

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Intake;
 use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Intake\ParticipantSignupStoreRequest;
+use App\Http\Requests\Intake\StoreParticipantSignupRequest;
 use App\Models\Region;
 use App\Models\User;
 use App\Services\ParticipantService;
@@ -28,6 +28,7 @@ class ParticipantSignupController extends Controller
     {
 
         return Inertia::render('Intake/Signup',[
+            'user' => Auth::user(),
             'ethnicity' => Ethnicity::displayArray(),
             'maritalStatus' => MaritalStatus::displayArray(),
             'regions' => Region::get(['id', 'description'])->toArray(),
@@ -39,14 +40,14 @@ class ParticipantSignupController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(ParticipantSignupStoreRequest $request, ParticipantService $participantService): RedirectResponse
+    public function store(StoreParticipantSignupRequest $request, ParticipantService $participantService): RedirectResponse
     {
         $participantData = $request->validated();
         $participantData['date'] ??= now();
 
         $participantService->create($request->user(), $participantData);
 
-        return redirect(route('intake.disclosure', absolute: false));
+        return redirect(route('intake.disclosure.index', absolute: false));
     }
 
 

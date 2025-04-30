@@ -4,12 +4,17 @@ use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\Intake\IntakeController;
 use App\Http\Controllers\Intake\ParticipantDisclosureController;
+use App\Http\Controllers\Intake\ParticipantFatherhoodAssessmentController;
+use App\Http\Controllers\Intake\ParticipantFatherhoodSurveyController;
+use App\Http\Controllers\Intake\ParticipantMediaReleaseController;
 use App\Http\Controllers\Intake\ParticipantRegistrationController;
+use App\Http\Controllers\Intake\ParticipantServicePlanController;
 use App\Http\Controllers\Intake\ParticipantSignupController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
+use App\Models\ParticipantFatherhoodAssesment;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -35,24 +40,45 @@ Route::middleware(['auth'])->name('users.')->group(function () {
     Route::get('/users/create', [UsersController::class, 'create'])->name('create');
 });
 
-Route::name('intake')
+Route::name('intake.')
     ->prefix('intake')
     ->group(function () {
+        Route::get('/dev-auth', [IntakeController::class, 'devAuth']);
+        Route::get('/intake-complete', [IntakeController::class, 'intakeComplete'])->name('complete');
+
         Route::middleware(['role:intake'])->group(function () {
-            Route::get('/', [IntakeController::class, 'index'])->name('.index');
-            Route::get('register', [ParticipantRegistrationController::class, 'create'])->name('.register');
+            Route::get('/', [IntakeController::class, 'index'])->name('index');
+            Route::get('register', [ParticipantRegistrationController::class, 'create'])->name('register');
             Route::post('register', [ParticipantRegistrationController::class, 'store']);
         });
 
         Route::middleware('role:participant')->group(function () {
-            Route::get('signup', [ParticipantSignupController::class, 'create'])->name('.signup');
+            Route::get('signup', [ParticipantSignupController::class, 'create'])->name('signup');
             Route::post('signup', [ParticipantSignupController::class, 'store']);
         });
 
-        Route::middleware('role:participant')->group(function () {
-            Route::get('disclosure', [ParticipantDisclosureController::class, 'create'])->name('.disclosure');
-            Route::post('disclosure', [ParticipantDisclosureController::class, 'store']);
-        });
+        Route::middleware('role:participant')
+            ->resource('disclosure', ParticipantDisclosureController::class)
+            ->parameter('disclosure', 'disclosureAuthorization');
+
+        Route::middleware('role:participant')
+            ->resource('fatherhood-assessment', ParticipantFatherhoodAssessmentController::class)
+            ->parameter('fatherhood-assessment', 'fatherhoodAssessment');
+
+        Route::middleware('role:participant')
+            ->resource('fatherhood-survey', ParticipantFatherhoodSurveyController::class)
+            ->parameter('fatherhood-survey', 'fatherhoodSurvey');
+
+        Route::middleware('role:participant')
+            ->resource('service-plan', ParticipantServicePlanController::class)
+            ->parameter('service-plan', 'servicePlan');
+
+        Route::middleware('role:participant')
+            ->resource('media-release', ParticipantMediaReleaseController::class)
+            ->parameter('media-release', 'mediaRelease');
+
+
+
     });
 Route::middleware(['auth'])->group(function () {
     Route::get('/curriculum', [UsersController::class, 'list'])->name('curriculum.list');

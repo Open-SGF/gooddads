@@ -19,15 +19,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $street
  * @property string $city
  * @property string $state
- * @property string $zip_code
+ * @property string $zipcode
+ * @property string $address_line_1
+ * @property string $address_line_2
  * @property string $employer
  * @property string $cell_phone_number
  * @property string $home_phone_number
  * @property string $work_phone_number
  * @property string $at_contact_number
- * @property string $marital_status
- * @property string $ethnicity
- * @property float $monthly_child_support
+ * @property MaritalStatus $marital_status
+ * @property Ethnicity $ethnicity
+ * @property ?float $monthly_child_support
+ * @property string $t_shirt_size
+ * @property string probation_parole_case_worker_name
+ * @property string probation_parole_case_worker_phone
+ * @property string participant_photo
  * @property CarbonImmutable $intake_date
  * @property \App\Models\User $user
  * @property \App\Models\Region $region
@@ -98,5 +104,45 @@ class Participant extends Model
     public function children(): HasMany
     {
         return $this->hasMany(Child::class);
+    }
+
+    /**
+     * Get the disclosure authorizations for the participant.
+     */
+    public function disclosureAuthorizations(): HasMany
+    {
+        return $this->hasMany(ParticipantDisclosureAuthorization::class);
+    }
+
+    /**
+     * Get the Fatherhood Assessments for the participant.
+     */
+    public function fatherhoodAssessments(): HasMany
+    {
+        return $this->hasMany(ParticipantFatherhoodAssessment::class);
+    }
+
+    /**
+     * Get the Fatherhood Surveys for the participant.
+     */
+    public function fatherhoodSurveys(): HasMany
+    {
+        return $this->hasMany(ParticipantFatherhoodSurvey::class);
+    }
+
+    /**
+     * Get the Service Plans for the participant.
+     */
+    public function servicePlans(): HasMany
+    {
+        return $this->hasMany(ParticipantServicePlan::class);
+    }
+
+    /**
+     * Get the Media Releases for the participant.
+     */
+    public function mediaReleases(): HasMany
+    {
+        return $this->hasMany(ParticipantMediaRelease::class);
     }
 }

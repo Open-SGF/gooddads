@@ -1,10 +1,11 @@
-import { PageProps, Child } from '@/types'
+import { PageProps, Child, User } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import { useForm } from '@inertiajs/react'
 import { Button, Input, InputError, Label } from '@/Components/ui'
 import { ChildrenTable } from '@/Components/ChildrenTable'
 
 interface StartPageProps extends PageProps {
+	user: User
 	maritalStatus: Record<string, string>
 	ethnicity: Record<string, string>
 	regions: {
@@ -14,6 +15,7 @@ interface StartPageProps extends PageProps {
 }
 
 export default function StartPage({
+	user,
 	maritalStatus,
 	ethnicity,
 	regions,
@@ -26,7 +28,7 @@ export default function StartPage({
 		zipcode: '',
 		employer: '',
 		t_shirt_size: '',
-		home_phone_number: '',
+		home_phone_number: user.phone_number?.toString(),
 		work_phone_number: '',
 		cell_phone_number: '',
 		alt_contact_number: '',

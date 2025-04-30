@@ -3,16 +3,28 @@ import GuestLayout from '@/Layouts/GuestLayout'
 import { Button, Label, Input, InputError, Checkbox } from '@/Components/ui'
 import { Head, Link, useForm } from '@inertiajs/react'
 
+interface ParticipantRegisterFormDefinition
+	extends Record<string, string | boolean | null> {
+	first_name: string
+	last_name: string
+	email: string
+	phone_number: string
+	password: string
+	password_confirmation: string
+	terms: boolean
+}
+
 export default function ParticipantRegister() {
-	const { data, setData, post, processing, errors, reset } = useForm({
-		first_name: '',
-		last_name: '',
-		email: '',
-		phone_number: '',
-		password: '',
-		password_confirmation: '',
-		terms: false,
-	})
+	const { data, setData, post, processing, errors, reset } =
+		useForm<ParticipantRegisterFormDefinition>({
+			first_name: '',
+			last_name: '',
+			email: '',
+			phone_number: '',
+			password: '',
+			password_confirmation: '',
+			terms: false,
+		})
 
 	useEffect(() => {
 		return () => {

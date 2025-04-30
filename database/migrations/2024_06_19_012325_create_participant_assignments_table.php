@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('participant_staff_assignments', static function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('staff_user_id')->references('id')->on('users');
-            $table->foreignUuid('participant_user_id')->references('id')->on('users');
+            $table->foreignUuid('participant_user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
