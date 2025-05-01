@@ -11,7 +11,7 @@ export default function ParticipantRegister() {
 		phone_number: '',
 		password: '',
 		password_confirmation: '',
-		terms: false,
+		terms: false as boolean,
 	})
 
 	useEffect(() => {
