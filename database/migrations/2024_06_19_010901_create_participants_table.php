@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\Ethnicity;
+use App\Enums\MaritalStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('participants', static function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->constrained('users');
+            $table->foreignUuid('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignUuid('region_id')->nullable()->constrained('regions');
             $table->string('address_line_1', 100)->nullable();
             $table->string('address_line_2', 100)->nullable();
@@ -25,8 +27,8 @@ return new class extends Migration
             $table->string('home_phone_number', 12)->nullable();
             $table->string('work_phone_number', 12)->nullable();
             $table->string('alt_contact_number', 12)->nullable();
-            $table->enum('marital_status', ['single', 'married', 'divorced', 'widowed']);
-            $table->enum('ethnicity', ['white', 'african_american', 'native_american', 'asian', 'pacific_islander', 'hispanic', 'no_answer']);
+            $table->enum('marital_status', MaritalStatus::values());
+            $table->enum('ethnicity', Ethnicity::values());
             $table->decimal('monthly_child_support', 6, 2)->nullable();
 
             $table->string('t_shirt_size')->nullable();

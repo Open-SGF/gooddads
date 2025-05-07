@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Intake;
 
+use App\Enums\Roles;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Rules\UsPhoneNumber;
@@ -30,7 +31,7 @@ class ParticipantRegistrationController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
-    {        
+    {
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -48,7 +49,7 @@ class ParticipantRegistrationController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole('participant');
+        $user->assignRole(Roles::Participant);
 
         event(new Registered($user));
 

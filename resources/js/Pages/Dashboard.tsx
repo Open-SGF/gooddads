@@ -8,11 +8,12 @@ export default function Dashboard({ auth }: PageProps) {
 		<AuthenticatedLayout
 			user={auth.user}
 			header={
-				<h2 className="inline-flex gap-4 font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+				<>
 					<House color="black" size={24} />
 					Dashboard
-				</h2>
+				</>
 			}
+			showBreadcrumbs={false}
 		>
 			<Head title="Dashboard" />
 

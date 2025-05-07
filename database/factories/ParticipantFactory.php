@@ -24,10 +24,11 @@ class ParticipantFactory extends Factory
         return [
             'user_id' => User::factory(),
             'region_id' => Region::factory(),
-            'street' => $this->faker->streetAddress(),
+            'address_line_1' => $this->faker->streetAddress(),
+            'address_line_2' => null,
             'city' => $this->faker->city(),
             'state' => 'MO',
-            'zip_code' => substr($this->faker->postcode(), 0, 5),
+            'zipcode' => substr($this->faker->postcode(), 0, 5),
             'employer' => $this->faker->company(),
             'cell_phone_number' => PhoneFormatter::format($this->faker->phoneNumber()),
             'home_phone_number' => PhoneFormatter::format($this->faker->phoneNumber()),
