@@ -17,6 +17,10 @@ export type Permissions =
 	| 'list classes'
 	| 'list reports'
 export type QuizQuestionType = 'trueFalse' | 'multipleChoice' | 'shortAnswer'
+export type RegionData = {
+	id: string
+	description: string
+}
 export type Roles =
 	| 'admin'
 	| 'director'

@@ -10,6 +10,7 @@ use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\RegionsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -39,6 +40,10 @@ Route::middleware(['auth'])->name('users.')->group(function () {
     Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('destroy');
     Route::delete('/users', [UsersController::class, 'destroyMultiple'])->name('destroyMultiple');
     Route::get('/users/{user}', [UsersController::class, 'show'])->name('show')->breadcrumb(fn ($user) => "$user->first_name $user->last_name", 'users.list');
+});
+
+Route::middleware(['auth'])->name('regions.')->group(function () {
+    Route::get('regions', [RegionsController::class, 'list'])->name('list')->breadcrumb('Regions', 'home');
 });
 
 Route::name('intake')
