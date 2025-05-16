@@ -6,10 +6,13 @@ on:
       - main
 
 jobs:
+
   chromatic:
     runs-on: ubuntu-latest
+    environment: stagingj
     steps:
       - name: Check out the PR head
+       
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
