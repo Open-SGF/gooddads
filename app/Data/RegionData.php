@@ -15,6 +15,8 @@ class RegionData extends Data
     public function __construct(
         public string $id,
         public string $description,
+        public ?Carbon $createdAt,
+        public ?Carbon $updatedAt,
     ) {
     }
 
@@ -23,6 +25,8 @@ class RegionData extends Data
         return new self(
             id: $region->id,
             description: $region->description,
+            createdAt: $user->created_at,
+            updatedAt: $user->updated_at,
         );
     }
 }

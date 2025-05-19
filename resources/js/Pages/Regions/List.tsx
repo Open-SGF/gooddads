@@ -47,10 +47,11 @@ export default function List({ auth, regions }: RegionsListPageProps) {
 	}
 
 	const handleDeleteRegions = () => {
+		console.log('List.handleDeleteRegions')
 		if (regionsToDelete.length > 0) {
-			const userIds = regionsToDelete.map((region) => region.id)
-			router.delete(route('users.destroyMultiple'), {
-				data: { user_ids: userIds },
+			const regionIds = regionsToDelete.map((region) => region.id)
+			router.delete(route('regions.destroyMultiple'), {
+				data: { region_ids: regionIds },
 				onSuccess: () => {
 					setRegionsToDelete([])
 					setDataTableKey((prevKey) => prevKey + 1)
@@ -68,7 +69,20 @@ export default function List({ auth, regions }: RegionsListPageProps) {
 			databaseField: 'description',
 			label: 'Region',
 		},
-		
+		{
+			fieldKey: 'actions',
+			label: '',
+			disabled: !hasPermission('view users'),
+			sort: false,
+			filter: false,
+			content: (row) => (
+				<Button variant="outline" size="sm" asChild>
+					<a href={route('regions.show', row.id)}>
+						<EyeIcon className="h-4 w-4 mr-2" /> View
+					</a>
+				</Button>
+			),
+		},
 	]
 
 	const tableActions = (disabled: boolean, data: RegionData[]) => [

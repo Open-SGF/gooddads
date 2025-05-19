@@ -13,6 +13,8 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\QueryException;
+use Exception;
 
 class RegionsController extends Controller
 {
@@ -42,8 +44,6 @@ class RegionsController extends Controller
             ->orderBy($column, $direction)
             ->paginate($pageSize, ['*'], 'users', $page);
 
-        // dd("Regions: $regions");
-
         return Inertia::render('Regions/List', [
             'regions' => RegionData::collect($regions)->values(),
             'page' => $regions->currentPage(),
@@ -56,142 +56,141 @@ class RegionsController extends Controller
     /**
      * Display the specified user.
      */
-    public function show(User $user): Response
+    public function show(Region $region): Response
     {
-        if (! auth()->user()->hasPermissionTo(Permissions::ViewUsers)) {
-            abort(403, 'You do not have permission to view user details.');
+        if (! auth()->user()->hasPermissionTo(Permissions::ViewRegions)) {
+            abort(403, 'You do not have permission to view region details.');
         }
 
-        return Inertia::render('Users/Show', [
-            'user' => UserData::from($user),
+        return Inertia::render('Regions/Show', [
+            'region' => RegionData::from($region),
         ]);
     }
 
-    public function destroy(User $user): RedirectResponse
+    public function destroy(Region $region): RedirectResponse
     {
-        if (! auth()->user()->hasPermissionTo(Permissions::DeleteUsers)) {
-            return back()->withErrors(['error' => 'You do not have permission to delete users.']);
-        }
-        if (auth()->id() === $user->id) {
-            return back()->withErrors(['error' => 'You cannot delete your own account.']);
+        if (! auth()->user()->hasPermissionTo(Permissions::DeleteRegions)) {
+            return back()->withErrors(['error' => 'You do not have permission to delete regions.']);
         }
 
-        $user->delete();
+        try {
+            $region->delete();
+            return redirect()->route('regions.list')->with('toast', [
+                'type' => 'success',
+                'message' => "Region {$region->description} was successfully deleted.",
+            ]);
+        } catch (QueryException $e) {
 
-        return redirect()->route('users.list')->with('toast', [
-            'type' => 'success',
-            'message' => "User {$user->first_name} {$user->last_name} was successfully deleted.",
-        ]);
+            // Check if it's a foreign key constraint error
+            if ($e->getCode() == "23000") {
+                
+                return back()->withErrors(['error' => "Cannot delete region '{$region->description}' because it is being used by participants."]);
+            }    
+            
+            // For other database errors
+            return back()->withErrors(['error' => "An error occurred while deleting the region: {$e->getMessage()}"]);
+        } catch (Exception $e) {
+            // Catch any other exceptions
+            return back()->withErrors(['error' => "An unexpected error occurred: {$e->getMessage()}"]);
+        }
     }
 
     public function destroyMultiple(Request $request): RedirectResponse
     {
-        if (! auth()->user()->hasPermissionTo(Permissions::DeleteUsers)) {
-            return back()->withErrors(['error' => 'You do not have permission to delete users.']);
+        if (! auth()->user()->hasPermissionTo(Permissions::DeleteRegions)) {
+            return back()->withErrors(['error' => 'You do not have permission to delete regions.']);
         }
 
-        $userIds = $request->input('user_ids', []);
+        $regionIds = $request->input('region_ids', []);
 
-        if (empty($userIds)) {
-            return back()->withErrors(['error' => 'No users specified for deletion.']);
+        if (empty($regionIds)) {
+            return back()->withErrors(['error' => 'No regions specified for deletion.']);
         }
 
-        // Prevent deleting your own account
-        if (in_array(auth()->id(), $userIds)) {
-            return back()->withErrors(['error' => 'You cannot delete your own account.']);
+        $regions = Region::whereIn('id', $regionIds)->get();
+        $count = $regions->count();
+
+        foreach($regions as $region) {
+
+            try {
+                $region->delete();
+            } catch (QueryException $e) {
+
+                // Check if it's a foreign key constraint error
+                if ($e->getCode() == "23000") {                    
+                    return back()->withErrors(['error' => "Cannot delete region '{$region->description}' because it is being used by participants."]);
+                }    
+                
+                // For other database errors
+                return back()->withErrors(['error' => "An error occurred while deleting the region: {$e->getMessage()}"]);
+            } catch (Exception $e) {
+                // Catch any other exceptions
+                return back()->withErrors(['error' => "An unexpected error occurred: {$e->getMessage()}"]);
+            }
         }
-
-        $users = User::whereIn('id', $userIds)->get();
-        $count = $users->count();
-
-        // Delete the users
-        User::whereIn('id', $userIds)->delete();
 
         return back()->with('toast', [
-            'type' => 'success',
-            'message' => "{$count} ".($count === 1 ? 'user' : 'users').' successfully deleted.',
-        ]);
+                'type' => 'success',
+                'message' => "{$count} ".($count === 1 ? 'region' : 'regions').' successfully deleted.',
+            ]);
     }
 
     public function create(): Response
     {
-        if (! auth()->user()->hasPermissionTo(Permissions::CreateUsers)) {
-            abort(403, 'You do not have permission to create users.');
+        if (! auth()->user()->hasPermissionTo(Permissions::CreateRegions)) {
+            abort(403, 'You do not have permission to create regions.');
         }
 
-        return Inertia::render('Users/Create', [
-            'roles' => Roles::cases(),
-        ]);
+        return Inertia::render('Regions/Create');
     }
 
-    public function edit(User $user): Response
+    public function edit(Region $region): Response
     {
-        if (! auth()->user()->hasPermissionTo(Permissions::EditUsers)) {
-            abort(403, 'You do not have permission to edit users.');
+        if (! auth()->user()->hasPermissionTo(Permissions::EditRegions)) {
+            abort(403, 'You do not have permission to edit regions.');
         }
 
-        return Inertia::render('Users/Edit', [
-            'user' => UserData::from($user),
-            'roles' => Roles::cases(),
+        return Inertia::render('Regions/Edit', [
+            'region' => RegionData::from($region),
         ]);
     }
 
     public function store(Request $request): RedirectResponse
     {
-        if (! auth()->user()->hasPermissionTo(Permissions::CreateUsers)) {
-            return back()->withErrors(['error' => 'You do not have permission to create users.']);
+        if (! auth()->user()->hasPermissionTo(Permissions::CreateRegions)) {
+            return back()->withErrors(['error' => 'You do not have permission to create regions.']);
         }
 
-        $request->validate($this->userValidationRules);
+        $request->validate($this->regionValidationRules);
 
-        $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'password' => Hash::make($request->password),
-            'active' => $request->active,
+        $region = Region::create([
+            'description' => $request->description,
         ]);
 
-        $user->syncRoles($request->roles);
-
-        return redirect()->route('users.list')->with('toast', [
+        return redirect()->route('regions.list')->with('toast', [
             'type' => 'success',
-            'message' => "User {$user->first_name} {$user->last_name} was successfully created.",
+            'message' => "Region {$region->description} was successfully created.",
         ]);
     }
 
-    public function update(Request $request, User $user): RedirectResponse
+    public function update(Request $request, Region $region): RedirectResponse
     {
-        if (! auth()->user()->hasPermissionTo(Permissions::EditUsers)) {
-            return back()->withErrors(['error' => 'You do not have permission to edit users.']);
+        if (! auth()->user()->hasPermissionTo(Permissions::EditRegions)) {
+            return back()->withErrors(['error' => 'You do not have permission to edit regions.']);
         }
 
-        $rules = $this->userValidationRules;
-        $rules['email'] = ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->ignore($user->id)];
-        $rules['password'] = ['nullable', Rules\Password::defaults()];
-
+        $rules = $this->regionValidationRules;
+        $rules['description'] = ['required', 'string'];
+        
         $request->validate($rules);
 
-        $user->update([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'active' => $request->active,
+        $region->update([
+            'description' => $request->description,
         ]);
 
-        if ($request->password) {
-            $user->update([
-                'password' => Hash::make($request->password),
-            ]);
-        }
-
-        $user->syncRoles($request->roles);
-
-        return redirect()->route('users.list')->with('toast', [
+        return redirect()->route('regions.list')->with('toast', [
             'type' => 'success',
-            'message' => "User {$user->first_name} {$user->last_name} was successfully updated.",
+            'message' => "Region {$region->description} was successfully updated.",
         ]);
     }
 }
