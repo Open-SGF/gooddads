@@ -42,6 +42,8 @@ class RegionsController extends Controller
             ->orderBy($column, $direction)
             ->paginate($pageSize, ['*'], 'users', $page);
 
+        // dd("Regions: $regions");
+
         return Inertia::render('Regions/List', [
             'regions' => RegionData::collect($regions)->values(),
             'page' => $regions->currentPage(),

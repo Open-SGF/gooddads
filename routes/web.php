@@ -43,7 +43,8 @@ Route::middleware(['auth'])->name('users.')->group(function () {
 });
 
 Route::middleware(['auth'])->name('regions.')->group(function () {
-    Route::get('regions', [RegionsController::class, 'list'])->name('list')->breadcrumb('Regions', 'home');
+    Route::get('/regions', [RegionsController::class, 'list'])->name('list')->breadcrumb('Regions', 'home');
+    Route::get('/regions/create', [RegionsController::class, 'create'])->name('create')->breadcrumb('Create Region', 'regions.list');
 });
 
 Route::name('intake')

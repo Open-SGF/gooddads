@@ -129,7 +129,7 @@ export default function List({ auth, regions }: RegionsListPageProps) {
 				header={
 					<>
 						<Users color="black" size={24} />
-						REgions
+						Regions
 					</>
 				}
 				actions={
