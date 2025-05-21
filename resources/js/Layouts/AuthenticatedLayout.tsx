@@ -172,6 +172,21 @@ export default function Authenticated({
 								</NavigationMenuLink>
 							)}
 						</NavigationMenuItem>
+						<NavigationMenuItem className="w-full">
+							{hasPermission('list regions') && (
+								<NavigationMenuLink
+									href={route('regions.list')}
+									active={hasRoute('regions.list')}
+								>
+									<Users
+										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
+										color="black"
+										size={20}
+									/>{' '}
+									Regions
+								</NavigationMenuLink>
+							)}
+						</NavigationMenuItem>
 					</NavigationMenuList>
 				</NavigationMenu>
 				<ResponsiveNavLink
