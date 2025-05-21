@@ -10,6 +10,7 @@ use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\RegionsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -39,6 +40,17 @@ Route::middleware(['auth'])->name('users.')->group(function () {
     Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('destroy');
     Route::delete('/users', [UsersController::class, 'destroyMultiple'])->name('destroyMultiple');
     Route::get('/users/{user}', [UsersController::class, 'show'])->name('show')->breadcrumb(fn ($user) => "$user->first_name $user->last_name", 'users.list');
+});
+
+Route::middleware(['auth'])->name('regions.')->group(function () {
+    Route::get('/regions', [RegionsController::class, 'list'])->name('list')->breadcrumb('Regions', 'home');
+    Route::get('/regions/create', [RegionsController::class, 'create'])->name('create')->breadcrumb('Create Region', 'regions.list');   
+    Route::post('/regions', [RegionsController::class, 'store'])->name('store'); 
+    Route::get('/regions/{region}/edit', [RegionsController::class, 'edit'])->name('edit')->breadcrumb(fn ($region) => "Edit $region->description", 'regions.list');
+    Route::put('/regions/{region}', [RegionsController::class, 'update'])->name('update');
+    Route::delete('/regions/{region}', [RegionsController::class, 'destroy'])->name('destroy');
+    Route::delete('/regions', [RegionsController::class, 'destroyMultiple'])->name('destroyMultiple');
+    Route::get('/regions/{region}', [RegionsController::class, 'show'])->name('show')->breadcrumb(fn ($region) => "$region->description", 'regions.list');
 });
 
 Route::name('intake')

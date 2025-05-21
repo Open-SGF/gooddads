@@ -16,7 +16,18 @@ export type Permissions =
 	| 'list curriculum'
 	| 'list classes'
 	| 'list reports'
+	| 'create regions'
+	| 'edit regions'
+	| 'delete regions'
+	| 'list regions'
+	| 'view regions'
 export type QuizQuestionType = 'trueFalse' | 'multipleChoice' | 'shortAnswer'
+export type RegionData = {
+	id: string
+	description: string
+	createdAt: string | null
+	updatedAt: string | null
+}
 export type Roles =
 	| 'admin'
 	| 'director'
