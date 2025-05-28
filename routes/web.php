@@ -14,13 +14,14 @@ use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
-use App\Models\ParticipantFatherhoodAssesment;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
     return Auth::check()
-        ? Inertia::render('Dashboard')
+        ? Auth::user()->hasRole('intake') ?
+            Inertia::render('Intake/ParticipantRegister') :
+            Inertia::render('Dashboard')
         : Inertia::render('Auth/Login');
 })->name('home');
 
@@ -57,9 +58,10 @@ Route::name('intake.')
             Route::post('signup', [ParticipantSignupController::class, 'store']);
         });
 
-        Route::middleware('role:participant')
-            ->resource('disclosure', ParticipantDisclosureController::class)
-            ->parameter('disclosure', 'disclosureAuthorization');
+        Route::middleware('role:participant')->group(function () {
+            Route::get('disclosure', [ParticipantDisclosureController::class, 'create'])->name('disclosure');
+            Route::post('disclosure', [ParticipantDisclosureController::class, 'store']);
+        });
 
         Route::middleware('role:participant')
             ->resource('fatherhood-assessment', ParticipantFatherhoodAssessmentController::class)
@@ -76,9 +78,6 @@ Route::name('intake.')
         Route::middleware('role:participant')
             ->resource('media-release', ParticipantMediaReleaseController::class)
             ->parameter('media-release', 'mediaRelease');
-
-
-
     });
 Route::middleware(['auth'])->group(function () {
     Route::get('/curriculum', [UsersController::class, 'list'])->name('curriculum.list');

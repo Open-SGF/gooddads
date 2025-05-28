@@ -5,8 +5,12 @@ namespace App\Data;
 use App\Models\Child;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use Illuminate\Support\Str;
+use Spatie\LaravelData\Attributes\Validation\BooleanType;
 use Spatie\LaravelData\Attributes\Validation\Max;
-use Spatie\LaravelData\Attributes\Validation\Regex;
+use Spatie\LaravelData\Attributes\Validation\Nullable;
+use Spatie\LaravelData\Attributes\Validation\Numeric;
+use Spatie\LaravelData\Attributes\Validation\StringType;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
@@ -16,26 +20,30 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 class ChildData extends Data
 {
     public function __construct(
-        #[Max(36)]
+        #[StringType, Max(36), Nullable]
         public string $id,
-        #[Max(36)]
+        #[StringType, Max(36), Nullable]
         public string $participantId,
-        #[Max(255)]
+        #[StringType, Max(255)]
         public string $firstName,
-        #[Max(255)]
+        #[StringType, Max(255)]
         public string $lastName,
         #[WithCast(DateTimeInterfaceCast::class)]
         public CarbonImmutable $dateOfBirth,
+        #[BooleanType, Nullable]
         public ?bool $phoneContact,
+        #[BooleanType, Nullable]
         public ?bool $custody,
+        #[BooleanType, Nullable]
         public ?bool $visitation,
+        #[StringType, Nullable]
         public ?string $contact,
-        #[Regex('^-?\d{1,4}(\.\d{2})$')]
+        #[Numeric]
         public float $childSupport,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $createdAt,
+        public string $createdAt,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $updatedAt,
+        public string $updatedAt,
     ) {
     }
 
@@ -55,5 +63,33 @@ class ChildData extends Data
             createdAt: $child->created_at,
             updatedAt: $child->updated_at,
         );
+    }
+
+    public static function fromArray(array $data): self
+    {
+        // Convert snake_case keys to camelCase
+        $camelCaseData = collect($data)->mapWithKeys(function ($value, $key) {
+            return [Str::camel($key) => $value];
+        })->all();
+
+        return parent::from($camelCaseData);
+    }
+
+    public static function rules(): array
+    {
+        return [
+            'id' => ['nullable'],
+            'participantId' => ['nullable'],
+            'firstName' => ['string', 'max:255'],
+            'lastName' => ['string', 'max:255'],
+            'dateOfBirth' => ['date'],
+            'phoneContact' => ['boolean', 'nullable'],
+            'custody' => ['boolean', 'nullable'],
+            'visitation' => ['boolean', 'nullable'],
+            'contact' => ['string', 'nullable'],
+            'childSupport' => ['numeric'],
+            'createdAt' => ['nullable'],
+            'updatedAt' => ['nullable'],
+        ];
     }
 }

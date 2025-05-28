@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Intake;
 
 use App\Data\ParticipantData;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Intake\StoreParticipantDisclosureAuthorizationRequest;
-use App\Http\Requests\Intake\UpdateParticipantDisclosureAuthorizationRequest;
-use App\Http\Resources\ParticipantResource;
 use App\Models\Participant;
 use App\Models\ParticipantDisclosureAuthorization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -20,7 +18,7 @@ class ParticipantDisclosureController extends Controller
     {
         $this->authorize('view', $participant);
 
-        return Inertia::render('Intake/ParticipantDisclosure/Index', [
+        return Inertia::render('Intake/Disclosure/Index', [
             'participant' => ParticipantData::fromModel($participant),
         ]);
     }
@@ -28,12 +26,11 @@ class ParticipantDisclosureController extends Controller
     /**
      * Display the create view.
      */
-    public function create(Request $request)
+    public function create(Request $request): Response
     {
         $participant = $request->user()->participant;
-        $this->authorize('create', [ParticipantDisclosureAuthorization::class, $participant]);
 
-        return Inertia::render('Intake/ParticipantDisclosure/Create', [
+        return Inertia::render('Intake/Disclosure/Create', [
             'participant' => ParticipantData::fromModel($participant),
         ]);
     }
@@ -41,9 +38,9 @@ class ParticipantDisclosureController extends Controller
     /**
      * Handle an incoming disclosure agreement request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $participant = $request->user()->participant;
         $this->authorize('create', [ParticipantDisclosureAuthorization::class, $participant]);
@@ -79,7 +76,7 @@ class ParticipantDisclosureController extends Controller
     public function edit(Request $request, ParticipantDisclosureAuthorization $disclosureAuthorization): Response
     {
         $participant = $request->user()->participant;
-        
+
         return Inertia::render('Intake/Disclosure/Edit', [
             'participant' => ParticipantData::fromModel($participant),
             'disclosureAuthorization' => $disclosureAuthorization,
@@ -111,7 +108,7 @@ class ParticipantDisclosureController extends Controller
     {
         $this->authorize('delete', $disclosureAuthorization);
 
-        if($disclosureAuthorization->participant_id !== $participant->id) {
+        if ($disclosureAuthorization->participant_id !== $participant->id) {
             abort(403);
         }
 

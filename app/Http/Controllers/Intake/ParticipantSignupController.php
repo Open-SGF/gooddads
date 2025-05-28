@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers\Intake;
 
+use App\Data\ParticipantData;
+use App\Data\UserData;
 use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Intake\StoreParticipantSignupRequest;
 use App\Models\Region;
-use App\Models\User;
-use App\Services\ParticipantService;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use Log;
+use Throwable;
 
 class ParticipantSignupController extends Controller
 {
@@ -27,7 +24,7 @@ class ParticipantSignupController extends Controller
     public function create(): Response
     {
 
-        return Inertia::render('Intake/Signup',[
+        return Inertia::render('Intake/Signup', [
             'user' => Auth::user(),
             'ethnicity' => Ethnicity::displayArray(),
             'maritalStatus' => MaritalStatus::displayArray(),
@@ -38,18 +35,23 @@ class ParticipantSignupController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws Throwable
      */
-    public function store(StoreParticipantSignupRequest $request, ParticipantService $participantService): RedirectResponse
+    public function store(Request $request): JsonResponse
     {
-        $participantData = $request->validated();
-        $participantData['date'] ??= now();
+        try {
+            $newRequest = new Request($request->except('children'));
+            $participant = ParticipantData::from($newRequest);
+            $participantData = $participant->toArray();
 
-        $participantService->create($request->user(), $participantData);
+            return response()->json($participantData);
+        } catch (Throwable $e) {
+            Log::error('Error processing participant signup form: '.$e->getMessage(), [
+                'exception' => $e,
+                'trace' => $e->getTraceAsString(),
+            ]);
 
-        return redirect(route('intake.disclosure.index', absolute: false));
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
-
-
-
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ParticipantFatherhoodAssessmentFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,8 +10,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ParticipantFatherhoodAssessment extends Model
 {
-    use HasUuids;
+    /** @use HasFactory<ParticipantFatherhoodAssessmentFactory> */
     use HasFactory;
+
+    use HasUuids;
 
     protected $table = 'participant_fatherhood_assessments';
 
@@ -59,6 +62,9 @@ class ParticipantFatherhoodAssessment extends Model
         'date_completed' => 'date',
     ];
 
+    /**
+     * @return BelongsTo<Participant, $this>
+     */
     public function participant(): BelongsTo
     {
         return $this->belongsTo(Participant::class);

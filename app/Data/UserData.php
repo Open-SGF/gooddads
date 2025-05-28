@@ -5,6 +5,7 @@ namespace App\Data;
 use App\Models\User;
 use Carbon\Carbon;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Support\Validation\ValidationContext;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
@@ -38,5 +39,25 @@ class UserData extends Data
             updatedAt: $user->updated_at,
             emailVerifiedAt: $user->email_verified_at
         );
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, mixed>
+     */
+    public static function rules(ValidationContext $context): array
+    {
+        return [
+            'id' => ['nullable'],
+            'firstName' => ['required', 'string', 'max:255'],
+            'lastName' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'roles' => ['required', 'array'],
+            'permissions' => ['required', 'array'],
+            'createdAt' => ['nullable'],
+            'updatedAt' => ['nullable'],
+            'emailVerifiedAt' => ['nullable'],
+        ];
     }
 }

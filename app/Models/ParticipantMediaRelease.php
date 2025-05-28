@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\CarbonImmutable;
+use Database\Factories\ParticipantMediaReleaseFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +24,10 @@ use Carbon\Carbon;
  */
 class ParticipantMediaRelease extends Model
 {
-    use HasFactory, HasUuids;
+    /** @use HasFactory<ParticipantMediaReleaseFactory> */
+    use HasFactory;
+
+    use HasUuids;
 
     protected $fillable = [
         'participant_id',
@@ -40,6 +44,10 @@ class ParticipantMediaRelease extends Model
         'date_completed' => 'date',
     ];
 
+
+    /**
+     * @return BelongsTo<Participant, $this>
+     */
     public function participant(): BelongsTo
     {
         return $this->belongsTo(Participant::class);

@@ -21,13 +21,3 @@ export type PaginationProps = {
 }
 
 export * from './generated'
-
-export type Child = {
-	first_name: string
-	last_name: string
-	date_of_birth: string
-	child_support: number
-	custody: boolean
-	visitation: boolean
-	phone_contact: boolean
-}

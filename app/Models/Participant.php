@@ -6,6 +6,7 @@ use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
 use Carbon\CarbonImmutable;
 use Database\Factories\ParticipantFactory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,9 +36,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string probation_parole_case_worker_phone
  * @property string participant_photo
  * @property CarbonImmutable $intake_date
- * @property \App\Models\User $user
- * @property \App\Models\Region $region
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Child[] $children
+ * @property ?User $user
+ * @property ?Region $region
+ * @property Collection|Child[]|null $children
  */
 class Participant extends Model
 {
@@ -62,6 +63,9 @@ class Participant extends Model
         'marital_status',
         'ethnicity',
         'monthly_child_support',
+        'probation_parole_case_worker_name',
+        'probation_parole_case_worker_phone',
+        'participant_photo',
         'intake_date',
     ];
 
@@ -79,7 +83,7 @@ class Participant extends Model
     /**
      * Define the relationship to the User model.
      *
-     * @return BelongsTo<User, self>
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
@@ -89,7 +93,7 @@ class Participant extends Model
     /**
      * Define the relationship to the Region model.
      *
-     * @return BelongsTo<Region, self>
+     * @return BelongsTo<Region, $this>
      */
     public function region(): BelongsTo
     {
@@ -99,7 +103,7 @@ class Participant extends Model
     /**
      * Define the relationship to the Child model.
      *
-     * @return HasMany<Child>
+     * @return HasMany<Child, $this>
      */
     public function children(): HasMany
     {
@@ -108,6 +112,8 @@ class Participant extends Model
 
     /**
      * Get the disclosure authorizations for the participant.
+     *
+     * @return HasMany<ParticipantDisclosureAuthorization, $this>
      */
     public function disclosureAuthorizations(): HasMany
     {
@@ -116,6 +122,8 @@ class Participant extends Model
 
     /**
      * Get the Fatherhood Assessments for the participant.
+     *
+     * @return HasMany<ParticipantFatherhoodAssessment, $this>
      */
     public function fatherhoodAssessments(): HasMany
     {
@@ -124,6 +132,8 @@ class Participant extends Model
 
     /**
      * Get the Fatherhood Surveys for the participant.
+     *
+     * @return HasMany<ParticipantFatherhoodSurvey, $this>
      */
     public function fatherhoodSurveys(): HasMany
     {
@@ -132,6 +142,8 @@ class Participant extends Model
 
     /**
      * Get the Service Plans for the participant.
+     *
+     * @return HasMany<ParticipantServicePlan, $this>
      */
     public function servicePlans(): HasMany
     {
@@ -140,6 +152,8 @@ class Participant extends Model
 
     /**
      * Get the Media Releases for the participant.
+     *
+     * @return HasMany<ParticipantMediaRelease, $this>
      */
     public function mediaReleases(): HasMany
     {

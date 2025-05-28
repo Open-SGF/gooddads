@@ -15,12 +15,12 @@ class RegionData extends Data
 {
     public function __construct(
         #[Max(36)]
-        public readonly string $id,
-        public readonly string $description,
+        public string $id,
+        public string $description,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public readonly Carbon $createdAt,
+        public Carbon $createdAt,
         #[WithCast(DateTimeInterfaceCast::class)]
-        public readonly Carbon $updatedAt,
+        public Carbon $updatedAt,
     ) {
     }
 

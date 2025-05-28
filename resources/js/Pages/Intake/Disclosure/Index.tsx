@@ -1,6 +1,5 @@
 import React from 'react'
-import { PageProps, ParticipantData } from '@/types'
-import type { IntakeDisclosureAuthorizationForm } from '@/types/intake-disclosure-authorization-form'
+import { PageProps, ParticipantData, ParticipantDisclosureAuthorizationForm } from '@/types'
 import { Button } from '@/Components/ui'
 import { router } from '@inertiajs/react'
 import IntakeLayout from '@/Layouts/IntakeLayout'
@@ -8,7 +7,7 @@ import { cn } from '@/lib/utils'
 
 interface DisclosureProps extends PageProps {
 	participant: ParticipantData
-	disclosureAuthorizations: IntakeDisclosureAuthorizationForm[]
+	disclosureAuthorizations: ParticipantDisclosureAuthorizationForm[]
 }
 
 export const Index = ({

@@ -11,9 +11,7 @@ class IntakeController extends Controller
 {
     public function index(Request $request)
     {
-        return Inertia::render('Intake/Index', [
-            'participant' => ParticipantData::fromModel($request->user()->participant),
-        ]);
+        return Inertia::render('Intake/Index');
     }
 
 

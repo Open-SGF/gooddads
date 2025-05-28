@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ParticipantServicePlanFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ParticipantServicePlan extends Model
 {
-    use HasUuids, HasFactory;
+    /** @use HasFactory<ParticipantServicePlanFactory> */
+    use HasFactory;
+
+    use HasUuids;
 
     protected $fillable = [
         'participant_name',
@@ -53,6 +57,10 @@ class ParticipantServicePlan extends Model
         'date_completed' => 'date',
     ];
 
+
+    /**
+     * @return BelongsTo<Participant, $this>
+     */
     public function participant(): BelongsTo
     {
         return $this->belongsTo(Participant::class, 'participant_id');

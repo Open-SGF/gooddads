@@ -1,29 +1,30 @@
 import React from 'react'
 import { Button, Checkbox, Input, InputError, Label } from '@/Components/ui'
 import { ChildData } from '@/types'
+import { CurrencyInput } from '@/Components/ui/CurrencyInput'
 
 export interface ChildrenTableProps {
 	childrenInfo: ChildData[]
-	setChildrenInfo: (childrenInfo: ChildData[]) => void
+	setChildren: (children: ChildData[]) => void
 	errors: Record<string, string | undefined>
 }
 
 const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
-	({ childrenInfo, setChildrenInfo, errors }) => {
+	({ childrenInfo: children, setChildren, errors }) => {
 		const handleInputChange = (
 			index: number,
 			field: keyof ChildData,
 			value: unknown,
 		) => {
 			// Update the value of a specific field in the child object at the given index
-			const updatedChildren = [...childrenInfo]
+			const updatedChildren = [...children]
 			updatedChildren[index] = { ...updatedChildren[index], [field]: value }
-			setChildrenInfo(updatedChildren)
+			setChildren(updatedChildren)
 		}
 
 		const handleDelete = (index: number) => {
-			const updatedChildren = childrenInfo.filter((_, i) => i !== index)
-			setChildrenInfo(updatedChildren) // Make sure to update the parent state
+			const updatedChildren = children.filter((_, i) => i !== index)
+			setChildren(updatedChildren) // Make sure to update the parent state
 		}
 
 		return (
@@ -32,7 +33,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 					<Label className="text-2xl">Family Information</Label>
 				</div>
 				<div className="flex flex-col">
-					{childrenInfo.map((child, index) => (
+					{children?.map((child, index) => (
 						<div key={index} className="grid grid-cols-4 border-b mb-4 pb-4">
 							<div className="flex-1 p-2">
 								<Label>First Name</Label>
@@ -47,8 +48,8 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									}
 								/>
 								<InputError
-									message={errors[`children_info.${index}.firstName`]?.replace(
-										`children_info.${index}.firstName`,
+									message={errors[`children.${index}.firstName`]?.replace(
+										`children.${index}.firstName`,
 										'First name',
 									)}
 									className="mt-2"
@@ -66,8 +67,8 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									}
 								/>
 								<InputError
-									message={errors[`children_info.${index}.lastName`]?.replace(
-										`children_info.${index}.lastName`,
+									message={errors[`children.${index}.lastName`]?.replace(
+										`children.${index}.lastName`,
 										'Last name',
 									)}
 									className="mt-2"
@@ -86,10 +87,8 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									}
 								/>
 								<InputError
-									message={errors[
-										`children_info.${index}.dateOfBirth`
-									]?.replace(
-										`children_info.${index}.dateOfBirth`,
+									message={errors[`children.${index}.dateOfBirth`]?.replace(
+										`children.${index}.dateOfBirth`,
 										'Date of birth',
 									)}
 									className="mt-2"
@@ -107,7 +106,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									/>
 									<Label htmlFor="custody">Custody</Label>
 									<InputError
-										message={errors[`children_info.${index}.custody`]}
+										message={errors[`children.${index}.custody`]}
 										className="mt-2"
 									/>
 								</div>
@@ -121,24 +120,22 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									/>
 									<Label htmlFor="visitation">Visitation</Label>
 									<InputError
-										message={errors[`children_info.${index}.visitation`]}
+										message={errors[`children.${index}.visitation`]}
 										className="mt-2"
 									/>
 								</div>
 								<div className="flex p-2 items-center gap-1">
 									<Checkbox
-										id="phone_contact"
+										id="phoneContact"
 										checked={!!child.phoneContact}
 										onCheckedChange={(isChecked) =>
 											handleInputChange(index, 'phoneContact', isChecked)
 										}
 									/>
-									<Label htmlFor="phone_contact">Phone Contact</Label>
+									<Label htmlFor="phoneContact">Phone Contact</Label>
 									<InputError
-										message={errors[
-											`children_info.${index}.phoneContact`
-										]?.replace(
-											`children_info.${index}.phoneContact`,
+										message={errors[`children.${index}.phoneContact`]?.replace(
+											`children.${index}.phoneContact`,
 											'Phone contact',
 										)}
 										className="mt-2"
@@ -147,7 +144,7 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 							</div>
 							<div className="flex-1 p-2 col-span-2">
 								<Label>Monthly Child Support</Label>
-								<Input
+								<CurrencyInput
 									type="number"
 									placeholder="Monthy Child Support"
 									className="w-full"
@@ -162,10 +159,8 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 									}
 								/>
 								<InputError
-									message={errors[
-										`children_info.${index}.child_support`
-									]?.replace(
-										`children_info.${index}.child_support`,
+									message={errors[`children.${index}.childSupport`]?.replace(
+										`children.${index}.childSupport`,
 										'Child support',
 									)}
 									className="mt-2"

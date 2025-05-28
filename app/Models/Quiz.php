@@ -25,7 +25,7 @@ class Quiz extends Model
     public $incrementing = false;
 
     /**
-     * @return BelongsTo<Module, Quiz>
+     * @return BelongsTo<Module, $this>
      */
     public function module(): BelongsTo
     {
@@ -33,7 +33,7 @@ class Quiz extends Model
     }
 
     /**
-     * @return HasMany<QuizQuestion>
+     * @return HasMany<QuizQuestion, $this>
      */
     public function quizQuestions(): HasMany
     {

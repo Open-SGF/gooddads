@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ParticipantFatherhoodSurveyFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ParticipantFatherhoodSurvey extends Model
 {
-    use HasUuids, HasFactory;
+    /** @use HasFactory<ParticipantFatherhoodSurveyFactory> */
+    use HasFactory;
+
+    use HasUuids;
 
     protected $fillable = [
         'participant_id',
@@ -76,6 +80,9 @@ class ParticipantFatherhoodSurvey extends Model
         'other_expected' => 'boolean',
     ];
 
+    /**
+     * @return BelongsTo<Participant, $this>
+     */
     public function participant(): BelongsTo
     {
         return $this->belongsTo(Participant::class);
