@@ -40,8 +40,7 @@ class ParticipantSignupController extends Controller
     public function store(Request $request): JsonResponse
     {
         try {
-            $newRequest = new Request($request->except('children'));
-            $participant = ParticipantData::from($newRequest);
+            $participant = ParticipantData::from($request);
             $participantData = $participant->toArray();
 
             return response()->json($participantData);
