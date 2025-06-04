@@ -45,12 +45,12 @@ export type Ethnicity =
 	| 'no_answer'
 export type MaritalStatus = 'single' | 'married' | 'divorced' | 'widowed'
 export type ParticipantData = {
-	id: string
-	userId: string
-	user: UserData
+	id?: string
+	userId: string | null
+	user?: UserData | any
 	regionId: string
 	region: RegionData | null
-	children: Array<ChildData>
+	children: any
 	addressLine1: string
 	addressLine2: string | null
 	city: string
@@ -262,4 +262,12 @@ export type UserData = {
 	createdAt: string | null
 	updatedAt: string | null
 	emailVerifiedAt: string | null
+}
+export type UserRegistrationForm = {
+	firstName: string
+	lastName: string
+	email: string
+	phoneNumber: string
+	password: string
+	passwordConfirmation: string
 }

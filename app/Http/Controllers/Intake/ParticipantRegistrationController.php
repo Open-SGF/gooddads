@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Intake;
 
+use App\Data\Forms\ParticipantSignupForm;
+use App\Enums\Ethnicity;
+use App\Enums\MaritalStatus;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Rules\UsPhoneNumber;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use App\Models\Region;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use Log;
+use Throwable;
 
 class ParticipantRegistrationController extends Controller
 {
@@ -21,39 +21,34 @@ class ParticipantRegistrationController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Intake/ParticipantRegister');
+
+        return Inertia::render('Intake/Signup', [
+            'user' => Auth::user(),
+            'ethnicity' => Ethnicity::displayArray(),
+            'maritalStatus' => MaritalStatus::displayArray(),
+            'regions' => Region::get(['id', 'description'])->toArray(),
+        ]);
     }
 
     /**
      * Handle an incoming registration request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws Throwable
      */
-    public function store(Request $request): RedirectResponse
-    {        
-        $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'phone_number' => ['required', new UsPhoneNumber()],
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'terms' => ['required', 'accepted'],
-        ]);
+    public function store(ParticipantSignupForm $request): JsonResponse
+    {
+        try {
+            $participant = ParticipantSignupForm::from($request);
+            $participantData = $participant->toArray();
 
-        $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'password' => Hash::make($request->password),
-        ]);
+            return response()->json($participantData);
+        } catch (Throwable $e) {
+            Log::error('Error processing participant signup form: '.$e->getMessage(), [
+                'exception' => $e,
+                'trace' => $e->getTraceAsString(),
+            ]);
 
-        $user->assignRole('participant');
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(route('intake.signup'));
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }

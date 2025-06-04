@@ -10,7 +10,6 @@ use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
-use Spatie\LaravelData\Attributes\Validation\ArrayType;
 use Spatie\LaravelData\Attributes\Validation\Enum;
 use Spatie\LaravelData\Attributes\Validation\Max;
 use Spatie\LaravelData\Attributes\Validation\Nullable;
@@ -19,24 +18,26 @@ use Spatie\LaravelData\Attributes\Validation\StringType;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\DataCollection;
+use Spatie\TypeScriptTransformer\Attributes\Optional;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
 class ParticipantData extends Data
 {
     public function __construct(
+        #[StringType, Max(36), Optional]
+        public ?string $id,
         #[StringType, Max(36)]
-        public string $id,
-        #[StringType, Max(36)]
-        public string $userId,
-        #[DataCollectionOf(UserData::class)]
-        public UserData $user,
+        public ?string $userId,
+        #[DataCollectionOf(UserData::class), Optional]
+        public UserData|Optional $user,
         #[StringType, Max(36), Nullable]
         public string $regionId,
         #[Nullable, DataCollectionOf(RegionData::class)]
         public ?RegionData $region,
-        /** @var ChildData[] $children */
-        public array $children,
+        #[DataCollectionOf(ChildData::class)]
+        public DataCollection $children,
         #[StringType, Max(100)]
         public string $addressLine1,
         #[StringType, Max(100)]
@@ -119,40 +120,40 @@ class ParticipantData extends Data
      *
      * @return array<string, mixed>
      */
-    public static function rules(): array
-    {
-        return [
-            'id' => ['nullable'],
-            'userId' => ['nullable'],
-            'user' => ['nullable'],
-            'user.id' => ['nullable'],
-            'user.firstName' => ['nullable'],
-            'user.lastName' => ['nullable'],
-            'user.email' => ['nullable'],
-            'user.roles' => ['nullable'],
-            'user.permissions' => ['nullable'],
-            'children' => ['nullable'],
-            'children.*.id' => ['nullable'],
-            'children.*.participantId' => ['nullable'],
-            'children.*.createdAt' => ['nullable'],
-            'children.*.updatedAt' => ['nullable'],
-            'intakeDate' => ['nullable'],
-            'createdAt' => ['nullable'],
-            'updatedAt' => ['nullable'],
-            'addressLine1' => ['required', 'string', 'max:200'],
-            'addressLine2' => ['nullable', 'string', 'max:200'],
-            'city' => ['required', 'string', 'max:100'],
-            'state' => ['required', 'string', 'max:50'],
-            'zipcode' => ['required', 'string', 'max:5'],
-            'employer' => ['nullable', 'string', 'max:100'],
-            'tShirtSize' => ['nullable', 'string', 'max:100'],
-            'homePhoneNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
-            'workPhoneNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
-            'cellPhoneNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
-            'altContactNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
-            'probationParoleCaseWorkerPhone' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
-            'maritalStatus' => ['required', Rule::in(MaritalStatus::values())],
-            'ethnicity' => ['required', Rule::in(Ethnicity::values())],
-        ];
-    }
+    //    public static function rules(): array
+    //    {
+    //        return [
+    //            'id' => ['nullable'],
+    //            'userId' => ['nullable'],
+    //            'user' => ['nullable'],
+    //            'user.id' => ['nullable'],
+    //            'user.firstName' => ['nullable'],
+    //            'user.lastName' => ['nullable'],
+    //            'user.email' => ['nullable'],
+    //            'user.roles' => ['nullable'],
+    //            'user.permissions' => ['nullable'],
+    //            'children' => ['nullable'],
+    //            'children.*.id' => ['nullable'],
+    //            'children.*.participantId' => ['nullable'],
+    //            'children.*.createdAt' => ['nullable'],
+    //            'children.*.updatedAt' => ['nullable'],
+    //            'intakeDate' => ['nullable'],
+    //            'createdAt' => ['nullable'],
+    //            'updatedAt' => ['nullable'],
+    //            'addressLine1' => ['required', 'string', 'max:200'],
+    //            'addressLine2' => ['nullable', 'string', 'max:200'],
+    //            'city' => ['required', 'string', 'max:100'],
+    //            'state' => ['required', 'string', 'max:50'],
+    //            'zipcode' => ['required', 'string', 'max:5'],
+    //            'employer' => ['nullable', 'string', 'max:100'],
+    //            'tShirtSize' => ['nullable', 'string', 'max:100'],
+    //            'homePhoneNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
+    //            'workPhoneNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
+    //            'cellPhoneNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
+    //            'altContactNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
+    //            'probationParoleCaseWorkerPhone' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
+    //            'maritalStatus' => ['required', Rule::in(MaritalStatus::values())],
+    //            'ethnicity' => ['required', Rule::in(Ethnicity::values())],
+    //        ];
+    //    }
 }

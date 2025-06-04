@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\UserRegistrationController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\Intake\IntakeController;
@@ -9,7 +10,6 @@ use App\Http\Controllers\Intake\ParticipantFatherhoodSurveyController;
 use App\Http\Controllers\Intake\ParticipantMediaReleaseController;
 use App\Http\Controllers\Intake\ParticipantRegistrationController;
 use App\Http\Controllers\Intake\ParticipantServicePlanController;
-use App\Http\Controllers\Intake\ParticipantSignupController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
@@ -20,7 +20,7 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Auth::check()
         ? Auth::user()->hasRole('intake') ?
-            Inertia::render('Intake/ParticipantRegister') :
+            Inertia::render('Intake/Register') :
             Inertia::render('Dashboard')
         : Inertia::render('Auth/Login');
 })->name('home');
@@ -49,14 +49,12 @@ Route::name('intake.')
 
         Route::middleware(['role:intake'])->group(function () {
             Route::get('/', [IntakeController::class, 'index'])->name('index');
-            Route::get('register', [ParticipantRegistrationController::class, 'create'])->name('register');
-            Route::post('register', [ParticipantRegistrationController::class, 'store']);
+            Route::get('register', [UserRegistrationController::class, 'create'])->name('register');
+            Route::post('register', [UserRegistrationController::class, 'store'])->name('register');
         });
 
-        Route::middleware('role:participant')->group(function () {
-            Route::get('signup', [ParticipantSignupController::class, 'create'])->name('signup');
-            Route::post('signup', [ParticipantSignupController::class, 'store']);
-        });
+        Route::get('participantRegister', [ParticipantRegistrationController::class, 'create'])->name('participantRegister');
+        Route::post('participantRegister', [ParticipantRegistrationController::class, 'store'])->name('participantRegister');
 
         Route::middleware('role:participant')->group(function () {
             Route::get('disclosure', [ParticipantDisclosureController::class, 'create'])->name('disclosure');
@@ -95,3 +93,7 @@ Route::middleware(['auth'])->name('reports.')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/xdebug', function () {
+    xdebug_info();
+});
