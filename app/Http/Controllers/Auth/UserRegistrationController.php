@@ -36,9 +36,10 @@ class UserRegistrationController extends Controller
             $user = UserRegistrationForm::from($request);
             $user = User::create($user->toArray());
 
-            event(new Registered($user));
+            // Store the user ID in session
+            session(['participant_user_id' => $user->id]);
 
-            Auth::login($user);
+            event(new Registered($user));
 
             return redirect(route('intake.participantRegister'));
         } catch (Throwable $e) {
