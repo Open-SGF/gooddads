@@ -15,5 +15,9 @@ class RegionSeeder extends Seeder
         Region::factory()
             ->count(10)
             ->create();
+
+        Region::create([
+            'description' => 'Springfield, MO'
+        ]);
     }
 }

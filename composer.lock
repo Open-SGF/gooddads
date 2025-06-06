@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9743567bfb7e832461c12f599198968c",
+    "content-hash": "a2e991833b3f21c1df73fcfddd491c7c",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1480,6 +1480,68 @@
                 }
             ],
             "time": "2023-10-12T05:21:21+00:00"
+        },
+        {
+            "name": "glhd/gretel",
+            "version": "1.9.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/glhd/gretel.git",
+                "reference": "3eafc0452cd1fc98838961bd14dc6e7a25adf7fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/glhd/gretel/zipball/3eafc0452cd1fc98838961bd14dc6e7a25adf7fd",
+                "reference": "3eafc0452cd1fc98838961bd14dc6e7a25adf7fd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/routing": "^8|^9|^10|^11|^12|13.x-dev|dev-master|dev-main",
+                "illuminate/support": "^8|^9|^10|^11|^12|13.x-dev|dev-master|dev-main",
+                "illuminate/view": "^8|^9|^10|^11|^12|13.x-dev|dev-master|dev-main",
+                "laravel/serializable-closure": "^1.0|^2.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "^6.24|^7.10|^8.33|^9.11|^10.0|11.x-dev|dev-master|dev-main",
+                "phpunit/phpunit": "^10.5|^11.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Gretel": "Glhd\\Gretel\\Support\\Facades\\Gretel"
+                    },
+                    "providers": [
+                        "Glhd\\Gretel\\Support\\GretelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Glhd\\Gretel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Morrell",
+                    "homepage": "http://www.cmorrell.com"
+                }
+            ],
+            "keywords": [
+                "breadcrumbs",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/glhd/gretel/issues",
+                "source": "https://github.com/glhd/gretel/tree/1.9.1"
+            },
+            "time": "2025-03-10T17:48:19+00:00"
         },
         {
             "name": "graham-campbell/result-type",

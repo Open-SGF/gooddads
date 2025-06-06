@@ -39,6 +39,7 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
                 'query' => $request->query() ?? [],
             ],
+            'toast' => $request->session()->get('toast'),
         ];
     }
 }

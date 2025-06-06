@@ -1,4 +1,10 @@
-import { useState, PropsWithChildren, ReactNode } from 'react'
+import {
+	useState,
+	PropsWithChildren,
+	ReactNode,
+	useEffect,
+	Fragment,
+} from 'react'
 import ApplicationLogo from '@/Components/ui/ApplicationLogo'
 import Dropdown from '@/Components/Dropdown'
 import { ResponsiveNavLink } from '@/Components/ui/ResponsiveNavLink'
@@ -7,10 +13,17 @@ import {
 	NavigationMenuList,
 	NavigationMenuItem,
 	NavigationMenuLink,
+	Toaster,
+	Breadcrumb,
+	BreadcrumbList,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbSeparator,
+	BreadcrumbPage,
 } from '@/Components/ui'
-import { Link } from '@inertiajs/react'
+import { Link, usePage } from '@inertiajs/react'
 import { usePermission } from '@/hooks/permissions'
-import { UserData } from '@/types'
+import { PageProps, UserData } from '@/types'
 import {
 	House,
 	Users,
@@ -19,24 +32,68 @@ import {
 	GraduationCap,
 	LogOut,
 } from 'lucide-react'
+import { toast } from 'sonner'
+import { forEach } from 'lodash-es'
+import { hasRoute } from '@/lib/utils'
 
 export default function Authenticated({
 	user,
 	header,
+	actions,
+	showBreadcrumbs = true,
 	children,
 }: PropsWithChildren<{
 	user: UserData
 	header?: ReactNode
+	actions?: ReactNode
+	showBreadcrumbs?: boolean
 }>) {
 	const [showingNavigationDropdown, setShowingNavigationDropdown] =
 		useState(false)
 	const { hasPermission } = usePermission(user)
+	const { props } = usePage<PageProps>()
+	const breadcrumbs = showBreadcrumbs ? props.breadcrumbs : []
+
+	useEffect(() => {
+		const toastProp = props.toast
+		const errors = props.errors
+
+		if (toastProp) {
+			switch (toastProp.type) {
+				case 'success':
+					toast.success('Success', {
+						description: toastProp.message,
+					})
+					break
+				case 'error':
+					toast.error('Error', {
+						description: toastProp.message,
+					})
+					break
+				case 'warning':
+					toast.warning('Warning', {
+						description: toastProp.message,
+					})
+					break
+				default:
+					toast.info('Info', {
+						description: toastProp.message,
+					})
+			}
+		}
+
+		if (errors) {
+			forEach(errors, (error) => {
+				toast.error('Error', { description: error })
+			})
+		}
+	}, [props])
 
 	return (
-		<div className="min-h-screen dark:bg-gray-900 flex flex-row">
-			<div className="max-w-3xs flex flex-col flex-[1_1_200px] border-r border-var(--border) hidden sm:flex">
-				<div className="p-4 sm:p-6 lg:p-8 shrink-0 flex items-center justify-center">
-					<Link href="/">
+		<div className="h-screen dark:bg-gray-900 flex flex-row">
+			<div className="max-w-3xs flex flex-col flex-[1_1_200px] border-r border-var(--border) sm:flex">
+				<div className="h-24 flex items-center justify-center border-b border-gray-100">
+					<Link href="/" className="pb-[3px]">
 						<ApplicationLogo variant="horizontal-black" size={120} />
 					</Link>
 				</div>
@@ -59,7 +116,7 @@ export default function Authenticated({
 							{hasPermission('list users') && (
 								<NavigationMenuLink
 									href={route('users.list')}
-									active={route().current('users.list')}
+									active={hasRoute('users.list')}
 								>
 									<Users
 										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
@@ -74,7 +131,7 @@ export default function Authenticated({
 							{hasPermission('list curriculum') && (
 								<NavigationMenuLink
 									href={route('curriculum.list')}
-									active={route().current('curriculum.list')}
+									active={hasRoute('curriculum.list')}
 								>
 									<FolderClosed
 										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
@@ -89,7 +146,7 @@ export default function Authenticated({
 							{hasPermission('list classes') && (
 								<NavigationMenuLink
 									href={route('classes.list')}
-									active={route().current('classes.list')}
+									active={hasRoute('classes.list')}
 								>
 									<GraduationCap
 										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
@@ -104,7 +161,7 @@ export default function Authenticated({
 							{hasPermission('list reports') && (
 								<NavigationMenuLink
 									href={route('reports.list')}
-									active={route().current('reports.list')}
+									active={hasRoute('reports.list')}
 								>
 									<FileChartColumn
 										className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
@@ -133,24 +190,19 @@ export default function Authenticated({
 			</div>
 
 			<div className="flex flex-col flex-[1_1_80%]">
-				<div className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 h-fit">
-					<div className="flex justify-between">
+				<div className="bg-white border-b border-gray-100">
+					<div className="flex justify-between h-24 px-6 sm:px-8 lg:px-10 items-center">
 						<div className="flex items-center space-x-8 sm:flex">
 							{header && (
 								<header className="bg-white dark:bg-gray-800 flex flex-row">
-									<div className="p-4 sm:p-6 lg:p-8 shrink-0 flex items-center justify-center sm:hidden">
-										<Link href="/">
-											<ApplicationLogo variant="horizontal-black" size={80} />
-										</Link>
-									</div>
-									<div className="mx-auto py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10 flex items-center">
+									<h2 className="inline-flex gap-4 font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
 										{header}
-									</div>
+									</h2>
 								</header>
 							)}
 						</div>
 
-						<div className="flex items-center hidden sm:flex py-8 sm:py-10 lg:py-12 px-6 sm:px-8 lg:px-10">
+						<div>
 							<div className="ms-3 relative">
 								<Dropdown>
 									<Dropdown.Trigger>
@@ -307,7 +359,39 @@ export default function Authenticated({
 					</div>
 				</div>
 
-				<main>{children}</main>
+				<main className="flex flex-col gap-6 overflow-x-auto px-6 sm:px-8 lg:px-10 py-4">
+					{(actions || breadcrumbs) && (
+						<div className="flex items-center justify-between gap-4 min-h-10">
+							<Breadcrumb>
+								<BreadcrumbList>
+									{breadcrumbs.length > 0 &&
+										breadcrumbs.map((breadcrumb) => {
+											if (breadcrumb.is_current_page) {
+												return (
+													<BreadcrumbItem key={breadcrumb.title}>
+														<BreadcrumbPage>{breadcrumb.title}</BreadcrumbPage>
+													</BreadcrumbItem>
+												)
+											}
+											return (
+												<Fragment key={breadcrumb.title}>
+													<BreadcrumbItem>
+														<BreadcrumbLink href={breadcrumb.url}>
+															{breadcrumb.title}
+														</BreadcrumbLink>
+													</BreadcrumbItem>
+													<BreadcrumbSeparator />
+												</Fragment>
+											)
+										})}
+								</BreadcrumbList>
+							</Breadcrumb>
+							<div className="flex gap-2 justify-self-end">{actions}</div>
+						</div>
+					)}
+					{children}
+				</main>
+				<Toaster />
 			</div>
 		</div>
 	)

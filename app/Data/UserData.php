@@ -2,6 +2,8 @@
 
 namespace App\Data;
 
+use App\Enums\Permissions;
+use App\Enums\Roles;
 use App\Models\User;
 use Carbon\Carbon;
 use Spatie\LaravelData\Data;
@@ -16,9 +18,9 @@ class UserData extends Data
         public string $firstName,
         public string $lastName,
         public string $email,
-        /** @var string[] $roles */
+        /** @var Roles[] $roles */
         public array $roles,
-        /** @var string[] $permissions */
+        /** @var Permissions[] $permissions */
         public array $permissions,
         public ?Carbon $createdAt,
         public ?Carbon $updatedAt,

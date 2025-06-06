@@ -11,6 +11,11 @@ export type PageProps<
 	auth: {
 		user: UserData
 	}
+	toast: {
+		message: string
+		type: 'success' | 'error' | 'info' | 'warning'
+	}
+	breadcrumbs: BreadcrumbType[]
 } & Ziggy
 
 export type PaginationProps = {
@@ -21,3 +26,19 @@ export type PaginationProps = {
 }
 
 export * from './generated'
+
+export type Child = {
+	first_name: string
+	last_name: string
+	date_of_birth: string
+	child_support: number
+	custody: boolean
+	visitation: boolean
+	phone_contact: boolean
+}
+
+export type BreadcrumbType = {
+	title: string
+	url: string
+	is_current_page: boolean
+}
