@@ -1,7 +1,7 @@
 import { PageProps, UserData, Permissions, Roles } from '@/types'
 import { usePage } from '@inertiajs/react'
 
-export function usePermission(user?: UserData) {
+export function usePermission(user: UserData | null) {
 	// Use the inertia use page hook to get the props from the HandleInertiaRequest Middleware
 	user ??= usePage<PageProps>().props.auth.user
 

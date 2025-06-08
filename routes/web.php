@@ -48,6 +48,7 @@ Route::middleware(['auth'])->name('users.')->group(function () {
 });
 
 Route::name('intake.')
+    ->middleware(['auth', 'role:intake'])
     ->prefix('intake')
     ->group(function () {
         Route::get('/dev-auth', [IntakeController::class, 'devAuth']);
@@ -62,10 +63,8 @@ Route::name('intake.')
         Route::get('participantRegister', [ParticipantRegistrationController::class, 'create'])->name('participantRegister');
         Route::post('participantRegister', [ParticipantRegistrationController::class, 'store'])->name('participantRegister');
 
-        Route::middleware('role:participant')->group(function () {
-            Route::get('disclosure', [ParticipantDisclosureController::class, 'create'])->name('disclosure');
-            Route::post('disclosure', [ParticipantDisclosureController::class, 'store']);
-        });
+        Route::get('disclosure', [ParticipantDisclosureController::class, 'create'])->name('disclosure');
+        Route::post('disclosure', [ParticipantDisclosureController::class, 'store']);
 
         Route::middleware('role:participant')
             ->resource('fatherhood-assessment', ParticipantFatherhoodAssessmentController::class)

@@ -6,9 +6,9 @@ use App\Data\Forms\UserRegistrationForm;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -30,18 +30,25 @@ class UserRegistrationController extends Controller
      *
      * @throws ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse|JsonResponse
     {
         try {
             $user = UserRegistrationForm::from($request);
             $user = User::create($user->toArray());
 
+            if (! auth()->user()->hasRole('intake')) {
+                return response()->json($user);
+            }
+
+            $user->assignRole('participant');
+
             // Store the user ID in session
-            session(['participant_user_id' => $user->id]);
+            session(['intake_user_id' => $user->id]);
 
             event(new Registered($user));
 
             return redirect(route('intake.participantRegister'));
+
         } catch (Throwable $e) {
             Log::error('Error processing participant signup form: '.$e->getMessage(), [
                 'exception' => $e,

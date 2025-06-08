@@ -1,9 +1,9 @@
 import {
-	PageProps,
-	ChildData,
 	MaritalStatus,
 	Ethnicity,
-	ParticipantData,
+	ChildForm,
+	ParticipantSignupForm,
+	ParticipantRegistrationProps,
 } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
 import { useForm } from '@inertiajs/react'
@@ -19,26 +19,15 @@ import {
 	SelectValue,
 } from '@/Components/ui'
 import { ChildrenTable } from '@/Components/ChildrenTable'
-import { useEffect } from 'react'
+import { FormEvent, useEffect } from 'react'
 import { toast } from 'sonner'
-
-interface StartPageProps extends PageProps {
-	maritalStatus: Record<string, string>
-	ethnicity: Record<string, string>
-	regions: {
-		id: string
-		description: string
-	}[]
-}
 
 export default function StartPage({
 	maritalStatus,
 	ethnicity,
 	regions,
-}: StartPageProps) {
-	const newChild: ChildData = {
-		id: null,
-		participantId: null,
+}: ParticipantRegistrationProps) {
+	const newChild: ChildForm = {
 		firstName: '',
 		lastName: '',
 		dateOfBirth: '',
@@ -46,40 +35,28 @@ export default function StartPage({
 		custody: false,
 		visitation: false,
 		phoneContact: false,
-		contact: null,
-		createdAt: null,
-		updatedAt: null,
 	}
 
-	const { data, setData, post, errors, processing } = useForm<ParticipantData>({
-		id: null,
-		userId: null,
-		user: null,
-		name: '',
-		regionId: '',
-		region: null,
-		children: [newChild],
-		addressLine1: '',
-		addressLine2: null,
-		city: '',
-		state: '',
-		zipcode: '',
-		employer: null,
-		cellPhoneNumber: null,
-		homePhoneNumber: null,
-		workPhoneNumber: null,
-		altContactNumber: null,
-		maritalStatus: null,
-		ethnicity: null,
-		monthlyChildSupport: null,
-		tShirtSize: null,
-		probationParoleCaseWorkerName: null,
-		probationParoleCaseWorkerPhone: null,
-		participantPhoto: null,
-		intakeDate: '',
-		createdAt: '',
-		updatedAt: '',
-	})
+	const { data, setData, post, errors, processing } =
+		useForm<ParticipantSignupForm>({
+			addressLine1: '',
+			addressLine2: null,
+			city: '',
+			state: '',
+			zipcode: '',
+			employer: null,
+			tShirtSize: null,
+			homePhoneNumber: null,
+			workPhoneNumber: null,
+			cellPhoneNumber: null,
+			altContactNumber: null,
+			probationParoleCaseWorkerPhone: null,
+			probationParoleCaseWorkerName: null,
+			maritalStatus: 'single',
+			ethnicity: 'white',
+			regionId: '',
+			children: [newChild],
+		})
 
 	const addChild = () => {
 		setData((prevData) => ({
@@ -94,14 +71,14 @@ export default function StartPage({
 		}
 	}, [errors])
 
+	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		post(route('intake.participantRegister'))
+	}
+
 	return (
 		<IntakeLayout title="Sign Up" subtitle="Welcome, we're happy to have you!">
-			<form
-				onSubmit={(e) => {
-					e.preventDefault()
-					post(route('intake.signup'))
-				}}
-			>
+			<form onSubmit={handleSubmit}>
 				<div className="flex flex-col gap-y-3">
 					<div>
 						<Label required error={!!errors.addressLine1}>

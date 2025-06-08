@@ -2,23 +2,21 @@
 
 namespace App\Data\Forms;
 
-use App\Data\ChildData;
 use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
-use App\Rules\UsPhoneNumber;
-use Illuminate\Validation\Rule;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
-use Spatie\LaravelData\Attributes\Validation\Exists;
+use Spatie\LaravelData\Attributes\MapOutputName;
+use Spatie\LaravelData\Attributes\Validation\ArrayType;
 use Spatie\LaravelData\Attributes\Validation\Max;
+use Spatie\LaravelData\Attributes\Validation\Min;
 use Spatie\LaravelData\Attributes\Validation\Nullable;
-use Spatie\LaravelData\Attributes\Validation\Numeric;
 use Spatie\LaravelData\Attributes\Validation\Required;
 use Spatie\LaravelData\Attributes\Validation\StringType;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\DataCollection;
+use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
+#[MapOutputName(SnakeCaseMapper::class)]
 class ParticipantSignupForm extends Data
 {
     public function __construct(
@@ -60,41 +58,12 @@ class ParticipantSignupForm extends Data
         /** @var Ethnicity::* $ethnicity */
         public Ethnicity $ethnicity,
 
-        #[Nullable, Numeric]
-        public ?float $monthlyChildSupport,
+        #[Required]
+        public string $regionId,
 
-        #[Required, Exists('regions', 'id')]
-        public ?string $regionId,
-
-        #[Nullable, DataCollectionOf(ChildData::class)]
-        /** @var DataCollection<ChildData>|null $childrenInfo */
-        public ?DataCollection $childrenInfo,
+        #[ArrayType, Min(1)]
+        /** @var array<ChildForm> $children */
+        public array $children,
     ) {
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
-    public static function rules(): array
-    {
-        return [
-            'homePhoneNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
-            'workPhoneNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
-            'cellPhoneNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
-            'altContactNumber' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
-            'probationParoleCaseWorkerPhone' => ['nullable', 'string', 'max:12', new UsPhoneNumber()],
-            'maritalStatus' => ['required', Rule::in(MaritalStatus::values())],
-            'ethnicity' => ['required', Rule::in(Ethnicity::values())],
-            'childrenInfo' => ['nullable', 'array'],
-            'childrenInfo.*.firstName' => ['required_with:childrenInfo', 'string'],
-            'childrenInfo.*.lastName' => ['required_with:childrenInfo', 'string'],
-            'childrenInfo.*.dateOfBirth' => ['required_with:childrenInfo', 'date'],
-            'childrenInfo.*.custody' => ['required_with:childrenInfo', 'boolean'],
-            'childrenInfo.*.visitation' => ['required_with:childrenInfo', 'boolean'],
-            'childrenInfo.*.phoneContact' => ['required_with:childrenInfo', 'boolean'],
-            'childrenInfo.*.childSupport' => ['required_with:childrenInfo', 'numeric'],
-        ];
     }
 }

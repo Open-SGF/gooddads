@@ -1,3 +1,6 @@
+export type AuthProp = {
+	user: UserData | null
+}
 export type ChildData = {
 	id: string
 	participantId: string
@@ -11,6 +14,15 @@ export type ChildData = {
 	childSupport: number
 	createdAt: string
 	updatedAt: string
+}
+export type ChildForm = {
+	firstName: string
+	lastName: string
+	dateOfBirth: string
+	phoneContact: boolean | null
+	custody: boolean | null
+	visitation: boolean | null
+	childSupport: number
 }
 export type DisclosureContentType =
 	| 'entire_file'
@@ -44,6 +56,11 @@ export type Ethnicity =
 	| 'hispanic'
 	| 'no_answer'
 export type MaritalStatus = 'single' | 'married' | 'divorced' | 'widowed'
+export type MiddlewareProps = {
+	auth: AuthProp
+	request: RequestProp
+	toast: ToastProp | null
+}
 export type ParticipantData = {
 	id?: string
 	userId: string | null
@@ -187,6 +204,11 @@ export type ParticipantMediaReleaseForm = {
 	phoneNumber: string | null
 	email: string | null
 }
+export type ParticipantRegistrationProps = {
+	ethnicity: Ethnicity
+	maritalStatus: MaritalStatus
+	regions: Array<RegionProp>
+}
 export type ParticipantServicePlanForm = {
 	participantName: string | null
 	clientNumber: string | null
@@ -231,15 +253,23 @@ export type ParticipantSignupForm = {
 	probationParoleCaseWorkerName: string | null
 	maritalStatus: MaritalStatus
 	ethnicity: Ethnicity
-	monthlyChildSupport: number | null
-	regionId: string | null
-	childrenInfo: Array<ChildData> | null
+	regionId: string
+	children: Array<ChildForm>
 }
 export type PermissionData = {
 	id: string | number
 	name: string
 	guard_name: string
 }
+export type Permissions =
+	| 'create users'
+	| 'edit users'
+	| 'delete users'
+	| 'list users'
+	| 'view users'
+	| 'list curriculum'
+	| 'list classes'
+	| 'list reports'
 export type QuizQuestionType = 'trueFalse' | 'multipleChoice' | 'shortAnswer'
 export type RegionData = {
 	id: string
@@ -247,18 +277,40 @@ export type RegionData = {
 	createdAt: string
 	updatedAt: string
 }
+export type RegionProp = {
+	id: string
+	description: string
+}
+export type RequestProp = {
+	location: string
+	query: { [key: string]: string }
+}
 export type RoleData = {
 	id: string | number
 	name: string
 	guard_name: string
 }
+export type Roles =
+	| 'admin'
+	| 'director'
+	| 'region director'
+	| 'program director'
+	| 'facilitator'
+	| 'auditor'
+	| 'intake'
+	| 'participant'
+export type ToastProp = {
+	message: string
+	type: ToastType
+}
+export type ToastType = 'success' | 'error' | 'info' | 'warning'
 export type UserData = {
 	id: string
 	firstName: string
 	lastName: string
 	email: string
-	roles: Array<string>
-	permissions: Array<string>
+	roles: Array<Roles>
+	permissions: Array<Permissions>
 	createdAt: string | null
 	updatedAt: string | null
 	emailVerifiedAt: string | null
@@ -270,4 +322,5 @@ export type UserRegistrationForm = {
 	phoneNumber: string
 	password: string
 	passwordConfirmation: string
+	role?: Roles
 }

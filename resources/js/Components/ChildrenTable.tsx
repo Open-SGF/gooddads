@@ -1,11 +1,11 @@
 import React from 'react'
 import { Button, Checkbox, Input, InputError, Label } from '@/Components/ui'
-import { ChildData } from '@/types'
+import { ChildData, ChildForm } from '@/types'
 import { CurrencyInput } from '@/Components/ui/CurrencyInput'
 
-export interface ChildrenTableProps {
-	childrenInfo: ChildData[]
-	setChildren: (children: ChildData[]) => void
+export type ChildrenTableProps = {
+	childrenInfo: ChildForm[]
+	setChildren: (children: ChildForm[]) => void
 	errors: Record<string, string | undefined>
 }
 
@@ -179,6 +179,9 @@ const ChildrenTable = React.forwardRef<HTMLTableElement, ChildrenTableProps>(
 						</div>
 					))}
 				</div>
+				{errors.children && (
+					<InputError message={errors.children} className="mt-2" />
+				)}
 			</div>
 		)
 	},

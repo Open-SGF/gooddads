@@ -8,7 +8,7 @@ interface SurveyPageProps extends PageProps {
 	participant: ParticipantData
 }
 
-export const Create: React.FC<SurveyPageProps> = ({ auth, participant }) => {
+export const Create = ({ auth, participant }: SurveyPageProps) => {
 	return (
 		<AuthenticatedLayout user={auth.user}>
 			<Head title="Fatherhood Survey" />

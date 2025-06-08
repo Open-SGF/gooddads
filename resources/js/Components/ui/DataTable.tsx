@@ -68,7 +68,7 @@ function DataTableComponent<T extends BaseRow>(
 		tableActions,
 	} = props
 	const {
-		ziggy: { query },
+		request: { query },
 		page,
 		pageSize,
 		totalPages,
