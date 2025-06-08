@@ -2,26 +2,29 @@ import { useEffect, FormEventHandler } from 'react'
 import GuestLayout from '@/Layouts/GuestLayout'
 import { Button, Label, Input, InputError } from '@/Components/ui'
 import { Head, Link, useForm } from '@inertiajs/react'
+import { UserRegistrationForm } from '@/types'
 
 export default function Register() {
-	const { data, setData, post, processing, errors, reset } = useForm({
-		first_name: '',
-		last_name: '',
-		email: '',
-		password: '',
-		password_confirmation: '',
-	})
+	const { data, setData, post, processing, errors, reset } =
+		useForm<UserRegistrationForm>({
+			firstName: '',
+			lastName: '',
+			email: '',
+			phoneNumber: '',
+			password: '',
+			passwordConfirmation: '',
+		})
 
 	useEffect(() => {
 		return () => {
-			reset('password', 'password_confirmation')
+			reset('password', 'passwordConfirmation')
 		}
 	}, [])
 
 	const submit: FormEventHandler = (e) => {
 		e.preventDefault()
 
-		post(route('register'))
+		post(route('intake.register'))
 	}
 
 	return (
@@ -30,35 +33,35 @@ export default function Register() {
 
 			<form onSubmit={submit}>
 				<div>
-					<Label htmlFor="first_name">First Name</Label>
+					<Label htmlFor="firstName">First Name</Label>
 
 					<Input
-						id="first_name"
-						name="first_name"
-						value={data.first_name}
+						id="firstName"
+						name="firstName"
+						value={data.firstName}
 						className="mt-1 block w-full"
 						autoComplete="given-name"
-						onChange={(e) => setData('first_name', e.target.value)}
+						onChange={(e) => setData('firstName', e.target.value)}
 						required
 					/>
 
-					<InputError message={errors.first_name} className="mt-2" />
+					<InputError message={errors.firstName} className="mt-2" />
 				</div>
 
 				<div>
-					<Label htmlFor="last_name">Last Name</Label>
+					<Label htmlFor="lastName">Last Name</Label>
 
 					<Input
-						id="last_name"
-						name="last_name"
-						value={data.last_name}
+						id="lastName"
+						name="lastName"
+						value={data.lastName}
 						className="mt-1 block w-full"
 						autoComplete="family-name"
-						onChange={(e) => setData('last_name', e.target.value)}
+						onChange={(e) => setData('lastName', e.target.value)}
 						required
 					/>
 
-					<InputError message={errors.last_name} className="mt-2" />
+					<InputError message={errors.lastName} className="mt-2" />
 				</div>
 
 				<div className="mt-4">
@@ -79,6 +82,23 @@ export default function Register() {
 				</div>
 
 				<div className="mt-4">
+					<Label htmlFor="phoneNumber">Phone Number</Label>
+
+					<Input
+						id="phoneNumber"
+						type="tel"
+						name="phoneNumber"
+						value={data.phoneNumber}
+						className="mt-1 block w-full"
+						autoComplete="username"
+						onChange={(e) => setData('phoneNumber', e.target.value)}
+						required
+					/>
+
+					<InputError message={errors.phoneNumber} className="mt-2" />
+				</div>
+
+				<div className="mt-4">
 					<Label htmlFor="password">Password</Label>
 
 					<Input
@@ -96,20 +116,20 @@ export default function Register() {
 				</div>
 
 				<div className="mt-4">
-					<Label htmlFor="password_confirmation">Confirm Password</Label>
+					<Label htmlFor="passwordConfirmation">Confirm Password</Label>
 
 					<Input
-						id="password_confirmation"
+						id="passwordConfirmation"
 						type="password"
-						name="password_confirmation"
-						value={data.password_confirmation}
+						name="passwordConfirmation"
+						value={data.passwordConfirmation}
 						className="mt-1 block w-full"
 						autoComplete="new-password"
-						onChange={(e) => setData('password_confirmation', e.target.value)}
+						onChange={(e) => setData('passwordConfirmation', e.target.value)}
 						required
 					/>
 
-					<InputError message={errors.password_confirmation} className="mt-2" />
+					<InputError message={errors.passwordConfirmation} className="mt-2" />
 				</div>
 
 				<div className="flex items-center justify-end mt-4">

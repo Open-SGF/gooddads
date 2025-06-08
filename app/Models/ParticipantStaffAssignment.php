@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ParticipantStaffAssignmentFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class ParticipantStaffAssignment extends Model
 {
+    /** @use HasFactory<ParticipantStaffAssignmentFactory> */
     use HasFactory;
 
     use HasUuids;
@@ -21,7 +23,7 @@ class ParticipantStaffAssignment extends Model
     /**
      * Define the relationship to the User model.
      *
-     * @return BelongsTo<User, self>
+     * @return BelongsTo<User, $this>
      */
     public function staff(): BelongsTo
     {
@@ -31,7 +33,7 @@ class ParticipantStaffAssignment extends Model
     /**
      * Define the relationship to the Participant model.
      *
-     * @return HasOneThrough<Participant, self>
+     * @return HasOneThrough<Participant, $this>
      */
     public function participant(): HasOneThrough
     {
@@ -48,12 +50,10 @@ class ParticipantStaffAssignment extends Model
     /**
      * Define the relationship to the User model for participant.
      *
-     * @return BelongsTo<User, self>
+     * @return BelongsTo<User, $this>
      */
     public function participantUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'participant_user_id');
     }
-
-
 }

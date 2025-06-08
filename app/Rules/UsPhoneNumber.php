@@ -2,9 +2,11 @@
 
 namespace App\Rules;
 
+use Attribute;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
+#[Attribute]
 class UsPhoneNumber implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
@@ -16,5 +18,4 @@ class UsPhoneNumber implements ValidationRule
             $fail('The :attribute must be a valid US phone number.');
         }
     }
-
 }

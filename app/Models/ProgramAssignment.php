@@ -30,7 +30,7 @@ class ProgramAssignment extends Model
     ];
 
     /**
-     * @return BelongsTo<ParticipantClass, ProgramAssignment>
+     * @return BelongsTo<ParticipantClass, $this>
      */
     public function participantClass(): BelongsTo
     {
@@ -38,7 +38,7 @@ class ProgramAssignment extends Model
     }
 
     /**
-     * @return BelongsTo<Program, ProgramAssignment>
+     * @return BelongsTo<Program, $this>
      */
     public function program(): BelongsTo
     {

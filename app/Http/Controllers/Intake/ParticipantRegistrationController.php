@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\Intake;
 
-use App\Enums\Roles;
+use App\Data\Forms\ChildForm;
+use App\Data\Forms\ParticipantSignupForm;
+use App\Data\Props\ParticipantRegistrationProps;
+use App\Enums\Ethnicity;
+use App\Enums\MaritalStatus;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Rules\UsPhoneNumber;
-use Illuminate\Auth\Events\Registered;
+use App\Models\Child;
+use App\Models\Participant;
+use App\Models\Region;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use Log;
+use Throwable;
 
 class ParticipantRegistrationController extends Controller
 {
@@ -22,39 +26,52 @@ class ParticipantRegistrationController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Intake/ParticipantRegister');
+        return Inertia::render('Intake/Signup', ParticipantRegistrationProps::from([
+            'ethnicity' => Ethnicity::displayArray(),
+            'maritalStatus' => MaritalStatus::displayArray(),
+            'regions' => Region::get(['id', 'description'])->toArray(),
+        ])->toArray());
     }
 
     /**
      * Handle an incoming registration request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws Throwable
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse|JsonResponse
     {
-        $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'phone_number' => ['required', new UsPhoneNumber()],
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'terms' => ['required', 'accepted'],
-        ]);
+        try {
+            $participant = ParticipantSignupForm::from($request->all());
 
-        $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'password' => Hash::make($request->password),
-        ]);
+            $participantId = session('intake_user_id');
+            unset($participant->children);
+            $participant = Participant::create([
+                'user_id' => $participantId,
+                ...$participant->toArray(),
+            ]);
+            $children = $request->children;
+            foreach ($children as $child) {
+                $child = ChildForm::from($child);
+                $child = $child->toArray();
+                $child['participant_id'] = $participant->id;
+                Child::create($child);
+            }
 
-        $user->assignRole(Roles::Participant);
+            if (auth()->user()->hasRole('intake')) {
+                // Store the user ID in session
+                session(['intake_participant_id' => $participant->id]);
 
-        event(new Registered($user));
+                return redirect(route('intake.disclosure'));
+            }
 
-        Auth::login($user);
+            return response()->json($participant);
+        } catch (Throwable $e) {
+            Log::error('Error processing participant signup form: '.$e->getMessage(), [
+                'exception' => $e,
+                'trace' => $e->getTraceAsString(),
+            ]);
 
-        return redirect(route('intake.signup'));
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }

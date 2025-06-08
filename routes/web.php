@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\Auth\UserRegistrationController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\Intake\IntakeController;
 use App\Http\Controllers\Intake\ParticipantDisclosureController;
+use App\Http\Controllers\Intake\ParticipantFatherhoodAssessmentController;
+use App\Http\Controllers\Intake\ParticipantFatherhoodSurveyController;
+use App\Http\Controllers\Intake\ParticipantMediaReleaseController;
 use App\Http\Controllers\Intake\ParticipantRegistrationController;
-use App\Http\Controllers\Intake\ParticipantSignupController;
+use App\Http\Controllers\Intake\ParticipantServicePlanController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
@@ -15,7 +19,9 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Auth::check()
-        ? Inertia::render('Dashboard')
+        ? Auth::user()->hasRole('intake') ?
+            Inertia::render('Intake/Register') :
+            Inertia::render('Dashboard')
         : Inertia::render('Auth/Login');
 })->name('home')->breadcrumb('Home');
 
@@ -41,24 +47,40 @@ Route::middleware(['auth'])->name('users.')->group(function () {
     Route::get('/users/{user}', [UsersController::class, 'show'])->name('show')->breadcrumb(fn ($user) => "$user->first_name $user->last_name", 'users.list');
 });
 
-Route::name('intake')
+Route::name('intake.')
+    ->middleware(['auth', 'role:intake'])
     ->prefix('intake')
     ->group(function () {
+        Route::get('/dev-auth', [IntakeController::class, 'devAuth']);
+        Route::get('/intake-complete', [IntakeController::class, 'intakeComplete'])->name('complete');
+
         Route::middleware(['role:intake'])->group(function () {
-            Route::get('/', [IntakeController::class, 'index'])->name('.index');
-            Route::get('register', [ParticipantRegistrationController::class, 'create'])->name('.register');
-            Route::post('register', [ParticipantRegistrationController::class, 'store']);
+            Route::get('/', [IntakeController::class, 'index'])->name('index');
+            Route::get('register', [UserRegistrationController::class, 'create'])->name('register');
+            Route::post('register', [UserRegistrationController::class, 'store'])->name('register');
         });
 
-        Route::middleware('role:participant')->group(function () {
-            Route::get('signup', [ParticipantSignupController::class, 'create'])->name('.signup');
-            Route::post('signup', [ParticipantSignupController::class, 'store']);
-        });
+        Route::get('participantRegister', [ParticipantRegistrationController::class, 'create'])->name('participantRegister');
+        Route::post('participantRegister', [ParticipantRegistrationController::class, 'store'])->name('participantRegister');
 
-        Route::middleware('role:participant')->group(function () {
-            Route::get('disclosure', [ParticipantDisclosureController::class, 'create'])->name('.disclosure');
-            Route::post('disclosure', [ParticipantDisclosureController::class, 'store']);
-        });
+        Route::get('disclosure', [ParticipantDisclosureController::class, 'create'])->name('disclosure');
+        Route::post('disclosure', [ParticipantDisclosureController::class, 'store']);
+
+        Route::middleware('role:participant')
+            ->resource('fatherhood-assessment', ParticipantFatherhoodAssessmentController::class)
+            ->parameter('fatherhood-assessment', 'fatherhoodAssessment');
+
+        Route::middleware('role:participant')
+            ->resource('fatherhood-survey', ParticipantFatherhoodSurveyController::class)
+            ->parameter('fatherhood-survey', 'fatherhoodSurvey');
+
+        Route::middleware('role:participant')
+            ->resource('service-plan', ParticipantServicePlanController::class)
+            ->parameter('service-plan', 'servicePlan');
+
+        Route::middleware('role:participant')
+            ->resource('media-release', ParticipantMediaReleaseController::class)
+            ->parameter('media-release', 'mediaRelease');
     });
 Route::middleware(['auth'])->group(function () {
     Route::get('/curriculum', [UsersController::class, 'list'])->name('curriculum.list');
@@ -76,3 +98,7 @@ Route::middleware(['auth'])->name('reports.')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/xdebug', function () {
+    xdebug_info();
+});

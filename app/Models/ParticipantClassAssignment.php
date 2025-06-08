@@ -22,7 +22,7 @@ class ParticipantClassAssignment extends Model
     /**
      * Define the relationship to the User model.
      *
-     * @return BelongsTo<User, self>
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
@@ -32,7 +32,7 @@ class ParticipantClassAssignment extends Model
     /**
      * Define the relationship to the ParticipantClass model.
      *
-     * @return BelongsTo<ParticipantClass, self>
+     * @return BelongsTo<ParticipantClass, $this>
      */
     public function participantClass(): BelongsTo
     {

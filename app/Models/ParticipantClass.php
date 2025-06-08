@@ -22,7 +22,7 @@ class ParticipantClass extends Model
     /**
      * Define the relationship to the Region model.
      *
-     * @return BelongsTo<Region, self>
+     * @return BelongsTo<Region, $this>
      */
     public function region(): BelongsTo
     {

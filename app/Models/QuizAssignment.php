@@ -28,7 +28,7 @@ class QuizAssignment extends Model
     public $incrementing = false;
 
     /**
-     * @return BelongsTo<QuizQuestion, QuizAssignment>
+     * @return BelongsTo<QuizQuestion, $this>
      */
     public function quizQuestion(): BelongsTo
     {
@@ -36,7 +36,7 @@ class QuizAssignment extends Model
     }
 
     /**
-     * @return BelongsTo<User, QuizAssignment>
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {

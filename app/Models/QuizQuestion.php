@@ -30,7 +30,7 @@ class QuizQuestion extends Model
     public $incrementing = false;
 
     /**
-     * @return BelongsTo<Quiz, QuizQuestion>
+     * @return BelongsTo<Quiz, $this>
      */
     public function quiz(): BelongsTo
     {
@@ -38,7 +38,7 @@ class QuizQuestion extends Model
     }
 
     /**
-     * @return HasMany<QuizQuestionOption>
+     * @return HasMany<QuizQuestionOption, $this>
      */
     public function quizQuestionOptions(): HasMany
     {

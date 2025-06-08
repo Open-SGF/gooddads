@@ -28,7 +28,7 @@ class ModuleAssignment extends Model
     ];
 
     /**
-     * @return BelongsTo<Module, ModuleAssignment>
+     * @return BelongsTo<Module, $this>
      */
     public function module(): BelongsTo
     {
