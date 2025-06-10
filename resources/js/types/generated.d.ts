@@ -24,17 +24,7 @@ export type ChildForm = {
 	visitation: boolean | null
 	childSupport: number
 }
-export type DisclosureContentType =
-	| 'entire_file'
-	| 'licensure_information'
-	| 'medical_psychiatric_records'
-	| 'hotline_investigations'
-	| 'home_studies'
-	| 'eligibility_determinations'
-	| 'substance_abuse_treatment'
-	| 'client_employment_records'
-	| 'benefits_received'
-	| 'other'
+export type DisclosureContentType = { 0: any }
 export type DisclosurePurposeType =
 	| 'eligibility_determination'
 	| 'legal_consultation'
@@ -62,12 +52,9 @@ export type MiddlewareProps = {
 	toast: ToastProp | null
 }
 export type ParticipantData = {
-	id?: string
-	userId: string | null
-	user?: UserData | any
+	id: string
+	userId: string
 	regionId: string
-	region: RegionData | null
-	children: any
 	addressLine1: string
 	addressLine2: string | null
 	city: string
@@ -80,7 +67,6 @@ export type ParticipantData = {
 	altContactNumber: string | null
 	maritalStatus: MaritalStatus | null
 	ethnicity: Ethnicity | null
-	monthlyChildSupport: number | null
 	tShirtSize: string | null
 	probationParoleCaseWorkerName: string | null
 	probationParoleCaseWorkerPhone: string | null
@@ -90,36 +76,34 @@ export type ParticipantData = {
 	updatedAt: string | null
 }
 export type ParticipantDisclosureAuthorizationForm = {
-	id: string
 	participantId: string
-	participant: ParticipantData
 	isDssAuthorized: boolean
-	isDysAuthorized: boolean | null
-	isMhdAuthorized: boolean | null
-	isDfasAuthorized: boolean | null
-	isMmacAuthorized: boolean | null
-	isFsdAuthorized: boolean | null
-	isCdAuthorized: boolean | null
-	isDlsAuthorized: boolean | null
-	isOtherAuthorized: boolean | null
+	isDysAuthorized: boolean
+	isMhdAuthorized: boolean
+	isDfasAuthorized: boolean
+	isMmacAuthorized: boolean
+	isFsdAuthorized: boolean
+	isCdAuthorized: boolean
+	isDlsAuthorized: boolean
+	isOtherAuthorized: boolean
 	otherAuthorizedEntity: string | null
-	discloseToAttorney: boolean | null
+	discloseToAttorney: boolean
 	attorneyName: string | null
-	discloseToEmployer: boolean | null
+	discloseToEmployer: boolean
 	employerName: string | null
-	discloseToLegislator: boolean | null
+	discloseToLegislator: boolean
 	legislatorName: string | null
-	discloseToGovernorsStaff: boolean | null
+	discloseToGovernorsStaff: boolean
 	governorsStaffDetails: string | null
-	discloseToOtherRecipient: boolean | null
+	discloseToOtherRecipient: boolean
 	otherRecipientDetails: string | null
-	purposes: Array<any>
+	purposes: Array<DisclosurePurposeType>
 	otherPurposeDetails: string | null
-	contentTypes: Array<any>
+	contentTypes: Array<DisclosureContentType>
 	otherDisclosureDetails: string | null
-	acceptTextMessages: boolean | null
-	consumerSignature: string | null
-	signatureDate: string | null
+	acceptTextMessages: boolean
+	consumerSignature: string
+	signatureDate: string
 	witnessSignature: string | null
 	witnessSignatureDate: string | null
 	guardianSignature: string | null
@@ -128,6 +112,10 @@ export type ParticipantDisclosureAuthorizationForm = {
 	surveyByMail: boolean | null
 	surveyByOnline: boolean | null
 	dateCompleted: string
+}
+export type ParticipantDisclosureAuthorizationProps = {
+	purposes: Record<DisclosurePurposeType, string>
+	contentTypes: Record<DisclosureContentType, string>
 }
 export type ParticipantFatherhoodAssessmentForm = {
 	vendorName: string | null

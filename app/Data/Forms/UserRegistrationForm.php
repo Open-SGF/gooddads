@@ -21,22 +21,22 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 class UserRegistrationForm extends Data
 {
     public function __construct(
-        #[StringType, Max(191)]
+        #[Max(191)]
         public string $firstName,
 
-        #[StringType, Max(191)]
+        #[Max(191)]
         public string $lastName,
 
-        #[StringType, Max(191), Email]
+        #[Max(191), Email]
         public string $email,
 
-        #[StringType, Max(12), UsPhoneNumber]
+        #[Max(12), UsPhoneNumber]
         public string $phoneNumber,
 
-        #[StringType, Password, Max(191)]
+        #[Password, Max(191)]
         public string $password,
 
-        #[StringType, Password, Max(191), AcceptedIf('password', 'equals_this')]
+        #[Password, Max(191), AcceptedIf('password', 'equals_this')]
         public string $passwordConfirmation,
 
         #[MapInputName('role'), Optional]

@@ -54,17 +54,16 @@ Route::name('intake.')
         Route::get('/dev-auth', [IntakeController::class, 'devAuth']);
         Route::get('/intake-complete', [IntakeController::class, 'intakeComplete'])->name('complete');
 
-        Route::middleware(['role:intake'])->group(function () {
-            Route::get('/', [IntakeController::class, 'index'])->name('index');
-            Route::get('register', [UserRegistrationController::class, 'create'])->name('register');
-            Route::post('register', [UserRegistrationController::class, 'store'])->name('register');
-        });
+        Route::get('/', [IntakeController::class, 'index'])->name('index');
 
-        Route::get('participantRegister', [ParticipantRegistrationController::class, 'create'])->name('participantRegister');
+        Route::get('register', [UserRegistrationController::class, 'create'])->name('register');
+        Route::post('register', [UserRegistrationController::class, 'store'])->name('register');
+
+        Route::get('participantRegister', [ParticipantRegistrationController::class, 'index'])->name('participantRegister');
         Route::post('participantRegister', [ParticipantRegistrationController::class, 'store'])->name('participantRegister');
 
-        Route::get('disclosure', [ParticipantDisclosureController::class, 'create'])->name('disclosure');
-        Route::post('disclosure', [ParticipantDisclosureController::class, 'store']);
+        Route::get('disclosure', [ParticipantDisclosureController::class, 'index'])->name('disclosure');
+        Route::post('disclosure', [ParticipantDisclosureController::class, 'store'])->name('disclosure');
 
         Route::middleware('role:participant')
             ->resource('fatherhood-assessment', ParticipantFatherhoodAssessmentController::class)

@@ -9,11 +9,9 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 class MiddlewareProps extends Data
 {
     public function __construct(
-        public AuthProp    $auth,
-
+        public AuthProp $auth,
         public RequestProp $request,
-
-        public ?ToastProp  $toast,
+        public ?ToastProp $toast,
     ) {
     }
 }

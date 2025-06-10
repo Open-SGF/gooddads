@@ -62,7 +62,7 @@ class ParticipantSignupForm extends Data
         public string $regionId,
 
         #[ArrayType, Min(1)]
-        /** @var array<ChildForm> $children */
+        /** @var ChildForm[] $children */
         public array $children,
     ) {
     }

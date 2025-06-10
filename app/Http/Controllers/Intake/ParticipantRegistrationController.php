@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Child;
 use App\Models\Participant;
 use App\Models\Region;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class ParticipantRegistrationController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): Response
+    public function index(): Response
     {
         return Inertia::render('Intake/Signup', ParticipantRegistrationProps::from([
             'ethnicity' => Ethnicity::displayArray(),
@@ -38,16 +39,13 @@ class ParticipantRegistrationController extends Controller
      *
      * @throws Throwable
      */
-    public function store(Request $request): RedirectResponse|JsonResponse
+    public function store(ParticipantSignupForm $request): RedirectResponse|JsonResponse
     {
         try {
-            $participant = ParticipantSignupForm::from($request->all());
-
             $participantId = session('intake_user_id');
-            unset($participant->children);
             $participant = Participant::create([
                 'user_id' => $participantId,
-                ...$participant->toArray(),
+                ...array_diff_key($request->toArray(), ['children' => '']),
             ]);
             $children = $request->children;
             foreach ($children as $child) {
@@ -61,7 +59,7 @@ class ParticipantRegistrationController extends Controller
                 // Store the user ID in session
                 session(['intake_participant_id' => $participant->id]);
 
-                return redirect(route('intake.disclosure'));
+                return redirect(route('intake.disclosure', ['participant' => $participant]));
             }
 
             return response()->json($participant);

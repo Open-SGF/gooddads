@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Intake;
 
 use App\Data\ParticipantData;
+use App\Data\Props\ParticipantDisclosureAuthorizationProps;
+use App\Enums\DisclosureContentType;
+use App\Enums\DisclosurePurposeType;
 use App\Http\Controllers\Controller;
 use App\Models\Participant;
 use App\Models\ParticipantDisclosureAuthorization;
@@ -14,25 +17,14 @@ use Inertia\Response;
 
 class ParticipantDisclosureController extends Controller
 {
-    public function index(Request $request, Participant $participant)
+    public function index(Request $request): Response
     {
-        $this->authorize('view', $participant);
+        $props = ParticipantDisclosureAuthorizationProps::from([
+            'purposes' => DisclosurePurposeType::displayArray(),
+            'contentTypes' => DisclosureContentType::displayArray(),
+        ])->toArray();
 
-        return Inertia::render('Intake/Disclosure/Index', [
-            'participant' => ParticipantData::fromModel($participant),
-        ]);
-    }
-
-    /**
-     * Display the create view.
-     */
-    public function create(Request $request): Response
-    {
-        $participant = $request->user()->participant;
-
-        return Inertia::render('Intake/Disclosure/Create', [
-            'participant' => ParticipantData::fromModel($participant),
-        ]);
+        return Inertia::render('Intake/Disclosure', $props);
     }
 
     /**

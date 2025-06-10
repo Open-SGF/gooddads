@@ -2,10 +2,12 @@
 
 namespace App\Enums;
 
+use App\Concerns\EnumDisplayArray;
 use Illuminate\Support\Collection;
 
 enum DisclosurePurposeType: string
 {
+    use EnumDisplayArray;
     case ELIGIBILITY_DETERMINATION = 'eligibility_determination';
     case LEGAL_CONSULTATION = 'legal_consultation';
     case LEGAL_PROCEEDINGS = 'legal_proceedings';
@@ -18,12 +20,9 @@ enum DisclosurePurposeType: string
     case SHARE_AND_REFER = 'share_and_refer';
     case OTHER = 'other';
 
-    /**
-     * Get the human-readable label for the enum value
-     */
-    public function label(): string
+    public function displayValue(): string
     {
-        return match($this) {
+        return match ($this) {
             self::ELIGIBILITY_DETERMINATION => 'Eligibility Determination',
             self::LEGAL_CONSULTATION => 'Legal Consultation',
             self::LEGAL_PROCEEDINGS => 'Legal Proceedings',
@@ -37,12 +36,4 @@ enum DisclosurePurposeType: string
             self::OTHER => 'Other',
         };
     }
-
-    /**
-     * Get all values as a collection
-     */
-    public static function collection(): Collection
-    {
-        return collect(self::cases());
-    }
-} 
+}
