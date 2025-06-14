@@ -25,3 +25,10 @@ dbml-error.log
 /docker
 *storybook.log
 .DS_Store
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

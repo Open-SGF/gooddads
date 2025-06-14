@@ -27,67 +27,45 @@ class ParticipantFatherhoodAssessmentForm extends Data
     public function __construct(
         #[Sometimes, StringType, Max(191)]
         public ?string $vendorName = null,
-
         #[Required, StringType, Max(191)]
         public ?string $participantName = null,
-
         #[Required, Date, Before('today')]
         #[WithCast(DateTimeInterfaceCast::class)]
         public ?Carbon $dateOfBirth = null,
-
         #[Required, StringType, Max(191)]
         // Custom validation rule needs to be applied in the rules method
         public ?string $socialSecurityNumber = null,
-
         #[Required, BooleanType]
         public ?bool $isMissouriResident = null,
-
         #[Required, BooleanType]
         public ?bool $childIsUnder18 = null,
-
         #[Required, BooleanType]
         public ?bool $isFinanciallyEligible = null,
-
         #[Required, BooleanType]
         public ?bool $driversLicenseProvided = null,
-
         #[Required, BooleanType]
         public ?bool $utilityBillProvided = null,
-
         #[Required, BooleanType]
         public ?bool $payStubProvided = null,
-
         #[Required, BooleanType]
         public ?bool $writtenEmployerStatementProvided = null,
-
         #[Required, BooleanType]
         public ?bool $socialSecurityBenefitsProvided = null,
-
         #[Required, BooleanType]
         public ?bool $selfAttestationProvided = null,
-
         #[Required, BooleanType]
         public ?bool $unemploymentCompensationProvided = null,
-
         #[Required, BooleanType]
         public ?bool $otherProvided = null,
-
         #[Nullable, StringType, Max(191)]
         public ?string $otherProvidedName = null,
-
         #[Required, Numeric, Min(0)]
         public ?float $grossMonthlyHouseholdIncome = null,
-
         #[Required, IntegerType, Min(1)]
         public ?int $numberOfFamilyMembers = null,
-
         #[Required, Numeric, Min(0)]
         public ?float $percentageOfFpl = null,
-
-        #[Nullable, BooleanType]
         public ?bool $approvedForServices = null,
-
-        #[Nullable, Date]
         #[WithCast(DateTimeInterfaceCast::class)]
         public ?Carbon $stateAgencyReviewDate = null,
     ) {

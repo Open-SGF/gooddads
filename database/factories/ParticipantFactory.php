@@ -34,7 +34,7 @@ class ParticipantFactory extends Factory
             'address_line_1' => $this->faker->streetAddress(),
             'city' => $this->faker->city(),
             'state' => $this->faker->stateAbbr(),
-            'zipcode' => random_int(10000,99999),
+            'zipcode' => random_int(10000, 99999),
             'employer' => $this->faker->company(),
             'probation_parole_case_worker_name' => $this->faker->name(),
             'probation_parole_case_worker_phone' => random_int(1000000000, 9999999999),
@@ -42,12 +42,5 @@ class ParticipantFactory extends Factory
             'marital_status' => $this->faker->randomElement(MaritalStatus::values()),
 
         ];
-    }
-
-    public function configure(): static
-    {
-        return $this->afterCreating(function (Participant $participant) {
-            $participant->user->assignRole('participant');
-        });
     }
 }

@@ -8,11 +8,12 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 use Log;
+use Spatie\LaravelData\Mappers\SnakeCaseMapper;
+use Spatie\LaravelData\Support\Transformation\TransformationContextFactory;
 use Throwable;
 
 class UserRegistrationController extends Controller
@@ -30,17 +31,14 @@ class UserRegistrationController extends Controller
      *
      * @throws ValidationException
      */
-    public function store(Request $request): RedirectResponse|JsonResponse
+    public function store(UserRegistrationForm $request): RedirectResponse|JsonResponse
     {
         try {
-            $user = UserRegistrationForm::from($request);
-            $user = User::create($user->toArray());
+            $user = User::create($request->all());
 
             if (! auth()->user()->hasRole('intake')) {
                 return response()->json($user);
             }
-
-            $user->assignRole('participant');
 
             // Store the user ID in session
             session(['intake_user_id' => $user->id]);

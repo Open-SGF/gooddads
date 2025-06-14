@@ -6,7 +6,7 @@ export type ChildData = {
 	participantId: string
 	firstName: string
 	lastName: string
-	dateOfBirth: string
+	dateOfBirth: any
 	phoneContact: boolean | null
 	custody: boolean | null
 	visitation: boolean | null
@@ -65,15 +65,15 @@ export type ParticipantData = {
 	homePhoneNumber: string | null
 	workPhoneNumber: string | null
 	altContactNumber: string | null
-	maritalStatus: MaritalStatus | null
-	ethnicity: Ethnicity | null
+	maritalStatus: MaritalStatus
+	ethnicity: Ethnicity
 	tShirtSize: string | null
 	probationParoleCaseWorkerName: string | null
 	probationParoleCaseWorkerPhone: string | null
 	participantPhoto: string | null
 	intakeDate: string | null
-	createdAt: string | null
-	updatedAt: string | null
+	createdAt: string
+	updatedAt: string
 }
 export type ParticipantDisclosureAuthorizationForm = {
 	participantId: string
@@ -97,9 +97,9 @@ export type ParticipantDisclosureAuthorizationForm = {
 	governorsStaffDetails: string | null
 	discloseToOtherRecipient: boolean
 	otherRecipientDetails: string | null
-	purposes: Array<DisclosurePurposeType>
+	purposes: DisclosurePurposeType
 	otherPurposeDetails: string | null
-	contentTypes: Array<DisclosureContentType>
+	contentTypes: DisclosureContentType
 	otherDisclosureDetails: string | null
 	acceptTextMessages: boolean
 	consumerSignature: string
@@ -181,7 +181,7 @@ export type ParticipantMediaReleaseData = {
 	signatureDate: string | null
 	phoneNumber: string
 	email: string
-	dateCompleted: string
+	dateCompleted: string | null
 	createdAt: string
 	updatedAt: string
 }
@@ -245,7 +245,7 @@ export type ParticipantSignupForm = {
 	children: Array<ChildForm>
 }
 export type PermissionData = {
-	id: string | number
+	id: string
 	name: string
 	guard_name: string
 }
@@ -274,7 +274,7 @@ export type RequestProp = {
 	query: { [key: string]: string }
 }
 export type RoleData = {
-	id: string | number
+	id: string
 	name: string
 	guard_name: string
 }
@@ -297,11 +297,11 @@ export type UserData = {
 	firstName: string
 	lastName: string
 	email: string
-	roles: Array<Roles>
-	permissions: Array<Permissions>
-	createdAt: string | null
-	updatedAt: string | null
+	roles: Roles
+	permissions: Permissions
 	emailVerifiedAt: string | null
+	createdAt: string
+	updatedAt: string
 }
 export type UserRegistrationForm = {
 	firstName: string

@@ -45,25 +45,20 @@ export const Create = ({
 		purposeType: DisclosurePurposeType,
 		label: string,
 	) => {
-		const purposeKeys = Object.keys(purposes) as DisclosurePurposeType[]
-		const isChecked = purposeKeys.includes(purposeType)
+		const selectedPurposes: DisclosurePurposeType[] = data.purposes ?? []
+		const isChecked = selectedPurposes.includes(purposeType)
 		return (
 			<div className="flex items-center space-x-2">
 				<Checkbox
 					id={`purpose_${purposeType}`}
 					checked={isChecked}
 					onCheckedChange={(checked) => {
-						if (checked) {
-							if (!purposeKeys.includes(purposeType)) {
-								purposeKeys.push(purposeType)
-							}
-						} else {
-							const index = purposeKeys.indexOf(purposeType)
-							if (index > -1) {
-								purposeKeys.splice(index, 1)
-							}
-						}
-						setData('purposes', purposeKeys)
+						const updatedPurposes =
+							checked ?
+								[...new Set([...selectedPurposes, purposeType])]
+							:	selectedPurposes.filter((p) => p !== purposeType)
+
+						setData('purposes', updatedPurposes)
 					}}
 				/>
 				<Label htmlFor={`purpose_${purposeType}`} className="cursor-pointer">
@@ -77,26 +72,21 @@ export const Create = ({
 		contentType: DisclosureContentType,
 		label: string,
 	) => {
-		const isChecked = Object.keys(contentTypes).includes(contentType)
-
+		const selectedContentTypes: DisclosureContentType[] =
+			data.contentTypes ?? []
+		const isChecked = selectedContentTypes.includes(contentType)
 		return (
 			<div className="flex items-center space-x-2">
 				<Checkbox
 					id={`content_${contentType}`}
 					checked={isChecked}
 					onCheckedChange={(checked) => {
-						const contentTypes = [...data.contentTypes]
-						if (checked) {
-							if (!contentTypes.includes(contentType)) {
-								contentTypes.push(contentType)
-							}
-						} else {
-							const index = contentTypes.indexOf(contentType)
-							if (index > -1) {
-								contentTypes.splice(index, 1)
-							}
-						}
-						setData('contentTypes', contentTypes)
+						const updatedContentTypes =
+							checked ?
+								[...new Set([...selectedContentTypes, contentType])]
+							:	selectedContentTypes.filter((p) => p !== contentType)
+
+						setData('contentTypes', updatedContentTypes)
 					}}
 				/>
 				<Label htmlFor={`content_${contentType}`} className="cursor-pointer">

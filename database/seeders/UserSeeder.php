@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Data\Forms\UserRegistrationForm;
 use App\Enums\Roles;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -14,67 +14,76 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Admin',
-            'last_name' => 'User',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password123'),
+        $director = UserRegistrationForm::from([
+            'firstName' => config('constants.testUsers.director.firstName'),
+            'lastName' => config('constants.testUsers.director.lastName'),
+            'email' => config('constants.testUsers.director.email'),
+            'phoneNumber' => config('constants.testUsers.director.phoneNumber'),
+            'password' => bcrypt(config('constants.testUsers.director.password')),
+            'passwordConfirmation' => bcrypt(config('constants.testUsers.director.password')),
+            'role' => Roles::Director,
+        ]);
 
-        ])->assignRole(Roles::Admin);
+        $regionDirector = UserRegistrationForm::from([
+            'firstName' => config('constants.testUsers.regionDirector.firstName'),
+            'lastName' => config('constants.testUsers.regionDirector.lastName'),
+            'email' => config('constants.testUsers.regionDirector.email'),
+            'phoneNumber' => config('constants.testUsers.regionDirector.phoneNumber'),
+            'password' => bcrypt(config('constants.testUsers.regionDirector.password')),
+            'passwordConfirmation' => bcrypt(config('constants.testUsers.regionDirector.password')),
+            'role' => Roles::RegionDirector,
+        ]);
 
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Director',
-            'last_name' => 'User',
-            'email' => 'director@example.com',
-            'password' => bcrypt('password123'),
+        $programDirector = UserRegistrationForm::from([
+            'firstName' => config('constants.testUsers.programDirector.firstName'),
+            'lastName' => config('constants.testUsers.programDirector.lastName'),
+            'email' => config('constants.testUsers.programDirector.email'),
+            'phoneNumber' => config('constants.testUsers.programDirector.phoneNumber'),
+            'password' => bcrypt(config('constants.testUsers.programDirector.password')),
+            'passwordConfirmation' => bcrypt(config('constants.testUsers.programDirector.password')),
+            'role' => Roles::ProgramDirector,
+        ]);
 
-        ])->assignRole(Roles::Director);
+        $facilitator = UserRegistrationForm::from([
+            'firstName' => config('constants.testUsers.facilitator.firstName'),
+            'lastName' => config('constants.testUsers.facilitator.lastName'),
+            'email' => config('constants.testUsers.facilitator.email'),
+            'phoneNumber' => config('constants.testUsers.facilitator.phoneNumber'),
+            'password' => bcrypt(config('constants.testUsers.facilitator.password')),
+            'passwordConfirmation' => bcrypt(config('constants.testUsers.facilitator.password')),
+            'role' => Roles::Facilitator,
+        ]);
 
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Region Director',
-            'last_name' => 'User',
-            'email' => 'region_director@example.com',
-            'password' => bcrypt('password123'),
+        $auditor = UserRegistrationForm::from([
+            'firstName' => config('constants.testUsers.auditor.firstName'),
+            'lastName' => config('constants.testUsers.auditor.lastName'),
+            'email' => config('constants.testUsers.auditor.email'),
+            'phoneNumber' => config('constants.testUsers.auditor.phoneNumber'),
+            'password' => bcrypt(config('constants.testUsers.auditor.password')),
+            'passwordConfirmation' => bcrypt(config('constants.testUsers.auditor.password')),
+            'role' => Roles::Auditor,
+        ]);
 
-        ])->assignRole(Roles::RegionDirector);
+        $intake = UserRegistrationForm::from([
+            'firstName' => config('constants.testUsers.intake.firstName'),
+            'lastName' => config('constants.testUsers.intake.lastName'),
+            'email' => config('constants.testUsers.intake.email'),
+            'phoneNumber' => config('constants.testUsers.intake.phoneNumber'),
+            'password' => bcrypt(config('constants.testUsers.intake.password')),
+            'passwordConfirmation' => bcrypt(config('constants.testUsers.intake.password')),
+            'role' => Roles::Intake,
+        ]);
 
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Program Director',
-            'last_name' => 'User',
-            'email' => 'program_director@example.com',
-            'password' => bcrypt('password123'),
+        User::create($director->toArray());
 
-        ])->assignRole(Roles::ProgramDirector);
+        User::create($regionDirector->toArray());
 
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Facilitator',
-            'last_name' => 'User',
-            'email' => 'facilitator@example.com',
-            'password' => bcrypt('password123'),
+        User::create($programDirector->toArray());
 
-        ])->assignRole(Roles::Facilitator);
+        User::create($facilitator->toArray());
 
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Auditor',
-            'last_name' => 'User',
-            'email' => 'auditor@example.com',
-            'password' => bcrypt('password123'),
+        User::create($auditor->toArray());
 
-        ])->assignRole(Roles::Auditor);
-
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Intake',
-            'last_name' => 'User',
-            'email' => 'intake@example.com',
-            'password' => bcrypt('password123'),
-
-        ])->assignRole(Roles::Intake);
+        User::create($intake->toArray());
     }
 }

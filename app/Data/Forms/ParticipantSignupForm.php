@@ -13,6 +13,7 @@ use Spatie\LaravelData\Attributes\Validation\Required;
 use Spatie\LaravelData\Attributes\Validation\StringType;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
+use Spatie\TypeScriptTransformer\Attributes\Optional;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
@@ -20,10 +21,10 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 class ParticipantSignupForm extends Data
 {
     public function __construct(
-        #[Required, StringType, Max(191)]
+        #[Max(191)]
         public string $addressLine1,
 
-        #[Nullable, StringType, Max(191)]
+        #[Optional, Max(191)]
         public ?string $addressLine2,
 
         #[Required, StringType, Max(191)]

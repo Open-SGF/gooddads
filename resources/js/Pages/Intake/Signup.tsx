@@ -38,25 +38,7 @@ export default function StartPage({
 	}
 
 	const { data, setData, post, errors, processing } =
-		useForm<ParticipantSignupForm>({
-			addressLine1: '',
-			addressLine2: null,
-			city: '',
-			state: '',
-			zipcode: '',
-			employer: null,
-			tShirtSize: null,
-			homePhoneNumber: null,
-			workPhoneNumber: null,
-			cellPhoneNumber: null,
-			altContactNumber: null,
-			probationParoleCaseWorkerPhone: null,
-			probationParoleCaseWorkerName: null,
-			maritalStatus: 'single',
-			ethnicity: 'white',
-			regionId: '',
-			children: [newChild],
-		})
+		useForm<ParticipantSignupForm>()
 
 	const addChild = () => {
 		setData((prevData) => ({
@@ -349,7 +331,9 @@ export default function StartPage({
 					</div>
 					<div>
 						<ChildrenTable
-							childrenInfo={data.children}
+							childrenInfo={
+								data.children?.length > 0 ? data.children : [newChild]
+							}
 							setChildren={(children) => setData('children', children)}
 							errors={errors}
 						/>

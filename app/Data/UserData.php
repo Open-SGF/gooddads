@@ -4,13 +4,14 @@ namespace App\Data;
 
 use App\Enums\Permissions;
 use App\Enums\Roles;
-use App\Models\User;
 use Carbon\Carbon;
+use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\Support\Validation\ValidationContext;
+use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
+#[MapInputName(SnakeCaseMapper::class)]
 class UserData extends Data
 {
     public function __construct(
@@ -18,48 +19,11 @@ class UserData extends Data
         public string $firstName,
         public string $lastName,
         public string $email,
-        /** @var Roles[] $roles */
-        public array $roles,
-        /** @var Permissions[] $permissions */
-        public array $permissions,
-        public ?Carbon $createdAt,
-        public ?Carbon $updatedAt,
-        public ?string $emailVerifiedAt
+        public Roles $roles,
+        public Permissions $permissions,
+        public ?string $emailVerifiedAt,
+        public Carbon $createdAt,
+        public Carbon $updatedAt,
     ) {
-    }
-
-    public static function fromModel(User $user): self
-    {
-        return new self(
-            id: $user->id,
-            firstName: $user->first_name,
-            lastName: $user->last_name,
-            email: $user->email,
-            roles: $user->getRoleNames()->toArray(),
-            permissions: $user->getAllPermissions()->pluck('name')->toArray(),
-            createdAt: $user->created_at,
-            updatedAt: $user->updated_at,
-            emailVerifiedAt: $user->email_verified_at
-        );
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
-    public static function rules(ValidationContext $context): array
-    {
-        return [
-            'id' => ['nullable'],
-            'firstName' => ['required', 'string', 'max:255'],
-            'lastName' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'roles' => ['required', 'array'],
-            'permissions' => ['required', 'array'],
-            'createdAt' => ['nullable'],
-            'updatedAt' => ['nullable'],
-            'emailVerifiedAt' => ['nullable'],
-        ];
     }
 }

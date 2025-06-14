@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Roles;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -9,8 +10,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\LaravelData\Attributes\MapInputName;
-use Spatie\LaravelData\Mappers\CamelCaseMapper;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -62,6 +61,17 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
             'active' => 'boolean',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::creating(function (User $user) {
+            if ($user['role']) {
+                $user->assignRole($user['role']);
+            }
+            unset($user['role']);
+            $user->assignRole(Roles::Participant);
+        });
     }
 
     /** @return HasOne<Participant, $this> */

@@ -15,6 +15,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Log\Logger;
 use Inertia\Inertia;
 use Inertia\Response;
 use Log;
@@ -27,6 +28,17 @@ class ParticipantRegistrationController extends Controller
      */
     public function index(): Response
     {
+        $data = ParticipantRegistrationProps::from([
+            'ethnicity' => Ethnicity::displayArray(),
+            'maritalStatus' => MaritalStatus::displayArray(),
+            'regions' => Region::get(['id', 'description'])->toArray(),
+        ]);
+
+        logger()->info('Participant registration view', [
+            'toArray' => $data->toArray(),
+            'all' => $data->all(),
+        ]);
+
         return Inertia::render('Intake/Signup', ParticipantRegistrationProps::from([
             'ethnicity' => Ethnicity::displayArray(),
             'maritalStatus' => MaritalStatus::displayArray(),
@@ -45,18 +57,16 @@ class ParticipantRegistrationController extends Controller
             $participantId = session('intake_user_id');
             $participant = Participant::create([
                 'user_id' => $participantId,
-                ...array_diff_key($request->toArray(), ['children' => '']),
+                ...array_diff_key($request->all(), ['children' => '']),
             ]);
             $children = $request->children;
             foreach ($children as $child) {
-                $child = ChildForm::from($child);
-                $child = $child->toArray();
+                $child = $child->all();
                 $child['participant_id'] = $participant->id;
                 Child::create($child);
             }
 
             if (auth()->user()->hasRole('intake')) {
-                // Store the user ID in session
                 session(['intake_participant_id' => $participant->id]);
 
                 return redirect(route('intake.disclosure', ['participant' => $participant]));
