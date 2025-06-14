@@ -10,6 +10,7 @@ use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -74,5 +75,11 @@ Route::middleware(['auth'])->name('classes.')->group(function () {
 Route::middleware(['auth'])->name('reports.')->group(function () {
     Route::get('/reports', [ReportsController::class, 'list'])->name('list')->breadcrumb('Reports', 'home');
 });
+
+
+Route::get('/pdf-fake', [PdfController::class, 'generateFake'])
+    // ->middleware('auth')
+    ->name('test.pdf');
+
 
 require __DIR__.'/auth.php';
