@@ -3,9 +3,9 @@
 namespace App\Enums;
 
 use App\Concerns\EnumDisplayArray;
-use Spatie\TypeScriptTransformer\Attributes\TypeScriptType;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
-#[TypeScriptType(['asdf'])]
+#[TypeScript]
 enum DisclosureContentType: string
 {
     use EnumDisplayArray;

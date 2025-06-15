@@ -2,12 +2,8 @@
 
 namespace App\Data;
 
-use Illuminate\Support\Carbon;
+use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Attributes\MapInputName;
-use Spatie\LaravelData\Attributes\Validation\Max;
-use Spatie\LaravelData\Attributes\Validation\Uuid;
-use Spatie\LaravelData\Attributes\WithCast;
-use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
@@ -21,7 +17,7 @@ class ChildData extends Data
         public readonly string $participantId,
         public readonly string $firstName,
         public readonly string $lastName,
-        public readonly Carbon $dateOfBirth,
+        public readonly CarbonImmutable $dateOfBirth,
         public readonly ?bool $phoneContact,
         public readonly ?bool $custody,
         public readonly ?bool $visitation,

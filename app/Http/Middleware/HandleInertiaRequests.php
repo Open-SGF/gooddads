@@ -34,7 +34,7 @@ class HandleInertiaRequests extends Middleware
     {
         try {
             $userProp = $request->user()
-                ? UserData::from($request->user())
+                ? UserData::from($request->user()->toArray())
                 : null;
 
             $requestProp = [

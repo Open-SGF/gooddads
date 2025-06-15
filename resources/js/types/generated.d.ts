@@ -6,7 +6,7 @@ export type ChildData = {
 	participantId: string
 	firstName: string
 	lastName: string
-	dateOfBirth: any
+	dateOfBirth: string
 	phoneContact: boolean | null
 	custody: boolean | null
 	visitation: boolean | null
@@ -24,7 +24,17 @@ export type ChildForm = {
 	visitation: boolean | null
 	childSupport: number
 }
-export type DisclosureContentType = { 0: any }
+export type DisclosureContentType =
+	| 'entire_file'
+	| 'licensure_information'
+	| 'medical_psychiatric_records'
+	| 'hotline_investigations'
+	| 'home_studies'
+	| 'eligibility_determinations'
+	| 'substance_abuse_treatment'
+	| 'client_employment_records'
+	| 'benefits_received'
+	| 'other'
 export type DisclosurePurposeType =
 	| 'eligibility_determination'
 	| 'legal_consultation'
@@ -45,11 +55,15 @@ export type Ethnicity =
 	| 'pacific_islander'
 	| 'hispanic'
 	| 'no_answer'
+export type GuestProp = {
+	user: null | null
+}
 export type MaritalStatus = 'single' | 'married' | 'divorced' | 'widowed'
 export type MiddlewareProps = {
 	auth: AuthProp
 	request: RequestProp
 	toast: ToastProp | null
+	breadcrumb: any | null
 }
 export type ParticipantData = {
 	id: string
@@ -227,7 +241,7 @@ export type ParticipantServicePlanForm = {
 }
 export type ParticipantSignupForm = {
 	addressLine1: string
-	addressLine2: string | null
+	addressLine2?: string
 	city: string
 	state: string
 	zipcode: string
@@ -297,11 +311,10 @@ export type UserData = {
 	firstName: string
 	lastName: string
 	email: string
-	roles: Roles
-	permissions: Permissions
+	roles: Array<Roles>
+	permissions: Array<Permissions>
 	emailVerifiedAt: string | null
-	createdAt: string
-	updatedAt: string
+	active: boolean
 }
 export type UserRegistrationForm = {
 	firstName: string
@@ -310,5 +323,5 @@ export type UserRegistrationForm = {
 	phoneNumber: string
 	password: string
 	passwordConfirmation: string
-	role?: Roles
+	role: Roles
 }

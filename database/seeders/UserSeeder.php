@@ -14,6 +14,16 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $user = UserRegistrationForm::from([
+            'firstName' => config('constants.testUsers.admin.firstName'),
+            'lastName' => config('constants.testUsers.admin.lastName'),
+            'email' => config('constants.testUsers.admin.email'),
+            'phoneNumber' => config('constants.testUsers.admin.phoneNumber'),
+            'password' => bcrypt(config('constants.testUsers.admin.password')),
+            'passwordConfirmation' => bcrypt(config('constants.testUsers.admin.password')),
+            'role' => Roles::Admin,
+        ]);
+
         $director = UserRegistrationForm::from([
             'firstName' => config('constants.testUsers.director.firstName'),
             'lastName' => config('constants.testUsers.director.lastName'),
@@ -73,6 +83,8 @@ class UserSeeder extends Seeder
             'passwordConfirmation' => bcrypt(config('constants.testUsers.intake.password')),
             'role' => Roles::Intake,
         ]);
+
+        User::create($user->toArray());
 
         User::create($director->toArray());
 

@@ -4,8 +4,11 @@ import { PageProps, ParticipantData } from '@/types'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import FatherhoodSurveyForm from '@/Components/Intake/FatherhoodSurveyForm'
 
-interface SurveyPageProps extends PageProps {
+type SurveyPageProps = Omit<PageProps, 'auth'> & {
 	participant: ParticipantData
+	auth: {
+		user: NonNullable<PageProps['auth']['user']>
+	}
 }
 
 export const Create = ({ auth, participant }: SurveyPageProps) => {

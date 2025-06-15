@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -20,6 +21,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $password
  * @property bool $active
  * @property string $phone_number
+ * @property Collection<string> $role_names
+ * @property Collection<string> $permission_names
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -29,6 +32,20 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasRoles;
     use HasUuids;
     use Notifiable;
+
+    /**
+     * The relationships that should be eager loaded.
+     *
+     * @var array<int, string>
+     */
+    protected $with = ['roles', 'permissions'];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array<int, string>
+     */
+    protected $appends = ['role_names', 'permission_names'];
 
     protected $fillable = [
         'first_name',
@@ -47,6 +64,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'roles',          // Hide the original roles relationship
+        'permissions',    // Hide the original permissions relationship
     ];
 
     /**
@@ -61,6 +80,26 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
             'active' => 'boolean',
         ];
+    }
+
+    /**
+     * Get only the names of the roles.
+     *
+     * @return Array<string>
+     */
+    public function getRoleNamesAttribute(): array
+    {
+        return $this->roles->pluck('name')->toArray();
+    }
+
+    /**
+     * Get only the names of the permissions.
+     *
+     * @return Array<string>
+     */
+    public function getPermissionNamesAttribute(): Array
+    {
+        return $this->permissions->pluck('name')->toArray();
     }
 
     protected static function booted(): void

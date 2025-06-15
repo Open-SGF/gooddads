@@ -101,8 +101,8 @@ export default function Authenticated({
 					<NavigationMenuList className="flex flex-col w-full space-x-0">
 						<NavigationMenuItem className="w-full">
 							<NavigationMenuLink
-								href={route('home')}
-								active={route().current('home')}
+								href={route('index')}
+								active={route().current('index')}
 							>
 								<House
 									className="transition-colors group-hover/navlink:stroke-black group-focus/navlink:stroke-black group-data-[active]/navlink:stroke-white group-data-[state=open]/navlink:stroke-white"
@@ -290,8 +290,8 @@ export default function Authenticated({
 					>
 						<div className="pt-2 pb-3 space-y-1">
 							<ResponsiveNavLink
-								href={route('home')}
-								active={route().current('home')}
+								href={route('index')}
+								active={route().current('index')}
 							>
 								Dashboard
 							</ResponsiveNavLink>

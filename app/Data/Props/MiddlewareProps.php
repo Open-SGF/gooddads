@@ -2,6 +2,7 @@
 
 namespace App\Data\Props;
 
+use Glhd\Gretel\View\Breadcrumb;
 use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
@@ -12,6 +13,7 @@ class MiddlewareProps extends Data
         public AuthProp $auth,
         public RequestProp $request,
         public ?ToastProp $toast,
+        public ?Breadcrumb $breadcrumb,
     ) {
     }
 }

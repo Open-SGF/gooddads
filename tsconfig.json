@@ -18,6 +18,8 @@
 	"include": [
 		"resources/js/**/*.ts",
 		"resources/js/**/*.tsx",
-		"resources/js/**/*.d.ts"
+		"resources/js/**/*.d.ts",
+		"tests",
+		"playwright.config.ts"
 	]
 }

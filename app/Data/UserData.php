@@ -5,7 +5,10 @@ namespace App\Data;
 use App\Enums\Permissions;
 use App\Enums\Roles;
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Attributes\MapInputName;
+use Spatie\LaravelData\Attributes\WithCast;
+use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
@@ -19,11 +22,14 @@ class UserData extends Data
         public string $firstName,
         public string $lastName,
         public string $email,
-        public Roles $roles,
-        public Permissions $permissions,
+        #[MapInputName('role_names')]
+        /** @var Roles[] */
+        public array $roles,
+        #[MapInputName('permission_names')]
+        /** @var Permissions[] */
+        public array $permissions,
         public ?string $emailVerifiedAt,
-        public Carbon $createdAt,
-        public Carbon $updatedAt,
+        public bool $active,
     ) {
     }
 }

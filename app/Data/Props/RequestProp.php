@@ -12,7 +12,7 @@ class RequestProp extends Data
     public function __construct(
         #[Url]
         public string $location,
-
+        
         /** @var array<string, string> $query */
         public array $query
     ) {
