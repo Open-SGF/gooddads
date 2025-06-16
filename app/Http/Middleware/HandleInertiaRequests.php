@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Data\Props\MiddlewareProps;
 use App\Data\UserData;
+use Auth;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Throwable;
@@ -33,8 +34,8 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         try {
-            $userProp = $request->user()
-                ? UserData::from($request->user()->toArray())
+            $userProp = Auth::check()
+                ? UserData::from(Auth::user())
                 : null;
 
             $requestProp = [

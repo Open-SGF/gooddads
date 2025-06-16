@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -29,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /** @use HasFactory<UserFactory> */
     use HasFactory;
 
+    use HasPermissions;
     use HasRoles;
     use HasUuids;
     use Notifiable;
@@ -64,8 +66,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
-        'roles',          // Hide the original roles relationship
-        'permissions',    // Hide the original permissions relationship
     ];
 
     /**
@@ -85,7 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get only the names of the roles.
      *
-     * @return Array<string>
+     * @return array<string>
      */
     public function getRoleNamesAttribute(): array
     {
@@ -95,10 +95,11 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get only the names of the permissions.
      *
-     * @return Array<string>
+     * @return array<string>
      */
-    public function getPermissionNamesAttribute(): Array
+    public function getPermissionNamesAttribute(): array
     {
+        // get all permissions belonging to the User's roles
         return $this->permissions->pluck('name')->toArray();
     }
 

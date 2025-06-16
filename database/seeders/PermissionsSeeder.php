@@ -7,7 +7,6 @@ use App\Enums\Roles;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 use Spatie\Permission\PermissionRegistrar;
 
 class PermissionsSeeder extends Seeder
@@ -25,28 +24,17 @@ class PermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         $this->permissionRegistrar->forgetCachedPermissions();
 
-        /**
-         * Create roles
-         */
-        $roles = Roles::cases();
-        foreach ($roles as $role) {
-            Role::create([
-                'id' => Str::uuid(),
-                'name' => $role->value,
-            ]);
-        }
-        $admin = Role::get()->where('name', Roles::Admin)->first();
-        $director = Role::get()->where('name', Roles::Director)->first();
-        $regionDirector = Role::get()->where('name', Roles::RegionDirector)->first();
-        $programDirector = Role::get()->where('name', Roles::ProgramDirector)->first();
-        $facilitator = Role::get()->where('name', Roles::Facilitator)->first();
-        $auditor = Role::get()->where('name', Roles::Auditor)->first();
-        $intake = Role::get()->where('name', Roles::Intake)->first();
-        $participant = Role::get()->where('name', Roles::Participant)->first();
+        // Create roles
+        $admin = Role::create(['name' => Roles::Admin]);
+        $director = Role::create(['name' => Roles::Director]);
+        $regionDirector = Role::create(['name' => Roles::RegionDirector]);
+        $programDirector = Role::create(['name' => Roles::ProgramDirector]);
+        $facilitator = Role::create(['name' => Roles::Facilitator]);
+        $auditor = Role::create(['name' => Roles::Auditor]);
+        $intake = Role::create(['name' => Roles::Intake]);
+        $participant = Role::create(['name' => Roles::Participant]);
 
-        /**
-         * Create permissions
-         */
+        // Create permissions
         $permissions = Permissions::cases();
         foreach ($permissions as $permission) {
             Permission::create([
@@ -54,9 +42,7 @@ class PermissionsSeeder extends Seeder
             ]);
         }
 
-        /**
-         * Assign permissions to roles
-         */
+        // Assign permissions to roles
         $admin->givePermissionTo(Permission::all());
         $director->givePermissionTo([
             Permissions::CreateUsers,
@@ -68,9 +54,18 @@ class PermissionsSeeder extends Seeder
             Permissions::ListClasses,
             Permissions::ListReports,
         ]);
-        $regionDirector->givePermissionTo([Permissions::ListUsers, Permissions::ViewUsers]);
-        $programDirector->givePermissionTo([Permissions::ListUsers, Permissions::ViewUsers]);
-        $facilitator->givePermissionTo([Permissions::ListUsers, Permissions::ViewUsers]);
+        $regionDirector->givePermissionTo([
+            Permissions::ListUsers,
+            Permissions::ViewUsers,
+        ]);
+        $programDirector->givePermissionTo([
+            Permissions::ListUsers,
+            Permissions::ViewUsers,
+        ]);
+        $facilitator->givePermissionTo([
+            Permissions::ListUsers,
+            Permissions::ViewUsers,
+        ]);
         $auditor->givePermissionTo([]);
         $intake->givePermissionTo(Permissions::CreateUsers);
         $participant->givePermissionTo([]);

@@ -38,13 +38,11 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::name('intake.')
-    ->middleware(['auth', 'role:intake'])
+Route::middleware(['auth', 'role:intake'])
+    ->name('intake.')
     ->group(function () {
         Route::get('/dev-auth', [IntakeController::class, 'devAuth']);
         Route::get('/intake-complete', [IntakeController::class, 'intakeComplete'])->name('complete');
-
-        Route::get('/', [IntakeController::class, 'index'])->name('index');
 
         Route::controller(UserRegistrationController::class)->group(function () {
             Route::get('register', 'create')->name('register.create');

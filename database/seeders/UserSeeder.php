@@ -14,14 +14,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = UserRegistrationForm::from([
+        $admin = UserRegistrationForm::from([
             'firstName' => config('constants.testUsers.admin.firstName'),
             'lastName' => config('constants.testUsers.admin.lastName'),
             'email' => config('constants.testUsers.admin.email'),
             'phoneNumber' => config('constants.testUsers.admin.phoneNumber'),
             'password' => bcrypt(config('constants.testUsers.admin.password')),
             'passwordConfirmation' => bcrypt(config('constants.testUsers.admin.password')),
-            'role' => Roles::Admin,
         ]);
 
         $director = UserRegistrationForm::from([
@@ -31,7 +30,6 @@ class UserSeeder extends Seeder
             'phoneNumber' => config('constants.testUsers.director.phoneNumber'),
             'password' => bcrypt(config('constants.testUsers.director.password')),
             'passwordConfirmation' => bcrypt(config('constants.testUsers.director.password')),
-            'role' => Roles::Director,
         ]);
 
         $regionDirector = UserRegistrationForm::from([
@@ -41,7 +39,7 @@ class UserSeeder extends Seeder
             'phoneNumber' => config('constants.testUsers.regionDirector.phoneNumber'),
             'password' => bcrypt(config('constants.testUsers.regionDirector.password')),
             'passwordConfirmation' => bcrypt(config('constants.testUsers.regionDirector.password')),
-            'role' => Roles::RegionDirector,
+            'role' => Roles::RegionDirector->value,
         ]);
 
         $programDirector = UserRegistrationForm::from([
@@ -51,7 +49,6 @@ class UserSeeder extends Seeder
             'phoneNumber' => config('constants.testUsers.programDirector.phoneNumber'),
             'password' => bcrypt(config('constants.testUsers.programDirector.password')),
             'passwordConfirmation' => bcrypt(config('constants.testUsers.programDirector.password')),
-            'role' => Roles::ProgramDirector,
         ]);
 
         $facilitator = UserRegistrationForm::from([
@@ -61,7 +58,6 @@ class UserSeeder extends Seeder
             'phoneNumber' => config('constants.testUsers.facilitator.phoneNumber'),
             'password' => bcrypt(config('constants.testUsers.facilitator.password')),
             'passwordConfirmation' => bcrypt(config('constants.testUsers.facilitator.password')),
-            'role' => Roles::Facilitator,
         ]);
 
         $auditor = UserRegistrationForm::from([
@@ -71,7 +67,6 @@ class UserSeeder extends Seeder
             'phoneNumber' => config('constants.testUsers.auditor.phoneNumber'),
             'password' => bcrypt(config('constants.testUsers.auditor.password')),
             'passwordConfirmation' => bcrypt(config('constants.testUsers.auditor.password')),
-            'role' => Roles::Auditor,
         ]);
 
         $intake = UserRegistrationForm::from([
@@ -81,21 +76,20 @@ class UserSeeder extends Seeder
             'phoneNumber' => config('constants.testUsers.intake.phoneNumber'),
             'password' => bcrypt(config('constants.testUsers.intake.password')),
             'passwordConfirmation' => bcrypt(config('constants.testUsers.intake.password')),
-            'role' => Roles::Intake,
         ]);
 
-        User::create($user->toArray());
+        User::createQuietly($admin->toArray())->assignRole(Roles::Admin->value);
 
-        User::create($director->toArray());
+        User::createQuietly($director->toArray())->assignRole(Roles::Director->value);
 
-        User::create($regionDirector->toArray());
+        User::createQuietly($regionDirector->toArray())->assignRole(Roles::RegionDirector->value);
 
-        User::create($programDirector->toArray());
+        User::createQuietly($programDirector->toArray())->assignRole(Roles::ProgramDirector->value);
 
-        User::create($facilitator->toArray());
+        User::createQuietly($facilitator->toArray())->assignRole(Roles::Facilitator->value);
 
-        User::create($auditor->toArray());
+        User::createQuietly($auditor->toArray())->assignRole(Roles::Auditor->value);
 
-        User::create($intake->toArray());
+        User::createQuietly($intake->toArray())->assignRole(Roles::Intake->value);
     }
 }

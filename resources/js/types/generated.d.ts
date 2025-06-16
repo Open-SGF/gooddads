@@ -323,5 +323,5 @@ export type UserRegistrationForm = {
 	phoneNumber: string
 	password: string
 	passwordConfirmation: string
-	role: Roles
+	role?: string
 }
