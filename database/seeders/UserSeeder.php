@@ -15,67 +15,67 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $admin = UserRegistrationForm::from([
-            'firstName' => config('constants.testUsers.admin.firstName'),
-            'lastName' => config('constants.testUsers.admin.lastName'),
-            'email' => config('constants.testUsers.admin.email'),
-            'phoneNumber' => config('constants.testUsers.admin.phoneNumber'),
-            'password' => bcrypt(config('constants.testUsers.admin.password')),
-            'passwordConfirmation' => bcrypt(config('constants.testUsers.admin.password')),
+            'firstName' => config('auth.testUsers.admin.firstName'),
+            'lastName' => config('auth.testUsers.admin.lastName'),
+            'email' => config('auth.testUsers.admin.email'),
+            'phoneNumber' => config('auth.testUsers.admin.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.admin.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.admin.password')),
         ]);
 
         $director = UserRegistrationForm::from([
-            'firstName' => config('constants.testUsers.director.firstName'),
-            'lastName' => config('constants.testUsers.director.lastName'),
-            'email' => config('constants.testUsers.director.email'),
-            'phoneNumber' => config('constants.testUsers.director.phoneNumber'),
-            'password' => bcrypt(config('constants.testUsers.director.password')),
-            'passwordConfirmation' => bcrypt(config('constants.testUsers.director.password')),
+            'firstName' => config('auth.testUsers.director.firstName'),
+            'lastName' => config('auth.testUsers.director.lastName'),
+            'email' => config('auth.testUsers.director.email'),
+            'phoneNumber' => config('auth.testUsers.director.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.director.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.director.password')),
         ]);
 
         $regionDirector = UserRegistrationForm::from([
-            'firstName' => config('constants.testUsers.regionDirector.firstName'),
-            'lastName' => config('constants.testUsers.regionDirector.lastName'),
-            'email' => config('constants.testUsers.regionDirector.email'),
-            'phoneNumber' => config('constants.testUsers.regionDirector.phoneNumber'),
-            'password' => bcrypt(config('constants.testUsers.regionDirector.password')),
-            'passwordConfirmation' => bcrypt(config('constants.testUsers.regionDirector.password')),
+            'firstName' => config('auth.testUsers.regionDirector.firstName'),
+            'lastName' => config('auth.testUsers.regionDirector.lastName'),
+            'email' => config('auth.testUsers.regionDirector.email'),
+            'phoneNumber' => config('auth.testUsers.regionDirector.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.regionDirector.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.regionDirector.password')),
             'role' => Roles::RegionDirector->value,
         ]);
 
         $programDirector = UserRegistrationForm::from([
-            'firstName' => config('constants.testUsers.programDirector.firstName'),
-            'lastName' => config('constants.testUsers.programDirector.lastName'),
-            'email' => config('constants.testUsers.programDirector.email'),
-            'phoneNumber' => config('constants.testUsers.programDirector.phoneNumber'),
-            'password' => bcrypt(config('constants.testUsers.programDirector.password')),
-            'passwordConfirmation' => bcrypt(config('constants.testUsers.programDirector.password')),
+            'firstName' => config('auth.testUsers.programDirector.firstName'),
+            'lastName' => config('auth.testUsers.programDirector.lastName'),
+            'email' => config('auth.testUsers.programDirector.email'),
+            'phoneNumber' => config('auth.testUsers.programDirector.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.programDirector.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.programDirector.password')),
         ]);
 
         $facilitator = UserRegistrationForm::from([
-            'firstName' => config('constants.testUsers.facilitator.firstName'),
-            'lastName' => config('constants.testUsers.facilitator.lastName'),
-            'email' => config('constants.testUsers.facilitator.email'),
-            'phoneNumber' => config('constants.testUsers.facilitator.phoneNumber'),
-            'password' => bcrypt(config('constants.testUsers.facilitator.password')),
-            'passwordConfirmation' => bcrypt(config('constants.testUsers.facilitator.password')),
+            'firstName' => config('auth.testUsers.facilitator.firstName'),
+            'lastName' => config('auth.testUsers.facilitator.lastName'),
+            'email' => config('auth.testUsers.facilitator.email'),
+            'phoneNumber' => config('auth.testUsers.facilitator.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.facilitator.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.facilitator.password')),
         ]);
 
         $auditor = UserRegistrationForm::from([
-            'firstName' => config('constants.testUsers.auditor.firstName'),
-            'lastName' => config('constants.testUsers.auditor.lastName'),
-            'email' => config('constants.testUsers.auditor.email'),
-            'phoneNumber' => config('constants.testUsers.auditor.phoneNumber'),
-            'password' => bcrypt(config('constants.testUsers.auditor.password')),
-            'passwordConfirmation' => bcrypt(config('constants.testUsers.auditor.password')),
+            'firstName' => config('auth.testUsers.auditor.firstName'),
+            'lastName' => config('auth.testUsers.auditor.lastName'),
+            'email' => config('auth.testUsers.auditor.email'),
+            'phoneNumber' => config('auth.testUsers.auditor.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.auditor.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.auditor.password')),
         ]);
 
         $intake = UserRegistrationForm::from([
-            'firstName' => config('constants.testUsers.intake.firstName'),
-            'lastName' => config('constants.testUsers.intake.lastName'),
-            'email' => config('constants.testUsers.intake.email'),
-            'phoneNumber' => config('constants.testUsers.intake.phoneNumber'),
-            'password' => bcrypt(config('constants.testUsers.intake.password')),
-            'passwordConfirmation' => bcrypt(config('constants.testUsers.intake.password')),
+            'firstName' => config('auth.testUsers.intake.firstName'),
+            'lastName' => config('auth.testUsers.intake.lastName'),
+            'email' => config('auth.testUsers.intake.email'),
+            'phoneNumber' => config('auth.testUsers.intake.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.intake.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.intake.password')),
         ]);
 
         User::createQuietly($admin->toArray())->assignRole(Roles::Admin->value);

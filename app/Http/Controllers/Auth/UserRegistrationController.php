@@ -45,7 +45,7 @@ class UserRegistrationController extends Controller
 
             event(new Registered($user));
 
-            return redirect(route('intake.participantRegister'));
+            return redirect(route('intake.participantRegister.create'));
 
         } catch (Throwable $e) {
             Log::error('Error processing participant signup form: '.$e->getMessage(), [

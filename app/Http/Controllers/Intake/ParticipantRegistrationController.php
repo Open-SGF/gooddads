@@ -26,19 +26,8 @@ class ParticipantRegistrationController extends Controller
     /**
      * Display the registration view.
      */
-    public function index(): Response
+    public function create(): Response
     {
-        $data = ParticipantRegistrationProps::from([
-            'ethnicity' => Ethnicity::displayArray(),
-            'maritalStatus' => MaritalStatus::displayArray(),
-            'regions' => Region::get(['id', 'description'])->toArray(),
-        ]);
-
-        logger()->info('Participant registration view', [
-            'toArray' => $data->toArray(),
-            'all' => $data->all(),
-        ]);
-
         return Inertia::render('Intake/Signup', ParticipantRegistrationProps::from([
             'ethnicity' => Ethnicity::displayArray(),
             'maritalStatus' => MaritalStatus::displayArray(),

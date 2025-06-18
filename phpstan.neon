@@ -16,7 +16,6 @@ parameters:
         - public
         - resources
         - routes
-        - tests
 
     # The level 9 is the highest level
     level: 7
@@ -25,6 +24,6 @@ parameters:
     #    - '#PHPDoc tag @var#'
 
     #excludePaths:
-    #    - ./*/*/FileToBeExcluded.php
+        - tests/*
 
     editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'

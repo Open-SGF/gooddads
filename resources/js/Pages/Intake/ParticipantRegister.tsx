@@ -31,7 +31,7 @@ export default function ParticipantRegister() {
 	const submit: FormEventHandler = (e) => {
 		e.preventDefault()
 
-		post(route('intake.register'), {
+		post(route('intake.register.store'), {
 			onError: (err) => {
 				window.console.log(err)
 			},

@@ -24,7 +24,7 @@ export default function Register() {
 	const submit: FormEventHandler = (e) => {
 		e.preventDefault()
 
-		post(route('intake.register'))
+		post(route('intake.register.store'))
 	}
 
 	return (

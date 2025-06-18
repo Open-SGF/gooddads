@@ -6,6 +6,7 @@ use App\Http\Controllers\Intake\IntakeController;
 use App\Http\Controllers\Intake\ParticipantDisclosureController;
 use App\Http\Controllers\Intake\ParticipantFatherhoodAssessmentController;
 use App\Http\Controllers\Intake\ParticipantMediaReleaseController;
+use App\Http\Controllers\Intake\ParticipantRegistrationController;
 use App\Http\Controllers\Intake\ParticipantServicePlanController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
@@ -49,8 +50,8 @@ Route::middleware(['auth', 'role:intake'])
             Route::post('register', 'store')->name('register.store');
         });
 
-        Route::controller(IntakeController::class)->group(function () {
-            Route::get('participantRegister', 'index')->name('participantRegister.index');
+        Route::controller(ParticipantRegistrationController::class)->group(function () {
+            Route::get('participantRegister', 'create')->name('participantRegister.create');
             Route::post('participantRegister', 'store')->name('participantRegister.store');
         });
 
