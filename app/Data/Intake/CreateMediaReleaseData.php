@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Forms;
+namespace App\Data\Intake;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -17,7 +17,7 @@ use Spatie\LaravelData\Support\Validation\ValidationContext;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
-class ParticipantMediaReleaseForm extends Data
+class CreateMediaReleaseData extends Data
 {
     public function __construct(
         #[Required, StringType, Max(191)]

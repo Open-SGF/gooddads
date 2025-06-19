@@ -25,6 +25,7 @@ dbml-error.log
 /docker
 *storybook.log
 .DS_Store
+.windsurfrules
 
 # Playwright
 node_modules/

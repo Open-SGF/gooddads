@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Data\Forms\UserRegistrationForm;
+use App\Data\Auth\CreateUserData;
 use App\Enums\Roles;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = UserRegistrationForm::from([
+        $admin = CreateUserData::from([
             'firstName' => config('auth.testUsers.admin.firstName'),
             'lastName' => config('auth.testUsers.admin.lastName'),
             'email' => config('auth.testUsers.admin.email'),
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'passwordConfirmation' => bcrypt(config('auth.testUsers.admin.password')),
         ]);
 
-        $director = UserRegistrationForm::from([
+        $director = CreateUserData::from([
             'firstName' => config('auth.testUsers.director.firstName'),
             'lastName' => config('auth.testUsers.director.lastName'),
             'email' => config('auth.testUsers.director.email'),
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'passwordConfirmation' => bcrypt(config('auth.testUsers.director.password')),
         ]);
 
-        $regionDirector = UserRegistrationForm::from([
+        $regionDirector = CreateUserData::from([
             'firstName' => config('auth.testUsers.regionDirector.firstName'),
             'lastName' => config('auth.testUsers.regionDirector.lastName'),
             'email' => config('auth.testUsers.regionDirector.email'),
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
             'role' => Roles::RegionDirector->value,
         ]);
 
-        $programDirector = UserRegistrationForm::from([
+        $programDirector = CreateUserData::from([
             'firstName' => config('auth.testUsers.programDirector.firstName'),
             'lastName' => config('auth.testUsers.programDirector.lastName'),
             'email' => config('auth.testUsers.programDirector.email'),
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             'passwordConfirmation' => bcrypt(config('auth.testUsers.programDirector.password')),
         ]);
 
-        $facilitator = UserRegistrationForm::from([
+        $facilitator = CreateUserData::from([
             'firstName' => config('auth.testUsers.facilitator.firstName'),
             'lastName' => config('auth.testUsers.facilitator.lastName'),
             'email' => config('auth.testUsers.facilitator.email'),
@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
             'passwordConfirmation' => bcrypt(config('auth.testUsers.facilitator.password')),
         ]);
 
-        $auditor = UserRegistrationForm::from([
+        $auditor = CreateUserData::from([
             'firstName' => config('auth.testUsers.auditor.firstName'),
             'lastName' => config('auth.testUsers.auditor.lastName'),
             'email' => config('auth.testUsers.auditor.email'),
@@ -69,7 +69,7 @@ class UserSeeder extends Seeder
             'passwordConfirmation' => bcrypt(config('auth.testUsers.auditor.password')),
         ]);
 
-        $intake = UserRegistrationForm::from([
+        $intake = CreateUserData::from([
             'firstName' => config('auth.testUsers.intake.firstName'),
             'lastName' => config('auth.testUsers.intake.lastName'),
             'email' => config('auth.testUsers.intake.email'),

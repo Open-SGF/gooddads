@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Forms;
+namespace App\Data\Intake;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -17,7 +17,7 @@ use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
-class ParticipantFatherhoodSurveyForm extends Data
+class CreateFatherhoodSurveyData extends Data
 {
     public function __construct(
         #[Nullable, Date]

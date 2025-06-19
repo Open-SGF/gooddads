@@ -3,9 +3,9 @@
 use App\Http\Controllers\Auth\UserRegistrationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Intake\IntakeController;
-use App\Http\Controllers\Intake\ParticipantDisclosureController;
-use App\Http\Controllers\Intake\ParticipantFatherhoodAssessmentController;
-use App\Http\Controllers\Intake\ParticipantMediaReleaseController;
+use App\Http\Controllers\Intake\DisclosureAuthorizationController;
+use App\Http\Controllers\Intake\FatherhoodAssessmentController;
+use App\Http\Controllers\Intake\MediaReleaseController;
 use App\Http\Controllers\Intake\ParticipantRegistrationController;
 use App\Http\Controllers\Intake\ParticipantServicePlanController;
 use App\Http\Controllers\LegalController;
@@ -55,23 +55,23 @@ Route::middleware(['auth', 'role:intake'])
             Route::post('participantRegister', 'store')->name('participantRegister.store');
         });
 
-        Route::controller(ParticipantDisclosureController::class)->group(function () {
-            Route::get('disclosure', 'index')->name('disclosure.index');
+        Route::controller(DisclosureAuthorizationController::class)->group(function () {
+            Route::get('disclosure', 'create')->name('disclosure.create');
             Route::post('disclosure', 'store')->name('disclosure.store');
         });
 
-        Route::controller(ParticipantFatherhoodAssessmentController::class)->group(function () {
-            Route::get('fatherhoodAssessment', 'index')->name('fatherhoodAssessment.index');
+        Route::controller(FatherhoodAssessmentController::class)->group(function () {
+            Route::get('fatherhoodAssessment', 'create')->name('fatherhoodAssessment.create');
             Route::post('fatherhoodAssessment', 'store')->name('fatherhoodAssessment.store');
         });
 
         Route::controller(ParticipantServicePlanController::class)->group(function () {
-            Route::get('servicePlan', 'index')->name('servicePlan.index');
+            Route::get('servicePlan', 'create')->name('servicePlan.create');
             Route::post('servicePlan', 'store')->name('servicePlan.store');
         });
 
-        Route::controller(ParticipantMediaReleaseController::class)->group(function () {
-            Route::get('mediaRelease', 'index')->name('mediaRelease.index');
+        Route::controller(MediaReleaseController::class)->group(function () {
+            Route::get('mediaRelease', 'create')->name('mediaRelease.create');
             Route::post('mediaRelease', 'store')->name('mediaRelease.store');
         });
     });

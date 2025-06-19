@@ -2,13 +2,22 @@
 
 namespace Tests;
 
+use Database\Seeders\PermissionsSeeder;
+use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 abstract class TestCase extends BaseTestCase
 {
-    //
-}
+    use RefreshDatabase;
 
-//pest()->use(RefreshDatabase::class)->in('Feature');
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->seed([
+            PermissionsSeeder::class,
+            UserSeeder::class,
+        ]);
+    }
+}

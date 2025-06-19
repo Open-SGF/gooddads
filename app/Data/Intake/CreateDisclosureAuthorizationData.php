@@ -1,29 +1,21 @@
 <?php
 
-namespace App\Data\Forms;
+namespace App\Data\Intake;
 
 use App\Enums\DisclosureContentType;
 use App\Enums\DisclosurePurposeType;
-use Carbon\Carbon;
-use Spatie\LaravelData\Attributes\MapOutputName;
-use Spatie\LaravelData\Attributes\Validation\BooleanType;
-use Spatie\LaravelData\Attributes\Validation\Date;
+use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Attributes\Validation\Max;
-use Spatie\LaravelData\Attributes\Validation\Nullable;
-use Spatie\LaravelData\Attributes\Validation\Required;
 use Spatie\LaravelData\Attributes\Validation\RequiredIf;
 use Spatie\LaravelData\Attributes\Validation\RequiredWith;
-use Spatie\LaravelData\Attributes\Validation\StringType;
 use Spatie\LaravelData\Attributes\Validation\Uuid;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
-#[MapOutputName(SnakeCaseMapper::class)]
-class ParticipantDisclosureAuthorizationForm extends Data
+class CreateDisclosureAuthorizationData extends Data
 {
     public function __construct(
         #[Uuid]
@@ -37,50 +29,47 @@ class ParticipantDisclosureAuthorizationForm extends Data
         public bool $isCdAuthorized,
         public bool $isDlsAuthorized,
         public bool $isOtherAuthorized,
-        #[RequiredIf('isOtherAuthorized', 'true')]
+        #[RequiredIf('isOtherAuthorized', true), Max(255)]
         public ?string $otherAuthorizedEntity,
         public bool $discloseToAttorney,
-        #[Nullable, RequiredIf('discloseToAttorney', 'true'), Max(255)]
+        #[RequiredIf('discloseToAttorney', true), Max(255)]
         public ?string $attorneyName,
         public bool $discloseToEmployer,
-        #[Nullable, RequiredIf('discloseToEmployer', 'true'), Max(255)]
+        #[RequiredIf('discloseToEmployer', true), Max(255)]
         public ?string $employerName,
         public bool $discloseToLegislator,
-        #[Nullable, RequiredIf('discloseToLegislator', 'true'), Max(255)]
+        #[RequiredIf('discloseToLegislator', true), Max(255)]
         public ?string $legislatorName,
         public bool $discloseToGovernorsStaff,
-        #[Nullable, RequiredIf('discloseToGovernorsStaff', 'true'), Max(255)]
+        #[RequiredIf('discloseToGovernorsStaff', true), Max(255)]
         public ?string $governorsStaffDetails,
         public bool $discloseToOtherRecipient,
-        #[Nullable, RequiredIf('discloseToOtherRecipient', 'true'), Max(255)]
+        #[RequiredIf('discloseToOtherRecipient', true), Max(255)]
         public ?string $otherRecipientDetails,
         public DisclosurePurposeType $purposes,
-        #[Nullable, RequiredIf('hasPurpose', DisclosurePurposeType::OTHER->value), StringType, Max(255)]
+        #[RequiredIf('purposes', DisclosurePurposeType::OTHER->value), Max(255)]
         public ?string $otherPurposeDetails,
         public DisclosureContentType $contentTypes,
-        #[Nullable, RequiredIf('hasContentType', DisclosureContentType::OTHER->value), StringType, Max(255)]
+        #[RequiredIf('contentTypes', DisclosureContentType::OTHER->value), Max(255)]
         public ?string $otherDisclosureDetails,
         public bool $acceptTextMessages,
         #[Max(255)]
         public string $consumerSignature,
-        #[WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $signatureDate,
+        #[WithCast(DateTimeInterfaceCast::class, format: 'Y-m-d')]
+        public CarbonImmutable $signatureDate,
         #[Max(255)]
         public ?string $witnessSignature,
-        #[RequiredWith('witnessSignature'), WithCast(DateTimeInterfaceCast::class)]
-        public ?Carbon $witnessSignatureDate,
-        #[Nullable, StringType, Max(255)]
+        #[RequiredWith('witnessSignature'), WithCast(DateTimeInterfaceCast::class, format: 'Y-m-d')]
+        public ?CarbonImmutable $witnessSignatureDate,
+        #[Max(255)]
         public ?string $guardianSignature,
-        #[Nullable, RequiredWith('guardianSignature'), Date, WithCast(DateTimeInterfaceCast::class)]
-        public ?Carbon $guardianSignatureDate,
-        #[Required, BooleanType]
+        #[RequiredWith('guardianSignature'), WithCast(DateTimeInterfaceCast::class, format: 'Y-m-d')]
+        public ?CarbonImmutable $guardianSignatureDate,
         public ?bool $surveyByEmail,
-        #[Required, BooleanType]
         public ?bool $surveyByMail,
-        #[Required, BooleanType]
         public ?bool $surveyByOnline,
-        #[Date, WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $dateCompleted,
+        #[WithCast(DateTimeInterfaceCast::class, format: 'Y-m-d')]
+        public CarbonImmutable $dateCompleted,
     ) {
     }
 }

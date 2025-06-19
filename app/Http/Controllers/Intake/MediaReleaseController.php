@@ -5,15 +5,12 @@ namespace App\Http\Controllers\Intake;
 use App\Data\ParticipantData;
 use App\Data\ParticipantMediaReleaseData;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Intake\StoreParticipantMediaReleaseRequest;
-use App\Http\Requests\Intake\UpdateParticipantMediaReleaseRequest;
 use App\Models\Participant;
 use App\Models\ParticipantMediaRelease;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Inertia\Response;
 
-class ParticipantMediaReleaseController extends Controller
+class MediaReleaseController extends Controller
 {
     /**
      * Display a listing of the resource.

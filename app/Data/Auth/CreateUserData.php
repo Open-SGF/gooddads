@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Forms;
+namespace App\Data\Auth;
 
 use App\Enums\Roles;
 use App\Models\User;
@@ -20,27 +20,21 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
 #[MapOutputName(SnakeCaseMapper::class)]
-class UserRegistrationForm extends Data
+class CreateUserData extends Data
 {
     public function __construct(
         #[Max(191)]
         public string $firstName,
-
         #[Max(191)]
         public string $lastName,
-
         #[Max(191), Email, Unique(User::class)]
         public string $email,
-
         #[Max(12), UsPhoneNumber]
         public string $phoneNumber,
-
         #[Password, Max(191)]
         public string $password,
-
         #[Password, Max(191), AcceptedIf('password', 'equals_this'), Hidden]
         public string $passwordConfirmation,
-
         #[Enum(Roles::class), Optional, Hidden]
         public ?string $role
     ) {
