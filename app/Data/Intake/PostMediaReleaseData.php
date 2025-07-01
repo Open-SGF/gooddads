@@ -17,23 +17,23 @@ use Spatie\LaravelData\Support\Validation\ValidationContext;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
-class CreateMediaReleaseData extends Data
+class PostMediaReleaseData extends Data
 {
     public function __construct(
-        #[Required, StringType, Max(191)]
+        #[Required, StringType, Max(255)]
         public ?string $printedName = null,
 
-        #[Required, StringType, Max(191)]
+        #[Required, StringType, Max(255)]
         public ?string $signature = null,
 
         #[Nullable, Date]
         #[WithCast(DateTimeInterfaceCast::class)]
         public ?Carbon $signatureDate = null,
 
-        #[Required, StringType, Max(191)]
+        #[Required, StringType, Max(255)]
         public ?string $phoneNumber = null,
 
-        #[Required, Email, Max(191)]
+        #[Required, Email, Max(255)]
         public ?string $email = null,
     ) {
     }

@@ -11,7 +11,7 @@ type SurveyPageProps = Omit<PageProps, 'auth'> & {
 	}
 }
 
-export const Create = ({ auth, participant }: SurveyPageProps) => {
+export const FatherhoodSurvey = ({ auth, participant }: SurveyPageProps) => {
 	return (
 		<AuthenticatedLayout user={auth.user}>
 			<Head title="Fatherhood Survey" />
@@ -20,4 +20,4 @@ export const Create = ({ auth, participant }: SurveyPageProps) => {
 	)
 }
 
-export default Create
+export default FatherhoodSurvey

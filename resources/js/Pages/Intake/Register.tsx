@@ -2,11 +2,11 @@ import { useEffect, FormEventHandler } from 'react'
 import GuestLayout from '@/Layouts/GuestLayout'
 import { Button, Label, Input, InputError } from '@/Components/ui'
 import { Head, Link, useForm } from '@inertiajs/react'
-import { UserRegistrationForm } from '@/types'
+import { PostUserData } from '@/types'
 
 export default function Register() {
 	const { data, setData, post, processing, errors, reset } =
-		useForm<UserRegistrationForm>({
+		useForm<PostUserData>({
 			firstName: '',
 			lastName: '',
 			email: '',

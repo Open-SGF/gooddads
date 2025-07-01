@@ -6,8 +6,8 @@ use App\Http\Controllers\Intake\IntakeController;
 use App\Http\Controllers\Intake\DisclosureAuthorizationController;
 use App\Http\Controllers\Intake\FatherhoodAssessmentController;
 use App\Http\Controllers\Intake\MediaReleaseController;
-use App\Http\Controllers\Intake\ParticipantRegistrationController;
-use App\Http\Controllers\Intake\ParticipantServicePlanController;
+use App\Http\Controllers\Intake\RegistrationController;
+use App\Http\Controllers\Intake\ServicePlanController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
@@ -50,7 +50,7 @@ Route::middleware(['auth', 'role:intake'])
             Route::post('register', 'store')->name('register.store');
         });
 
-        Route::controller(ParticipantRegistrationController::class)->group(function () {
+        Route::controller(RegistrationController::class)->group(function () {
             Route::get('participantRegister', 'create')->name('participantRegister.create');
             Route::post('participantRegister', 'store')->name('participantRegister.store');
         });
@@ -65,7 +65,7 @@ Route::middleware(['auth', 'role:intake'])
             Route::post('fatherhoodAssessment', 'store')->name('fatherhoodAssessment.store');
         });
 
-        Route::controller(ParticipantServicePlanController::class)->group(function () {
+        Route::controller(ServicePlanController::class)->group(function () {
             Route::get('servicePlan', 'create')->name('servicePlan.create');
             Route::post('servicePlan', 'store')->name('servicePlan.store');
         });

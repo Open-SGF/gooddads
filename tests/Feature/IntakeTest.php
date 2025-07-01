@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Region;
-use Illuminate\Support\Carbon;
 
 beforeEach(function () {
     $this->post('/login', [
@@ -89,4 +88,13 @@ test('a user can complete the intake process', function () {
     ]);
 
     $disclosureResponse->assertRedirect(route('intake.fatherhoodAssessment.create'));
+    $participantDisclosureAuthorizationForm = session('participantDisclosureAuthorizationForm');
+    $this->assertNotNull($participantDisclosureAuthorizationForm);
+
+    $servicePlanResponse = $this->post(route('intake.servicePlan.store'), []);
+
+    $servicePlanResponse->assertRedirect(route('intake.mediaRelease.create'));
+    $participantServicePlan = session('participantServicePlan');
+    $this->assertNotNull($participantServicePlan);
+
 });

@@ -17,14 +17,14 @@ use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
-class CreateFatherhoodSurveyData extends Data
+class PostFatherhoodSurveyData extends Data
 {
     public function __construct(
         #[Nullable, Date]
         #[WithCast(DateTimeInterfaceCast::class)]
         public ?Carbon $dateOfBirth = null,
 
-        #[Required, StringType, Max(191)]
+        #[Required, StringType, Max(255)]
         public ?string $fatherhoodProgram = null,
 
         // Reason fields (boolean)
@@ -43,7 +43,7 @@ class CreateFatherhoodSurveyData extends Data
         #[Required, BooleanType]
         public ?bool $reasonOther = null,
 
-        #[Nullable, StringType, Max(191), RequiredIf('reasonOther', 'true')]
+        #[Nullable, StringType, Max(255), RequiredIf('reasonOther', 'true')]
         public ?string $reasonOtherDescription = null,
 
         // Referred by fields (boolean)
@@ -68,7 +68,7 @@ class CreateFatherhoodSurveyData extends Data
         #[Required, BooleanType]
         public ?bool $referredByOther = null,
 
-        #[Nullable, StringType, Max(191), RequiredIf('referredByOther', 'true')]
+        #[Nullable, StringType, Max(255), RequiredIf('referredByOther', 'true')]
         public ?string $referredByOtherSource = null,
 
         // Expectations fields (boolean)
@@ -114,7 +114,7 @@ class CreateFatherhoodSurveyData extends Data
         #[Required, BooleanType]
         public ?bool $otherExpected = null,
 
-        #[Nullable, StringType, Max(191), RequiredIf('otherExpected', 'true')]
+        #[Nullable, StringType, Max(255), RequiredIf('otherExpected', 'true')]
         public ?string $otherExpectationsDescription = null,
     ) {
     }

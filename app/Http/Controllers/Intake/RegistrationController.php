@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Intake;
 
-use App\Data\Intake\CreateParticipantData;
+use App\Data\Intake\PostParticipantData;
 use App\Data\Props\ParticipantRegistrationProps;
 use App\Enums\Ethnicity;
 use App\Enums\MaritalStatus;
@@ -15,7 +15,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 
-class ParticipantRegistrationController extends Controller
+class RegistrationController extends Controller
 {
     public function create(): Response
     {
@@ -26,7 +26,7 @@ class ParticipantRegistrationController extends Controller
         ])->toArray());
     }
 
-    public function store(CreateParticipantData $request): RedirectResponse
+    public function store(PostParticipantData $request): RedirectResponse
     {
         $participantId = session('intakeUserId');
         $participant = Participant::create([

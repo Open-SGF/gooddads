@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Intake;
 
-use App\Data\Intake\CreateDisclosureAuthorizationData;
+use App\Data\Intake\PostDisclosureAuthorizationData;
 use App\Data\Props\ParticipantDisclosureAuthorizationProps;
 use App\Enums\DisclosureContentType;
 use App\Enums\DisclosurePurposeType;
@@ -24,9 +24,9 @@ class DisclosureAuthorizationController extends Controller
         return Inertia::render('Intake/Disclosure', $props);
     }
 
-    public function store(CreateDisclosureAuthorizationData $request): RedirectResponse
+    public function store(PostDisclosureAuthorizationData $request): RedirectResponse
     {
-        session('participantDisclosureAuthorizationForm', $request->toArray());
+        session(['participantDisclosureAuthorizationForm' => $request->toArray()]);
 
         return redirect()->route('intake.fatherhoodAssessment.create');
     }

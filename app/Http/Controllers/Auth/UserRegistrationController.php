@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Data\Auth\CreateUserData;
+use App\Data\Auth\PostUserData;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -18,7 +18,7 @@ class UserRegistrationController extends Controller
         return Inertia::render('Intake/Register');
     }
 
-    public function store(CreateUserData $request): RedirectResponse|JsonResponse
+    public function store(PostUserData $request): RedirectResponse|JsonResponse
     {
         $user = User::create($request->all());
 

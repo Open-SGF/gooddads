@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Intake;
 
+use App\Data\Intake\PostFatherhoodSurveyData;
 use App\Data\ParticipantData;
 use App\Http\Controllers\Controller;
 use App\Models\ParticipantFatherhoodSurvey;
@@ -13,21 +14,15 @@ class FatherhoodSurveyController extends Controller
     public function create(Request $request)
     {
         $participant = $request->user()->participant;
-        $this->authorize('create', [ParticipantFatherhoodSurvey::class, $participant]);
 
-        return Inertia::render('Intake/ParticipantFatherhoodSurvey/Create', [
-            'participant' => ParticipantData::fromModel($participant),
+        return Inertia::render('Intake/FatherhoodSurvey', [
+            'participant' => ParticipantData::from($participant),
         ]);
     }
 
-    public function store(Request $request)
+    public function store(PostFatherhoodSurveyData $request)
     {
         $participant = $request->user()->participant;
-        $this->authorize('create', [ParticipantFatherhoodSurvey::class, $participant]);
-
-        $validated = $request->validate([
-            // Add validation rules here
-        ]);
 
         $survey = $participant->fatherhoodSurveys()->create($validated);
 

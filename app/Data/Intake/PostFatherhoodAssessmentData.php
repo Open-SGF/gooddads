@@ -12,16 +12,16 @@ use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
-class CreateFatherhoodAssessmentData extends Data
+class PostFatherhoodAssessmentData extends Data
 {
     public function __construct(
-        #[Sometimes, Max(191)]
+        #[Sometimes, Max(255)]
         public ?string $vendorName,
-        #[Max(191)]
+        #[Max(255)]
         public ?string $participantName,
         #[Before('today')]
         public ?CarbonImmutable $dateOfBirth,
-        #[Max(191), ValidSocialSecurityNumber]
+        #[Max(255), ValidSocialSecurityNumber]
         public ?string $socialSecurityNumber,
         public ?bool $isMissouriResident,
         public ?bool $childIsUnder18,
@@ -34,7 +34,7 @@ class CreateFatherhoodAssessmentData extends Data
         public ?bool $selfAttestationProvided,
         public ?bool $unemploymentCompensationProvided,
         public ?bool $otherProvided,
-        #[Max(191)]
+        #[Max(255)]
         public ?string $otherProvidedName,
         #[Min(0)]
         public ?float $grossMonthlyHouseholdIncome,

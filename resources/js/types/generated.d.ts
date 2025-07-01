@@ -15,15 +15,6 @@ export type ChildData = {
 	createdAt: string
 	updatedAt: string
 }
-export type ChildForm = {
-	firstName: string
-	lastName: string
-	dateOfBirth: string
-	phoneContact: boolean | null
-	custody: boolean | null
-	visitation: boolean | null
-	childSupport: number
-}
 export type DisclosureContentType =
 	| 'entire_file'
 	| 'licensure_information'
@@ -89,7 +80,51 @@ export type ParticipantData = {
 	createdAt: string
 	updatedAt: string
 }
-export type ParticipantDisclosureAuthorizationForm = {
+export type ParticipantDisclosureAuthorizationProps = {
+	purposes: Record<DisclosurePurposeType, string>
+	contentTypes: Record<DisclosureContentType, string>
+}
+export type ParticipantMediaReleaseData = {
+	id: string
+	participantId: string
+	printedName: string
+	signature: string
+	signatureDate: string | null
+	phoneNumber: string
+	email: string
+	dateCompleted: string | null
+	createdAt: string
+	updatedAt: string
+}
+export type ParticipantRegistrationProps = {
+	ethnicity: Ethnicity
+	maritalStatus: MaritalStatus
+	regions: Array<RegionProp>
+}
+export type PermissionData = {
+	id: string
+	name: string
+	guard_name: string
+}
+export type Permissions =
+	| 'create users'
+	| 'edit users'
+	| 'delete users'
+	| 'list users'
+	| 'view users'
+	| 'list curriculum'
+	| 'list classes'
+	| 'list reports'
+export type PostChildData = {
+	firstName: string
+	lastName: string
+	dateOfBirth: string
+	phoneContact: boolean | null
+	custody: boolean | null
+	visitation: boolean | null
+	childSupport: number
+}
+export type PostDisclosureAuthorizationData = {
 	participantId: string
 	isDssAuthorized: boolean
 	isDysAuthorized: boolean
@@ -127,11 +162,7 @@ export type ParticipantDisclosureAuthorizationForm = {
 	surveyByOnline: boolean | null
 	dateCompleted: string
 }
-export type ParticipantDisclosureAuthorizationProps = {
-	purposes: Record<DisclosurePurposeType, string>
-	contentTypes: Record<DisclosureContentType, string>
-}
-export type ParticipantFatherhoodAssessmentForm = {
+export type PostFatherhoodAssessmentData = {
 	vendorName: string | null
 	participantName: string | null
 	dateOfBirth: string | null
@@ -154,7 +185,7 @@ export type ParticipantFatherhoodAssessmentForm = {
 	approvedForServices: boolean | null
 	stateAgencyReviewDate: string | null
 }
-export type ParticipantFatherhoodSurveyForm = {
+export type PostFatherhoodSurveyData = {
 	dateOfBirth: string | null
 	fatherhoodProgram: string | null
 	reasonBecomeResponsibleFather: boolean | null
@@ -187,31 +218,33 @@ export type ParticipantFatherhoodSurveyForm = {
 	otherExpected: boolean | null
 	otherExpectationsDescription: string | null
 }
-export type ParticipantMediaReleaseData = {
-	id: string
-	participantId: string
-	printedName: string
-	signature: string
-	signatureDate: string | null
-	phoneNumber: string
-	email: string
-	dateCompleted: string | null
-	createdAt: string
-	updatedAt: string
-}
-export type ParticipantMediaReleaseForm = {
+export type PostMediaReleaseData = {
 	printedName: string | null
 	signature: string | null
 	signatureDate: string | null
 	phoneNumber: string | null
 	email: string | null
 }
-export type ParticipantRegistrationProps = {
-	ethnicity: Ethnicity
+export type PostParticipantData = {
+	addressLine1: string
+	addressLine2: string | null
+	city: string
+	state: string
+	zipcode: string
+	employer: string | null
+	tShirtSize: string | null
+	homePhoneNumber: string | null
+	workPhoneNumber: string | null
+	cellPhoneNumber: string | null
+	altContactNumber: string | null
+	probationParoleCaseWorkerPhone: string | null
+	probationParoleCaseWorkerName: string | null
 	maritalStatus: MaritalStatus
-	regions: Array<RegionProp>
+	ethnicity: Ethnicity
+	regionId: string
+	children: Array<PostChildData>
 }
-export type ParticipantServicePlanForm = {
+export type PostServicePlanData = {
 	participantName: string | null
 	clientNumber: string | null
 	parentingSkillDevelopmentIsServiceArea: boolean | null
@@ -239,39 +272,15 @@ export type ParticipantServicePlanForm = {
 	caseManagerSignatureDate: string | null
 	dateCompleted: string | null
 }
-export type ParticipantSignupForm = {
-	addressLine1: string
-	addressLine2?: string
-	city: string
-	state: string
-	zipcode: string
-	employer: string | null
-	tShirtSize: string | null
-	homePhoneNumber: string | null
-	workPhoneNumber: string | null
-	cellPhoneNumber: string | null
-	altContactNumber: string | null
-	probationParoleCaseWorkerPhone: string | null
-	probationParoleCaseWorkerName: string | null
-	maritalStatus: MaritalStatus
-	ethnicity: Ethnicity
-	regionId: string
-	children: Array<ChildForm>
+export type PostUserData = {
+	firstName: string
+	lastName: string
+	email: string
+	phoneNumber: string
+	password: string
+	passwordConfirmation: string
+	role?: string
 }
-export type PermissionData = {
-	id: string
-	name: string
-	guard_name: string
-}
-export type Permissions =
-	| 'create users'
-	| 'edit users'
-	| 'delete users'
-	| 'list users'
-	| 'view users'
-	| 'list curriculum'
-	| 'list classes'
-	| 'list reports'
 export type QuizQuestionType = 'trueFalse' | 'multipleChoice' | 'shortAnswer'
 export type RegionData = {
 	id: string
@@ -315,13 +324,4 @@ export type UserData = {
 	permissions: Array<Permissions>
 	emailVerifiedAt: string | null
 	active: boolean
-}
-export type UserRegistrationForm = {
-	firstName: string
-	lastName: string
-	email: string
-	phoneNumber: string
-	password: string
-	passwordConfirmation: string
-	role?: string
 }

@@ -16,22 +16,22 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
 #[MapOutputName(SnakeCaseMapper::class)]
-class CreateParticipantData extends Data
+class PostParticipantData extends Data
 {
     public function __construct(
-        #[Max(191)]
+        #[Max(255)]
         public string $addressLine1,
-        #[Max(191)]
+        #[Max(255)]
         public ?string $addressLine2,
-        #[Max(191)]
+        #[Max(255)]
         public string $city,
-        #[Max(191)]
+        #[Max(255)]
         public string $state,
-        #[Max(191)]
+        #[Max(255)]
         public string $zipcode,
-        #[Max(191)]
+        #[Max(255)]
         public ?string $employer,
-        #[Max(191)]
+        #[Max(255)]
         public ?string $tShirtSize,
         #[UsPhoneNumber]
         public ?string $homePhoneNumber,
@@ -43,7 +43,7 @@ class CreateParticipantData extends Data
         public ?string $altContactNumber,
         #[UsPhoneNumber, RequiredWith('probationParoleCaseWorkerName')]
         public ?string $probationParoleCaseWorkerPhone,
-        #[Max(191), RequiredWith('probationParoleCaseWorkerPhone')]
+        #[Max(255), RequiredWith('probationParoleCaseWorkerPhone')]
         public ?string $probationParoleCaseWorkerName,
         /** @var MaritalStatus::* $maritalStatus */
         public MaritalStatus $maritalStatus,
@@ -51,7 +51,7 @@ class CreateParticipantData extends Data
         public Ethnicity $ethnicity,
         public string $regionId,
         #[ArrayType, Min(1)]
-        /** @var CreateChildData[] $children */
+        /** @var PostChildData[] $children */
         public array $children,
     ) {
     }

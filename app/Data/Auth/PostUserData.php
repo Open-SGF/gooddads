@@ -20,20 +20,20 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
 #[MapOutputName(SnakeCaseMapper::class)]
-class CreateUserData extends Data
+class PostUserData extends Data
 {
     public function __construct(
-        #[Max(191)]
+        #[Max(255)]
         public string $firstName,
-        #[Max(191)]
+        #[Max(255)]
         public string $lastName,
-        #[Max(191), Email, Unique(User::class)]
+        #[Max(255), Email, Unique(User::class)]
         public string $email,
         #[Max(12), UsPhoneNumber]
         public string $phoneNumber,
-        #[Password, Max(191)]
+        #[Password, Max(255)]
         public string $password,
-        #[Password, Max(191), AcceptedIf('password', 'equals_this'), Hidden]
+        #[Password, Max(255), AcceptedIf('password', 'equals_this'), Hidden]
         public string $passwordConfirmation,
         #[Enum(Roles::class), Optional, Hidden]
         public ?string $role

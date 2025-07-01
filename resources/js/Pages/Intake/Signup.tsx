@@ -1,8 +1,8 @@
 import {
 	MaritalStatus,
 	Ethnicity,
-	ChildForm,
-	ParticipantSignupForm,
+	PostChildData,
+	PostParticipantData,
 	ParticipantRegistrationProps,
 } from '@/types'
 import IntakeLayout from '@/Layouts/IntakeLayout'
@@ -27,7 +27,7 @@ export default function StartPage({
 	ethnicity,
 	regions,
 }: ParticipantRegistrationProps) {
-	const newChild: ChildForm = {
+	const newChild: PostChildData = {
 		firstName: '',
 		lastName: '',
 		dateOfBirth: '',
@@ -38,7 +38,7 @@ export default function StartPage({
 	}
 
 	const { data, setData, post, errors, processing } =
-		useForm<ParticipantSignupForm>()
+		useForm<PostParticipantData>()
 
 	const addChild = () => {
 		setData((prevData) => ({

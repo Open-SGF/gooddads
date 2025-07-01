@@ -14,7 +14,7 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
 #[MapOutputName(SnakeCaseMapper::class)]
-class CreateChildData extends Data
+class PostChildData extends Data
 {
     public function __construct(
         #[Max(255)]

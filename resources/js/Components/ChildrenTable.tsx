@@ -1,11 +1,11 @@
 import React from 'react'
 import { Button, Checkbox, Input, InputError, Label } from '@/Components/ui'
-import { ChildData, ChildForm } from '@/types'
+import { ChildData, PostChildData } from '@/types'
 import { CurrencyInput } from '@/Components/ui/CurrencyInput'
 
 export type ChildrenTableProps = {
-	childrenInfo: ChildForm[]
-	setChildren: (children: ChildForm[]) => void
+	childrenInfo: PostChildData[]
+	setChildren: (children: PostChildData[]) => void
 	errors: Record<string, string | undefined>
 }
 

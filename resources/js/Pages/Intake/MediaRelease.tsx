@@ -9,20 +9,12 @@ interface ReleasePageProps extends PageProps {
 	mediaReleaseForm: IntakeMediaReleaseForm
 }
 
-export const Show: React.FC<ReleasePageProps> = ({
-	participant,
-	mediaReleaseForm,
-}) => {
+export const MediaRelease: React.FC<ReleasePageProps> = ({ participant }) => {
 	return (
 		<IntakeLayout title="Media Release" subtitle="Please sign the release form">
-			<MediaReleaseForm
-				participant={participant}
-				mediaReleaseForm={mediaReleaseForm}
-				viewOnly={true}
-				nextRoute="intake.media-release.index"
-			/>
+			<MediaReleaseForm participant={participant} />
 		</IntakeLayout>
 	)
 }
 
-export default Show
+export default MediaRelease

@@ -7,7 +7,7 @@ interface IntakePageProps extends PageProps {
 	participant: ParticipantData
 }
 
-export const Create = ({ participant }: IntakePageProps) => {
+export const FatherhoodAssessment = ({ participant }: IntakePageProps) => {
 	return (
 		<IntakeLayout
 			title="Fatherhood assessment"
@@ -18,4 +18,4 @@ export const Create = ({ participant }: IntakePageProps) => {
 	)
 }
 
-export default Create
+export default FatherhoodAssessment

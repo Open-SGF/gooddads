@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers\Intake;
 
-use App\Data\Intake\PostFatherhoodAssessmentData;
+use App\Data\Intake\PostServicePlanData;
 use App\Data\ParticipantData;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class FatherhoodAssessmentController extends Controller
+class ServicePlanController extends Controller
 {
     public function create(Request $request)
     {
         $participant = $request->user()->participant;
 
-        return Inertia::render('Intake/FatherhoodAssessment', [
+        return Inertia::render('Intake/ServicePlan/Create', [
             'participant' => ParticipantData::from($participant),
         ]);
     }
 
-    public function store(PostFatherhoodAssessmentData $request)
+    public function store(PostServicePlanData $request)
     {
-        session(['fatherhoodAssessmentForm' => $request->toArray()]);
+        session(['participantServicePlan' => $request->toArray()]);
 
-        return redirect()->route('servicePlan.create');
+        return redirect()->route('intake.mediaRelease.create');
     }
 }

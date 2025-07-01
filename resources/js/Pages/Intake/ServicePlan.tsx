@@ -7,7 +7,7 @@ interface AssessmentPageProps extends PageProps {
 	participant: ParticipantData
 }
 
-export const Create: React.FC<AssessmentPageProps> = ({ participant }) => {
+export const ServicePlan: React.FC<AssessmentPageProps> = ({ participant }) => {
 	return (
 		<IntakeLayout
 			title="Service Plan"
@@ -18,4 +18,4 @@ export const Create: React.FC<AssessmentPageProps> = ({ participant }) => {
 	)
 }
 
-export default Create
+export default ServicePlan

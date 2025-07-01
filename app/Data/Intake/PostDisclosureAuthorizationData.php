@@ -15,7 +15,7 @@ use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
-class CreateDisclosureAuthorizationData extends Data
+class PostDisclosureAuthorizationData extends Data
 {
     public function __construct(
         #[Uuid]
