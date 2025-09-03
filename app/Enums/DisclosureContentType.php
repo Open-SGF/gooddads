@@ -9,15 +9,15 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 enum DisclosureContentType: string
 {
     use EnumDisplayArray;
-    case ENTIRE_FILE = 'entire_file';
-    case LICENSURE_INFORMATION = 'licensure_information';
-    case MEDICAL_PSYCHIATRIC_RECORDS = 'medical_psychiatric_records';
-    case HOTLINE_INVESTIGATIONS = 'hotline_investigations';
-    case HOME_STUDIES = 'home_studies';
-    case ELIGIBILITY_DETERMINATIONS = 'eligibility_determinations';
-    case SUBSTANCE_ABUSE_TREATMENT = 'substance_abuse_treatment';
-    case CLIENT_EMPLOYMENT_RECORDS = 'client_employment_records';
-    case BENEFITS_RECEIVED = 'benefits_received';
+    case ENTIRE_FILE = 'entireFile';
+    case LICENSURE_INFORMATION = 'licensureInformation';
+    case MEDICAL_PSYCHIATRIC_RECORDS = 'medicalPsychiatricRecords';
+    case HOTLINE_INVESTIGATIONS = 'hotlineInvestigations';
+    case HOME_STUDIES = 'homeStudies';
+    case ELIGIBILITY_DETERMINATIONS = 'eligibilityDeterminations';
+    case SUBSTANCE_ABUSE_TREATMENT = 'substanceAbuseTreatment';
+    case CLIENT_EMPLOYMENT_RECORDS = 'clientEmploymentRecords';
+    case BENEFITS_RECEIVED = 'benefitsReceived';
     case OTHER = 'other';
 
     public function displayValue(): string

@@ -164,13 +164,6 @@ return [
             'phoneNumber' => '1234567890',
             'password' => 'password123',
         ],
-        'intake' => [
-            'firstName' => 'Intake',
-            'lastName' => 'User',
-            'email' => 'intake@example.com',
-            'phoneNumber' => '1234567890',
-            'password' => 'password123',
-        ],
         'participant' => [
             'firstName' => 'Participant',
             'lastName' => 'User',

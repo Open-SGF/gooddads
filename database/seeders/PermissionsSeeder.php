@@ -31,7 +31,6 @@ class PermissionsSeeder extends Seeder
         $programDirector = Role::create(['name' => Roles::ProgramDirector]);
         $facilitator = Role::create(['name' => Roles::Facilitator]);
         $auditor = Role::create(['name' => Roles::Auditor]);
-        $intake = Role::create(['name' => Roles::Intake]);
         $participant = Role::create(['name' => Roles::Participant]);
 
         // Create permissions
@@ -67,7 +66,6 @@ class PermissionsSeeder extends Seeder
             Permissions::ViewUsers,
         ]);
         $auditor->givePermissionTo([]);
-        $intake->givePermissionTo(Permissions::CreateUsers);
         $participant->givePermissionTo([]);
     }
 }

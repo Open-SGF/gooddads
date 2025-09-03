@@ -15,21 +15,15 @@ class UserRegistrationController extends Controller
 {
     public function create(): Response
     {
-        return Inertia::render('Intake/Register');
+        return Inertia::render('Auth/Register');
     }
 
     public function store(PostUserData $request): RedirectResponse|JsonResponse
     {
         $user = User::create($request->all());
 
-        if (! auth()->user()->hasRole('intake')) {
-            return response()->json($user);
-        }
-
-        session(['intakeUserId' => $user->id]);
-
         event(new Registered($user));
 
-        return redirect(route('intake.participantRegister.create'));
+        return redirect(route('auth.register.create'));
     }
 }

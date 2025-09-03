@@ -23,7 +23,6 @@ Enum "responsible_parties_role_enum" {
   "admin"
   "auditor"
   "director"
-  "intake"
   "programDirector"
   "regionDirector"
 }

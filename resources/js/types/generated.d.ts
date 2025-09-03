@@ -1,5 +1,5 @@
 export type AuthProp = {
-	user: UserData | null
+	user?: UserData
 }
 export type ChildData = {
 	id: string
@@ -7,76 +7,76 @@ export type ChildData = {
 	firstName: string
 	lastName: string
 	dateOfBirth: string
-	phoneContact: boolean | null
-	custody: boolean | null
-	visitation: boolean | null
-	contact: string | null
+	phoneContact?: boolean
+	custody?: boolean
+	visitation?: boolean
+	contact?: string
 	childSupport: number
 	createdAt: string
 	updatedAt: string
 }
 export type DisclosureContentType =
-	| 'entire_file'
-	| 'licensure_information'
-	| 'medical_psychiatric_records'
-	| 'hotline_investigations'
-	| 'home_studies'
-	| 'eligibility_determinations'
-	| 'substance_abuse_treatment'
-	| 'client_employment_records'
-	| 'benefits_received'
+	| 'entireFile'
+	| 'licensureInformation'
+	| 'medicalPsychiatricRecords'
+	| 'hotlineInvestigations'
+	| 'homeStudies'
+	| 'eligibilityDeterminations'
+	| 'substanceAbuseTreatment'
+	| 'clientEmploymentRecords'
+	| 'benefitsReceived'
 	| 'other'
 export type DisclosurePurposeType =
-	| 'eligibility_determination'
-	| 'legal_consultation'
-	| 'legal_proceedings'
+	| 'eligibilityDetermination'
+	| 'legalConsultation'
+	| 'legalProceedings'
 	| 'employment'
-	| 'complaint_investigation'
-	| 'treatment_planning'
-	| 'continuity_of_services'
-	| 'background_investigation'
-	| 'consumer_request'
-	| 'share_and_refer'
+	| 'complaintInvestigation'
+	| 'treatmentPlanning'
+	| 'continuityOfServices'
+	| 'backgroundInvestigation'
+	| 'consumerRequest'
+	| 'shareAndRefer'
 	| 'other'
 export type Ethnicity =
 	| 'white'
-	| 'african_american'
-	| 'native_american'
+	| 'africanAmerican'
+	| 'nativeAmerican'
 	| 'asian'
-	| 'pacific_islander'
+	| 'pacificIslander'
 	| 'hispanic'
-	| 'no_answer'
+	| 'noAnswer'
 export type GuestProp = {
-	user: null | null
+	user?: null
 }
 export type MaritalStatus = 'single' | 'married' | 'divorced' | 'widowed'
 export type MiddlewareProps = {
 	auth: AuthProp
 	request: RequestProp
-	toast: ToastProp | null
-	breadcrumb: any | null
+	toast?: ToastProp
+	breadcrumb?: any
 }
 export type ParticipantData = {
 	id: string
 	userId: string
 	regionId: string
 	addressLine1: string
-	addressLine2: string | null
+	addressLine2?: string
 	city: string
 	state: string
 	zipcode: string
-	employer: string | null
-	cellPhoneNumber: string | null
-	homePhoneNumber: string | null
-	workPhoneNumber: string | null
-	altContactNumber: string | null
+	employer?: string
+	cellPhoneNumber?: string
+	homePhoneNumber?: string
+	workPhoneNumber?: string
+	altContactNumber?: string
 	maritalStatus: MaritalStatus
 	ethnicity: Ethnicity
-	tShirtSize: string | null
-	probationParoleCaseWorkerName: string | null
-	probationParoleCaseWorkerPhone: string | null
-	participantPhoto: string | null
-	intakeDate: string | null
+	tShirtSize?: string
+	probationParoleCaseWorkerName?: string
+	probationParoleCaseWorkerPhone?: string
+	participantPhoto?: string
+	intakeDate?: string
 	createdAt: string
 	updatedAt: string
 }
@@ -89,10 +89,10 @@ export type ParticipantMediaReleaseData = {
 	participantId: string
 	printedName: string
 	signature: string
-	signatureDate: string | null
+	signatureDate?: string
 	phoneNumber: string
 	email: string
-	dateCompleted: string | null
+	dateCompleted?: string
 	createdAt: string
 	updatedAt: string
 }
@@ -115,163 +115,6 @@ export type Permissions =
 	| 'list curriculum'
 	| 'list classes'
 	| 'list reports'
-export type PostChildData = {
-	firstName: string
-	lastName: string
-	dateOfBirth: string
-	phoneContact: boolean | null
-	custody: boolean | null
-	visitation: boolean | null
-	childSupport: number
-}
-export type PostDisclosureAuthorizationData = {
-	participantId: string
-	isDssAuthorized: boolean
-	isDysAuthorized: boolean
-	isMhdAuthorized: boolean
-	isDfasAuthorized: boolean
-	isMmacAuthorized: boolean
-	isFsdAuthorized: boolean
-	isCdAuthorized: boolean
-	isDlsAuthorized: boolean
-	isOtherAuthorized: boolean
-	otherAuthorizedEntity: string | null
-	discloseToAttorney: boolean
-	attorneyName: string | null
-	discloseToEmployer: boolean
-	employerName: string | null
-	discloseToLegislator: boolean
-	legislatorName: string | null
-	discloseToGovernorsStaff: boolean
-	governorsStaffDetails: string | null
-	discloseToOtherRecipient: boolean
-	otherRecipientDetails: string | null
-	purposes: DisclosurePurposeType
-	otherPurposeDetails: string | null
-	contentTypes: DisclosureContentType
-	otherDisclosureDetails: string | null
-	acceptTextMessages: boolean
-	consumerSignature: string
-	signatureDate: string
-	witnessSignature: string | null
-	witnessSignatureDate: string | null
-	guardianSignature: string | null
-	guardianSignatureDate: string | null
-	surveyByEmail: boolean | null
-	surveyByMail: boolean | null
-	surveyByOnline: boolean | null
-	dateCompleted: string
-}
-export type PostFatherhoodAssessmentData = {
-	vendorName: string | null
-	participantName: string | null
-	dateOfBirth: string | null
-	socialSecurityNumber: string | null
-	isMissouriResident: boolean | null
-	childIsUnder18: boolean | null
-	isFinanciallyEligible: boolean | null
-	driversLicenseProvided: boolean | null
-	utilityBillProvided: boolean | null
-	payStubProvided: boolean | null
-	writtenEmployerStatementProvided: boolean | null
-	socialSecurityBenefitsProvided: boolean | null
-	selfAttestationProvided: boolean | null
-	unemploymentCompensationProvided: boolean | null
-	otherProvided: boolean | null
-	otherProvidedName: string | null
-	grossMonthlyHouseholdIncome: number | null
-	numberOfFamilyMembers: number | null
-	percentageOfFpl: number | null
-	approvedForServices: boolean | null
-	stateAgencyReviewDate: string | null
-}
-export type PostFatherhoodSurveyData = {
-	dateOfBirth: string | null
-	fatherhoodProgram: string | null
-	reasonBecomeResponsibleFather: boolean | null
-	reasonReferred: boolean | null
-	reasonCourtOrdered: boolean | null
-	reasonAddressChildSupportConcerns: boolean | null
-	reasonOther: boolean | null
-	reasonOtherDescription: string | null
-	referredByWordOfMouth: boolean | null
-	referredByPastParticipant: boolean | null
-	referredByFamilySupportDivision: boolean | null
-	referredByProsecutingAttorney: boolean | null
-	referredByMarketing: boolean | null
-	referredByOrganizationItself: boolean | null
-	referredByOther: boolean | null
-	referredByOtherSource: string | null
-	employmentOpportunitiesExpected: boolean | null
-	assistanceWithAlcoholAbuseExpected: boolean | null
-	increasedEmphasisOnParentingSkillsExpected: boolean | null
-	accessToMentorsResourcesOutsideProgramExpected: boolean | null
-	resumeBuildingSkillsExpected: boolean | null
-	freeLegalServicesExpected: boolean | null
-	assistanceWithCriminalHistoryExpected: boolean | null
-	assistanceWithCreditRepairExpected: boolean | null
-	assistanceWithOvercomingHomelessnessExpected: boolean | null
-	assistanceWithVisitationCustodyExpected: boolean | null
-	increasedUnderstandingOfChildSupportIssuesExpected: boolean | null
-	maintainingHopeForTheFutureExpected: boolean | null
-	helpObtainingInformationAboutHealthWellnessExpected: boolean | null
-	otherExpected: boolean | null
-	otherExpectationsDescription: string | null
-}
-export type PostMediaReleaseData = {
-	printedName: string | null
-	signature: string | null
-	signatureDate: string | null
-	phoneNumber: string | null
-	email: string | null
-}
-export type PostParticipantData = {
-	addressLine1: string
-	addressLine2: string | null
-	city: string
-	state: string
-	zipcode: string
-	employer: string | null
-	tShirtSize: string | null
-	homePhoneNumber: string | null
-	workPhoneNumber: string | null
-	cellPhoneNumber: string | null
-	altContactNumber: string | null
-	probationParoleCaseWorkerPhone: string | null
-	probationParoleCaseWorkerName: string | null
-	maritalStatus: MaritalStatus
-	ethnicity: Ethnicity
-	regionId: string
-	children: Array<PostChildData>
-}
-export type PostServicePlanData = {
-	participantName: string | null
-	clientNumber: string | null
-	parentingSkillDevelopmentIsServiceArea: boolean | null
-	effectiveCoParentingIsServiceArea: boolean | null
-	employmentAndEducationIsServiceArea: boolean | null
-	childSupportIsServiceArea: boolean | null
-	domesticViolenceIsServiceArea: boolean | null
-	serviceIdentifiedByParticipant: string | null
-	goal: string | null
-	custodyVisitationStrategy: string | null
-	custodyVisitationPersonResponsible: string | null
-	custodyVisitationTimeline: string | null
-	custodyVisitationMeasureOfSuccess: string | null
-	educationEmploymentStrategy: string | null
-	educationEmploymentPersonResponsible: string | null
-	educationEmploymentTimeline: string | null
-	educationEmploymentMeasureOfSuccess: string | null
-	housingTransportationStrategy: string | null
-	housingTransportationPersonResponsible: string | null
-	housingTransportationTimeline: string | null
-	housingTransportationMeasureOfSuccess: string | null
-	participantSignature: string | null
-	participantSignatureDate: string | null
-	caseManagerSignature: string | null
-	caseManagerSignatureDate: string | null
-	dateCompleted: string | null
-}
 export type PostUserData = {
 	firstName: string
 	lastName: string
@@ -308,7 +151,6 @@ export type Roles =
 	| 'program director'
 	| 'facilitator'
 	| 'auditor'
-	| 'intake'
 	| 'participant'
 export type ToastProp = {
 	message: string
@@ -322,6 +164,6 @@ export type UserData = {
 	email: string
 	roles: Array<Roles>
 	permissions: Array<Permissions>
-	emailVerifiedAt: string | null
+	emailVerifiedAt?: string
 	active: boolean
 }

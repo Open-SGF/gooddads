@@ -14,9 +14,6 @@ class HomeController extends Controller
         if (! Auth::check()) {
             return Inertia::render('Auth/Login');
         }
-        if ($request->user()->hasRole('intake')) {
-            return Inertia::render('Intake/Register');
-        }
 
         return Inertia::render('Dashboard');
     }

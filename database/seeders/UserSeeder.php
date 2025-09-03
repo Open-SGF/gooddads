@@ -69,15 +69,6 @@ class UserSeeder extends Seeder
             'passwordConfirmation' => bcrypt(config('auth.testUsers.auditor.password')),
         ]);
 
-        $intake = PostUserData::from([
-            'firstName' => config('auth.testUsers.intake.firstName'),
-            'lastName' => config('auth.testUsers.intake.lastName'),
-            'email' => config('auth.testUsers.intake.email'),
-            'phoneNumber' => config('auth.testUsers.intake.phoneNumber'),
-            'password' => bcrypt(config('auth.testUsers.intake.password')),
-            'passwordConfirmation' => bcrypt(config('auth.testUsers.intake.password')),
-        ]);
-
         User::createQuietly($admin->toArray())->assignRole(Roles::Admin->value);
 
         User::createQuietly($director->toArray())->assignRole(Roles::Director->value);
@@ -89,7 +80,5 @@ class UserSeeder extends Seeder
         User::createQuietly($facilitator->toArray())->assignRole(Roles::Facilitator->value);
 
         User::createQuietly($auditor->toArray())->assignRole(Roles::Auditor->value);
-
-        User::createQuietly($intake->toArray())->assignRole(Roles::Intake->value);
     }
 }

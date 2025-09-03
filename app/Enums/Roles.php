@@ -13,7 +13,6 @@ enum Roles: string
     case ProgramDirector = 'program director';
     case Facilitator = 'facilitator';
     case Auditor = 'auditor';
-    case Intake = 'intake';
     case Participant = 'participant';
 
     public function displayValue(): string
@@ -25,7 +24,6 @@ enum Roles: string
             self::ProgramDirector => 'Program Director',
             self::Facilitator => 'Facilitator',
             self::Auditor => 'Auditor',
-            self::Intake => 'Intake',
             self::Participant => 'Participant',
             default => $this->defaultDisplayValue(),
         };

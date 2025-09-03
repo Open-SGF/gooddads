@@ -1,43 +1,45 @@
 import { createContext, useContext, ReactNode } from 'react'
 import { useForm as useInertiaForm } from '@inertiajs/react'
-import { InertiaFormProps } from '@inertiajs/react/types/useForm'
+import type { InertiaFormProps } from '@inertiajs/react'
+import { FormDataConvertible } from '@inertiajs/core'
 
-// Create the context with undefined default value
-// We'll use type assertion since we know the context will be provided before use
-export const FormContext = createContext<InertiaFormProps>(undefined)
+export type FormDataType = Record<string, FormDataConvertible>
+export type FormContextType<T extends FormDataType> = InertiaFormProps<T>
 
-// Form provider component
-export function FormProvider<TForm extends Record<string, any>>({
-	children,
-	initialValues,
-	preserveState = false,
-	resetOnSuccess = false,
-}: FormProviderProps<TForm>) {
-	// Use Inertia's useForm hook
-	const formMethods = useInertiaForm(initialValues, {
-		preserveState,
-		resetOnSuccess,
-	})
+export const FormContext = createContext<FormContextType<FormDataType> | null>(
+	null,
+)
+
+interface FormProviderProps<TForm extends FormDataType> {
+	children: ReactNode
+	initialValues?: TForm
+}
+
+export function FormProvider<
+	TForm extends Record<string, FormDataConvertible>,
+>({ children, initialValues }: FormProviderProps<TForm>) {
+	const formMethods = useInertiaForm(initialValues)
 
 	return (
-		<FormContext.Provider value={formMethods as FormContextType<TForm>}>
+		<FormContext.Provider
+			value={formMethods as unknown as FormContextType<FormDataType>}
+		>
 			{children}
 		</FormContext.Provider>
 	)
 }
 
-// Custom hook to use form context
 export function useForm<
-	TForm extends Record<string, any>,
+	TForm extends Record<string, FormDataConvertible>,
 >(): FormContextType<TForm> {
 	const context = useContext(FormContext)
 
-	if (context === undefined) {
+	if (context === null) {
 		throw new Error('useForm must be used within a FormProvider')
 	}
 
-	return context as FormContextType<TForm>
+	// Cast the context back to the requested generic type
+	return context as unknown as FormContextType<TForm>
 }
 
-// Export the original useForm in case it's needed
 export { useInertiaForm }

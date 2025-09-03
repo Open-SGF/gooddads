@@ -13,7 +13,8 @@
 		"paths": {
 			"@/*": ["./resources/js/*"],
 			"ziggy-js": ["./vendor/tightenco/ziggy"]
-		}
+		},
+		"typeRoots": ["./node_modules/@inertiajs/react/types"]
 	},
 	"include": [
 		"resources/js/**/*.ts",

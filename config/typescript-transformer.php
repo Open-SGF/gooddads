@@ -82,5 +82,5 @@ return [
      * make them optional instead.
      */
 
-    'transform_null_to_optional' => false,
+    'transform_null_to_optional' => true,
 ];

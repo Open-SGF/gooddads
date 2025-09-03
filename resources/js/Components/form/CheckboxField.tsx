@@ -1,13 +1,19 @@
 import { Checkbox, Label } from '@/Components/ui'
-import { useForm } from '@/Context/FormContext'
+import { FormDataType, useForm } from '@/Context/FormContext'
 import type { ConditionalKeys } from 'type-fest'
+import { FormDataConvertible } from '@inertiajs/core'
 
-type CheckboxFieldProps<T extends Record<string, unknown>> = {
-	id: Extract<ConditionalKeys<T, boolean>, string>
+type FormKeysType<T extends FormDataConvertible> = Extract<
+	ConditionalKeys<T, boolean>,
+	string
+>
+
+type CheckboxFieldProps<T extends FormDataConvertible> = {
+	id: FormKeysType<T>
 	label: string
 }
 
-export default function CheckboxField<T extends Record<string, unknown>>({
+export default function CheckboxField<T extends FormDataType>({
 	id,
 	label,
 }: CheckboxFieldProps<T>) {

@@ -8,16 +8,16 @@ use Illuminate\Support\Collection;
 enum DisclosurePurposeType: string
 {
     use EnumDisplayArray;
-    case ELIGIBILITY_DETERMINATION = 'eligibility_determination';
-    case LEGAL_CONSULTATION = 'legal_consultation';
-    case LEGAL_PROCEEDINGS = 'legal_proceedings';
+    case ELIGIBILITY_DETERMINATION = 'eligibilityDetermination';
+    case LEGAL_CONSULTATION = 'legalConsultation';
+    case LEGAL_PROCEEDINGS = 'legalProceedings';
     case EMPLOYMENT = 'employment';
-    case COMPLAINT_INVESTIGATION = 'complaint_investigation';
-    case TREATMENT_PLANNING = 'treatment_planning';
-    case CONTINUITY_OF_SERVICES = 'continuity_of_services';
-    case BACKGROUND_INVESTIGATION = 'background_investigation';
-    case CONSUMER_REQUEST = 'consumer_request';
-    case SHARE_AND_REFER = 'share_and_refer';
+    case COMPLAINT_INVESTIGATION = 'complaintInvestigation';
+    case TREATMENT_PLANNING = 'treatmentPlanning';
+    case CONTINUITY_OF_SERVICES = 'continuityOfServices';
+    case BACKGROUND_INVESTIGATION = 'backgroundInvestigation';
+    case CONSUMER_REQUEST = 'consumerRequest';
+    case SHARE_AND_REFER = 'shareAndRefer';
     case OTHER = 'other';
 
     public function displayValue(): string
