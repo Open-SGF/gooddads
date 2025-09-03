@@ -4,12 +4,13 @@ namespace App\Data;
 
 use App\Enums\Permissions;
 use App\Enums\Roles;
-use App\Models\User;
-use Carbon\Carbon;
+use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
+#[MapInputName(SnakeCaseMapper::class)]
 class UserData extends Data
 {
     public function __construct(
@@ -17,28 +18,14 @@ class UserData extends Data
         public string $firstName,
         public string $lastName,
         public string $email,
-        /** @var Roles[] $roles */
+        #[MapInputName('role_names')]
+        /** @var Roles[] */
         public array $roles,
-        /** @var Permissions[] $permissions */
+        #[MapInputName('permission_names')]
+        /** @var Permissions[] */
         public array $permissions,
-        public ?Carbon $createdAt,
-        public ?Carbon $updatedAt,
-        public ?string $emailVerifiedAt
+        public ?string $emailVerifiedAt,
+        public bool $active,
     ) {
-    }
-
-    public static function fromModel(User $user): self
-    {
-        return new self(
-            id: $user->id,
-            firstName: $user->first_name,
-            lastName: $user->last_name,
-            email: $user->email,
-            roles: $user->getRoleNames()->toArray(),
-            permissions: $user->getAllPermissions()->pluck('name')->toArray(),
-            createdAt: $user->created_at,
-            updatedAt: $user->updated_at,
-            emailVerifiedAt: $user->email_verified_at
-        );
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Data\Auth\PostUserData;
 use App\Enums\Roles;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -14,67 +14,71 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Admin',
-            'last_name' => 'User',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password123'),
+        $admin = PostUserData::from([
+            'firstName' => config('auth.testUsers.admin.firstName'),
+            'lastName' => config('auth.testUsers.admin.lastName'),
+            'email' => config('auth.testUsers.admin.email'),
+            'phoneNumber' => config('auth.testUsers.admin.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.admin.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.admin.password')),
+        ]);
 
-        ])->assignRole(Roles::Admin);
+        $director = PostUserData::from([
+            'firstName' => config('auth.testUsers.director.firstName'),
+            'lastName' => config('auth.testUsers.director.lastName'),
+            'email' => config('auth.testUsers.director.email'),
+            'phoneNumber' => config('auth.testUsers.director.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.director.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.director.password')),
+        ]);
 
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Director',
-            'last_name' => 'User',
-            'email' => 'director@example.com',
-            'password' => bcrypt('password123'),
+        $regionDirector = PostUserData::from([
+            'firstName' => config('auth.testUsers.regionDirector.firstName'),
+            'lastName' => config('auth.testUsers.regionDirector.lastName'),
+            'email' => config('auth.testUsers.regionDirector.email'),
+            'phoneNumber' => config('auth.testUsers.regionDirector.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.regionDirector.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.regionDirector.password')),
+            'role' => Roles::RegionDirector->value,
+        ]);
 
-        ])->assignRole(Roles::Director);
+        $programDirector = PostUserData::from([
+            'firstName' => config('auth.testUsers.programDirector.firstName'),
+            'lastName' => config('auth.testUsers.programDirector.lastName'),
+            'email' => config('auth.testUsers.programDirector.email'),
+            'phoneNumber' => config('auth.testUsers.programDirector.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.programDirector.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.programDirector.password')),
+        ]);
 
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Region Director',
-            'last_name' => 'User',
-            'email' => 'region_director@example.com',
-            'password' => bcrypt('password123'),
+        $facilitator = PostUserData::from([
+            'firstName' => config('auth.testUsers.facilitator.firstName'),
+            'lastName' => config('auth.testUsers.facilitator.lastName'),
+            'email' => config('auth.testUsers.facilitator.email'),
+            'phoneNumber' => config('auth.testUsers.facilitator.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.facilitator.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.facilitator.password')),
+        ]);
 
-        ])->assignRole(Roles::RegionDirector);
+        $auditor = PostUserData::from([
+            'firstName' => config('auth.testUsers.auditor.firstName'),
+            'lastName' => config('auth.testUsers.auditor.lastName'),
+            'email' => config('auth.testUsers.auditor.email'),
+            'phoneNumber' => config('auth.testUsers.auditor.phoneNumber'),
+            'password' => bcrypt(config('auth.testUsers.auditor.password')),
+            'passwordConfirmation' => bcrypt(config('auth.testUsers.auditor.password')),
+        ]);
 
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Program Director',
-            'last_name' => 'User',
-            'email' => 'program_director@example.com',
-            'password' => bcrypt('password123'),
+        User::createQuietly($admin->toArray())->assignRole(Roles::Admin->value);
 
-        ])->assignRole(Roles::ProgramDirector);
+        User::createQuietly($director->toArray())->assignRole(Roles::Director->value);
 
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Facilitator',
-            'last_name' => 'User',
-            'email' => 'facilitator@example.com',
-            'password' => bcrypt('password123'),
+        User::createQuietly($regionDirector->toArray())->assignRole(Roles::RegionDirector->value);
 
-        ])->assignRole(Roles::Facilitator);
+        User::createQuietly($programDirector->toArray())->assignRole(Roles::ProgramDirector->value);
 
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Auditor',
-            'last_name' => 'User',
-            'email' => 'auditor@example.com',
-            'password' => bcrypt('password123'),
+        User::createQuietly($facilitator->toArray())->assignRole(Roles::Facilitator->value);
 
-        ])->assignRole(Roles::Auditor);
-
-        User::factory()->create([
-            'id' => Str::uuid(),
-            'first_name' => 'Intake',
-            'last_name' => 'User',
-            'email' => 'intake@example.com',
-            'password' => bcrypt('password123'),
-
-        ])->assignRole(Roles::Intake);
+        User::createQuietly($auditor->toArray())->assignRole(Roles::Auditor->value);
     }
 }

@@ -3,7 +3,13 @@ import { Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
 import { House } from 'lucide-react'
 
-export default function Dashboard({ auth }: PageProps) {
+type DashboardProps = {
+	auth: {
+		user: NonNullable<PageProps['auth']['user']>
+	}
+}
+
+export default function Dashboard({ auth }: DashboardProps) {
 	return (
 		<AuthenticatedLayout
 			user={auth.user}

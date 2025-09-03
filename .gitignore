@@ -22,6 +22,14 @@ yarn-error.log
 /.editorconfig
 /.php-cs-fixer.cache
 dbml-error.log
-
+/docker
 *storybook.log
 .DS_Store
+.windsurfrules
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

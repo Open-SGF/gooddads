@@ -38,7 +38,7 @@ type FilterItemProps = {
 export const TableFilter = () => {
 	const { fields } = useDataTableContext()
 
-	const query = usePage<PageProps>().props.ziggy.query
+	const query = usePage<PageProps>().props.request.query
 	const queryFilters = () => {
 		if (query.filters) {
 			return Object.fromEntries(

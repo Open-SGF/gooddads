@@ -28,7 +28,7 @@ class QuizQuestionOption extends Model
     public $incrementing = false;
 
     /**
-     * @return BelongsTo<QuizQuestion, QuizQuestionOption>
+     * @return BelongsTo<QuizQuestion, $this>
      */
     public function quizQuestion(): BelongsTo
     {

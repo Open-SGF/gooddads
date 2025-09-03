@@ -18,6 +18,6 @@ class Authenticate extends Middleware
         }
 
         // For web requests, redirect to home where the login page is rendered
-        return route('home');
+        return route('index');
     }
 }

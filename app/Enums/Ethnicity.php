@@ -8,12 +8,12 @@ enum Ethnicity: string
 {
     use EnumDisplayArray;
     case White = 'white';
-    case AfricanAmerican = 'african_american';
-    case NativeAmerican = 'native_american';
+    case AfricanAmerican = 'africanAmerican';
+    case NativeAmerican = 'nativeAmerican';
     case Asian = 'asian';
-    case PacificIslander = 'pacific_islander';
+    case PacificIslander = 'pacificIslander';
     case Hispanic = 'hispanic';
-    case NoAnswer = 'no_answer';
+    case NoAnswer = 'noAnswer';
 
     public function displayValue(): string
     {

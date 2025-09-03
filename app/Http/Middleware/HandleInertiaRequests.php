@@ -2,9 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Data\Props\MiddlewareProps;
 use App\Data\UserData;
+use Auth;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Throwable;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -30,16 +33,35 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        return [
-            ...parent::share($request),
-            'auth.user' => fn () => $request->user()
-              ? UserData::from($request->user())
-              : null,
-            'ziggy' => fn () => [
+        try {
+            $userProp = Auth::check()
+                ? UserData::from(Auth::user())
+                : null;
+
+            $requestProp = [
                 'location' => $request->url(),
                 'query' => $request->query() ?? [],
-            ],
-            'toast' => $request->session()->get('toast'),
-        ];
+            ];
+
+            $middlewareProps = MiddlewareProps::from([
+                'auth' => [
+                    'user' => $userProp,
+                ],
+                'request' => $requestProp,
+                'toast' => $request->session()->get('toast'),
+            ])->toArray();
+
+            return [
+                ...parent::share($request),
+                ...$middlewareProps,
+            ];
+        } catch (Throwable $e) {
+            return [
+                'error' => [
+                    'message' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString(),
+                ],
+            ];
+        }
     }
 }

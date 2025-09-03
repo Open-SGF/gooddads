@@ -16,8 +16,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $last_name
  * @property CarbonImmutable $date_of_birth
  * @property string $contact
+ * @property bool $custody
+ * @property bool $visitation
+ * @property bool $phone_contact
  * @property float $child_support
- * @property \App\Models\Participant $participant
+ * @property Participant $participant
  */
 class Child extends Model
 {
@@ -53,7 +56,7 @@ class Child extends Model
     /**
      * Define the relationship to the Participant model.
      *
-     * @return BelongsTo<Participant, self>
+     * @return BelongsTo<Participant, $this>
      */
     public function participant(): BelongsTo
     {
