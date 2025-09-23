@@ -48,9 +48,12 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/pdf-fake', [PdfController::class, 'generateFake'])
-    // ->middleware('auth')
-    ->name('test.pdf');
+// Route::get('/pdf-fake', [PdfController::class, 'generateFake'])
+//     // ->middleware('auth')
+//     ->name('test.pdf');
+
+Route::get('/intake/{participantId}/pdf', [IntakeController::class, 'generatePdf']);
+
 
 
 require __DIR__.'/auth.php';
