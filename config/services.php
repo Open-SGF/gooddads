@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'neon' => [
+        'base_url' => env('NEON_BASE_URL'),
+        'api_key' => env('NEON_API_KEY'),
+    ],
+
 ];
