@@ -2,7 +2,14 @@
 
 return [
     'dad_intake_form' => [
-        'Client Name' => 'full_name',
+        'Name' => 'full_name',
+        'Phone Number' => 'phone',
+        'Address' => 'address',
+        'City' => 'city',
+        'State' => 'state',
+        'Zip' => 'zip',
+        'Email Address' => 'email',
+        'Region' => 'region',
         'Date' => 'submission_date',
     ],
 ];
