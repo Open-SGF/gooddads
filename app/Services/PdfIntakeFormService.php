@@ -5,6 +5,7 @@ namespace App\Services;
 use mikehaertl\pdftk\Pdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class PdfIntakeFormService
 {
@@ -18,15 +19,17 @@ class PdfIntakeFormService
         $data = [];
         foreach ($fieldMap as $pdfField => $participantField) {
             $value = data_get($participant, $participantField);
-            if ($value instanceof \Carbon\Carbon) {
-                $value = $value->format('m/d/Y');
-            }
+            // if ($value instanceof \Carbon\Carbon) {
+            //     $value = $value->format('m/d/Y');
+            // }
             $data[$pdfField] = $value ?? '';
         }
 
         // Build folder structure for each participant
         $storagePath = "participant-forms/{$participant->id}/";
-        $filename = Str::slug($participant->full_name) . '-intake-form.pdf';
+        $timestamp = Carbon::now()->format('Y-m-d_H-i-s');
+        $filename = Str::of($participant->last_name)->slug('_')->ucfirst() . '_' . Str::of($participant->first_name)->slug('_')->ucfirst() . '_Enrollment_' . $timestamp . '.pdf';
+
         $outputPath = storage_path("app/{$storagePath}{$filename}");
 
         // Ensure directory exists
