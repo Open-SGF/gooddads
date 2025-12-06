@@ -54,6 +54,7 @@ export type MiddlewareProps = {
 	auth: AuthProp
 	request: RequestProp
 	toast?: ToastProp
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	breadcrumb?: any
 }
 export type ParticipantData = {
