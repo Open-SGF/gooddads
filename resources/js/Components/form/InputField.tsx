@@ -2,7 +2,6 @@ import { Input, Label } from '@/Components/ui'
 import { FormDataType, useForm } from '@/Context/FormContext'
 import React from 'react'
 import { FormDataConvertible } from '@inertiajs/core'
-import type { ConditionalKeys } from 'type-fest'
 
 type FormKeysType<T extends FormDataConvertible> = Extract<keyof T, string>
 
