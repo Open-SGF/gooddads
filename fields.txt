@@ -1,881 +1,722 @@
 ---
 FieldType: Text
-FieldName: Date30_af_date
+FieldName: title_region
+FieldFlags: 0
+FieldJustification: Center
+---
+FieldType: Text
+FieldName: full_name
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Employer
+FieldName: submission_date_af_date
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: T-shirt Size
+FieldName: address
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Work Phone Number
+FieldName: employer
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Other Number
+FieldName: tshirt_size
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Worker
+FieldName: phone
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Worker Phone Number
+FieldName: work_phone
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Childs Name 1
+FieldName: other_phone
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Childs Name 2
+FieldName: email
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Childs Name 3
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Childs Name 4
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Childs Name 5
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Childs Age 1
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Childs Age 2
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Childs Age 3
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Childs Age 4
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Childs Age 5
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Monthly Child Support
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Name
-FieldFlags: 0
-FieldValue: Austen Korell
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Discloser form other 1
+FieldName: case_worker_name
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Phone Number
+FieldName: case_worker_phone
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Address
+FieldName: child_name_1
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Email Address
+FieldName: child_name_2
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Attorney
+FieldName: child_name_3
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_name_4
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_name_5
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_age_1
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_age_2
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_age_3
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_age_4
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_age_5
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_dob_1
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_dob_2
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_dob_3
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_dob_4
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: child_dob_5
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: contact_with_children
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Button
+FieldName: children_custody
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: children_visitation
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: children_phone
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Text
+FieldName: monthly_child_support
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: marital_status
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Married
+FieldStateOption: Engaged
+FieldStateOption: Single
+FieldStateOption: Divorced
+FieldStateOption: Widowed
+---
+FieldType: Button
+FieldName: ethnicity
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: American Indian or Alaska Native
+FieldStateOption: Asian
+FieldStateOption: Black or African American
+FieldStateOption: Hispanic or Latino
+FieldStateOption: Native Hawaiian or Islander
+FieldStateOption: White
+---
+FieldType: Text
+FieldName: authorize_full_name
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: authorize_other
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: authorize_dys
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: authorize_mhd
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: authorize_dfas
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: authorize_mmac
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: authorize_cd
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: authorize_dls
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Text
+FieldName: authorize_discloser_form_other
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Legislator
+FieldName: disclose_full_name
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: disclose_phone
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: disclose_dob
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: disclose_ssn
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: disclose_address
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: disclose_email
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: disclose_to_attorney
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Employer 2
+FieldName: disclose_to_legislator
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Governor's Staff
+FieldName: disclose_to_employer
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Discloser form other 2
+FieldName: disclose_to_governors_staff
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Social Security Number
+FieldName: other_discloser
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: disclosure_purpose_eligibility_determination
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_purpose_legal_consultation_representation
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_purpose_legal_proceedings
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_purpose_employment
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_purpose_complaint_investigation_resolution
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_purpose_treatment_planning
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_purpose_continuity_of_services_care
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_purpose_background_investigation
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_purpose_at_consumers_request
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_purpose_to_share_or_refer
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_purpose_other
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclose_hotline_investigations
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_eligibility_determinations
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_licensure_information
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_home_studies
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_substance_abuse_treatment
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: disclosure_client_employment_records
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: accept_text_messages
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Button
+FieldName: survey_delivery_method
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Email
+FieldStateOption: Address
+FieldStateOption: Online
+---
+FieldType: Text
+FieldName: participant_dob
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Survey other 1
+FieldName: participant_ssn
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: eligibility_missouri_resident
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Button
+FieldName: eligibility_child_under_18
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Text
+FieldName: poverty_level_monthly_income
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: poverty_level_number_of_household_members
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: poverty_level_percentage_fpl
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: financial_assessment_drivers_licence
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Button
+FieldName: financial_assessment_utility_bill
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Button
+FieldName: financial_assessment_written_employer_statement
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Button
+FieldName: financial_assessment_ss_benefits_statement
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Button
+FieldName: financial_assessment_no_employment_income
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Button
+FieldName: financial_assessment_unemployment_compensation
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Button
+FieldName: financial_assessment_other
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+FieldStateOption: No
+---
+FieldType: Text
+FieldName: financial_assessment_other_description
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: survey_client_dob
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: survey_why
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Responsible father
+FieldStateOption: Off
+FieldStateOption: Referred
+FieldStateOption: Attourney
+FieldStateOption: Child support concerns
+FieldStateOption: Other
+---
+FieldType: Text
+FieldName: survey_other_description
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: survey_how
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Word of mouth
+FieldStateOption: Off
+FieldStateOption: Past participant
+FieldStateOption: Family support
+FieldStateOption: Prosecuting attorney
+FieldStateOption: Marketing
+FieldStateOption: The organization
+FieldStateOption: Other
+---
+FieldType: Text
+FieldName: survey_how_other_description
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: survey_gain
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Emplyment opportunities
+FieldStateOption: Off
+FieldStateOption: Abuse assistance
+FieldStateOption: Parenting skills
+FieldStateOption: Resume building
+FieldStateOption: Legal services
+FieldStateOption: Access to mentors
+FieldStateOption: Criminal History Assistance
+FieldStateOption: Overcoming homelessness assistance
+FieldStateOption: Visitation custody assistance
+FieldStateOption: Credit repair assistance
+FieldStateOption: Maintaining Hope
+FieldStateOption: Increased Understanding of Child Support
+FieldStateOption: Other
+FieldStateOption: Heath wellness information
+---
+FieldType: Text
+FieldName: survey_gain_other_description
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Survey other 2
+FieldName: participant_full_name
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: service_plan_goal
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Survey other 3
+FieldName: service_plan_service_identified
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Client Number
+FieldName: service_plan_client_number
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Goal
+FieldName: service_plan_participant_full_name
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: service_plan_strategies_1
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Strategies 1
+FieldName: service_plan_person_responsible_1
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Strategies 2
+FieldName: service_plan_timeline_1
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Strategies 3
+FieldName: service_plan_measure_of_success_1
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Person Responsible 1
+FieldName: service_plan_measure_of_success_2
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Person Responsible 2
+FieldName: service_plan_measure_of_success_3
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Person Responsible 3
+FieldName: service_plan_person_responsible_2
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Timeline 1
+FieldName: service_plan_person_responsible_3
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Timeline 3
+FieldName: service_plan_timeline_2
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Timeline 2
+FieldName: service_plan_timeline_3
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Measure of Success 1
+FieldName: service_plan_strategies_2
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Measure of Success 2
+FieldName: service_plan_strategies_3
 FieldFlags: 4096
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Measure of Success 3
-FieldFlags: 4096
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Service Identified
-FieldFlags: 4096
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Birthday
+FieldName: media_release_full_name
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Child 1
+FieldName: media_release_email
 FieldFlags: 0
 FieldJustification: Left
 ---
 FieldType: Text
-FieldName: Child 2
+FieldName: media_release_phone
 FieldFlags: 0
 FieldJustification: Left
 ---
-FieldType: Text
-FieldName: Child 3
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Child 4
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Child 5
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Button
-FieldName: 1
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 2
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 3
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 4
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 5
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 6
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 7
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 8
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 9
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 10
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 11
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 12
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 13
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 14
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 15
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 16
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 17
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 18
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 19
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 20
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 22
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 23
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 24
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 25
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 26
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 27
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 28
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 29
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 30
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 21
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 31
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 32
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 33
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 34
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 35
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 36
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 37
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 38
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 39
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 68
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 69
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 70
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 71
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 72
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 73
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 74
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 75
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 76
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 77
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 78
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 79
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 80
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 81
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 82
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 83
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 84
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 85
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 86
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 87
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 88
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 89
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 90
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 91
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 92
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 93
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 40
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 41
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 42
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 43
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 44
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 46
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 48
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 50
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 52
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 54
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 56
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 58
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 59
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 57
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 55
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 53
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 51
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
-FieldType: Button
-FieldName: 49
-FieldFlags: 0
-FieldJustification: Left
-FieldStateOption: Off
-FieldStateOption: Yes
----
 FieldType: Button
-FieldName: 47
+FieldName: select_disclose_to_attorney
 FieldFlags: 0
 FieldJustification: Left
 FieldStateOption: Off
 FieldStateOption: Yes
 ---
 FieldType: Button
-FieldName: 45
+FieldName: disclosure_medical
 FieldFlags: 0
 FieldJustification: Left
 FieldStateOption: Off
 FieldStateOption: Yes
----
-FieldType: Text
-FieldName: Other 12
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: Percentage
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: monthly income
-FieldFlags: 0
-FieldJustification: Left
----
-FieldType: Text
-FieldName: # of people
-FieldFlags: 0
-FieldJustification: Left
