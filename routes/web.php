@@ -48,4 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports', [ReportsController::class, 'list'])->name('reports.list');
 });
 
+Route::middleware(['auth'])->name('reports.')->group(function () {
+    Route::get('/reports', [ReportsController::class, 'list'])->name('list')->breadcrumb('Reports', 'home');
+});
+
 require __DIR__.'/auth.php';
