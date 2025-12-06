@@ -31,5 +31,4 @@ enum Permissions: string
             default => $this->defaultDisplayValue(),
         };
     }
-
 }

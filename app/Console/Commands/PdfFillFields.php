@@ -3,12 +3,13 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use mikehaertl\pdftk\Pdf;
 use Illuminate\Support\Facades\Storage;
+use mikehaertl\pdftk\Pdf;
 
 class PdfFillFields extends Command
 {
     protected $signature = 'pdf:fill-fields';
+
     protected $description = 'Fill all form fields with their field names for debugging layout';
 
     public function handle()
@@ -21,12 +22,13 @@ class PdfFillFields extends Command
         $reader = new Pdf($inputPath);
         $fields = $reader->getDataFields();
 
-        if (!$fields) {
+        if (! $fields) {
             $this->error('No fields found.');
+
             return 1;
         }
 
-        $this->info('Found ' . count($fields) . ' fields.');
+        $this->info('Found '.count($fields).' fields.');
 
         // --- 2️⃣ Second instance: Fill the fields with their own names ---
         $pdf = new Pdf($inputPath);
@@ -41,8 +43,9 @@ class PdfFillFields extends Command
             ->needAppearances()
             ->saveAs($outputPath);
 
-        if (!$result) {
-            $this->error('Failed to save PDF: ' . $pdf->getError());
+        if (! $result) {
+            $this->error('Failed to save PDF: '.$pdf->getError());
+
             return 1;
         }
 

@@ -8,7 +8,6 @@ use App\Http\Controllers\LegalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -46,14 +45,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/classes', [ClassesController::class, 'list'])->name('classes.list');
     Route::get('/reports', [ReportsController::class, 'list'])->name('reports.list');
 });
-
-
-// Route::get('/pdf-fake', [PdfController::class, 'generateFake'])
-//     // ->middleware('auth')
-//     ->name('test.pdf');
-
-Route::get('/intake/{participantId}/pdf', [IntakeController::class, 'generatePdf']);
-
-
 
 require __DIR__.'/auth.php';

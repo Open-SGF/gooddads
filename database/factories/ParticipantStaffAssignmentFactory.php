@@ -24,5 +24,4 @@ class ParticipantStaffAssignmentFactory extends Factory
             'participant_user_id' => User::factory()->has(Participant::factory()),
         ];
     }
-
 }

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Support\Facades\Gate;
+
 // use App\Models\Report;
 
 class ReportsController extends Controller
@@ -48,7 +49,7 @@ class ReportsController extends Controller
      */
     public function show(Report $report): Response
     {
-        if (!Gate::allows('view-reports')) {
+        if (! Gate::allows('view-reports')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -62,7 +63,7 @@ class ReportsController extends Controller
      */
     public function download(Report $report)
     {
-        if (!Gate::allows('download-reports')) {
+        if (! Gate::allows('download-reports')) {
             abort(403, 'Unauthorized action.');
         }
 
