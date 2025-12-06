@@ -56,19 +56,8 @@ class NeonApiService
         $fields = [
             // Contact info
             'fullName',
-            'firstName',
-            'middleName',
-            'lastName',
-            'homeCellPhone',
-            'fullAddress',
-            'city',
-            'state',
-            'zip',
-            'email',
-            'regions_id',
             'enteredDate',
             'updatedDate',
-
         ];
 
         $response = Http::get($url, [
@@ -78,12 +67,9 @@ class NeonApiService
 
         $response->throw(); // will raise exception if not 200
 
-        $temp = $response->json() ?? [];
+        $data = $response->json() ?? [];
 
-        print_r($this->apiKey);
-        print_r($temp);
-
-        return $temp;
+        return $data['records'] ?? [];
     }
 
     public function getParticipant(int $id): array
@@ -151,7 +137,7 @@ class NeonApiService
         return $response->json();
     }
 
-    public function fetchPersonContactInfo(int $personId): array
+    public function fetchPersonContactInfo(int $personId, bool $useWhereClause): array
     {
         return $this->fetch("persons/{$personId}", [
             'regions_id',
@@ -179,10 +165,10 @@ class NeonApiService
             'ethnicity',
             'enteredDate',
             'updatedDate',
-        ]);
+        ], $useWhereClause);
     }
 
-    public function fetchPersonChildren(int $personId): array
+    public function fetchPersonChildren(int $personId, bool $useWhereClause): array
     {
         return $this->fetch('persons_applications_children', [
             'firstName',
@@ -191,39 +177,40 @@ class NeonApiService
             'dateOfBirth',
             'enteredDate',
             'updatedDate',
-        ], $personId);
+        ], $personId, $useWhereClause);
     }
 
-    public function fetchPersonDisclosure(int $personId): array
+    public function fetchPersonDisclosure(int $personId, bool $useWhereClause): array
     {
         return $this->fetch('persons_applications', [
             'enteredDate',
             'updatedDate',
-        ], $personId);
+        ], $personId, 
+        $useWhereClause);
     }
 
-    public function fetchPersonAssessment(int $personId): array
+    public function fetchPersonAssessment(int $personId, bool $useWhereClause): array
     {
         return $this->fetch('persons_assessment_worksheet', [
             'enteredDate',
             'updatedDate',
-        ], $personId);
+        ], $personId, $useWhereClause);
     }
 
-    public function fetchPersonSurvey(int $personId): array
+    public function fetchPersonSurvey(int $personId, bool $useWhereClause): array
     {
         return $this->fetch('persons_introductory_survey', [
             'enteredDate',
             'updatedDate',
-        ], $personId);
+        ], $personId, $useWhereClause);
     }
 
-    public function fetchPersonServicePlan(int $personId): array
+    public function fetchPersonServicePlan(int $personId, bool $useWhereClause): array
     {
         return $this->fetch('persons_service_plan', [
             'enteredDate',
             'updatedDate',
-        ]);
+        ], $personId, $useWhereClause);
     }
 
     public function buildFullParticipantRecord(int $personId): array
