@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Services\Integrations\NeonApiService;
+use Illuminate\Console\Command;
 
 class TestParticipantRecord extends Command
 {
@@ -48,7 +48,8 @@ class TestParticipantRecord extends Command
             $this->line(json_encode($record, JSON_PRETTY_PRINT));
 
         } catch (\Throwable $e) {
-            $this->error("Error: " . $e->getMessage());
+            $this->error('Error: '.$e->getMessage());
+
             return self::FAILURE;
         }
 
