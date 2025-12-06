@@ -17,7 +17,7 @@ class RegionSeeder extends Seeder
             ->create();
 
         Region::create([
-            'description' => 'Springfield, MO'
+            'description' => 'Springfield, MO',
         ]);
     }
 }

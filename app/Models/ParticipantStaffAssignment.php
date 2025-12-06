@@ -13,7 +13,6 @@ class ParticipantStaffAssignment extends Model
 {
     /** @use HasFactory<ParticipantStaffAssignmentFactory> */
     use HasFactory;
-
     use HasUuids;
 
     protected $keyType = 'string';

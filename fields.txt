@@ -1,0 +1,881 @@
+---
+FieldType: Text
+FieldName: Date30_af_date
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Employer
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: T-shirt Size
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Work Phone Number
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Other Number
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Worker
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Worker Phone Number
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Childs Name 1
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Childs Name 2
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Childs Name 3
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Childs Name 4
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Childs Name 5
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Childs Age 1
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Childs Age 2
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Childs Age 3
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Childs Age 4
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Childs Age 5
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Monthly Child Support
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Name
+FieldFlags: 0
+FieldValue: Austen Korell
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Discloser form other 1
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Phone Number
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Address
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Email Address
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Attorney
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Legislator
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Employer 2
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Governor's Staff
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Discloser form other 2
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Social Security Number
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Survey other 1
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Survey other 2
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Survey other 3
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Client Number
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Goal
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Strategies 1
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Strategies 2
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Strategies 3
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Person Responsible 1
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Person Responsible 2
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Person Responsible 3
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Timeline 1
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Timeline 3
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Timeline 2
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Measure of Success 1
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Measure of Success 2
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Measure of Success 3
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Service Identified
+FieldFlags: 4096
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Birthday
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Child 1
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Child 2
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Child 3
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Child 4
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Child 5
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: 1
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 2
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 3
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 4
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 5
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 6
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 7
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 8
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 9
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 10
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 11
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 12
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 13
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 14
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 15
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 16
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 17
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 18
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 19
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 20
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 22
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 23
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 24
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 25
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 26
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 27
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 28
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 29
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 30
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 21
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 31
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 32
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 33
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 34
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 35
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 36
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 37
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 38
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 39
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 68
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 69
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 70
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 71
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 72
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 73
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 74
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 75
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 76
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 77
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 78
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 79
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 80
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 81
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 82
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 83
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 84
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 85
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 86
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 87
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 88
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 89
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 90
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 91
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 92
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 93
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 40
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 41
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 42
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 43
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 44
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 46
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 48
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 50
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 52
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 54
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 56
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 58
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 59
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 57
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 55
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 53
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 51
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 49
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 47
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: 45
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Text
+FieldName: Other 12
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Percentage
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: monthly income
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: # of people
+FieldFlags: 0
+FieldJustification: Left

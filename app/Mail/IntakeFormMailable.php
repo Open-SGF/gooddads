@@ -3,11 +3,10 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 
 class IntakeFormMailable extends Mailable
@@ -15,6 +14,7 @@ class IntakeFormMailable extends Mailable
     use Queueable, SerializesModels;
 
     public $participant;
+
     public $pdfPath;
 
     /**
@@ -32,7 +32,7 @@ class IntakeFormMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Intake Form for ' . ($this->participant->full_name ?? 'Participant')
+            subject: 'Intake Form for '.($this->participant->full_name ?? 'Participant')
         );
     }
 

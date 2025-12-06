@@ -4,18 +4,18 @@ namespace App\Services;
 
 use App\Data\ChildData;
 use App\Models\Participant;
-use App\Models\User;
+use App\Data\ParticipantData;
 use Illuminate\Support\Collection;
 
 class ParticipantService
 {
-    public function create(ParticipantData $participant)
+    public function create(Participant $participant, ParticipantData $participantData)
     {
         if (isset($participantData['childrenInfo'])) {
             $this->addChildren($participant, $participantData['childrenInfo']);
         }
 
-        return $participant;
+        return $participantData;
     }
 
     public function addChildren(Participant $participant, array $childrenInfo): Collection
@@ -23,7 +23,7 @@ class ParticipantService
         $children = [];
 
         foreach ($childrenInfo as $childInfo) {
-            $children[] = ChildData::fromArray($childInfo)->toArray();
+            $children[] = ChildData::from($childInfo)->toArray();
         }
 
         return $participant->children()->createMany($children);

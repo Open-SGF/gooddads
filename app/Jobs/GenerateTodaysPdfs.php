@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Services\PdfIntakeFormService;
-use App\Services\NeonDataTransformer;
 use App\Services\Integrations\NeonApiService;
+use App\Services\NeonDataTransformer;
+use App\Services\PdfIntakeFormService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Hash;
