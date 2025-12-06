@@ -31,15 +31,15 @@ class NeonApiService
         // Add WHERE clause only if requested
         if ($personId !== null && $useWhereClause) {
             $params['where'] = json_encode([
-                "whereType" => "AND",
-                "clauses" => [
+                'whereType' => 'AND',
+                'clauses' => [
                     [
-                        "fieldName" => "persons_id",
-                        "operator"  => "=",
-                        "operand"   => $personId,
-                        "type"      => "id",
-                    ]
-                ]
+                        'fieldName' => 'persons_id',
+                        'operator' => '=',
+                        'operand' => $personId,
+                        'type' => 'id',
+                    ],
+                ],
             ]);
         }
 
@@ -184,7 +184,7 @@ class NeonApiService
 
     public function fetchPersonChildren(int $personId): array
     {
-        return $this->fetch("persons_applications_children",[
+        return $this->fetch('persons_applications_children', [
             'firstName',
             'lastName',
             // Age to be calculated from dateOfBirth
@@ -196,7 +196,7 @@ class NeonApiService
 
     public function fetchPersonDisclosure(int $personId): array
     {
-        return $this->fetch("persons_applications", [
+        return $this->fetch('persons_applications', [
             'enteredDate',
             'updatedDate',
         ], $personId);
@@ -204,7 +204,7 @@ class NeonApiService
 
     public function fetchPersonAssessment(int $personId): array
     {
-        return $this->fetch("persons_assessment_worksheet", [
+        return $this->fetch('persons_assessment_worksheet', [
             'enteredDate',
             'updatedDate',
         ], $personId);
@@ -212,7 +212,7 @@ class NeonApiService
 
     public function fetchPersonSurvey(int $personId): array
     {
-        return $this->fetch("persons_introductory_survey", [
+        return $this->fetch('persons_introductory_survey', [
             'enteredDate',
             'updatedDate',
         ], $personId);
@@ -220,7 +220,7 @@ class NeonApiService
 
     public function fetchPersonServicePlan(int $personId): array
     {
-        return $this->fetch("persons_service_plan", [
+        return $this->fetch('persons_service_plan', [
             'enteredDate',
             'updatedDate',
         ]);
