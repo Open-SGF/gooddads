@@ -1,0 +1,480 @@
+openapi: 3.0.3
+info:
+  title: Good Dads API
+  version: "1"
+  description: API for Good Dads application data management
+servers:
+  - url: https://api.civicore.com/good_dads/__revision=api
+    description: Production server
+security:
+  - ApiKeyAuth: []
+paths:
+  /api/v3/data/persons_applications_children:
+    get:
+      summary: Get children information
+      operationId: getChildren
+      tags:
+        - Children
+      parameters:
+        - $ref: '#/components/parameters/FieldsParameter'
+        - $ref: '#/components/parameters/WhereParameter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    firstName:
+                      type: string
+                    lastName:
+                      type: string
+                    dateOfBirth:
+                      type: string
+                      format: date
+  
+  /api/v3/data/persons_applications:
+    get:
+      summary: Get consumer's authorization for disclosure
+      operationId: getConsumerAuthDisclosure
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/FieldsParameter'
+        - $ref: '#/components/parameters/WhereParameter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    persons_id:
+                      type: integer
+                    division:
+                      type: string
+                    divisionOther:
+                      type: string
+                    homeCellPhone:
+                      type: string
+                    dateOfBirth:
+                      type: string
+                      format: date
+                    fullAddress:
+                      type: string
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    email:
+                      type: string
+                      format: email
+                    releaseTo:
+                      type: string
+                    releaseToOther:
+                      type: string
+                    releaseToOtherAddress:
+                      type: string
+                    purposeOfDisclosure:
+                      type: string
+                    programName:
+                      type: string
+                    purposeOfDisclosureOther:
+                      type: string
+                    informationToBeDisclosed:
+                      type: string
+                    informationToBeDisclosedOther:
+                      type: string
+                    acceptsTextMessage:
+                      type: boolean
+  
+  /api/v3/data/persons/{personId}:
+    get:
+      summary: Get contact information
+      operationId: getContactInfo
+      tags:
+        - Persons
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Person ID
+          example: "88"
+        - $ref: '#/components/parameters/FieldsParameter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  regions_id:
+                    type: integer
+                  enteredDate:
+                    type: string
+                    format: date-time
+                  address1:
+                    type: string
+                  address2:
+                    type: string
+                  city:
+                    type: string
+                  state:
+                    type: string
+                  zip:
+                    type: string
+                  employer:
+                    type: string
+                  tShirtSize:
+                    type: string
+                  homeCellPhone:
+                    type: string
+                  workPhone:
+                    type: string
+                  otherNumber:
+                    type: string
+                  email:
+                    type: string
+                    format: email
+                  probationParoleCaseWorkerName:
+                    type: string
+                  probationParoleCaseWorkerPhone:
+                    type: string
+                  contactWithChildren:
+                    type: string
+                  contactType:
+                    type: string
+                  monthlyChildSupportPayment:
+                    type: number
+                  maritalStatus:
+                    type: string
+                  ethnicity:
+                    type: string
+  
+  /api/v3/data/persons_assessment_worksheet:
+    get:
+      summary: Get healthy marriage and responsible fatherhood assessment worksheet
+      operationId: getAssessmentWorksheet
+      tags:
+        - Assessment
+      parameters:
+        - $ref: '#/components/parameters/FieldsParameter'
+        - $ref: '#/components/parameters/WhereParameter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    persons_id:
+                      type: integer
+                    fullName:
+                      type: string
+                    dateOfBirth:
+                      type: string
+                      format: date
+                    missouriResident:
+                      type: boolean
+                    childUnder18:
+                      type: boolean
+                    financiallyEligible:
+                      type: boolean
+                    dL:
+                      type: boolean
+                      description: Driver's License
+                    utilityBill:
+                      type: boolean
+                    payStub:
+                      type: boolean
+                    writtenEmployerStatement:
+                      type: boolean
+                    socialSecurityBenefitsStatement:
+                      type: boolean
+                    selfAttestationOfNoEmploymentOrIncome:
+                      type: boolean
+                    unemploymentCompensation:
+                      type: boolean
+                    other:
+                      type: string
+                    hoseholdIncome:
+                      type: number
+                    numberOfFamilyMembersInHousehold:
+                      type: integer
+                    percentageOfFPL:
+                      type: number
+                      description: Percentage of Federal Poverty Level
+  
+  /api/v3/data/persons_introductory_survey:
+    get:
+      summary: Get healthy marriage and responsible fatherhood introductory survey
+      operationId: getIntroductorySurvey
+      tags:
+        - Survey
+      parameters:
+        - $ref: '#/components/parameters/FieldsParameter'
+        - $ref: '#/components/parameters/WhereParameter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    persons_id:
+                      type: integer
+                    dateOfBirth:
+                      type: string
+                      format: date
+                    programName:
+                      type: string
+                    reasons:
+                      type: string
+                    reasonsOther:
+                      type: string
+                    hearAboutUs:
+                      type: string
+                    hearAboutUsOther:
+                      type: string
+                    expectToGain:
+                      type: string
+                    expectToGainOther:
+                      type: string
+  
+  /api/v3/data/persons_service_plan:
+    get:
+      summary: Get individualized service plan
+      operationId: getServicePlan
+      tags:
+        - Service Plan
+      parameters:
+        - $ref: '#/components/parameters/FieldsParameter'
+        - $ref: '#/components/parameters/WhereParameter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    persons_id:
+                      type: integer
+                    programName:
+                      type: string
+                    clientNumber:
+                      type: string
+                    reviewDates:
+                      type: array
+                      items:
+                        type: string
+                        format: date
+                    serviceAreas:
+                      type: array
+                      items:
+                        type: string
+                    serviceIdentifiedByTheParticipants:
+                      type: string
+                    goals_parentingSkills:
+                      type: boolean
+                    goals_parentingSkillsObj:
+                      type: string
+                    goals_parentingSkillsPersonRes:
+                      type: string
+                    goals_parentingSkillsTimeline:
+                      type: string
+                    goals_parentingSkillsMeasure:
+                      type: string
+                    goals_managingStress:
+                      type: boolean
+                    goals_managingStressObj:
+                      type: string
+                    goals_managingStressPersonRes:
+                      type: string
+                    goals_managingStressTimeline:
+                      type: string
+                    goals_managingStressMeasure:
+                      type: string
+                    goals_custodyVisitation:
+                      type: boolean
+                    goals_custodyVisitationObj:
+                      type: string
+                    goals_custodyVisitationPersonRes:
+                      type: string
+                    goals_custodyVisitationMeasure:
+                      type: string
+                    goals_educationEmployment:
+                      type: boolean
+                    goals_educationEmploymentObj:
+                      type: string
+                    goals_educationEmploymentPersonRes:
+                      type: string
+                    goals_educationEmploymentTimeline:
+                      type: string
+                    goals_educationEmploymentMeasure:
+                      type: string
+                    goals_housingTransportation:
+                      type: boolean
+                    goals_housingTransportationObj:
+                      type: string
+                    goals_housingTransportationPersonRes:
+                      type: string
+                    goals_housingTransportationTimeline:
+                      type: string
+                    goals_housingTransportationMeasure:
+                      type: string
+                    goals_childSupportAction:
+                      type: boolean
+                    goals_childSupportActionObj:
+                      type: string
+                    goals_childSupportActionPersonRes:
+                      type: string
+                    goals_childSupportActionTimeline:
+                      type: string
+                    goals_childSupportActionMeasure:
+                      type: string
+                    goals_childSupportAwareness:
+                      type: boolean
+                    goals_childSupportAwarenessObj:
+                      type: string
+                    goals_childSupportAwarenessPersonRes:
+                      type: string
+                    goals_childSupportAwarenessTimeline:
+                      type: string
+                    goals_childSupportAwarenessMeasure:
+                      type: string
+                    goals_effectiveCoParenting:
+                      type: boolean
+                    goals_effectiveCoParentingObj:
+                      type: string
+                    goals_effectiveCoParentingPersonRes:
+                      type: string
+                    goals_effectiveCoParentingTimeline:
+                      type: string
+                    goals_effectiveCoParentingMeasure:
+                      type: string
+                    goals_fatherToFatherMentoring:
+                      type: boolean
+                    goals_fatherToFatherMentoringObj:
+                      type: string
+                    goals_fatherToFatherMentoringPersonRes:
+                      type: string
+                    goals_fatherToFatherMentoringTimeline:
+                      type: string
+                    goals_fatherToFatherMentoringMeasure:
+                      type: string
+  
+  /v3/meta/tables/persons_applications:
+    get:
+      summary: Get metadata for persons_applications table
+      operationId: getMetadata
+      tags:
+        - Metadata
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: key
+      description: API key for authentication
+  
+  schemas:
+    WhereClause:
+      type: object
+      properties:
+        fieldName:
+          type: string
+          description: Name of the field to filter on
+          example: "persons_id"
+        operator:
+          type: string
+          description: Comparison operator
+          enum: ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN"]
+          example: "="
+        operand:
+          type: string
+          description: Value to compare against
+          example: "88"
+        type:
+          type: string
+          description: Type of the operand
+          example: "id"
+      required:
+        - fieldName
+        - operator
+        - operand
+    
+    WhereCondition:
+      type: object
+      properties:
+        whereType:
+          type: string
+          enum: ["AND", "OR"]
+          description: Logical operator for combining clauses
+          example: "AND"
+        clauses:
+          type: array
+          description: Array of where clauses or nested conditions
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/WhereClause'
+              - $ref: '#/components/schemas/WhereCondition'
+      required:
+        - whereType
+        - clauses
+  
+  parameters:
+    FieldsParameter:
+      name: fields
+      in: query
+      required: false
+      description: JSON array of field names to retrieve
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+      example: ["firstName", "lastName", "dateOfBirth"]
+    
+    WhereParameter:
+      name: where
+      in: query
+      required: false
+      description: JSON object defining filter conditions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WhereCondition'
+          example:
+            whereType: "AND"
+            clauses:
+              - fieldName: "persons_id"
+                operator: "="
+                operand: "88"
+                type: "id"
