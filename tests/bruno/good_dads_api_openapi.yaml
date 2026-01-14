@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Good Dads API
-  version: "1"
+  version: '1'
   description: API for Good Dads application data management
 servers:
   - url: https://api.civicore.com/good_dads/__revision=api
@@ -35,7 +35,7 @@ paths:
                     dateOfBirth:
                       type: string
                       format: date
-  
+
   /api/v3/data/persons_applications:
     get:
       summary: Get consumer's authorization for disclosure
@@ -93,7 +93,7 @@ paths:
                       type: string
                     acceptsTextMessage:
                       type: boolean
-  
+
   /api/v3/data/persons/{personId}:
     get:
       summary: Get contact information
@@ -107,7 +107,7 @@ paths:
           schema:
             type: string
           description: Person ID
-          example: "88"
+          example: '88'
         - $ref: '#/components/parameters/FieldsParameter'
       responses:
         '200':
@@ -159,7 +159,7 @@ paths:
                     type: string
                   ethnicity:
                     type: string
-  
+
   /api/v3/data/persons_assessment_worksheet:
     get:
       summary: Get healthy marriage and responsible fatherhood assessment worksheet
@@ -216,7 +216,7 @@ paths:
                     percentageOfFPL:
                       type: number
                       description: Percentage of Federal Poverty Level
-  
+
   /api/v3/data/persons_introductory_survey:
     get:
       summary: Get healthy marriage and responsible fatherhood introductory survey
@@ -255,7 +255,7 @@ paths:
                       type: string
                     expectToGainOther:
                       type: string
-  
+
   /api/v3/data/persons_service_plan:
     get:
       summary: Get individualized service plan
@@ -380,7 +380,7 @@ paths:
                       type: string
                     goals_fatherToFatherMentoringMeasure:
                       type: string
-  
+
   /v3/meta/tables/persons_applications:
     get:
       summary: Get metadata for persons_applications table
@@ -402,7 +402,7 @@ components:
       in: query
       name: key
       description: API key for authentication
-  
+
   schemas:
     WhereClause:
       type: object
@@ -410,33 +410,33 @@ components:
         fieldName:
           type: string
           description: Name of the field to filter on
-          example: "persons_id"
+          example: 'persons_id'
         operator:
           type: string
           description: Comparison operator
-          enum: ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN"]
-          example: "="
+          enum: ['=', '!=', '>', '<', '>=', '<=', 'LIKE', 'IN']
+          example: '='
         operand:
           type: string
           description: Value to compare against
-          example: "88"
+          example: '88'
         type:
           type: string
           description: Type of the operand
-          example: "id"
+          example: 'id'
       required:
         - fieldName
         - operator
         - operand
-    
+
     WhereCondition:
       type: object
       properties:
         whereType:
           type: string
-          enum: ["AND", "OR"]
+          enum: ['AND', 'OR']
           description: Logical operator for combining clauses
-          example: "AND"
+          example: 'AND'
         clauses:
           type: array
           description: Array of where clauses or nested conditions
@@ -447,7 +447,7 @@ components:
       required:
         - whereType
         - clauses
-  
+
   parameters:
     FieldsParameter:
       name: fields
@@ -460,8 +460,8 @@ components:
           type: string
       style: form
       explode: false
-      example: ["firstName", "lastName", "dateOfBirth"]
-    
+      example: ['firstName', 'lastName', 'dateOfBirth']
+
     WhereParameter:
       name: where
       in: query
@@ -472,9 +472,9 @@ components:
           schema:
             $ref: '#/components/schemas/WhereCondition'
           example:
-            whereType: "AND"
+            whereType: 'AND'
             clauses:
-              - fieldName: "persons_id"
-                operator: "="
-                operand: "88"
-                type: "id"
+              - fieldName: 'persons_id'
+                operator: '='
+                operand: '88'
+                type: 'id'
