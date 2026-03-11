@@ -8,23 +8,43 @@
 
 ## Project Setup
 
-- [Install PHP](https://www.php.net/manual/en/install.php)
+- [Install PHP 8.4](https://www.php.net/manual/en/install.php)
 - [Install Composer](https://getcomposer.org/doc/00-intro.md)
 - Install Docker
   - For Mac: [Docker Desktop](https://docs.docker.com/desktop/install/mac-install/) | [Orbstack](https://docs.orbstack.dev/quick-start#installation)
   - For Windows: [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/)
   - For Linux: [Docker Desktop](https://docs.docker.com/desktop/install/linux-install/)
+- PHP 8.4 is required for the current Composer dependency set.
 - Navigate to the project directory and run `composer install`
 - Duplicate the .env.example: `cp .env.example .env`
+- Start the project containers: `sail up -d`
 - Generate a new APP_KEY: `sail artisan key:generate`. This will automatically update the .env file for the APP_KEY value.
+- Run initial DB migration scripts: `sail artisan migrate --seed`
+- Run setup scripts: `composer setup`
 - For running sail commands, by default, you are required to enter the full path to the executable in `vendor/bin/sail`. Most devs prefer to create an alias in their shell so they only have to type `sail`. Read the sail docs about [configuring a sail alias](https://laravel.com/docs/11.x/sail#configuring-a-shell-alias). Further documentation will assume an alias exists in your shell.
+- Note: `composer setup` is host-safe and idempotent for onboarding cache/config clearing, but DB migrations still require Sail to be running.
 
 ## Installing Current Project Dependencies
 
 - All project contributors should run these commands every week to ensure your local project is using the current project dependencies.
-  - `composer install`
-  - `npm install`
-  - `npm run build`
+
+First-time setup order:
+
+- `composer install`
+- `cp .env.example .env`
+- `sail up -d`
+- `sail artisan key:generate`
+- `sail artisan migrate --seed`
+- `composer setup`
+- `npm install`
+- `npm run build`
+
+Ongoing weekly dependency update order:
+
+- `composer install`
+- `composer setup`
+- `npm install`
+- `npm run build`
 
 ## Updating the Project Dependencies
 
