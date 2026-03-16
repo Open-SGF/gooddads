@@ -1,0 +1,8 @@
+{
+	"recommendations": [
+		"bmewburn.vscode-intelephense-client",
+		"laravel.vscode-laravel",
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint"
+	]
+}
